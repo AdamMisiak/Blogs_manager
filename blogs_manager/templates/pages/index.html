@@ -9,12 +9,26 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-12">
-                <h1 class="display-4">Managing blogs never has been so easy</h1>
+                <h1 class="display-4">Managing <span style="color:#e7e7e7">Blogs</span> Never Has Been So Easy</h1>
                 <p class="lead">Subscribe, manage and follow your favourite blogs in one place!  </p>
             </div>
         </div>
     </div>
 </section>
+
+<section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'index' %}">
+                <i class="fas fa-home"></i> Home</a>
+            </li>
+          <li class="breadcrumb-item active"> About</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
 
 
 {% endblock %}

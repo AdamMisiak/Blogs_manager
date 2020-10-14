@@ -3,17 +3,25 @@ body{
 }
 
 .bg-light {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 20%;
+    padding-right: 20%;
     padding-bottom: 0;
     padding-top: 0;
     background-color: #e7e7e7!important;
 }
 
+.breadcrumb-item a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
 .logo{
     width: 150px;
     height: 45px;
+}
 
+.lead{
+    font-size: 22px;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -22,14 +30,14 @@ body{
 }
 
 #showcase-inner {
-    background: url(../img/background2.jpg) no-repeat center;
+    background: url(../img/background.jpg) no-repeat center;
     background-size: cover;
     position: relative;
     overflow: hidden;
     min-height: 180px; 
 }
 #showcase-inner::before {
-    background: rgba(55, 113, 189, 0.7) ;
+    background: rgba(55, 113, 189, 0.65) ;
     /* background-color: rgba(43, 100, 173, 0.7);  */
     background-size: cover;
     content: '';
