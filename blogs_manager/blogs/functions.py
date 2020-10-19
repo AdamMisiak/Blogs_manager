@@ -71,6 +71,28 @@ def get_info_from_pamietnik_gieldowy():
 
     return blog_post_list
 
+def get_info_from_inwestomat():
+    page = requests.get("https://inwestomat.eu/")
+    soup = BeautifulSoup(page.content, 'html.parser')
+    blog_post_list = []
+
+    blog_post_title = soup.find("h2", class_="blog-entry-title entry-title").text
+    
+    blog_post_link = soup.find("h2", class_="blog-entry-title entry-title").find_next('a')['href']
+    
+    blog_post_date = str(soup.find("li", class_="meta-date").text)
+    blog_post_date = blog_post_date[-10:].replace('/', '.')
+    blog_post_date = datetime.datetime.strptime(blog_post_date, '%d.%m.%Y').date()
+
+    blog_post_list.append(blog_post_date)
+    blog_post_list.append(blog_post_title)
+    blog_post_list.append(blog_post_link)
+
+    return blog_post_list
+
+
+result = get_info_from_inwestomat()
+print(result)
 result = get_info_from_pamietnik_gieldowy()
 print(result)
 result = get_info_from_trading_for_a_living()
