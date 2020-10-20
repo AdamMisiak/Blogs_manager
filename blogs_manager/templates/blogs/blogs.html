@@ -38,16 +38,20 @@
         <div class="row">
             {% if blogs %}
                 {% for blog in blogs %}
-
-                    {{ blog.name }}
-                    {{ blog.author }}
-                    {{ blog.url }}
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4">{{ blog.name }}</h1>
+                            <p class="lead"></p>Blog's author: {{ blog.author }}</p>
+                            <p class="lead"></p>Blog's url: {{ blog.url }}</p>
+                        </div>
+                    </div>
                 {% endfor %}
             {% else %}
                 <div class="col-md-12">
                     <p>No Blogs Available :(</p>
                 </div>
             {% endif %}
+
         </div>
     </div> 
 </section>

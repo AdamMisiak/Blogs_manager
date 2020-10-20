@@ -2,6 +2,7 @@ body{
     font-family: Impact, Charcoal, sans-serif;
 }
 
+/* NAVBAR STYLES */
 .bg-light {
     padding-left: 20%;
     padding-right: 20%;
@@ -10,23 +11,19 @@ body{
     background-color: #e7e7e7!important;
 }
 
-.breadcrumb-item a, a:hover, a:focus, a:active {
-    text-decoration: none;
-    color: inherit;
-}
-
 .logo{
     width: 150px;
     height: 45px;
 }
 
-.lead{
-    font-size: 22px;
-}
-
 .navbar-light .navbar-nav .nav-link {
     color: rgba(0,0,0, 0.9);
     font-size: 17px;
+}
+
+/* SHOWCASE STYLES */
+.lead{
+    font-size: 22px;
 }
 
 #showcase-inner {
@@ -47,3 +44,16 @@ body{
     min-height: 100%;
     width: 100%;
 }
+
+/* BREADCRUMB STYLES */
+.breadcrumb-item a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+
+
+
