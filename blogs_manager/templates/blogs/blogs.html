@@ -33,27 +33,28 @@
 
 
 
-<section id="blogs"></section>
-    <div class="container">
-        <div class="row">
-            {% if blogs %}
-                {% for blog in blogs %}
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container">
-                            <h1 class="display-4">{{ blog.name }}</h1>
-                            <p class="lead"></p>Blog's author: {{ blog.author }}</p>
-                            <p class="lead"></p>Blog's url: {{ blog.url }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div class="col-md-12">
-                    <p>No Blogs Available :(</p>
+<section id="blogs">
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ blog.name }}
                 </div>
-            {% endif %}
-
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.author }}</h5>
+                        <p class="card-text">Blog's url: {{ blog.url }}</p>
+                        <a href="{{ blog.url }}" class="btn btn-primary">Visit blog</a>
+                    </div>
+                <div class="card-footer text-muted">
+                2 days ago
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <p>No Blogs Available :(</p>
         </div>
-    </div> 
+    {% endif %}
 </section>
 
 {% endblock %}
