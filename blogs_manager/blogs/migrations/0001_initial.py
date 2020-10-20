@@ -7,19 +7,60 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Blog',
+            name="Blog",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('url', models.CharField(max_length=200)),
-                ('author', models.CharField(max_length=100)),
-                ('genre', models.CharField(choices=[('Science', 'Science'), ('Cooking', 'Cooking'), ('Personal', 'Personal'), ('Motivational', 'Motivational'), ('Travel', 'Travel'), ('Lifestyle', 'Lifestyle'), ('Humor', 'Humor'), ('IT', 'IT'), ('Financials', 'Financials')], default='Financial', max_length=30)),
-                ('genre2', models.CharField(blank=True, choices=[('Science', 'Science'), ('Cooking', 'Cooking'), ('Personal', 'Personal'), ('Motivational', 'Motivational'), ('Travel', 'Travel'), ('Lifestyle', 'Lifestyle'), ('Humor', 'Humor'), ('IT', 'IT'), ('Financials', 'Financials')], max_length=30)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("url", models.CharField(max_length=200)),
+                ("author", models.CharField(max_length=100)),
+                (
+                    "genre",
+                    models.CharField(
+                        choices=[
+                            ("Science", "Science"),
+                            ("Cooking", "Cooking"),
+                            ("Personal", "Personal"),
+                            ("Motivational", "Motivational"),
+                            ("Travel", "Travel"),
+                            ("Lifestyle", "Lifestyle"),
+                            ("Humor", "Humor"),
+                            ("IT", "IT"),
+                            ("Financials", "Financials"),
+                        ],
+                        default="Financial",
+                        max_length=30,
+                    ),
+                ),
+                (
+                    "genre2",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Science", "Science"),
+                            ("Cooking", "Cooking"),
+                            ("Personal", "Personal"),
+                            ("Motivational", "Motivational"),
+                            ("Travel", "Travel"),
+                            ("Lifestyle", "Lifestyle"),
+                            ("Humor", "Humor"),
+                            ("IT", "IT"),
+                            ("Financials", "Financials"),
+                        ],
+                        max_length=30,
+                    ),
+                ),
             ],
         ),
     ]
