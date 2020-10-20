@@ -36,15 +36,15 @@ def get_info_from_trading_for_a_living():
     soup = BeautifulSoup(page.content, 'html.parser')
     blog_post_list = []
 
-    blog_post_title = soup.find("h2", class_="c-post-card__title c-post-card__title--featured").text
+    blog_post_title = str(soup.find("h2", class_="c-post-card__title c-post-card__title--featured").text)[1:]
     blog_post_link = soup.find("h2", class_="c-post-card__title c-post-card__title--featured").find_next('a')['href']
     blog_post_date = str(soup.find("p", class_="c-post-card__special-date c-post-card__special-date--featured").text)
     blog_post_date = blog_post_date[1:].replace(' ', '.')
     blog_post_date = datetime.datetime.strptime(blog_post_date, '%d.%m.%y').date()
 
-    blog_post_list.append(blog_post_date)
     blog_post_list.append(blog_post_title)
     blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
 
     return blog_post_list
 
@@ -65,9 +65,9 @@ def get_info_from_pamietnik_gieldowy():
     blog_post_date_string = blog_post_day+'.'+blog_post_month+'.'+blog_post_year
     blog_post_date = datetime.datetime.strptime(blog_post_date_string, '%d.%m.%Y').date()
 
-    blog_post_list.append(blog_post_date)
     blog_post_list.append(blog_post_title)
     blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
 
     return blog_post_list
 
@@ -84,16 +84,16 @@ def get_info_from_inwestomat():
     blog_post_date = blog_post_date[-10:].replace('/', '.')
     blog_post_date = datetime.datetime.strptime(blog_post_date, '%d.%m.%Y').date()
 
-    blog_post_list.append(blog_post_date)
     blog_post_list.append(blog_post_title)
     blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
 
     return blog_post_list
 
 
-result = get_info_from_inwestomat()
-print(result)
-result = get_info_from_pamietnik_gieldowy()
-print(result)
-result = get_info_from_trading_for_a_living()
-print(result)
+# result = get_info_from_inwestomat()
+# print(result)
+# result = get_info_from_pamietnik_gieldowy()
+# print(result)
+# result = get_info_from_trading_for_a_living()
+# print(result)
