@@ -42,11 +42,10 @@
                 </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ blog.author }}</h5>
-                        <p class="card-text">Blog's url: {{ blog.url }}</p>
-                        <a href="{{ blog.url }}" class="btn btn-primary">Visit blog</a>
+                        <a href="{{ blog.url }}" class="card-text">{{ blog.url }}</a>
                     </div>
                 <div class="card-footer text-muted">
-                2 days ago
+                Last post: 2 days ago
                 </div>
             </div>
         {% endfor %}
