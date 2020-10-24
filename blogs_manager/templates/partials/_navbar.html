@@ -20,12 +20,21 @@
 	</div>
 	<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item justify-content-end">
+                <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user"></i> Acccount</a>
+            </li>
+            <li class="nav-item justify-content-end">
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+			</li>
+            {% else %}
 			<li class="nav-item justify-content-end">
                 <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
 			</li>
 			<li class="nav-item justify-content-end">
-                <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
