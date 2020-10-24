@@ -50,6 +50,7 @@ body{
     color: inherit;
 }
 
+/* BLOGS LIST STYLES */
 .card{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -72,7 +73,12 @@ body{
 }
 
 .btn-primary{
-    background: rgb(61, 130, 221) ;
+    background: rgb(61, 130, 221);
+}
+
+/* REGISTER STYLES */
+.bg-primary{
+    background-color: rgb(55, 113, 189)!important;
 }
 
 
