@@ -1,5 +1,6 @@
 body{
     font-family: Impact, Charcoal, sans-serif;
+    background-color: white;
 }
 
 /* NAVBAR STYLES */
@@ -8,6 +9,9 @@ body{
     padding-right: 20%;
     padding-bottom: 0;
     padding-top: 0;
+}
+
+.navbar{
     background-color: #e7e7e7!important;
 }
 
@@ -79,6 +83,17 @@ body{
 /* REGISTER STYLES */
 .bg-primary{
     background-color: rgb(55, 113, 189)!important;
+}
+
+h4{
+    font-size: 20px;
+}
+
+.card-register{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-left: 0;
+    margin-right: 0;
 }
 
 
