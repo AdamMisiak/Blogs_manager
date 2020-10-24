@@ -34,6 +34,15 @@ def login(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+
+        if user:
+            auth.login(request, user)
+            # messages.success(request, 'You are now logged in')
+            return redirect('index')
+        else:
+            # messages.error(request, 'Invalid credentials')
+            return redirect('login')
 
     return render(request, 'users/login.html')
 
