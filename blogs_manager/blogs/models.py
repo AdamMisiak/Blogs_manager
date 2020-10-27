@@ -29,7 +29,7 @@ class BlogPost(models.Model):
     name = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     added = models.DateTimeField()
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_post')
 
     def __str__(self):
         return self.name

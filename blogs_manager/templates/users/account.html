@@ -33,7 +33,7 @@
                         {{blog_post.blog}} | <a href="{{ blog_post.url }}" class="card-text">{{ blog_post.url }}</a>
                     </div>
                 <div class="card-footer text-muted">
-                Added: {{ blog_post.added }}
+                Added: {{ blog_post.added|date:'d/m/Y' }}
                 </div>
             </div>
         {% endfor %}
