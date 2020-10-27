@@ -22,7 +22,7 @@
         <ul class="navbar-nav">
             {% if user.is_authenticated %}
             <li class="nav-item justify-content-end">
-                <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user"></i> Account</a>
+                <a class="nav-link" href="{% url 'account' %}"><i class="fas fa-user"></i> Account</a>
             </li>
             <li class="nav-item justify-content-end">
                 <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>

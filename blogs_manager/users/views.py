@@ -3,6 +3,10 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 
 
+def account(request):
+
+    return render(request, 'users/account.html')
+
 def register(request):
     if request.method == "POST":
         first_name = request.POST['first_name']

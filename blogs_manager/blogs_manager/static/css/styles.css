@@ -80,6 +80,10 @@ body{
     background: rgb(61, 130, 221);
 }
 
+.col-md-12 p{
+    text-align: center;
+}
+
 /* REGISTER STYLES */
 .bg-primary{
     background-color: rgb(55, 113, 189)!important;

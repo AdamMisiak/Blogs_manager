@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+
+{% block title %} | Account {% endblock %}
+
+{% block content %}
+
+
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'index' %}">
+                    <i class="fas fa-home"></i> Home</a>
+                </li>
+            <li class="breadcrumb-item active"> Blogs</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+
+
+<section id="blogs">
+    {% if blogs %}
+        {% for blog in blogs %}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ blog.name }}
+                </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.author }}</h5>
+                        {{blog.genre}} | <a href="{{ blog.url }}" class="card-text">{{ blog.url }}</a>
+                    </div>
+                <div class="card-footer text-muted">
+                Last post: 2 days ago
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <p>No Blogs Available :(</p>
+        </div>
+    {% endif %}
+</section>
+
+
+{% endblock %}
