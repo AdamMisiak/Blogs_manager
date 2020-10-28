@@ -123,9 +123,32 @@ def get_info_from_inwestomat():
     return blog_post_list
 
 
+def get_info_from_independenttrader():
+    page = requests.get("https://independenttrader.pl/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    blog_post_list = []
+
+    blog_post_title = soup.find("h2", class_="title auto-title-height").find_next("a")["title"]
+    print(blog_post_title)
+    # blog_post_link = soup.find("h2", class_="blog-entry-title entry-title").find_next(
+    #     "a"
+    # )["href"]
+
+    # blog_post_date = str(soup.find("li", class_="meta-date").text)
+    # blog_post_date = blog_post_date[-10:].replace("/", ".")
+    # blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+
+    # blog_post_list.append(blog_post_title)
+    # blog_post_list.append(blog_post_link)
+    # blog_post_list.append(blog_post_date)
+
+    return blog_post_list
+
 # result = get_info_from_inwestomat()
 # print(result)
-result = get_info_from_pamietnik_gieldowy()
-print(result)
+# result = get_info_from_pamietnik_gieldowy()
+# print(result)
 # result = get_info_from_trading_for_a_living()
 # print(result)
+result = get_info_from_independenttrader()
+print(result)

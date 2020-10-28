@@ -11,7 +11,7 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "url", "added", "blog")
+    list_display = ("id", "name", "blog", "url", "added")
     list_display_links = ("id", "name")
     list_filter = ("added", "blog")
     search_fields = ("blog", "name")
