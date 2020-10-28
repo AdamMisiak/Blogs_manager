@@ -64,8 +64,8 @@ def get_info_from_pamietnik_gieldowy():
 
     blog_posts = soup.find("div", class_="date-outer")
     blog_post_title = (
-        blog_posts.find("div", class_="post-body entry-content")
-        .findChildren("span")[0]
+        blog_posts.find("h3", class_="post-title entry-title")
+        .findChildren("a")[0]
         .text
     )
     blog_post_link = soup.find("h3", class_="post-title entry-title").find_next("a")[
@@ -125,7 +125,7 @@ def get_info_from_inwestomat():
 
 # result = get_info_from_inwestomat()
 # print(result)
-# result = get_info_from_pamietnik_gieldowy()
-# print(result)
+result = get_info_from_pamietnik_gieldowy()
+print(result)
 # result = get_info_from_trading_for_a_living()
 # print(result)
