@@ -132,16 +132,12 @@ def get_info_from_independenttrader():
     
     blog_post_link = "https://independenttrader.pl"+str(soup.find("h2", class_="title auto-title-height").find_next("a")["href"])
     
+    blog_post_date = str(soup.find("div", class_="additionalBar").find_next("p").find_next("p").text).strip()
+    blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
 
-    blog_post_date = soup.find("div", class_="col-md-12 postDescription").find_next("p")
-    # blog_post_date = blog_post_date[-10:].replace("/", ".")
-    # blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
-
-    print(blog_post_date)
-
-    # blog_post_list.append(blog_post_title)
-    # blog_post_list.append(blog_post_link)
-    # blog_post_list.append(blog_post_date)
+    blog_post_list.append(blog_post_title)
+    blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
 
     return blog_post_list
 
