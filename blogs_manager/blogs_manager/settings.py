@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+from celery.schedules import crontab
+from celery import shared_task
+# from .tasks import shared_task
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -124,3 +128,16 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "blogs_manager/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "blogs_manager/static")]
+
+
+# CELERY STUFF
+CELERY_BROKER_URL = 'redis://localhost:6379'
+
+
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {
+        "task": "users.views.sample_task",
+        "schedule": crontab(minute="*/1"),
+    },
+}
+

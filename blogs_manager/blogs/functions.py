@@ -147,5 +147,5 @@ def get_info_from_independenttrader():
 # print(result)
 # result = get_info_from_trading_for_a_living()
 # print(result)
-result = get_info_from_independenttrader()
-print(result)
+# result = get_info_from_independenttrader()
+# print(result)

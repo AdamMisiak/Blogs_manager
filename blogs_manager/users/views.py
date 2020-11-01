@@ -6,12 +6,23 @@ from blogs.functions import *
 
 from .functions import create_new_blog_post
 
+# from celery import Celery
+# from celery.schedules import crontab
+# from celery.decorators import periodic_task
+from celery import shared_task
+
+@shared_task
+def sample_task():
+    print("The sample task just ran.")
+    print(5+5)
+
 
 def account(request):
     blog_posts = BlogPost.objects.all().order_by('-added', 'name')
     create_new_blog_post(get_info_from_trading_for_a_living, 'Trading for a living')
     create_new_blog_post(get_info_from_pamietnik_gieldowy, 'Pamiętnik Giełdowy')
     create_new_blog_post(get_info_from_inwestomat, 'Inwestomat.eu')
+    create_new_blog_post(get_info_from_inwestomat, 'Independent Trader')
 
     context = {"blog_posts": blog_posts}
 
