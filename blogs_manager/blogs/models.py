@@ -31,5 +31,8 @@ class BlogPost(models.Model):
     added = models.DateTimeField()
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_post')
 
+    class Meta:
+        ordering = ('-added',)
+
     def __str__(self):
         return self.name

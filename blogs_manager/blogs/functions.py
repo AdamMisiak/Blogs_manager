@@ -168,6 +168,6 @@ def get_info_from_usstocks():
 # print(result)
 # result = get_info_from_independenttrader()
 # print(result)
-result = get_info_from_usstocks()
-print(result)
+# result = get_info_from_usstocks()
+# print(result)
 
