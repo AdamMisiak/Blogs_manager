@@ -141,6 +141,26 @@ def get_info_from_independenttrader():
 
     return blog_post_list
 
+
+def get_info_from_usstocks():
+    page = requests.get("https://usstocks.pl/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    blog_post_list = []
+
+    blog_post_title = soup.find("h3", class_="title").find_next("a").text
+    print(blog_post_title)
+    
+    # blog_post_link = "https://independenttrader.pl"+str(soup.find("h2", class_="title auto-title-height").find_next("a")["href"])
+    
+    # blog_post_date = str(soup.find("div", class_="additionalBar").find_next("p").find_next("p").text).strip()
+    # blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+
+    # blog_post_list.append(blog_post_title)
+    # blog_post_list.append(blog_post_link)
+    # blog_post_list.append(blog_post_date)
+
+    return blog_post_list
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -149,3 +169,6 @@ def get_info_from_independenttrader():
 # print(result)
 # result = get_info_from_independenttrader()
 # print(result)
+result = get_info_from_usstocks()
+print(result)
+
