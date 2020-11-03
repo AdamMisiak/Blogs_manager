@@ -123,7 +123,7 @@ def get_info_from_inwestomat():
     return blog_post_list
 
 
-def get_info_from_independenttrader():
+def get_info_from_independent_trader():
     page = requests.get("https://independenttrader.pl/")
     soup = BeautifulSoup(page.content, "html.parser")
     blog_post_list = []
@@ -160,6 +160,27 @@ def get_info_from_usstocks():
 
     return blog_post_list
 
+
+def get_info_from_system_trader():
+    page = requests.get("https://systemtrader.pl/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    blog_post_list = []
+
+    blog_post_title = soup.find("h1", class_="headline entry-title").find_next("a")["title"]
+    
+    
+    blog_post_link = soup.find("h1", class_="headline entry-title").find_next("a")["href"]
+
+    print(blog_post_link)
+    # blog_post_date = str(soup.find("div", class_="date").text).strip().replace("/", ".")
+    # blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+
+    # blog_post_list.append(blog_post_title)
+    # blog_post_list.append(blog_post_link)
+    # blog_post_list.append(blog_post_date)
+
+    return blog_post_list
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -170,4 +191,6 @@ def get_info_from_usstocks():
 # print(result)
 # result = get_info_from_usstocks()
 # print(result)
+result = get_info_from_system_trader()
+print(result)
 
