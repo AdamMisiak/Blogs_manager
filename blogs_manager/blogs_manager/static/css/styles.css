@@ -3,6 +3,28 @@ body{
     background-color: white;
 }
 
+/* LINKS STYLES */
+a.no-link:link
+{
+   color: black;
+   text-decoration: none;
+}
+a.no-link:visited
+{
+   color: black;
+   text-decoration: none;
+}
+a.no-link:hover
+{
+   color: gray;
+   text-decoration: none;
+}
+a.no-link:active
+{
+   color: black;
+   text-decoration: none;
+}
+
 /* NAVBAR STYLES */
 .bg-light {
     padding-left: 20%;

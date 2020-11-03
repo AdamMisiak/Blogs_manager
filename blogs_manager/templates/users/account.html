@@ -30,7 +30,7 @@
                 </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ blog_post.author }}</h5>
-                        {{blog_post.blog}} | <a href="{{ blog_post.url }}" class="card-text">{{ blog_post.url }}</a>
+                        <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{{blog_post.blog}}</a> | <a href="{{ blog_post.url }}" class="card-text">{{ blog_post.url }}</a>
                     </div>
                 <div class="card-footer text-muted">
                 Added: {{ blog_post.added|date:'d/m/Y' }}
