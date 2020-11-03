@@ -22,8 +22,9 @@ def account(request):
     create_new_blog_post(get_info_from_trading_for_a_living, 'Trading for a living')
     create_new_blog_post(get_info_from_pamietnik_gieldowy, 'Pamiętnik Giełdowy')
     create_new_blog_post(get_info_from_inwestomat, 'Inwestomat.eu')
-    create_new_blog_post(get_info_from_independenttrader, 'Independent Trader')
+    create_new_blog_post(get_info_from_independent_trader, 'Independent Trader')
     create_new_blog_post(get_info_from_usstocks, 'USStocks')
+    create_new_blog_post(get_info_from_system_trader, 'System Trader')
 
     context = {"blog_posts": blog_posts}
 
