@@ -130,14 +130,9 @@ STATIC_URL = "blogs_manager/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "blogs_manager/static")]
 
 
-# CELERY STUFF
-CELERY_BROKER_URL = 'redis://localhost:6379'
-
-
-CELERY_BEAT_SCHEDULE = {
-    "sample_task": {
-        "task": "users.views.sample_task",
-        "schedule": crontab(minute="*/1"),
-    },
-}
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
