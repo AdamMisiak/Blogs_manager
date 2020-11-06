@@ -189,14 +189,28 @@ def get_info_from_spekulant():
     blog_post_title = soup.find("h3", class_="entry-title").find_next("a")["title"]
     
     blog_post_link = soup.find("h3", class_="entry-title").find_next("a")["href"]
-    print(blog_post_link)
-    # blog_post_date = soup.find("i", class_="md-icon-clock").find_next("time").text
-    # blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+    
+    blog_post_date = soup.find("div", class_="meta-info").find_next("time").text
+    blog_post_year = str(
+        soup.find("div", class_="meta-info").find_next("time").text
+    )[-4:]
+    blog_post_comma_index = str(
+        soup.find("div", class_="meta-info").find_next("time").text
+    ).find(",")
+    blog_post_month = str(month_string_to_date(str(
+        soup.find("div", class_="meta-info").find_next("time").text
+    )[:3]))
 
+    blog_post_day = str(str(
+        soup.find("div", class_="meta-info").find_next("time").text
+    )[blog_post_comma_index-2:blog_post_comma_index]).strip()
 
-    # blog_post_list.append(blog_post_title)
-    # blog_post_list.append(blog_post_link)
-    # blog_post_list.append(blog_post_date)
+    blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+    blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+    blog_post_list.append(blog_post_title)
+    blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
 
     return blog_post_list
 
@@ -212,6 +226,6 @@ def get_info_from_spekulant():
 # print(result)
 # result = get_info_from_system_trader()
 # print(result)
-result = get_info_from_spekulant()
-print(result)
+# result = get_info_from_spekulant()
+# print(result)
 
