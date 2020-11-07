@@ -31,4 +31,29 @@
 </section>
 
 
+<section id="blogs">
+    {% if blog_posts %}
+        {% for blog_post in blog_posts %}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ blog_post.name }}
+                </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog_post.author }}</h5>
+                        <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{{blog_post.blog}}</a> | <a href="{{ blog_post.url }}" class="card-text">{{ blog_post.url }}</a>
+                    </div>
+                <div class="card-footer text-muted">
+                Added: {{ blog_post.added|date:'d/m/Y' }}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <p>No Blogs Available :(</p>
+        </div>
+    {% endif %}
+</section>
+
+
+
 {% endblock %}

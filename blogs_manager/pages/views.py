@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from blogs.models import Blog, BlogPost
 
 
 def index(request):
+    blog_posts = BlogPost.objects.all().order_by('-added', 'name')
     # listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
     # blogs = Blog.objects.all()
     # trading_for_a_living = get_info_from_trading_for_a_living()
@@ -13,6 +15,6 @@ def index(request):
     # )
     # blog_post.save()
 
-    context = {}
+    context = {"blog_posts": blog_posts}
 
     return render(request, "pages/index.html", context)
