@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from blogs.models import Blog, BlogPost
+from users.models import BlogSubscriber
 from blogs.functions import *
 
 from .functions import create_new_blog_post
 
 
 def account(request):
-    blog_posts = BlogPost.objects.all().order_by('-added', 'name')
+    # subscribed_blogs = BlogSubscriber.objects.filter(user=request.user)
+    blog_posts = BlogPost.objects.filter(blog__subscribed_blog__user=request.user)
     # create_new_blog_post(get_info_from_trading_for_a_living, 'Trading for a living')
     # create_new_blog_post(get_info_from_pamietnik_gieldowy, 'Pamiętnik Giełdowy')
     # create_new_blog_post(get_info_from_inwestomat, 'Inwestomat.eu')
