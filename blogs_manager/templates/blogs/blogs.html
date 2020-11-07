@@ -45,8 +45,13 @@
                         <h5 class="card-title">{{ blog.author }}</h5>
                         {{blog.genre}} | <a href="{{ blog.url }}" class="card-text">{{ blog.url }}</a>
                     </div>
+                    
                 <div class="card-footer text-muted">
-                Last post published: {{ blog.blog_post.first.added|date:"M d, Y" }}
+                    <div class="card-button">
+                        <button class='button subscribe-button'>Subscribe</button>
+                    </div>
+                    <hr class="my-2">
+                    Last post published: {{ blog.blog_post.first.added|date:"M d, Y" }}
                 </div>
             </div>
         {% endfor %}
@@ -56,5 +61,7 @@
         </div>
     {% endif %}
 </section>
+
+<script src="/blogs_manager/static/js/subscribe_blog.js"></script>
 
 {% endblock %}

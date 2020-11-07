@@ -98,6 +98,10 @@ a.no-link:active
     margin-bottom: 8px;
 }
 
+.card-footer{
+    font-size: 14px;
+}
+
 .btn-primary{
     background: rgb(61, 130, 221);
 }
@@ -106,9 +110,32 @@ a.no-link:active
     text-align: center;
 }
 
+/* SUBSCRIBE BUTTONS STYLES */
+.card-button{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+
+.button {
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    border: 2.5px solid rgb(61, 130, 221);
+    transition-duration: 0.4s;
+  }
+
+  .button:hover {
+    background-color: rgb(61, 130, 221);
+    color: white;
+  }
+  
+
 /* REGISTER STYLES */
 .bg-primary{
     background-color: rgb(55, 113, 189)!important;
+    
 }
 
 h4{
