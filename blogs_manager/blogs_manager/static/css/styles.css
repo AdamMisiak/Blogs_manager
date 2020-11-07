@@ -99,7 +99,11 @@ a.no-link:active
 }
 
 .card-footer{
-    font-size: 14px;
+    font-size: 13.7px;
+}
+
+.my-2{
+    width:80%; 
 }
 
 .btn-primary{
@@ -123,6 +127,7 @@ a.no-link:active
     background-color: white;
     color: black;
     border: 2.5px solid rgb(61, 130, 221);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.15);
     transition-duration: 0.4s;
   }
 
