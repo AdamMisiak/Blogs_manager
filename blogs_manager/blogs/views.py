@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 
+from users.models import BlogSubscriber
 from .models import Blog, BlogPost
 from .functions import get_info_from_trading_for_a_living
-
-# Create your views here.
 
 
 def index(request):
@@ -18,7 +17,16 @@ def index(request):
 def subscribed(request):
     if request.method == "GET":
         blog_id = request.GET["blog_id"]
-        print(blog_id, ' TESTTTT')
+        blog = Blog.objects.get(id=blog_id)
+        blog_subscriber, created = BlogSubscriber.objects.get_or_create(
+          blog=blog,
+          user=request.user,
+        )
+        if created:
+            blog_subscriber.save()
+        else:
+            print('test')
+            blog_subscriber.delete()
 
         return HttpResponse("success")
     else:
