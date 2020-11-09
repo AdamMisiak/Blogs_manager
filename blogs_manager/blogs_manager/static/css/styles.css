@@ -126,16 +126,22 @@ a.no-link:active
     border-radius: 8px;
     background-color: white;
     color: black;
-    border: 2.5px solid rgb(61, 130, 221);
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.15);
     transition-duration: 0.4s;
-  }
+}
 
-  .button:hover {
+.button:hover {
     background-color: rgb(61, 130, 221);
     color: white;
-  }
-  
+}
+
+.subscribe-button{
+    border: 2.5px solid rgb(61, 130, 221);
+}
+
+.unsubscribe-button{
+    border: 2.5px solid rgb(226, 47, 47);
+}
 
 /* REGISTER STYLES */
 .bg-primary{

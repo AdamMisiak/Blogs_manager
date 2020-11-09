@@ -48,7 +48,7 @@
                     
                 <div class="subscribe card-footer text-muted">
                     <div class="card-button">
-                        <button class='button subscribe-button' data-catid='{{ blog.id }}'>Subscribe</button>
+                        <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
                     </div>
                     <hr class="my-2">
                     Last post published: {{ blog.blog_post.first.added|date:"M d, Y" }}
