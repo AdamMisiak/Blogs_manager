@@ -15,10 +15,10 @@ $('.subscribe-button').click(function(){
             $( '#blog'+ id ).text('Unsubscribe');
             $( '#blog'+ id ).addClass('button unsubscribe-button');
         }
-        else if($( '#like'+ id ).text() == 'Delete'){
-            $( '#like'+ id ).removeClass('btn btn-danger btn-lg');
-            $( '#like'+ id ).text('Add');
-            $( '#like'+ id ).addClass('btn btn-primary btn-lg');
+        else if($( '#blog'+ id ).text() == 'Unsubscribe'){
+            $( '#blog'+ id ).removeClass('button unsubscribe-button');
+            $( '#blog'+ id ).text('Subscribe');
+            $( '#blog'+ id ).addClass('button subscribe-button');
         }
      }
      })
