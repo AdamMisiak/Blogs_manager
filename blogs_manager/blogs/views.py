@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponse
 
 from .models import Blog, BlogPost
 from .functions import get_info_from_trading_for_a_living
@@ -8,9 +9,22 @@ from .functions import get_info_from_trading_for_a_living
 
 def index(request):
     blogs = Blog.objects.all()
+
     
     context = {"blogs": blogs}
     return render(request, "blogs/blogs.html", context)
+
+
+def subscribed(request):
+    if request.method == "GET":
+        blog_id = request.GET["blog_id"]
+        print(blog_id, ' TESTTTT')
+
+        return HttpResponse("success")
+    else:
+        return HttpResponse("unsuccess")
+
+
 
 
 def blog_info(request, pk):
@@ -21,5 +35,6 @@ def blog_info(request, pk):
                "blog": blog,
                "blog_posts": blog_posts 
                }
+
     return render(request, "blogs/blog_info.html", context)
 
