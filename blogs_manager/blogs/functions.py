@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 
 def month_string_to_date(month_string):
+    month_string = month_string.strip()
     if month_string[:3].lower() == "sty":
         month_date = 1
     elif month_string[:3].lower() == "lut":
@@ -22,7 +23,7 @@ def month_string_to_date(month_string):
         month_date = 8
     elif month_string[:3].lower() == "wrz":
         month_date = 9
-    elif month_string[:3].lower() == "paź":
+    elif month_string[:3].lower() == "paź" or month_string[:3].lower() == "paz":
         month_date = 10
     elif month_string[:3].lower() == "lis":
         month_date = 11
@@ -75,6 +76,7 @@ def get_info_from_pamietnik_gieldowy():
     blog_post_year = str(
         blog_posts.find("h2", class_="date-header").findChildren("span")[0].text
     )[-4:]
+    
     blog_post_comma_index = str(
         blog_posts.find("h2", class_="date-header").findChildren("span")[0].text
     ).find(",")
@@ -82,7 +84,7 @@ def get_info_from_pamietnik_gieldowy():
         month_string_to_date(
             str(
                 blog_posts.find("h2", class_="date-header").findChildren("span")[0].text
-            )[blog_post_comma_index + 4 : blog_post_comma_index + 7]
+            )[blog_post_comma_index + 4 : blog_post_comma_index + 8]
         )
     )
     blog_post_day = str(
@@ -220,7 +222,7 @@ def get_info_from_spekulant():
 # print(result)
 # result = get_info_from_trading_for_a_living()
 # print(result)
-# result = get_info_from_independenttrader()
+# result = get_info_from_independent_trader()
 # print(result)
 # result = get_info_from_usstocks()
 # print(result)
