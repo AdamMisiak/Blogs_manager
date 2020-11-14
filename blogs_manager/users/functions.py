@@ -24,3 +24,4 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_usstocks, 'USStocks')
     create_new_blog_post(get_info_from_system_trader, 'System Trader')
     create_new_blog_post(get_info_from_spekulant, 'Spekulant')
+    create_new_blog_post(get_info_from_just_geek_it, 'Just Geek It')

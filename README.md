@@ -2,7 +2,7 @@
 
 Live version: ...
 
-Website created to manage blogs subscriptions. Following, unfollowing, getting favourite blogs newsletters in one place. Using BeautifulSoup4 for scraping. Email notification for selected blogs. Created with Django framework.\
+Website created to manage blogs subscriptions. Following, unfollowing, getting favourite blogs newsletters in one place. Using BeautifulSoup4 for scraping. Email notification for selected blogs. Created with Django framework.
 
 
 ## Table of contents
