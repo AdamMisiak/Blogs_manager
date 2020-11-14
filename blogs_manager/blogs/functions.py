@@ -215,6 +215,25 @@ def get_info_from_spekulant():
 
     return blog_post_list
 
+
+def get_info_from_just_geek_it():
+    page = requests.get("https://geek.justjoin.it/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    blog_post_list = []
+
+    blog_post_title = soup.find("h3", class_="title").find_next("a").text
+    
+    blog_post_link = soup.find("h3", class_="title").find_next("a")["href"]
+    
+    blog_post_date = str(soup.find("i", class_="tipi-i-calendar").find_next("time")["datetime"])[:10]
+    blog_post_date = datetime.datetime.strptime(blog_post_date, "%Y-%m-%d").date()
+
+    blog_post_list.append(blog_post_title)
+    blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
+
+    return blog_post_list
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -228,5 +247,7 @@ def get_info_from_spekulant():
 # result = get_info_from_system_trader()
 # print(result)
 # result = get_info_from_spekulant()
+# print(result)
+# result = get_info_from_just_geek_it()
 # print(result)
 
