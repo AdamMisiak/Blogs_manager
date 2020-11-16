@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import auth, messages
 from django.http import HttpResponseRedirect, HttpResponse
 
 from users.models import BlogSubscriber
@@ -23,9 +24,10 @@ def subscribed(request):
           user=request.user,
         )
         if created:
+            messages.success(request, 'You have subscribed {}'.format(blog.name))
             blog_subscriber.save()
         else:
-            print('test')
+            messages.success(request, 'You are now logged in')
             blog_subscriber.delete()
 
         return HttpResponse("success")
