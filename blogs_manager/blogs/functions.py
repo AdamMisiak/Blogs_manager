@@ -234,6 +234,26 @@ def get_info_from_just_geek_it():
 
     return blog_post_list
 
+
+def get_info_from_finanse_bardzo_osobiste():
+    page = requests.get("https://marciniwuc.com/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    blog_post_list = []
+
+    blog_post_title = soup.find("div", class_="column one-third").find_next("article").find_next("h2").text
+    
+    blog_post_link = soup.find("div", class_="column one-third").find_next("article").find_next("h2").find_next("a")["href"]
+    
+    blog_post_date = str(soup.find("span", class_="listing-meta").find_next("time").text)
+    blog_post_date = datetime.datetime.strptime(blog_post_date, "%Y-%m-%d").date()
+
+    blog_post_list.append(blog_post_title)
+    blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
+
+    return blog_post_list
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -249,5 +269,7 @@ def get_info_from_just_geek_it():
 # result = get_info_from_spekulant()
 # print(result)
 # result = get_info_from_just_geek_it()
+# print(result)
+# result = get_info_from_finanse_bardzo_osobiste()
 # print(result)
 
