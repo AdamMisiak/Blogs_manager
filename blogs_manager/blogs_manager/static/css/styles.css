@@ -130,18 +130,28 @@ a.no-link:active
     transition-duration: 0.4s;
 }
 
-.button:hover {
-    background-color: rgb(61, 130, 221);
-    color: white;
+.button:focus{
+    outline:none;
 }
 
 .subscribe-button{
     border: 2.5px solid rgb(61, 130, 221);
 }
 
+.subscribe-button:hover {
+    background-color: rgb(61, 130, 221);
+    color: white;
+}
+
 .unsubscribe-button{
     border: 2.5px solid rgb(226, 47, 47);
 }
+
+.unsubscribe-button:hover {
+    background-color: rgb(226, 47, 47);
+    color: white;
+}
+
 
 /* REGISTER STYLES */
 .bg-primary{

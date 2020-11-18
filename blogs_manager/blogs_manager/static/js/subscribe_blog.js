@@ -1,4 +1,4 @@
-$('.subscribe-button').click(function(){
+$('.button').click(function(){
     var id;
     id = $(this).attr("data-catid");
     $.ajax(

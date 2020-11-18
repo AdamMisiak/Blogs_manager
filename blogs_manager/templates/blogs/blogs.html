@@ -47,9 +47,16 @@
                     </div>
                     
                 <div class="subscribe card-footer text-muted">
-                    <div class="card-button">
-                        <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
-                    </div>
+                    {% if blog.id not in subscribed_blogs %}
+                        <div class="card-button">
+                            <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
+                        </div>
+                    {% else %}
+                        <div class="card-button">
+                            <button class='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
+                        </div>
+                    {% endif %}
+                    
                     <hr class="my-2">
                     Last post published: {{ blog.blog_post.first.added|date:"M d, Y" }}
                 </div>

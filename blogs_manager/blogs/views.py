@@ -9,8 +9,12 @@ from .functions import get_info_from_trading_for_a_living
 
 def index(request):
     blogs = Blog.objects.all()
+    subscribed_blogs = [blog_subscriber.blog.id for blog_subscriber in BlogSubscriber.objects.filter(user=request.user)]
 
-    context = {"blogs": blogs}
+    context = {
+               "blogs": blogs,
+               "subscribed_blogs": subscribed_blogs
+               }
     if request.user.is_authenticated:
         return render(request, "blogs/blogs.html", context)
     else:
@@ -26,10 +30,10 @@ def subscribed(request):
           user=request.user,
         )
         if created:
-            messages.success(request, 'You have subscribed {}'.format(blog.name))
+            # messages.success(request, 'You have subscribed {}'.format(blog.name))
             blog_subscriber.save()
         else:
-            messages.success(request, 'You are now logged in')
+            # messages.success(request, 'You are now logged in')
             blog_subscriber.delete()
 
         return HttpResponse("success")
