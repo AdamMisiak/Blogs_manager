@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.conf.urls import url, include
+from django.conf.urls import re_path, include
 
 urlpatterns = [
-    url("", include("pages.urls")),
-    url("blogs/", include("blogs.urls")),
-    url("users/", include("users.urls")),
-    url("admin/", admin.site.urls),
+    re_path("", include("pages.urls")),
+    re_path("blogs/", include("blogs.urls")),
+    re_path("users/", include("users.urls")),
+    re_path("admin/", admin.site.urls),
 ]
