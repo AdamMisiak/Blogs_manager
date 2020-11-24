@@ -13,11 +13,12 @@ def create_user():
     return user
 
 
-class TestPagesViews:
+class TestUsersViews:
     @pytest.mark.django_db
-    def test_index_view_status_code(self, create_user):
+    def test_account_view_status_code(self, create_user):
         client = Client()
-        url = reverse("index")
+        login = client.login(username="admin", password="admin")
+        url = reverse("account")
         response = client.get(url)
         assert response.status_code == 200
 
