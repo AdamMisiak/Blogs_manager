@@ -3,7 +3,7 @@ import pytest
 from .models import Blog
 
 from django.test import Client
-from django.urls import reverse, resolve
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 @pytest.fixture
@@ -25,7 +25,6 @@ class TestBlogsViews:
         response = client.get(url)
         assert response.status_code == 200
 
-
     @pytest.mark.django_db
     def test_blog_info_view_status_code(self, login, create_blog):
         client = Client()
@@ -33,9 +32,9 @@ class TestBlogsViews:
         response = client.get(url)
         assert response.status_code == 200
 
-    @pytest.mark.django_db
-    def test_subscribed_view_status_code(self, login, create_blog):
-        client = Client()
-        url = reverse("subscribed")
-        response = client.get(url)
-        assert response.status_code == 200
+    # @pytest.mark.django_db
+    # def test_subscribed_view_status_code(self, login, create_blog):
+    #     client = Client()
+    #     url = reverse("subscribed")
+    #     response = client.get(url)
+    #     assert response.status_code == 200
