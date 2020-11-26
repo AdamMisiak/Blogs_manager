@@ -25,9 +25,25 @@ class TestUsersViews:
     @pytest.mark.django_db
     def test_register_view_status_code(self):
         client = Client()
-        login = client.login(username="admin", password="admin")
         url = reverse("register")
         response = client.post(url, {'first_name':'first_name','last_name':'last_name','username':'username','email':'email@email.com','password':'password', 'password2':'password'})
+        assert response.status_code == 302
+        assert response.url == "/"
+
+    @pytest.mark.django_db
+    def test_login_view_status_code(self, create_user):
+        client = Client()
+        url = reverse("login")
+        response = client.post(url, {'username':'admin','password':'admin'})
+        assert response.status_code == 302
+        assert response.url == "/"
+
+    @pytest.mark.django_db
+    def test_logout_view_status_code(self, create_user):
+        client = Client()
+        login = client.login(username="admin", password="admin")
+        url = reverse("logout")
+        response = client.get(url)
         assert response.status_code == 302
         assert response.url == "/"
 

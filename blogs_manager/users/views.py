@@ -63,6 +63,7 @@ def login(request):
 
     return render(request, 'users/login.html')
 
+@login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are now logged out')
