@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 from blogs.models import Blog, BlogPost
 from users.models import BlogSubscriber
 from blogs.functions import *
@@ -8,6 +10,8 @@ from blogs.functions import *
 from .functions import create_new_blog_post
 
 
+
+@login_required
 def account(request):
     blog_posts = BlogPost.objects.filter(blog__subscribed_blog__user=request.user)
 
@@ -59,6 +63,7 @@ def login(request):
 
     return render(request, 'users/login.html')
 
+@login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are now logged out')
