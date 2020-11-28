@@ -42,6 +42,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ blog_post.author }}</h5>
                         <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{{blog_post.blog}}</a> | <a href="{{ blog_post.url }}" class="card-text">{{ blog_post.url }}</a>
+                        {% if blog_post.blog.subscribed_blog.all.first in blogs_subscribed %}
+                        | <i class="fas fa-check-square"></i>
+                        {% endif %}
                     </div>
                 <div class="card-footer text-muted">
                 Added: {{ blog_post.added|date:'d/m/Y' }}

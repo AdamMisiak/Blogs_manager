@@ -13,4 +13,4 @@ class BlogSubscriber(models.Model):
     email_notification = models.BooleanField(default=False)
 
     def __str__(self):
-        return '{} subscribed by {} in {}'.format(self.blog, self.user, self.date)
+        return '{} subscribed by {}'.format(self.blog, self.user)
