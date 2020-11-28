@@ -34,10 +34,10 @@ def subscribed(request):
           user=request.user,
         )
         if created:
-            messages.success(request, 'You have subscribed {}'.format(blog.name))
+            # messages.success(request, 'You have subscribed {}'.format(blog.name))
             blog_subscriber.save()
         else:
-            messages.success(request, 'You have unsubscribed {}'.format(blog.name))
+            # messages.success(request, 'You have unsubscribed {}'.format(blog.name))
             blog_subscriber.delete()
 
         return HttpResponse("success")

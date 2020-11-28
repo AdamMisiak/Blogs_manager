@@ -27,3 +27,4 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_just_geek_it, 'Just Geek It')
     create_new_blog_post(get_info_from_finanse_bardzo_osobiste, 'Finanse Bardzo Osobiste')
     create_new_blog_post(get_info_from_mmazurek, 'MMazurek.dev')
+    create_new_blog_post(get_info_from_jak_oszczedzac_pieniadze, 'Jak Oszczędzać Pieniądze')
