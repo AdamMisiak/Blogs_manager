@@ -26,6 +26,7 @@ def index(request):
 
 def subscribed(request):
     if request.method == "GET":
+        print('gettt')
         blog_id = request.GET["blog_id"]
         blog = Blog.objects.get(id=blog_id)
         blog_subscriber, created = BlogSubscriber.objects.get_or_create(
@@ -33,10 +34,10 @@ def subscribed(request):
           user=request.user,
         )
         if created:
-            # messages.success(request, 'You have subscribed {}'.format(blog.name))
+            messages.success(request, 'You have subscribed {}'.format(blog.name))
             blog_subscriber.save()
         else:
-            # messages.success(request, 'You are now logged in')
+            messages.success(request, 'You have unsubscribed {}'.format(blog.name))
             blog_subscriber.delete()
 
         return HttpResponse("success")
