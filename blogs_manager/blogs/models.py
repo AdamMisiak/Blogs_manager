@@ -39,6 +39,6 @@ class BlogPost(models.Model):
 
 
 class BlogPhoto(models.Model):
-    photo = models.ImageField(upload_to='img')
+    photo = models.ImageField(upload_to='blogs_manager/static/img')
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_photo')
 
