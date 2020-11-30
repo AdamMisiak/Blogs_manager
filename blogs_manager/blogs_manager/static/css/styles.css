@@ -77,6 +77,10 @@ a.no-link:active
 }
 
 /* BLOG INFO STYLES */
+.blog-info-header{
+    background: rgba(55, 113, 189, 0.85);
+}
+
 .blog-info-body{
     display: inline-flex;
     justify-content: space-between;
@@ -93,6 +97,10 @@ a.no-link:active
 
 .blog-info-text{
     flex-grow: 3;
+}
+
+.blog-info-footer{
+    background: rgba(55, 113, 189, 0.55);
 }
 
 
