@@ -91,6 +91,14 @@ a.no-link:active
     font-size: 30px;
 }
 
+/* .blog-info-photo{
+
+} */
+
+.blog-info-text{
+    flex-grow: 3;
+}
+
 
 
 /* BLOGS LIST STYLES */

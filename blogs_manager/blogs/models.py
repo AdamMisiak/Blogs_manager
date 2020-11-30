@@ -36,3 +36,9 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class BlogPhoto(models.Model):
+    photo = models.ImageField(upload_to='img')
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_photo')
+
