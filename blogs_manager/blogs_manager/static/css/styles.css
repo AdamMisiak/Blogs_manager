@@ -76,6 +76,23 @@ a.no-link:active
     color: inherit;
 }
 
+/* BLOG INFO STYLES */
+.blog-info-body{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.blog-info-subcard{
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
+
+
+
 /* BLOGS LIST STYLES */
 .card{
     margin-top: 20px;
@@ -88,6 +105,7 @@ a.no-link:active
     font-size: 20px;
     font-weight: bold;
 }
+
 
 .card-title{
     font-size: 20px;
