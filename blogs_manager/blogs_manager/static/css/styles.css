@@ -77,6 +77,10 @@ a.no-link:active
 }
 
 /* BLOG INFO STYLES */
+.blog-info-card{
+    margin-bottom: 60px!important;
+}
+
 .blog-info-header{
     background: rgba(55, 113, 189, 0.85);
 }
@@ -93,7 +97,7 @@ a.no-link:active
 .blog-info-photo{
     margin: 20px;
     width: 200px;
-    height: 150px;
+    min-height: 120px;
 }
 
 .blog-info-text{
@@ -102,10 +106,15 @@ a.no-link:active
     text-align: left;
 }
 
+.blog-info-stats{
+    margin: 20px;
+    flex-grow: 3;
+    text-align: left;
+}
+
 .blog-info-footer{
     background: rgba(55, 113, 189, 0.45);
 }
-
 
 
 /* BLOGS LIST STYLES */

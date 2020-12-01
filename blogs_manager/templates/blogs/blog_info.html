@@ -23,8 +23,8 @@
     </div>
 </section>
 
-<section id="blog_info" class="mt-3"></section>
-    <div class="card text-center">
+<section id="blog_info" class="mt-3">
+    <div class="card text-center blog-info-card">
         <div class="card-header blog-info-header">
             <h1>
                 {{ blog.name }}
@@ -34,8 +34,14 @@
                 <div class="blog-info-subcard blog-info-photo"> 
                     <img src="{{ blog.blog_photo.first.photo.url }}" alt="img" class="img-thumbnail">
                 </div>
-                <div class="blog-info-subcard blog-info-text">2</div>
-                <div class="blog-info-subcard">3</div>
+                <div class="blog-info-subcard blog-info-text">
+                    Author: <b>{{ blog.author }}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Genre: <b>{{ blog.genre }}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Url: <b><a href="{{ blog.url }}" class="card-text no-link">{{ blog.url }}</a></b>
+                </div>
+                <div class="blog-info-subcard blog-info-stats">3</div>
             </div>
         <div class="card-footer text-muted blog-info-footer">
         Last post published: {{ blog_post.added|date:"M d, Y" }}
