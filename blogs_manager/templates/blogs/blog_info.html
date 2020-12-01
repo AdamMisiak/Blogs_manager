@@ -41,10 +41,24 @@
                     <hr class="mt-2 mb-2"/>
                     Url: <b><a href="{{ blog.url }}" class="card-text no-link">{{ blog.url }}</a></b>
                 </div>
-                <div class="blog-info-subcard blog-info-stats">3</div>
+                <div class="blog-info-subcard blog-info-stats">
+                    Last post published: <b>{{ blog.blog_post.first.added|date:"M d, Y" }}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Number of published posts: <b>{{ blog_posts_count }}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Average number of posts per month: <b>{{ blog_posts_count }}</b>
+                </div>
             </div>
         <div class="card-footer text-muted blog-info-footer">
-        Last post published: {{ blog_post.added|date:"M d, Y" }}
+        {% if blog.id not in subscribed_blogs %}
+            <div class="card-button">
+                <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
+            </div>
+        {% else %}
+            <div class="card-button">
+                <button class='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
+            </div>
+        {% endif %}
         </div>
     </div>
 </section>
@@ -72,8 +86,6 @@
     {% endif %}
 </section>
 
-
-
-
+<script src="/blogs_manager/static/js/subscribe_blog.js"></script>
 
 {% endblock %}

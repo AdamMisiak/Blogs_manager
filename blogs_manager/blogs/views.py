@@ -50,10 +50,18 @@ def subscribed(request):
 def blog_info(request, pk):
     blog = Blog.objects.get(id=pk)
     blog_posts = BlogPost.objects.filter(blog=blog).order_by('-added', 'name')
+    blog_posts_count = BlogPost.objects.filter(blog=blog).count()
+
+    if request.user.is_authenticated:
+        subscribed_blogs = [blog_subscriber.blog.id for blog_subscriber in BlogSubscriber.objects.filter(user=request.user)]
+    else:
+        subscribed_blogs = []
     
     context = {
                "blog": blog,
-               "blog_posts": blog_posts 
+               "blog_posts": blog_posts,
+               "blog_posts_count": blog_posts_count,
+               "subscribed_blogs": subscribed_blogs
                }
 
     return render(request, "blogs/blog_info.html", context)

@@ -113,7 +113,7 @@ a.no-link:active
 }
 
 .blog-info-footer{
-    background: rgba(55, 113, 189, 0.45);
+    background: rgba(55, 113, 189, 0.35);
 }
 
 
@@ -186,11 +186,11 @@ a.no-link:active
 }
 
 .unsubscribe-button{
-    border: 2.5px solid rgb(226, 47, 47);
+    border: 2.5px solid rgb(197, 57, 57);
 }
 
 .unsubscribe-button:hover {
-    background-color: rgb(226, 47, 47);
+    background-color: rgb(197, 57, 57);
     color: white;
 }
 
