@@ -89,7 +89,7 @@ def get_info_from_pamietnik_gieldowy():
     )
     blog_post_day = str(
         blog_posts.find("h2", class_="date-header").findChildren("span")[0].text
-    ).strip()[blog_post_comma_index + 2 : blog_post_comma_index + 4]
+    ).strip()[blog_post_comma_index + 2 : blog_post_comma_index + 4].strip()
     blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
     blog_post_date = datetime.datetime.strptime(
         blog_post_date_string, "%d.%m.%Y"

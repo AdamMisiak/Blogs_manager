@@ -91,16 +91,19 @@ a.no-link:active
 }
 
 .blog-info-photo{
+    margin: 20px;
     width: 200px;
-    height: 200px;
+    height: 150px;
 }
 
 .blog-info-text{
+    margin: 20px;
     flex-grow: 3;
+    text-align: left;
 }
 
 .blog-info-footer{
-    background: rgba(55, 113, 189, 0.55);
+    background: rgba(55, 113, 189, 0.45);
 }
 
 
