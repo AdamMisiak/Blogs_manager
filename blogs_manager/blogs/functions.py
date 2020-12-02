@@ -236,17 +236,17 @@ def get_info_from_just_geek_it():
 
 
 def get_info_from_finanse_bardzo_osobiste():
-    page = requests.get("https://marciniwuc.com/")
+    page = requests.get("https://marciniwuc.com/strona-z-wpisami/")
     soup = BeautifulSoup(page.content, "html.parser")
     blog_post_list = []
 
-    blog_post_title = soup.find("div", class_="column one-third").find_next("article").find_next("h2").text
+    blog_post_title = soup.find("div", class_="elementor-widget-wrap").find_next("h1").text
     
-    blog_post_link = soup.find("div", class_="column one-third").find_next("article").find_next("h2").find_next("a")["href"]
+    blog_post_link = soup.find("div", class_="elementor-widget-wrap").find_next("h1").find_next("a")["href"]
     
-    blog_post_date = str(soup.find("span", class_="listing-meta").find_next("time").text)
-    blog_post_date = datetime.datetime.strptime(blog_post_date, "%Y-%m-%d").date()
-
+    blog_post_date = str(str(soup.find("div", class_="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-b091780").find_next("span").text).strip())
+    blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+    
     blog_post_list.append(blog_post_title)
     blog_post_list.append(blog_post_link)
     blog_post_list.append(blog_post_date)
@@ -311,8 +311,8 @@ def get_info_from_jak_oszczedzac_pieniadze():
 # print(result)
 # result = get_info_from_just_geek_it()
 # print(result)
-# result = get_info_from_finanse_bardzo_osobiste()
-# print(result)
+result = get_info_from_finanse_bardzo_osobiste()
+print(result)
 # result = get_info_from_mmazurek()
 # print(result)
 # result = get_info_from_jak_oszczedzac_pieniadze()
