@@ -40,13 +40,24 @@
                     Genre: <b>{{ blog.genre }}</b>
                     <hr class="mt-2 mb-2"/>
                     Url: <b><a href="{{ blog.url }}" class="card-text no-link">{{ blog.url }}</a></b>
+                    <hr class="mt-2 mb-2"/>
+                    Language: <b>{{ blog.language }}
+                        {% ifequal  blog.language  'Polish' %}
+                        &#127477;&#127473;
+                        {% endifequal %}
+                        {% ifequal  blog.language  'English' %}
+                        &#127468;&#127463;
+                        {% endifequal %}
+                    </b>
                 </div>
                 <div class="blog-info-subcard blog-info-stats">
                     Last post published: <b>{{ blog.blog_post.first.added|date:"M d, Y" }}</b>
                     <hr class="mt-2 mb-2"/>
-                    Number of published posts: <b>{{ blog_posts_count }}</b>
+                    Published posts: <b>{{ blog_posts_count }}</b>
                     <hr class="mt-2 mb-2"/>
-                    Average number of posts per month: <b>{{ blog_posts_per_month }}</b>
+                    Average posts per month: <b>{{ blog_posts_per_month }}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Subscribers: <b>{{ subscribers }}</b>
                 </div>
             </div>
         <div class="card-footer text-muted blog-info-footer">

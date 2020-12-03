@@ -62,6 +62,7 @@ def blog_info(request, pk):
     blog_posts = BlogPost.objects.filter(blog=blog).order_by('-added', 'name')
     blog_posts_count = BlogPost.objects.filter(blog=blog).count()
     blog_posts_per_month = avg_number_of_posts_per_month(blog)
+    subscribers = BlogSubscriber.objects.filter(blog=blog).count()
 
     if request.user.is_authenticated:
         subscribed_blogs = [blog_subscriber.blog.id for blog_subscriber in BlogSubscriber.objects.filter(user=request.user)]
@@ -74,6 +75,7 @@ def blog_info(request, pk):
                "blog_posts_count": blog_posts_count,
                "subscribed_blogs": subscribed_blogs,
                "blog_posts_per_month": blog_posts_per_month,
+               "subscribers": subscribers,
                }
 
     return render(request, "blogs/blog_info.html", context)
