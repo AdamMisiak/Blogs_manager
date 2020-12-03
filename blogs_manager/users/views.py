@@ -36,7 +36,7 @@ def register(request):
                     messages.error(request, 'This email is already taken!')
                 else:
                     messages.success(request, 'You have been registered!')
-                    user = User.objects.create(first_name=first_name, last_name=last_name, username=username,
+                    user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username,
                                         email=email, password=password)
                     user.save()
                     return redirect('index')
@@ -45,13 +45,12 @@ def register(request):
             return redirect('register')
     return render(request, 'users/register.html')
 
-
-
 def login(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = auth.authenticate(username=username, password=password)
+        print(user, username, password)
 
         if user:
             auth.login(request, user)
