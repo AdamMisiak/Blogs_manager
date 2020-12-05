@@ -156,12 +156,6 @@ a.no-link:active
     text-align: center;
 }
 
-/* BLOG POST INFO STYLES */
-.subscribed{
-    width: 85px;
-    height: 45px
-}
-
 /* SUBSCRIBE BUTTONS STYLES */
 .card-button{
     font-size: 18px;
