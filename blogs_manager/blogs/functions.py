@@ -285,7 +285,7 @@ def get_info_from_jak_oszczedzac_pieniadze():
     blog_post_date = str(soup.find("p", class_="headline_meta").find_next("abbr").text)
     blog_post_year = str(soup.find("p", class_="headline_meta").find_next("abbr").text)[-4:]
     blog_post_month = str(month_string_to_date(str(str(soup.find("p", class_="headline_meta").find_next("abbr").text)[2:6])))
-    blog_post_day = str(soup.find("p", class_="headline_meta").find_next("abbr").text).strip()[:2]
+    blog_post_day = (str(soup.find("p", class_="headline_meta").find_next("abbr").text).strip()[:2]).strip()
     blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
     blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
 
