@@ -126,10 +126,22 @@ a.no-link:active
 }
 
 .card-header{
+    display: flex;
     font-size: 20px;
     font-weight: bold;
 }
 
+.card-header-space{
+    flex-grow: 1;
+}
+
+.card-header-title{
+    flex-grow: 3;
+}
+
+.card-header-info{
+    flex-grow: 1;
+}
 
 .card-title{
     font-size: 20px;
@@ -157,9 +169,13 @@ a.no-link:active
 }
 
 /* BLOG POST INFO STYLES */
-.subscribed{
-    width: 85px;
-    height: 45px
+.subscribed-sign{
+    float: right;
+    font-size: 10px;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+    transition-duration: 0.4s;
 }
 
 /* SUBSCRIBE BUTTONS STYLES */

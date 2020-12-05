@@ -36,14 +36,23 @@
     {% if blog_posts %}
         {% for blog_post in blog_posts %}
             <div class="card text-center">
+                <!-- PODZIELIC NA # DIVY W FLEX TEN W SRODKU MA TYTUL TEN PO PRAWWEJ MA INFO -->
                 <div class="card-header">
-                    {{ blog_post.name }}
+                    <div class="card-header-space">
+
+                    </div>
+                    <div class="card-header-title">
+                        {{ blog_post.name }}
+                    </div>
+                    <div class="card-header-info">
+                        <button class='subscribed-sign'>SUBSCRIBED</button>
+                    </div>
                 </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ blog_post.author }}</h5>
                         {% if blog_post.blog.subscribed_blog.all.first in blogs_subscribed %}
                         | <i class="fas fa-bell"></i> 
-                        <img class="subscribed" src="blogs_manager/static/img/SUBSCRIBED.png" alt="My image"><img>
+                        
                         {% endif %}
                         <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{{blog_post.blog}}</a> | <a href="{{ blog_post.url }}" class="card-text">{{ blog_post.url }}</a>
                     </div>
