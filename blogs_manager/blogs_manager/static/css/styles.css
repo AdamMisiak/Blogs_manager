@@ -127,22 +127,30 @@ a.no-link:active
 
 .card-header{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    align-content: center;
     font-size: 20px;
     font-weight: bold;
-}
-
-.card-header-space{
-    flex-grow: 1;
-}
-
-.card-header-title{
-    flex-grow: 3;
+    text-align: center;
 }
 
 .card-header-info{
     flex-grow: 1;
+    text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+    width: 15%;
+}
+
+.card-header-title{
+    flex-grow: 3;
+    width: 70%;
+}
+
+.card-header-sign{
+    flex-grow: 1;
+    width: 15%;
 }
 
 .card-title{
@@ -172,16 +180,29 @@ a.no-link:active
 
 /* BLOG POST INFO STYLES */
 .subscribed-sign{
-    pointer-events: none;
+    margin: 1px;
     float: right;
     font-size: 10px;
-    /* padding: 1px; */
     border-radius: 5px;
     border: 1px solid #686868;
     background-color: white;
-    color: black;
+    color: #686868;
     transition-duration: 0.4s;
     opacity: 0.82;
+    pointer-events: none;
+}
+
+.new-sign{
+    margin: 1px 0px 1px 2px;
+    float: right;
+    font-size: 10px;
+    border-radius: 5px;
+    border: 1px solid #198122;
+    color: #198122;
+    background-color: white;
+    transition-duration: 0.4s;
+    opacity: 0.82;
+    pointer-events: none;
 }
 
 /* SUBSCRIBE BUTTONS STYLES */

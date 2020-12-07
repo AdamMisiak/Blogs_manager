@@ -38,14 +38,15 @@
             <div class="card text-center">
                 <!-- PODZIELIC NA # DIVY W FLEX TEN W SRODKU MA TYTUL TEN PO PRAWWEJ MA INFO -->
                 <div class="card-header">
-                    <div class="card-header-space">
-                        
+                    <div class="card-header-info">
+    
                     </div>
                     <div class="card-header-title">
                         {{ blog_post.name }}
                     </div>
-                    <div class="card-header-info">
+                    <div class="card-header-sign">
                         {% if blog_post.blog.subscribed_blog.all.first in blogs_subscribed %}
+                        <button class='new-sign'>NEW</button>
                         <button class='subscribed-sign'>SUBSCRIBED</button>
                         {% endif %}
                     </div>
