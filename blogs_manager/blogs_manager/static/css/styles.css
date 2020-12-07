@@ -190,6 +190,7 @@ a.no-link:active
     transition-duration: 0.4s;
     opacity: 0.82;
     pointer-events: none;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.1), 0 3px 3px 0 rgba(0,0,0,0.15);
 }
 
 .new-sign{
@@ -203,6 +204,7 @@ a.no-link:active
     transition-duration: 0.4s;
     opacity: 0.82;
     pointer-events: none;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.1), 0 3px 3px 0 rgba(0,0,0,0.15);
 }
 
 /* SUBSCRIBE BUTTONS STYLES */
