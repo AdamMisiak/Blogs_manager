@@ -127,6 +127,8 @@ a.no-link:active
 
 .card-header{
     display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     font-weight: bold;
 }
@@ -170,12 +172,16 @@ a.no-link:active
 
 /* BLOG POST INFO STYLES */
 .subscribed-sign{
+    pointer-events: none;
     float: right;
     font-size: 10px;
-    border-radius: 4px;
+    /* padding: 1px; */
+    border-radius: 5px;
+    border: 1px solid #686868;
     background-color: white;
     color: black;
     transition-duration: 0.4s;
+    opacity: 0.82;
 }
 
 /* SUBSCRIBE BUTTONS STYLES */
