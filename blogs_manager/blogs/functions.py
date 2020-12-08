@@ -295,6 +295,23 @@ def get_info_from_jak_oszczedzac_pieniadze():
 
     return blog_post_list
 
+
+def get_info_from_ppbit():
+    page = requests.get("https://ppbit.pl/")
+    soup = BeautifulSoup(page.content, "html.parser")
+    blog_post_list = []
+
+    blog_post_title = soup.find("div", class_="read-title").find_next("h4").find_next("a").text
+    blog_post_link = soup.find("div", class_="read-title").find_next("h4").find_next("a")["href"]
+    blog_post_date = str(soup.find("div", class_="entry-meta").find_next("span").find_next("span").text).strip()
+    blog_post_date = datetime.datetime.strptime(blog_post_date, "%Y-%m-%d").date()
+
+    blog_post_list.append(blog_post_title)
+    blog_post_list.append(blog_post_link)
+    blog_post_list.append(blog_post_date)
+
+    return blog_post_list
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -316,4 +333,6 @@ def get_info_from_jak_oszczedzac_pieniadze():
 # result = get_info_from_mmazurek()
 # print(result)
 # result = get_info_from_jak_oszczedzac_pieniadze()
+# print(result)
+# result = get_info_from_ppbit()
 # print(result)
