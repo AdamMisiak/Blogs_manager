@@ -126,7 +126,7 @@ a.no-link:active
 }
 
 .card-header{
-    display: flex;
+    
     justify-content: space-between;
     align-items: center;
     align-content: center;
@@ -179,6 +179,10 @@ a.no-link:active
 }
 
 /* BLOG POST INFO STYLES */
+.blog-post-header{
+    display: flex;
+}
+
 .subscribed-sign{
     margin: 1px;
     float: right;
