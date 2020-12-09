@@ -4,7 +4,7 @@ $('#url').click(function(){
     $.ajax(
     {
         type:"GET",
-        url: '/blogs/blog_post_opened/',
+        url: '/users/blog_post_opened/',
         data:{
             blog_post_id: id
     },
@@ -24,3 +24,4 @@ $('#url').click(function(){
      }
      })
      });
+    //  ZMIENIC ZEBY BRAL KAZDY URL A NIE TYLKO PIERWSZY, wszystkie maja id URL 

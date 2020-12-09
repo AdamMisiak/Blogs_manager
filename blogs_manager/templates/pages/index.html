@@ -44,7 +44,7 @@
                         {{ blog_post.name }}
                     </div>
                     <div class="card-header-sign">
-                        {% if not blog_post.opened %}
+                        {% if not blog_post.id in opened_blog_posts%}
                         <button class='new-sign'>NEW</button>
                         {% endif %}
                         {% if blog_post.blog.id in subscribed_blogs %}
@@ -54,7 +54,8 @@
                 </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ blog_post.author }}</h5>
-                        <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{{blog_post.blog}}</a> | <a id="url" href="{{ blog_post.url }}" data-catid='{{ blog_post.id }}' class="card-text">{{ blog_post.url }}</a>
+                        <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{{blog_post.blog}}</a>
+                         | <a id="url" href="{{ blog_post.url }}" data-catid='{{ blog_post.id }}' class="card-text" target="_blank">{{ blog_post.url }}</a>
                     </div>
                 <div class="card-footer text-muted">
                 Added: {{ blog_post.added|date:'d/m/Y' }}

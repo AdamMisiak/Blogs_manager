@@ -4,8 +4,6 @@ from blogs.models import Blog, BlogPost
 
 from datetime import datetime
 
-
-# Create your models here.
 class BlogSubscriber(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='subscribed_blog')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_subscriber')
