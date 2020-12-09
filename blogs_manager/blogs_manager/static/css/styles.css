@@ -202,11 +202,11 @@ a.no-link:active
     float: right;
     font-size: 10px;
     border-radius: 5px;
-    border: 1px solid #198122;
-    color: #198122;
+    border: 1px solid #0c7215;
+    color: #0c7215;
     background-color: white;
     transition-duration: 0.4s;
-    opacity: 0.82;
+    opacity: 0.87;
     pointer-events: none;
     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.1), 0 3px 3px 0 rgba(0,0,0,0.15);
 }

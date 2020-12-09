@@ -28,8 +28,10 @@ class Blog(models.Model):
 class BlogPost(models.Model):
     name = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
-    added = models.DateTimeField()
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_post')
+    added = models.DateTimeField()
+    opened = models.BooleanField(default=False)
+
 
     class Meta:
         ordering = ('-added',)

@@ -36,7 +36,6 @@ def index(request):
 
 def subscribed(request):
     if request.method == "GET":
-        print('gettt')
         blog_id = request.GET["blog_id"]
         blog = Blog.objects.get(id=blog_id)
         blog_subscriber, created = BlogSubscriber.objects.get_or_create(
@@ -54,6 +53,16 @@ def subscribed(request):
     else:
         return HttpResponse("unsuccess")
 
+def blog_post_opened(request):
+    if request.method == "GET":
+        blog_post_id = request.GET["blog_post_id"]
+        blog_post = BlogPost.objects.get(id=blog_post_id)
+        blog_post.opened = True
+        blog_post.save()
+
+        return HttpResponse("success")
+    else:
+        return HttpResponse("unsuccess")
 
 
 
