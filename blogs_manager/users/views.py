@@ -73,13 +73,12 @@ def blog_post_opened(request):
     if request.method == "GET":
         blog_post_id = request.GET["blog_post_id"]
         blog_post = BlogPost.objects.get(id=blog_post_id)
-        blog_post_opened = BlogPostOpened.objects.get_or_create(
+        created, blog_post_opened = BlogPostOpened.objects.get_or_create(
             blog_post=blog_post,
             user=request.user,
             date=datetime.datetime.now(),
             opened=True
             )
-        blog_post_opened.save()
 
         return HttpResponse("success")
     else:
