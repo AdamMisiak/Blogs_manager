@@ -127,18 +127,24 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
-        'default': {
+        'scraping_functions': {
             'level': 'ERROR',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': BASE_DIR + '/logs/scraping_functions.log',
             'formatter': 'simple',
+            'backupCount': 15,
         },
     },
     'loggers': {
-        '': {
-            'handlers': ['console', 'default'],
+        'scraping_functions': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'scraping_functions'],
+            'propagate': False
+        },
+        'celery.worker': {
             'level': 'ERROR',
-            'propagate': True
+            'handlers': ['console', 'scraping_functions'],
+            'propagate': False
         },
     }
 }

@@ -5,7 +5,9 @@ from bs4 import BeautifulSoup
 
 from django.http import HttpResponse
 
-logger = logging.getLogger('')
+from celery.utils.log import get_task_logger
+
+logger = get_task_logger('scraping_functions')
 
 
 def month_string_to_date(month_string):
