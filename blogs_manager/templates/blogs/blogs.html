@@ -58,6 +58,38 @@
     {% endif %}
 </section>
 
+<div class="wrapper-pagination">
+    {% if blogs.has_other_pages %}
+        <ul class="pagination">
+            {% if blogs.has_previous %}
+                <li>
+                    <a class="page-link" href="?page={{ blogs.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+            {% endif %}
+            {% for i in blogs.paginator.page_range %}
+                {% if blogs.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link">{{ i }}<span class="sr-only">(current)</span></a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if blogs.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ blogs.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+            {% endif %}
+        </ul>
+    {% endif %}
+</div>
+
 <script src="/blogs_manager/static/js/subscribe_blog.js"></script>
 
 {% endblock %}

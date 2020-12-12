@@ -15,8 +15,8 @@ def index(request):
     except PageNotAnInteger:
         blog_posts = paginator.page(1)
     except EmptyPage:
-        useblog_postsrs = paginator.page(paginator.num_pages)
-        
+        blog_posts = paginator.page(paginator.num_pages)
+
     if request.user.is_authenticated:
         subscribed_blogs = [blog_subscriber.blog.id for blog_subscriber in BlogSubscriber.objects.filter(user=request.user)]
         opened_blog_posts = [blog_post_opened.blog_post.id for blog_post_opened in BlogPostOpened.objects.filter(user=request.user)]

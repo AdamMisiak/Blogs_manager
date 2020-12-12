@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from django.contrib import auth, messages
 from django.http import HttpResponseRedirect, HttpResponse
 
@@ -19,6 +20,16 @@ def avg_number_of_posts_per_month(blog):
 
 def index(request):
     blogs = Blog.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(blogs, 5)
+
+    try:
+        blogs = paginator.page(page)
+    except PageNotAnInteger:
+        blogs = paginator.page(1)
+    except EmptyPage:
+        blogs = paginator.page(paginator.num_pages)
+
     if request.user.is_authenticated:
         subscribed_blogs = [blog_subscriber.blog.id for blog_subscriber in BlogSubscriber.objects.filter(user=request.user)]
     else:
@@ -28,6 +39,7 @@ def index(request):
                "blogs": blogs,
                "subscribed_blogs": subscribed_blogs
                }
+
     if request.user.is_authenticated:
         return render(request, "blogs/blogs.html", context)
     else:

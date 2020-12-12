@@ -1,6 +1,7 @@
 import datetime
 
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -15,6 +16,15 @@ from .functions import create_new_blog_post
 @login_required
 def account(request):
     blog_posts = BlogPost.objects.filter(blog__subscribed_blog__user=request.user)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(blog_posts, 10)
+
+    try:
+        blog_posts = paginator.page(page)
+    except PageNotAnInteger:
+        blog_posts = paginator.page(1)
+    except EmptyPage:
+        blog_posts = paginator.page(paginator.num_pages)
 
     context = {"blog_posts": blog_posts}
 
