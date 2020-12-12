@@ -274,9 +274,22 @@ h4{
     margin-right: 0;
 }
 
+/* PAGINATION STYLES */
+
+.pagination{
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    justify-content: center;
+}
+
+/* FOOTER STYLES */
+/*  NEED TO BE FINISHED */
+#main-footer{
+    clear: both;
+    position: relative;
 
 
-
+}
 
 
 
