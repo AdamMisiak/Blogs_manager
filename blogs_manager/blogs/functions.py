@@ -431,5 +431,5 @@ def get_info_from_sunscrapers_web_development():
 # print(result)
 # result = get_info_from_sunscrapers_python()
 # print(result)
-result = get_info_from_sunscrapers_web_development()
-print(result)
+# result = get_info_from_sunscrapers_web_development()
+# print(result)
