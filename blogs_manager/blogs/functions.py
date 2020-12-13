@@ -12,29 +12,29 @@ logger = get_task_logger('scraping_functions')
 
 def month_string_to_date(month_string):
     month_string = month_string.strip()
-    if month_string[:3].lower() == "sty":
+    if month_string[:3].lower() == "sty" or month_string[:3].lower() == "jan":
         month_date = 1
-    elif month_string[:3].lower() == "lut":
+    elif month_string[:3].lower() == "lut" or month_string[:3].lower() == "feb":
         month_date = 2
     elif month_string[:3].lower() == "mar":
         month_date = 3
-    elif month_string[:3].lower() == "kwi":
+    elif month_string[:3].lower() == "kwi" or month_string[:3].lower() == "apr":
         month_date = 4
-    elif month_string[:3].lower() == "maj":
+    elif month_string[:3].lower() == "maj" or month_string[:3].lower() == "may":
         month_date = 5
-    elif month_string[:3].lower() == "cze":
+    elif month_string[:3].lower() == "cze" or month_string[:3].lower() == "jun":
         month_date = 6
-    elif month_string[:3].lower() == "lip":
+    elif month_string[:3].lower() == "lip" or month_string[:3].lower() == "jul":
         month_date = 7
-    elif month_string[:3].lower() == "sie":
+    elif month_string[:3].lower() == "sie" or month_string[:3].lower() == "aug":
         month_date = 8
-    elif month_string[:3].lower() == "wrz":
+    elif month_string[:3].lower() == "wrz" or month_string[:3].lower() == "sep":
         month_date = 9
-    elif month_string[:3].lower() == "paź" or month_string[:3].lower() == "paz":
+    elif month_string[:3].lower() == "paź" or month_string[:3].lower() == "paz" or month_string[:3].lower() == "oct":
         month_date = 10
-    elif month_string[:3].lower() == "lis":
+    elif month_string[:3].lower() == "lis" or month_string[:3].lower() == "nov":
         month_date = 11
-    elif month_string[:3].lower() == "gru":
+    elif month_string[:3].lower() == "gru" or month_string[:3].lower() == "dec":
         month_date = 12
     return month_date
 
@@ -354,6 +354,29 @@ def get_info_from_ppbit():
     except:
         logger.error("Something went wrong in scraping function: get_info_from_ppbit")
 
+
+def get_info_from_sunscrapers_python():
+    try:
+        page = requests.get("https://sunscrapers.com/blog/category/python/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="post-item-title").find_next("a").text
+        
+        blog_post_link = soup.find("h2", class_="post-item-title").find_next("a")["href"]
+        
+        blog_post_date = str(soup.find("li", class_="post-item__date").text).strip()
+        # blog_post_date = datetime.datetime.strptime(blog_post_date, "%Y-%m-%d").date()
+        print(blog_post_date)
+        # blog_post_list.append(blog_post_title)
+        # blog_post_list.append(blog_post_link)
+        # blog_post_list.append(blog_post_date)
+
+        # return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_sunscrapers_python")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -378,3 +401,5 @@ def get_info_from_ppbit():
 # print(result)
 # result = get_info_from_ppbit()
 # print(result)
+result = get_info_from_sunscrapers_python()
+print(result)
