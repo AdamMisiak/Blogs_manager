@@ -29,4 +29,5 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_mmazurek, 'MMazurek.dev')
     create_new_blog_post(get_info_from_jak_oszczedzac_pieniadze, 'Jak Oszczędzać Pieniądze')
     create_new_blog_post(get_info_from_ppbit, 'Problemy Polskiej Branży IT')
+    create_new_blog_post(get_info_from_sunscrapers_python, 'Sunscrapers Python')
     

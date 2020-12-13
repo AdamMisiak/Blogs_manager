@@ -380,6 +380,31 @@ def get_info_from_sunscrapers_python():
         logger.error("Something went wrong in scraping function: get_info_from_sunscrapers_python")
 
 
+def get_info_from_sunscrapers_web_development():
+    try:
+        page = requests.get("https://sunscrapers.com/blog/category/web-development/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="post-item-title").find_next("a").text
+        blog_post_link = soup.find("h2", class_="post-item-title").find_next("a")["href"]
+
+        blog_post_date = str(soup.find("li", class_="post-item__date").text).strip()
+        blog_post_month = str(month_string_to_date(blog_post_date[:3]))
+        blog_post_year = str(blog_post_date[-4:])
+        blog_post_day = str(datetime.datetime.today().day)
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_sunscrapers_web_development")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -404,5 +429,7 @@ def get_info_from_sunscrapers_python():
 # print(result)
 # result = get_info_from_ppbit()
 # print(result)
-result = get_info_from_sunscrapers_python()
+# result = get_info_from_sunscrapers_python()
+# print(result)
+result = get_info_from_sunscrapers_web_development()
 print(result)
