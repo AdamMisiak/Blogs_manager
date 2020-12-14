@@ -44,11 +44,13 @@
                         {{ blog_post.name }}
                     </div>
                     <div class="card-header-sign">
-                        {% if not blog_post.id in opened_blog_posts%}
-                        <button id="blog_post{{ blog_post.id }}" class='new-sign'>NEW</button>
-                        {% endif %}
-                        {% if blog_post.blog.id in subscribed_blogs %}
-                        <button class='subscribed-sign'>SUBSCRIBED</button>
+                        {% if user.is_authenticated %}
+                            {% if not blog_post.id in opened_blog_posts%}
+                                <button id="blog_post{{ blog_post.id }}" class='new-sign'>NEW</button>
+                            {% endif %}
+                            {% if blog_post.blog.id in subscribed_blogs %}
+                                <button class='subscribed-sign'>SUBSCRIBED</button>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
