@@ -11,12 +11,11 @@ class BlogSubscriberAdmin(admin.ModelAdmin):
 
 
 class BlogPostOpenedAdmin(admin.ModelAdmin):
-    list_display = ("id", "blog_post", "user", "date")
+    list_display = ("id", "blog_post", "user", "opened", "date")
     list_display_links = ("id", "blog_post")
     list_filter = ("blog_post", "user")
     search_fields = ("blog_post", "user")
     list_per_page = 25
-
 
 
 admin.site.register(BlogSubscriber, BlogSubscriberAdmin)
