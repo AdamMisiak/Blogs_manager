@@ -405,6 +405,27 @@ def get_info_from_sunscrapers_web_development():
         logger.error("Something went wrong in scraping function: get_info_from_sunscrapers_web_development")
 
 
+def get_info_from_niebezpiecznik():
+    try:
+        page = requests.get("https://niebezpiecznik.pl/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("div", class_="title").find_next("h2").find_next("a")["title"]
+        blog_post_link = soup.find("div", class_="title").find_next("h2").find_next("a")["href"]
+        
+        blog_post_date = str(soup.find("div", class_="date").text)[-11:].strip()
+        blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_niebezpiecznik")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -432,4 +453,6 @@ def get_info_from_sunscrapers_web_development():
 # result = get_info_from_sunscrapers_python()
 # print(result)
 # result = get_info_from_sunscrapers_web_development()
+# print(result)
+# result = get_info_from_niebezpiecznik()
 # print(result)
