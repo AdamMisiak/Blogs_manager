@@ -426,6 +426,31 @@ def get_info_from_niebezpiecznik():
         logger.error("Something went wrong in scraping function: get_info_from_niebezpiecznik")
 
 
+def get_info_from_finax():
+    try:
+        page = requests.get("https://www.finax.eu/pl/blog")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = str(soup.find("h4", class_="article-title").find_next("a").text).strip()
+        
+        blog_post_link = soup.find("h4", class_="article-title").find_next("a")["href"]
+        
+        blog_post_day = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[:2]
+        blog_post_month = str(month_string_to_date(str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[3:7].strip()))
+        blog_post_year = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[-4:]
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_finax")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -455,4 +480,6 @@ def get_info_from_niebezpiecznik():
 # result = get_info_from_sunscrapers_web_development()
 # print(result)
 # result = get_info_from_niebezpiecznik()
+# print(result)
+# result = get_info_from_finax()
 # print(result)
