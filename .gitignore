@@ -587,3 +587,8 @@ MigrationBackup/
 
 /redis-stable
 .gitignore
+celerybeat-schedule.*
+db.sqlite3
+data.json
+dump.sql
+.vscode

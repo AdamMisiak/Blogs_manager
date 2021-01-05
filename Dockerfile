@@ -22,6 +22,7 @@
 # USER user
 
 # CMD ["entrypoint.sh"]
+# docker container exec -it blogs_manager_db_1 psql -U adam -d blogs_manager -f /var/lib/postgresql/data/dump.sql 
 
 
 FROM python:3

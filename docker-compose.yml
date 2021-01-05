@@ -7,10 +7,11 @@ services:
       - POSTGRES_DB=blogs_manager
       - POSTGRES_USER=adam
       - POSTGRES_PASSWORD=adam
+  redis:
+    image: "redis:alpine"
   web:
     build: .
     command: sh -c "cd blogs_manager && 
-                    # python manage.py migrate &&
                     python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
@@ -18,3 +19,22 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
+  celery-worker:
+    build: .
+    command: sh -c "cd blogs_manager && 
+                    celery -A blogs_manager worker -l info"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build: .
+    command: sh -c "cd blogs_manager && 
+                    celery -A blogs_manager beat -l info"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
