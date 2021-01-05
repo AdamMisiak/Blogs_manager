@@ -12,6 +12,8 @@ Website created to manage blogs subscriptions. Following, unfollowing, getting f
 
 ## Technologies
 * Python version: 3.8.5
+* Django version: 3.1.2
+* Docker version: 19.03.8
 
 ## Setup
 To run app locally:
