@@ -16,13 +16,7 @@ Website created to manage blogs subscriptions. Following, unfollowing, getting f
 ## Setup
 To run app locally:
 ```
-python manage.py runserver
-```
-
-To run Celery workers:
-```
-celery -A blogs_manager beat -l info
-celery -A blogs_manager worker -l info   
+docker-compose up
 ```
 
 For home page of app:
