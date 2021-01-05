@@ -1,0 +1,20 @@
+version: "3.3"
+   
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=blogs_manager
+      - POSTGRES_USER=adam
+      - POSTGRES_PASSWORD=adam
+  web:
+    build: .
+    command: sh -c "cd blogs_manager && 
+                    # python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
