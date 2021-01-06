@@ -436,7 +436,8 @@ def get_info_from_finax():
         
         blog_post_link = soup.find("h4", class_="article-title").find_next("a")["href"]
         
-        blog_post_day = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[:2]
+        blog_post_comma_index = str(soup.find("div", class_="col-auto text-right text-muted").text).strip().find(".")
+        blog_post_day = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[:int(blog_post_comma_index)]
         blog_post_month = str(month_string_to_date(str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[3:7].strip()))
         blog_post_year = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[-4:]
         blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
@@ -481,5 +482,5 @@ def get_info_from_finax():
 # print(result)
 # result = get_info_from_niebezpiecznik()
 # print(result)
-# result = get_info_from_finax()
-# print(result)
+result = get_info_from_finax()
+print(result)
