@@ -433,7 +433,6 @@ def get_info_from_finax():
         blog_post_list = []
 
         blog_post_title = str(soup.find("h4", class_="article-title").find_next("a").text).strip()
-        
         blog_post_link = soup.find("h4", class_="article-title").find_next("a")["href"]
         
         blog_post_comma_index = str(soup.find("div", class_="col-auto text-right text-muted").text).strip().find(".")
@@ -451,6 +450,30 @@ def get_info_from_finax():
     except:
         logger.error("Something went wrong in scraping function: get_info_from_finax")
 
+
+def get_info_from_tawcan():
+    try:
+        page = requests.get("https://www.tawcan.com/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="entry-title").find_next("a").text
+        blog_post_link = soup.find("h2", class_="entry-title").find_next("a")["href"]
+        
+        blog_post_comma_index = str(soup.find("time", class_="entry-date published").text).find(",")
+        blog_post_day = str(str(soup.find("time", class_="entry-date published").text)[int(blog_post_comma_index)-2:int(blog_post_comma_index)]).strip()
+        blog_post_month = str(month_string_to_date(str(soup.find("time", class_="entry-date published").text)[:3]))
+        blog_post_year = str(soup.find("time", class_="entry-date published").text)[-4:]
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_finax")
 
 # result = get_info_from_inwestomat()
 # print(result)
@@ -482,5 +505,7 @@ def get_info_from_finax():
 # print(result)
 # result = get_info_from_niebezpiecznik()
 # print(result)
-result = get_info_from_finax()
-print(result)
+# result = get_info_from_finax()
+# print(result)
+# result = get_info_from_tawcan()
+# print(result)
