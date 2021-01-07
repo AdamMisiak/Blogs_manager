@@ -32,6 +32,7 @@ services:
   celery-beat:
     build: .
     command: sh -c "cd blogs_manager && 
+                    rm -rf celerybeat.pid &&
                     celery -A blogs_manager beat -l info"
     volumes:
       - .:/app
