@@ -17,8 +17,14 @@ class BlogPostOpenedAdmin(admin.ModelAdmin):
     search_fields = ("blog_post", "user")
     list_per_page = 25
 
+class UserLogAdmin(admin.ModelAdmin):
+    list_display = ("id", "created", "user", "action")
+    list_display_links = ("id", "created")
+    list_filter = ("user", "action")
+    search_fields = ("created", "user")
+    list_per_page = 25
 
 admin.site.register(BlogSubscriber, BlogSubscriberAdmin)
 admin.site.register(BlogPostOpened, BlogPostOpenedAdmin)
-admin.site.register(UserLog)
+admin.site.register(UserLog, UserLogAdmin)
 
