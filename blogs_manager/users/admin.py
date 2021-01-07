@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogSubscriber, BlogPostOpened
+from .models import BlogSubscriber, BlogPostOpened, UserLog
 
 
 class BlogSubscriberAdmin(admin.ModelAdmin):
@@ -20,4 +20,5 @@ class BlogPostOpenedAdmin(admin.ModelAdmin):
 
 admin.site.register(BlogSubscriber, BlogSubscriberAdmin)
 admin.site.register(BlogPostOpened, BlogPostOpenedAdmin)
+admin.site.register(UserLog)
 
