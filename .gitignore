@@ -592,3 +592,4 @@ db.sqlite3
 data.json
 dump.sql
 .vscode
+/__pycache__/
