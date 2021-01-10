@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "blogs",
     "pages",
     "users",
+    "frontend",
 ]
 
 MIDDLEWARE = [
