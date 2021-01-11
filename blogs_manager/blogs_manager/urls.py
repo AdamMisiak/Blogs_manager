@@ -3,8 +3,10 @@ from django.conf.urls import re_path, include
 
 from rest_framework import routers
 
+from blogs.views import BlogViewSet
+
 router = routers.DefaultRouter()
-router.register(r'blogs', UserViewSet, base_name='blogs')
+router.register(r'blogs', BlogViewSet, basename='blogs')
 
 urlpatterns = [
     re_path('api-auth/', include('rest_framework.urls')),

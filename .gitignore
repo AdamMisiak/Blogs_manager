@@ -606,4 +606,4 @@ dump.sql
 
  **/__pycache__/  
 
- backups/
+ backups/*
