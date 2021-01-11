@@ -3,9 +3,18 @@ from django.core.paginator import Paginator
 from django.contrib import auth, messages
 from django.http import HttpResponseRedirect, HttpResponse
 
+from rest_framework import viewsets, status
+
 from users.models import BlogSubscriber
 from .models import Blog, BlogPost
+from .serializers import BlogSerializer
 from .functions import get_info_from_trading_for_a_living
+
+
+class BlogViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
 
 def avg_number_of_posts_per_month(blog):
     posts_in_month = {}
