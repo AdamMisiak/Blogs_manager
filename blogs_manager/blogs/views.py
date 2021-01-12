@@ -4,17 +4,24 @@ from django.contrib import auth, messages
 from django.http import HttpResponseRedirect, HttpResponse
 
 from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
 
 from users.models import BlogSubscriber
 from .models import Blog, BlogPost
 from .serializers import BlogSerializer
-from .functions import get_info_from_trading_for_a_living
 
 
 class BlogViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
+    @action(methods=['get'], detail=False)
+    def subscribed_blogs(self, request):
+        print('TEST')
+        subscribed_blogs = Blog.objects.all()
+        serializer = self.get_serializer_class()(subscribed_blogs)
+        return Response(serializer.data)
 
 def avg_number_of_posts_per_month(blog):
     posts_in_month = {}
