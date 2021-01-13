@@ -7,6 +7,8 @@ services:
       - POSTGRES_DB=blogs_manager
       - POSTGRES_USER=adam
       - POSTGRES_PASSWORD=adam
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
   redis:
     image: "redis:alpine"
   web:
@@ -40,3 +42,6 @@ services:
     depends_on:
       - db
       - redis
+
+volumes:
+  pgdata:
