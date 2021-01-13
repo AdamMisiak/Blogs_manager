@@ -9,8 +9,8 @@ from django.dispatch import receiver
 from blogs.models import Blog, BlogPost
 
 class BlogSubscriber(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='subscribed_blog')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_subscriber')
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='subscribed_by')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='subscribing')
     date = models.DateTimeField(default=datetime.now, blank=True)
     email_notification = models.BooleanField(default=False)
 
