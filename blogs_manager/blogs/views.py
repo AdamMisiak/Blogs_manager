@@ -16,11 +16,11 @@ class BlogViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
+
     @action(methods=['get'], detail=False)
     def subscribed_blogs(self, request):
-        print('TEST')
-        subscribed_blogs = Blog.objects.all()
-        serializer = self.get_serializer_class()(subscribed_blogs)
+        subscribed_blogs = Blog.objects.filter(subscribed_blog__user=request.user)
+        serializer = BlogSerializer(subscribed_blogs, many=True)
         return Response(serializer.data)
 
 def avg_number_of_posts_per_month(blog):

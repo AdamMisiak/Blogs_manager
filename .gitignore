@@ -589,7 +589,7 @@ MigrationBackup/
 celerybeat-schedule.*
 db.sqlite3
 data.json
-dump.sql
+*.sql
 .vscode
 
 *.log
