@@ -6,29 +6,32 @@ from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
+from blogs.serializers import BlogListSerializer
 from users.models import BlogSubscriber, BlogPostOpened
 from users.functions import create_new_blog_post
-from users.serializers import UserListSerializer
+from users.serializers import UserListSerializer, UserDetailsSerializer
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = UserListSerializer
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     serializer = BlogDetailsSerializer(instance)
-    #     return Response(serializer.data)
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = UserDetailsSerializer(instance)
+        return Response(serializer.data)
 
 
     # @action(methods=['get'], detail=False)
-    # def subscribed_blogs(self, request):
-    #     subscribed_blogs = Blog.objects.filter(subscribed_blog__user=request.user)
+    # def subscribed(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     subscribed_blogs = Blog.objects.filter(subscribed_by__user=instance)
     #     serializer = BlogListSerializer(subscribed_blogs, many=True)
     #     return Response(serializer.data)
 

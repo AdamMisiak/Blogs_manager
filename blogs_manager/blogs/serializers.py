@@ -20,6 +20,12 @@ class BlogListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BlogDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Blog
+        fields = '__all__'
+
+class BlogDetailsStatsSerializer(serializers.ModelSerializer):
     blog_posts = serializers.SerializerMethodField()
     blog_post_avg = serializers.SerializerMethodField()
     subscribers = serializers.SerializerMethodField()
