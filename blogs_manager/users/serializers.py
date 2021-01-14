@@ -1,5 +1,8 @@
 from rest_framework import serializers
+
 from users.models import User
+from blogs.models import Blog
+from blogs.serializers import BlogDetailsSerializer
 
 class UserListSerializer(serializers.ModelSerializer):
 
@@ -8,23 +11,17 @@ class UserListSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'first_name', 'last_name',
                   'date_joined', 'is_superuser']
 
-# class UserDetailsSerializer(serializers.ModelSerializer):
-#     blog_posts = serializers.SerializerMethodField()
-#     blog_post_avg = serializers.SerializerMethodField()
-#     subscribers = serializers.SerializerMethodField()
+class UserDetailsSerializer(serializers.ModelSerializer):
+    subscribing = serializers.SerializerMethodField()
 
-#     class Meta:
-#         model = Blog
-#         fields = ['name', 'url', 'author', 'genre',
-#                   'language', 'blog_posts', 'subscribers',
-#                   'blog_post_avg'] 
+    class Meta:
+        model = User
+        depth = 1
+        fields = ['id', 'username', 'email', 'first_name', 'last_name',
+                  'date_joined', 'is_superuser', 'subscribing'] 
 
-#     def get_blog_posts(self, obj):
-#         return Blog.objects.filter(blog_post__blog=obj).count()
+    def get_subscribing(self, obj):
+        subscribing_blogs = Blog.objects.filter(subscribed_by__user=obj)
+        return [BlogDetailsSerializer(blog).data for blog in subscribing_blogs ]
 
-#     def get_blog_post_avg(self, obj):
-#         return avg_number_of_posts_per_month(obj)
-
-#     def get_subscribers(self, obj):
-#         return Blog.objects.filter(subscribed_by__blog=obj).count()
 
