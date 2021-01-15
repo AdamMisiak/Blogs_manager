@@ -45,3 +45,9 @@ class BlogDetailsStatsSerializer(serializers.ModelSerializer):
     def get_subscribers(self, obj):
         return Blog.objects.filter(subscribed_by__blog=obj).count()
 
+class BlogPostDetailsSerializer(serializers.ModelSerializer):
+    blog = BlogDetailsSerializer()
+
+    class Meta:
+        model = BlogPost
+        fields = '__all__'
