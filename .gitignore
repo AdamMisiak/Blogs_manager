@@ -585,7 +585,6 @@ MigrationBackup/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,venv,vs,vscode
 
-/redis-stable
 .gitignore
 celerybeat-schedule.*
 db.sqlite3
@@ -606,3 +605,5 @@ dump.sql
 */__pycache__/
 
  **/__pycache__/  
+
+ backups/
