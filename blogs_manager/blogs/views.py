@@ -9,7 +9,8 @@ from rest_framework.decorators import action
 
 from users.models import BlogSubscriber
 from .models import Blog, BlogPost
-from .serializers import BlogListSerializer, BlogDetailsSerializer, BlogDetailsStatsSerializer
+from .serializers import BlogListSerializer, BlogDetailsSerializer, BlogDetailsStatsSerializer, \
+                         BlogPostDetailsSerializer
 
 
 def avg_number_of_posts_per_month(blog):
@@ -39,6 +40,11 @@ class BlogViewSet(viewsets.ReadOnlyModelViewSet):
     #     subscribed_blogs = Blog.objects.filter(subscribed_blog__user=request.user)
     #     serializer = BlogListSerializer(subscribed_blogs, many=True)
     #     return Response(serializer.data)
+
+class BlogPostsViewSet(viewsets.ModelViewSet):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostDetailsSerializer
+
 
 def index(request):
     blogs = Blog.objects.all()
