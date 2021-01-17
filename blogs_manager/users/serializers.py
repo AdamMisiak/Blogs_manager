@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from users.models import User
 from blogs.models import Blog
-from blogs.serializers import BlogDetailsSerializer
+from blogs.serializers import BlogSerializer
 
 class UserListSerializer(serializers.ModelSerializer):
 
@@ -22,6 +22,6 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_subscribing(self, obj):
         subscribing_blogs = Blog.objects.filter(subscribed_by__user=obj)
-        return [BlogDetailsSerializer(blog).data for blog in subscribing_blogs ]
+        return [BlogSerializer(blog).data for blog in subscribing_blogs ]
 
 

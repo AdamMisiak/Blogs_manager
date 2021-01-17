@@ -14,6 +14,13 @@ def avg_number_of_posts_per_month(blog):
     average = round(blog_posts.count()/len(posts_in_month), 2)
     return average
 
+
+class BlogSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Blog
+        fields = '__all__'
+
 class BlogListSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -21,12 +28,6 @@ class BlogListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BlogDetailsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Blog
-        fields = '__all__'
-
-class BlogDetailsStatsSerializer(serializers.ModelSerializer):
     blog_posts = serializers.SerializerMethodField()
     blog_post_avg = serializers.SerializerMethodField()
     subscribers = serializers.SerializerMethodField()
@@ -46,8 +47,14 @@ class BlogDetailsStatsSerializer(serializers.ModelSerializer):
     def get_subscribers(self, obj):
         return Blog.objects.filter(subscribed_by__blog=obj).count()
 
+class BlogPostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BlogPost
+        fields = '__all__'
+
 class BlogPostDetailsSerializer(serializers.ModelSerializer):
-    blog = BlogDetailsSerializer()
+    blog = BlogSerializer()
 
     class Meta:
         model = BlogPost
@@ -55,7 +62,7 @@ class BlogPostDetailsSerializer(serializers.ModelSerializer):
 
 
 class BlogPostOpenedDetailsSerializer(serializers.ModelSerializer):
-    blog_post = BlogPostDetailsSerializer()
+    blog_post = BlogPostSerializer()
 
     class Meta:
         model = BlogPostOpened
