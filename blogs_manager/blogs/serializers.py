@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Blog, BlogPost
+from users.models import BlogPostOpened
 
 
 def avg_number_of_posts_per_month(blog):
@@ -51,3 +52,11 @@ class BlogPostDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
         fields = '__all__'
+
+
+class BlogPostOpenedDetailsSerializer(serializers.ModelSerializer):
+    blog_post = BlogPostDetailsSerializer()
+
+    class Meta:
+        model = BlogPostOpened
+        fields = ['id', 'blog_post', 'date']
