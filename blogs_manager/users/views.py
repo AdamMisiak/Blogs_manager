@@ -12,7 +12,7 @@ from rest_framework.decorators import action
 
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
-from blogs.serializers import BlogListSerializer
+from blogs.serializers import BlogListSerializer, BlogPostOpenedDetailsSerializer
 from users.models import BlogSubscriber, BlogPostOpened
 from users.functions import create_new_blog_post
 from users.serializers import UserListSerializer, UserDetailsSerializer
@@ -28,12 +28,12 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(serializer.data)
 
 
-    # @action(methods=['get'], detail=False)
-    # def subscribed(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     subscribed_blogs = Blog.objects.filter(subscribed_by__user=instance)
-    #     serializer = BlogListSerializer(subscribed_blogs, many=True)
-    #     return Response(serializer.data)
+    @action(methods=['get'], detail=True)
+    def blog_posts_opened(self, request, *args, **kwargs):
+        instance = self.get_object()
+        blog_posts_opened = BlogPostOpened.objects.filter(user=instance)
+        serializer = BlogPostOpenedDetailsSerializer(blog_posts_opened, many=True)
+        return Response(serializer.data)
 
 
 @login_required
