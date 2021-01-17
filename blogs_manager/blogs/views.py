@@ -9,7 +9,7 @@ from rest_framework.decorators import action
 
 from users.models import BlogSubscriber
 from .models import Blog, BlogPost
-from .serializers import BlogListSerializer, BlogDetailsSerializer, BlogDetailsStatsSerializer, \
+from .serializers import BlogListSerializer, BlogSerializer, BlogDetailsSerializer, \
                          BlogPostDetailsSerializer
 
 
@@ -31,15 +31,8 @@ class BlogViewSet(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = BlogDetailsStatsSerializer(instance)
+        serializer = BlogDetailsSerializer(instance)
         return Response(serializer.data)
-
-
-    # @action(methods=['get'], detail=False)
-    # def subscribed_blogs(self, request):
-    #     subscribed_blogs = Blog.objects.filter(subscribed_blog__user=request.user)
-    #     serializer = BlogListSerializer(subscribed_blogs, many=True)
-    #     return Response(serializer.data)
 
 class BlogPostsViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
