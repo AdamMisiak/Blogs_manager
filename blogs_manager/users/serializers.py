@@ -4,6 +4,19 @@ from users.models import User
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
+class UserRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'password2']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            email = validated_data['email'],
+            username = validated_data['username'],
+            password = validated_data['password'],
+        )
+        return user
+
 class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -16,7 +29,6 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        depth = 1
         fields = ['id', 'username', 'email', 'first_name', 'last_name',
                   'date_joined', 'is_superuser', 'subscribing'] 
 
