@@ -15,9 +15,18 @@ from blogs.functions import *
 from blogs.serializers import BlogListSerializer, BlogPostOpenedDetailsSerializer
 from users.models import BlogSubscriber, BlogPostOpened
 from users.functions import create_new_blog_post
-from users.serializers import UserListSerializer, UserDetailsSerializer
+from users.serializers import UserListSerializer, UserDetailsSerializer, \
+                              RegisterSerializer
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+from django.contrib.auth.models import User
+from rest_framework.views import APIView
+from rest_framework import status
+
+class RegisterViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = UserListSerializer

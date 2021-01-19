@@ -4,10 +4,16 @@ from users.models import User
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
-class UserRegisterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password', 'password2']
+class RegisterSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    username = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+    password2 = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError("Passwords do not match!")
+        return data
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -16,6 +22,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             password = validated_data['password'],
         )
         return user
+
+    # def update(self, instance, validated_data):
+    #     # ... and your update stuff ...
 
 class UserListSerializer(serializers.ModelSerializer):
 
