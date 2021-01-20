@@ -3,9 +3,15 @@ from django.core.paginator import Paginator
 from django.contrib import auth, messages
 from django.http import HttpResponseRedirect, HttpResponse
 
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
+
 from users.models import BlogSubscriber
 from .models import Blog, BlogPost
-from .functions import get_info_from_trading_for_a_living
+from .serializers import BlogListSerializer, BlogSerializer, BlogDetailsSerializer, \
+                         BlogPostDetailsSerializer
+
 
 def avg_number_of_posts_per_month(blog):
     posts_in_month = {}
@@ -17,6 +23,21 @@ def avg_number_of_posts_per_month(blog):
             posts_in_month[post.added.month] = 1
     average = round(blog_posts.count()/len(posts_in_month), 2)
     return average
+
+
+class BlogViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogListSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = BlogDetailsSerializer(instance)
+        return Response(serializer.data)
+
+class BlogPostsViewSet(viewsets.ModelViewSet):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostDetailsSerializer
+
 
 def index(request):
     blogs = Blog.objects.all()

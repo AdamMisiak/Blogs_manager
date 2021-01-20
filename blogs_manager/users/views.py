@@ -6,11 +6,43 @@ from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from blogs.models import Blog, BlogPost
-from users.models import BlogSubscriber, BlogPostOpened
-from blogs.functions import *
+from rest_framework import viewsets, status, permissions
+from rest_framework.response import Response
+from rest_framework.decorators import action
 
-from .functions import create_new_blog_post
+from blogs.models import Blog, BlogPost
+from blogs.functions import *
+from blogs.serializers import BlogListSerializer, BlogPostOpenedDetailsSerializer
+from users.models import BlogSubscriber, BlogPostOpened
+from users.functions import create_new_blog_post
+from users.serializers import UserListSerializer, UserDetailsSerializer, \
+                              RegisterSerializer
+
+from django.contrib.auth.models import User
+from rest_framework.views import APIView
+from rest_framework import status
+
+class RegisterViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = UserListSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = UserDetailsSerializer(instance)
+        return Response(serializer.data)
+
+
+    @action(methods=['get'], detail=True)
+    def blog_posts_opened(self, request, *args, **kwargs):
+        instance = self.get_object()
+        blog_posts_opened = BlogPostOpened.objects.filter(user=instance)
+        serializer = BlogPostOpenedDetailsSerializer(blog_posts_opened, many=True)
+        return Response(serializer.data)
 
 
 @login_required
