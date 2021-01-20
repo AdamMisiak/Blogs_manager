@@ -591,6 +591,7 @@ db.sqlite3
 data.json
 *.sql
 .vscode
+<<<<<<< HEAD
 
 *.log
 
@@ -601,3 +602,6 @@ data.json
 **/__pycache__
 
  backups/*
+=======
+*/__pycache__/*
+>>>>>>> 0fd26f7b12249c4f26396efbf19c24e9ac1bec62
