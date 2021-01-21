@@ -592,4 +592,13 @@ db.sqlite3
 data.json
 *.sql
 .vscode
-*/__pycache__/*
+
+*.log
+
+*.pot
+
+*.pyc
+
+**/__pycache__/  
+
+ backups/*
