@@ -101,8 +101,8 @@ DATABASES = {
         'NAME': 'blogs_manager',
         'USER': 'adam',
         'PASSWORD': 'adam',
-        'HOST': 'db',
-        # 'HOST': 'localhost',
+        # 'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
