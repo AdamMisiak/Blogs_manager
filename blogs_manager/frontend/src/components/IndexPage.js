@@ -8,7 +8,7 @@ export default class IndexPage extends Component {
 
     render() {
         return <p>
-            INDEX PAGE
+            INDEX PAGE test
         </p>
     }
 }

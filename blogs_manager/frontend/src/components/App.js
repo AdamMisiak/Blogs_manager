@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { render } from "react-dom"
+import AccountPage from "./AccountPage";
+import BlogsPage from "./BlogsPage";
 import IndexPage from './IndexPage'
+
 
 export default class App extends Component {
     constructor(props) {
@@ -8,9 +11,11 @@ export default class App extends Component {
     }
 
     render() {
-        return <h1>
-            <Index />
-        </h1>
+        return <div>
+            <AccountPage />
+            <IndexPage />
+            <BlogsPage />
+        </div>
     }
 }
 
