@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import BlogsPage from "./BlogsPage";
 import AccountPage from './AccountPage'
 import { 
@@ -18,11 +18,11 @@ export default class IndexPage extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route path='/'>
+                    <Route path="/test/blogs" component={BlogsPage} />
+                    <Route path="/test/account" component={AccountPage} />
+                    <Route path="/test/">
                         TEST ROUTER!
                     </Route>
-                    <Route path='/blogs' component={BlogsPage} />
-                    <Route path='/account' component={AccountPage} />
                 </Switch>
             </Router>
         )

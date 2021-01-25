@@ -8,7 +8,7 @@ export default class BlogsPage extends Component {
 
     render() {
         return <p>
-            BLOGS PAGE test
+            BLOGS PAGE
         </p>
     }
 }
