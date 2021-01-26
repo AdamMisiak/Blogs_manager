@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom"
 import IndexPage from "./IndexPage";
+import Header from "./layout/Header"
 
 export default class App extends Component {
     constructor(props) {
@@ -8,9 +9,11 @@ export default class App extends Component {
     }
 
     render() {
-        return <div>
-            <IndexPage />
-        </div>
+        return (
+            <div>
+                <Header />
+            </div>
+        )
     }
 }
 
