@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
 export default class Header extends Component {
+
     render() {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="{% url 'index' %}">
-                        <img src="{% static 'img/logo.png' %}" className="logo" alt=""></img>
+                        <img src="{require('static/images/logo.jpeg')}" className="logo" alt=""></img>
                     </a>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
