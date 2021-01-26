@@ -18,9 +18,9 @@ export default class IndexPage extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/test/blogs" component={BlogsPage} />
-                    <Route path="/test/account" component={AccountPage} />
-                    <Route path="/test/">
+                    <Route path="/blogs" component={BlogsPage} />
+                    <Route path="/account" component={AccountPage} />
+                    <Route path="/">
                         TEST ROUTER!
                     </Route>
                 </Switch>
