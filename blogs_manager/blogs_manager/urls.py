@@ -15,13 +15,13 @@ router.register(r'users', UserViewSet, basename='users')
 router.register(r'blog_posts', BlogPostsViewSet, basename='blog_posts')
 
 urlpatterns = [
-    path('api-auth/', include('rest_framework.urls')),
+    path("api-auth/", include('rest_framework.urls')),
     path("admin/", admin.site.urls),
-    path(r'api/', include(router.urls)),
+    path("api/", include(router.urls)),
     path("", include("frontend.urls")),
-    # path("", include("pages.urls")),
-    # re_path("blogs/", include("blogs.urls")),
-    # re_path("users/", include("users.urls")),
+    path("old", include("pages.urls")),
+    path("blogs/", include("blogs.urls")),
+    path("users/", include("users.urls")),
     
 
 
