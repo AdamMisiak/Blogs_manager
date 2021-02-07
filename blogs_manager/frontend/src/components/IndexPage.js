@@ -9,22 +9,19 @@ import {
     Redirect
 } from "react-router-dom"
 
-export default class IndexPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <Router>
-                <Switch>
-                    <Route path="/blogs" component={BlogsPage} />
-                    <Route path="/account" component={AccountPage} />
-                    <Route path="/">
-                        TEST ROUTER!
-                    </Route>
-                </Switch>
-            </Router>
-        )
-    }
+function IndexPage(){
+    return (
+        <Router>
+            <Switch>
+                <Route path="/blogs" component={BlogsPage} />
+                <Route path="/account" component={AccountPage} />
+                <Route path="/">
+                    TEST ROUTER!
+                </Route>
+            </Switch>
+        </Router>
+    )
 }
+
+
+export default IndexPage;
