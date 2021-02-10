@@ -413,9 +413,12 @@ def get_info_from_niebezpiecznik():
 
         blog_post_title = soup.find("div", class_="title").find_next("h2").find_next("a")["title"]
         blog_post_link = soup.find("div", class_="title").find_next("h2").find_next("a")["href"]
-        
-        blog_post_date = str(soup.find("div", class_="date").text)[-11:].strip()
-        blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+        try:
+            blog_post_date = str(soup.find("div", class_="date").text)[-11:].strip()
+            blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
+        except:
+            blog_post_date = str(soup.find("div", class_="date").text)[-9:].strip()
+            blog_post_date = datetime.datetime.strptime(blog_post_date, "%d.%m.%Y").date()
 
         blog_post_list.append(blog_post_title)
         blog_post_list.append(blog_post_link)
@@ -529,8 +532,8 @@ def get_info_from_divgro():
 # print(result)
 # result = get_info_from_sunscrapers_web_development()
 # print(result)
-# result = get_info_from_niebezpiecznik()
-# print(result)
+result = get_info_from_niebezpiecznik()
+print(result)
 # result = get_info_from_finax()
 # print(result)
 # result = get_info_from_tawcan()
