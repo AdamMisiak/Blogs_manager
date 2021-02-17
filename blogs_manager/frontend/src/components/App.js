@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { render } from "react-dom"
-
-import IndexPage from "./IndexPage";
-import AccountPage from "./AccountPage";
-import Header from "./layout/Header"
-
 import { Provider } from 'react-redux';
 import store from '../store'
+
+import IndexPage from "./IndexPage";
+import Header from "./layout/Header"
 
 export default class App extends Component {
     constructor(props) {
@@ -18,10 +16,8 @@ export default class App extends Component {
             <Provider store={store}>
                 <div>
                     <Header />
-                    <AccountPage />
                 </div>
             </Provider>
-
         )
     }
 }
