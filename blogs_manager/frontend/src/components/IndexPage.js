@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import BlogsPage from "./BlogsPage";
 import AccountPage from './AccountPage'
-import { 
+import {
     BrowserRouter as Router,
-    Switch, 
-    Route, 
-    Link, 
+    Switch,
+    Route,
+    Link,
     Redirect
 } from "react-router-dom"
 
-function IndexPage(){
+function IndexPage() {
     return (
         <Router>
             <Switch>

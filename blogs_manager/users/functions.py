@@ -29,10 +29,10 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_mmazurek, 'MMazurek.dev')
     create_new_blog_post(get_info_from_jak_oszczedzac_pieniadze, 'Jak Oszczędzać Pieniądze')
     create_new_blog_post(get_info_from_ppbit, 'Problemy Polskiej Branży IT')
-    # create_new_blog_post(get_info_from_sunscrapers_python, 'Sunscrapers Python')
-    # create_new_blog_post(get_info_from_sunscrapers_web_development, 'Sunscrapers Web Development')
+    create_new_blog_post(get_info_from_sunscrapers_python, 'Sunscrapers Python')
+    create_new_blog_post(get_info_from_sunscrapers_web_development, 'Sunscrapers Web Development')
     create_new_blog_post(get_info_from_niebezpiecznik, 'Niebezpiecznik')
     create_new_blog_post(get_info_from_finax, 'Finax')
     create_new_blog_post(get_info_from_tawcan, 'Tawcan')
-    create_new_blog_post(get_info_from_divgro, 'FerdiS')
+    create_new_blog_post(get_info_from_divgro, 'DivGro')
     
