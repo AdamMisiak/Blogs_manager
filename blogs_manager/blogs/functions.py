@@ -504,6 +504,31 @@ def get_info_from_divgro():
     except:
         logger.error("Something went wrong in scraping function: get_info_from_divgro")
 
+
+def get_info_from_sky_is_the_limit():
+    try:
+        page = requests.get("https://jakoszczedzacnagieldzie.pl/blog/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = str(soup.find("h4", class_="elementor-post__title").find_next("a").text).strip()
+        blog_post_link = soup.find("h4", class_="elementor-post__title").find_next("a")['href']
+        
+        blog_post_day = str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[:2]).strip()
+        blog_post_month = str(month_string_to_date(str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[3:6]).strip()))
+        blog_post_year = str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[-4:]).strip()
+
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_sky_is_the_limit")
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -539,4 +564,6 @@ def get_info_from_divgro():
 # result = get_info_from_tawcan()
 # print(result)
 # result = get_info_from_divgro()
+# print(result)
+# result = get_info_from_sky_is_the_limit()
 # print(result)
