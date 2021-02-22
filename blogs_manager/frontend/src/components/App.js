@@ -3,9 +3,8 @@ import { render } from "react-dom"
 import { Provider } from 'react-redux';
 import store from '../store'
 
-import IndexPage from "./IndexPage";
 import Header from "./layout/Header";
-// import '../../static/css/header.css';
+import Breadcrumb from "./layout/Breadcrumb";
 
 export default class App extends Component {
     constructor(props) {
@@ -15,9 +14,10 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <div>
-                    <Header />
-                </div>
+
+            <Header />
+            <Breadcrumb />
+
             </Provider>
         )
     }
