@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-    getBlogs,
-} from '../../actions/blogs';
+import { getBlogs } from '../../actions/blogs';
 
 export class Header extends Component {
 
     componentDidMount() {
         this.props.getBlogs();
     };
+    // {this.props.blogs.map(blog => (
+    //     <p>
+    //         { blog.author}
+    //     </p>
+
+    // ))}
 
     render() {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="{% url 'index' %}">
-                        <img src="{require('static/images/logo.jpeg')}" className="logo" alt=""></img>
-                    TEST
-                </a>
+                        <img src="{require('../../../static/images/logo.png')}" className="logo" alt=""></img>
+                    </a>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
@@ -34,12 +37,7 @@ export class Header extends Component {
 
                         </ul>
                     </div>
-                    {this.props.blogs.map(blog => (
-                        <p>
-                            { blog.author}
-                        </p>
-
-                    ))}
+     
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav">
                             {/* {% if user.is_authenticated %}
