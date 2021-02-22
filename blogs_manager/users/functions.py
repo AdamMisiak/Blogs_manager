@@ -35,4 +35,5 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_finax, 'Finax')
     create_new_blog_post(get_info_from_tawcan, 'Tawcan')
     create_new_blog_post(get_info_from_divgro, 'DivGro')
+    create_new_blog_post(get_info_from_sky_is_the_limit, 'Sky Is The Limit')
     
