@@ -16,13 +16,6 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-{
-test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-loader: require.resolve('url-loader'),
-options: {
-limit: 10000,
-name: 'static/images/[name].[hash:8].[ext]',
-}}
     ],
   },
   optimization: {
