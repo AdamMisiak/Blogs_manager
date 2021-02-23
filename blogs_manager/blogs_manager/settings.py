@@ -184,7 +184,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "blogs_manager/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "blogs_manager/static")]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "blogs_manager/static/"),
+    os.path.join(BASE_DIR, "frontend/static"),
+]
 
 
 # BROKER_URL = 'redis://localhost:6379'
