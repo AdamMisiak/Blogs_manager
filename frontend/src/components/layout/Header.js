@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
 
 import { getBlogs } from '../../actions/blogs';
 import '../../styles/Header.css';
+import logo from '../../images/logo.png'
 
 export class Header extends Component {
 
@@ -25,7 +25,7 @@ export class Header extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="{% url 'index' %}">
-                        <img src="../../../static/images/logo.png" className="logo" alt=""></img>
+                        <img src={logo} className="logo" alt=""></img>
                     </a>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
