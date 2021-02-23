@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
-import BlogsPage from "./BlogsPage";
-import AccountPage from './AccountPage'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-} from "react-router-dom"
+import { connect } from 'react-redux';
 
-function IndexPage() {
-    return (
-        <Router>
-            <Switch>
-                <Route path="/blogs" component={BlogsPage} />
-                <Route path="/account" component={AccountPage} />
-                <Route path="/">
-                    TEST ROUTER!
-                </Route>
-            </Switch>
-        </Router>
-    )
+import { getBlogPosts } from '../actions/BlogPosts';
+
+export class IndexPage extends Component {
+
+    componentDidMount() {
+        this.props.getBlogPosts();
+    };
+    
+
+    render() {
+        return (
+                <div>
+                    {this.props.blog_posts.map(blog_post => (
+                        <p key={blog_post.id}>
+                            
+                            { blog_post.name}
+                        </p>
+                    ))}
+                </div>
+ 
+        
+        );
+    }
 }
 
+const mapStateToProps = state => ({
+    blog_posts: state.blog_posts.blog_posts
+});
 
-export default IndexPage;
+export default connect(mapStateToProps, { getBlogPosts })(IndexPage);

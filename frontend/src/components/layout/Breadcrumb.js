@@ -1,5 +1,8 @@
 import React from "react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+
 import '../../styles/Breadcrumb.css';
 
 const Breadcrumb = ({
@@ -13,7 +16,8 @@ const Breadcrumb = ({
             <ol className="breadcrumb">
                 <li className="breadcrumb-item">
                     <a href="#">
-                    <i className="fas fa-home"></i> Home</a>
+                      <FontAwesomeIcon icon={faHome} /> Home
+                    </a>
                 </li>
                 <li className="breadcrumb-item active"> Latest</li>
             </ol>

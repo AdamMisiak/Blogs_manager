@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { getBlogs } from '../../actions/blogs';
+import { getBlogPosts } from '../../actions/BlogPosts';
 import '../../styles/Header.css';
 import logo from '../../images/logo.png'
 
 export class Header extends Component {
 
     componentDidMount() {
-        this.props.getBlogs();
+        this.props.getBlogPosts();
     };
     // {this.props.blogs.map(blog => (
     //     <p>
@@ -69,7 +69,8 @@ export class Header extends Component {
 
 
 const mapStateToProps = state => ({
-    blogs: state.blogs.blogs
+    blog_posts: state.blog_posts.blog_posts
 })
 
-export default connect(mapStateToProps, { getBlogs })(Header);
+export default connect(mapStateToProps, { getBlogPosts })(Header);
+// export default IndexPage;
