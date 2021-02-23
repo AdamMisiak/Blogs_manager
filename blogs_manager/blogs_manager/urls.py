@@ -22,7 +22,4 @@ urlpatterns = [
     path("old", include("pages.urls")),
     path("blogs/", include("blogs.urls")),
     path("users/", include("users.urls")),
-    
-
-
 ]
