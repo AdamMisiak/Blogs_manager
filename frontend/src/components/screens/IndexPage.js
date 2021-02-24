@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
+import BlogPost from '../common/BlogPost';
 
 export class IndexPage extends Component {
 
@@ -13,11 +14,10 @@ export class IndexPage extends Component {
     render() {
         return (
                 <div>
-                    {this.props.blog_posts.map(blog_post => (
-                        <p key={blog_post.id}>
-                            
-                            { blog_post.name}
-                        </p>
+                    {this.props.blog_posts.map(blogPost => (
+                        <BlogPost
+                            blogPost={blogPost}
+                        />
                     ))}
                 </div>
  
