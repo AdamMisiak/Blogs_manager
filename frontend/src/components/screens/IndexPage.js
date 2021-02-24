@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getBlogPosts } from '../actions/BlogPosts';
+import { getBlogPosts } from '../../actions/BlogPosts';
 
 export class IndexPage extends Component {
 
