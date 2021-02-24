@@ -16,6 +16,7 @@ export class IndexPage extends Component {
                 <div>
                     {this.props.blog_posts.map(blogPost => (
                         <BlogPost
+                            key={blogPost.id}
                             blogPost={blogPost}
                         />
                     ))}

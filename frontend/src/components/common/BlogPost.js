@@ -32,7 +32,7 @@ const BlogPost = ({
                     <div class="card-body">
                         <h5 class="card-title">{blogPost.blog.author}</h5>
                         <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{blogPost.blog.name} </a>
-                        | <a id="url" href="{blogPost.url}" data-catid='{blogPost.id}' class="blog-post card-text" target="_blank">{blogPost.url}</a>
+                        | <a id="url" href={blogPost.url} data-catid='{blogPost.id}' class="blog-post card-text" target="_blank">{blogPost.url}</a>
                     </div>
                 <div class="card-footer text-muted">
                 Added: {blogPost.added}
