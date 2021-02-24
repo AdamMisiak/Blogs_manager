@@ -5,7 +5,7 @@ import './styles/App.css';
 
 import Header from './components/layout/Header'
 import Breadcrumb from './components/layout/Breadcrumb';
-import IndexPage from './components/IndexPage';
+import IndexPage from './components/screens/IndexPage';
 
 function App() {
   return (
