@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'moment';
 
 import '../../styles/BlogPost.css';
 
@@ -6,6 +7,9 @@ import '../../styles/BlogPost.css';
 const BlogPost = ({
     blogPost,
     }) => {
+
+        let date=new Date(blogPost.added)
+        console.log(date)
 
     return(
         <div class="card text-center">
@@ -33,7 +37,7 @@ const BlogPost = ({
                     | <a id="url" href={blogPost.url} data-catid='{blogPost.id}' class="blog-post card-text" target="_blank">{blogPost.url}</a>
                 </div>
             <div class="card-footer text-muted">
-            Added: {blogPost.added}
+                Added: {Moment(blogPost.added).format('DD-MM-YYYY')}
             </div>
         </div>
     );
