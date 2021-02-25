@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
 import BlogPost from '../common/BlogPost';
+import Showcase from '../layout/Showcase';
 
 export class IndexPage extends Component {
 
@@ -13,16 +14,15 @@ export class IndexPage extends Component {
 
     render() {
         return (
-                <div>
-                    {this.props.blog_posts.map(blogPost => (
-                        <BlogPost
-                            key={blogPost.id}
-                            blogPost={blogPost}
-                        />
-                    ))}
-                </div>
- 
-        
+            <div>
+                <Showcase />
+                {this.props.blog_posts.map(blogPost => (
+                    <BlogPost
+                        key={blogPost.id}
+                        blogPost={blogPost}
+                    />
+                ))}
+            </div>
         );
     }
 }
