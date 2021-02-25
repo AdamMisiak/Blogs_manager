@@ -1,9 +1,7 @@
 import React from "react";
 import '../../styles/Showcase.css';
 
-const Showcase = ({
-
-}) => {
+const Showcase = () => {
 
   return(
     <section id="showcase-inner" className="py-5 text-black">
