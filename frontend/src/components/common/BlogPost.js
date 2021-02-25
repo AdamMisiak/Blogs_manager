@@ -6,12 +6,12 @@ import '../../styles/BlogPost.css';
 
 const BlogPost = ({
     blogPost,
-    }) => {
+}) => {
 
-        let date=new Date(blogPost.added)
-        console.log(date)
+    let date = new Date(blogPost.added)
+    console.log(date)
 
-    return(
+    return (
         <div class="card text-center">
             <div class="card-header blog-post-header">
                 <div class="card-header-info">
@@ -31,11 +31,18 @@ const BlogPost = ({
                     {% endif %} */}
                 </div>
             </div>
-                <div class="card-body">
-                    <h5 class="card-title">{blogPost.blog.author}</h5>
-                    <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{blogPost.blog.name} </a>
-                    | <a id="url" href={blogPost.url} data-catid='{blogPost.id}' class="blog-post card-text" target="_blank">{blogPost.url}</a>
-                </div>
+            <div class="card-body">
+                <h5 class="card-title">{blogPost.blog.author}</h5>
+                <a href="{% url 'blog_info' pk=blog_post.blog.id %}" class="card-text no-link">{blogPost.blog.name} | </a>
+                <a id="url"
+                    href={blogPost.url}
+                    data-catid='{blogPost.id}'
+                    class="blog-post card-text"
+                    target="_blank"
+                    rel="noreferrer">
+                    {blogPost.url}
+                </a>
+            </div>
             <div class="card-footer text-muted">
                 Added: {Moment(blogPost.added).format('DD-MM-YYYY')}
             </div>
