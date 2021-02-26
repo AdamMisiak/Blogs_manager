@@ -8,9 +8,6 @@ const BlogPost = ({
     blogPost,
 }) => {
 
-    let date = new Date(blogPost.added)
-    console.log(date)
-
     return (
         <div class="card text-center">
             <div class="card-header blog-post-header">
