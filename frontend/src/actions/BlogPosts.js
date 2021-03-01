@@ -28,7 +28,7 @@ export const getBlogPosts = () => {
         dispatch(getBlogPostsRequest)
         axios({
             method: 'get',
-            url: 'api/blog_postsv/',
+            url: 'api/blog_posts/',
             baseURL: 'http://localhost:8000/',
         })
             .then(response => {
