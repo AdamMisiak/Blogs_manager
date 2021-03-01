@@ -1,6 +1,7 @@
 import {
+    GET_BLOG_POSTS_REQUEST,
     GET_BLOG_POSTS_SUCCESS,
-    GET_BLOG_POSTS_REQUEST
+    GET_BLOG_POSTS_FAILURE
 } from '../actions/Types.js'
 
 const initialState = {
@@ -18,7 +19,15 @@ const blogPostsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                blog_posts: action.payload
+                blogPosts: action.payload,
+                error: ''
+            };
+        case GET_BLOG_POSTS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                blogPosts: [],
+                error: action.payload
             };
         default:
             return state;
