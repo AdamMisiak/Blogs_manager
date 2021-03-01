@@ -5,7 +5,9 @@ import {
 } from '../actions/Types.js'
 
 const initialState = {
-    blog_posts: []
+    loading: false,
+    blogPosts: [],
+    error: ''
 }
 
 const blogPostsReducer = (state = initialState, action) => {
@@ -26,7 +28,7 @@ const blogPostsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                blogPosts: [],
+                blogPosts: ['test'],
                 error: action.payload
             };
         default:
