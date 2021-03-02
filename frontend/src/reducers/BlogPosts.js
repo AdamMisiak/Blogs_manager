@@ -28,7 +28,7 @@ const blogPostsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                blogPosts: ['test'],
+                blogPosts: [],
                 error: action.payload
             };
         default:
