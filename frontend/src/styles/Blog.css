@@ -1,0 +1,97 @@
+.blog-info-card {
+  margin-bottom: 60px !important;
+}
+
+.blog-info-header {
+  background: rgba(55, 113, 189, 0.85);
+}
+
+.blog-info-body {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.blog-info-subcard {
+  text-align: center;
+}
+
+.blog-info-photo {
+  margin: 20px;
+  width: 200px;
+  min-height: 120px;
+}
+
+.blog-info-text {
+  margin: 20px;
+  flex-grow: 3;
+  text-align: left;
+}
+
+.blog-info-stats {
+  margin: 20px;
+  flex-grow: 3;
+  text-align: left;
+}
+
+.blog-info-footer {
+  background: rgba(55, 113, 189, 0.35);
+}
+
+.card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.card-header {
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-header-info {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 14px;
+  font-weight: normal;
+  width: 15%;
+}
+
+.card-header-title {
+  flex-grow: 3;
+  width: 70%;
+}
+
+.card-header-sign {
+  flex-grow: 1;
+  width: 15%;
+}
+
+.card-title {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  margin-bottom: 8px;
+}
+
+.subscribe {
+  font-size: 13.7px;
+}
+
+.my-2 {
+  width: 80%;
+}
+
+.btn-primary {
+  background: rgb(61, 130, 221);
+}
+
+.col-md-12 p {
+  text-align: center;
+}
