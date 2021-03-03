@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
@@ -11,15 +11,13 @@ const Header = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="{% url 'index' %}">
+        <Link className="nav-link" to="/">
           <img src={logo} className="logo" alt=""></img>
-        </a>
+        </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="{% url 'index' %}">
-                Home <span className="sr-only"></span>
-              </a>
+              <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
