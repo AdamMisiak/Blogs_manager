@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Route, Switch } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
@@ -26,9 +27,7 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="{% url 'blogs' %}">
-                Blogs
-              </a>
+              <Link className="nav-link" to="/blogs">Blogs</Link>
             </li>
           </ul>
         </div>
