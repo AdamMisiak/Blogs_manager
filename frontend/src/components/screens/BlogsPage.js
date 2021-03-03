@@ -1,11 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import ClipLoader from "react-spinners/ClipLoader";
 
-function BlogsPage(){
-    return (
-        <p>
-            BLOGS PAGE
-        </p>
-    )
+import { getBlogs } from '../../actions/Blogs';
+import Blog from '../common/Blog';
+import Showcase from '../layout/Showcase';
+
+const override = "display: block; margin: 0 auto;";
+
+function BlogsPage({ blogs, getBlogs }) {
+    useEffect(() => {
+        getBlogs()
+    }, [])
+
+    return blogs.loading ? (
+        <div>
+            <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
+        </div>
+    ) : blogs.error ? (
+        <h2>
+            {blogs.error}
+        </h2>
+    ) : (
+                <div>
+                    <Showcase />
+                    {blogs.blogs.map(blog => (
+                        <Blog
+                            key={blog.id}
+                            blog={blog}
+                        />
+                    ))}
+                </div>
+            );
 }
 
-export default BlogsPage;
+const mapStateToProps = state => ({
+    blogs: state.blogs
+});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getBlogs: () => dispatch(getBlogs())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogsPage);
