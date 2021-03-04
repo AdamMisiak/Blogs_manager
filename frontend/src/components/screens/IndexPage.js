@@ -8,7 +8,10 @@ import Showcase from '../layout/Showcase';
 
 const override = "display: block; margin: 0 auto;";
 
-function IndexPage({ blogPosts, getBlogPosts }) {
+function IndexPage({
+    blogPosts,
+    getBlogPosts
+}) {
     useEffect(() => {
         getBlogPosts()
     }, [])
