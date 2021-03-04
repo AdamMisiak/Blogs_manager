@@ -23,7 +23,6 @@ function BlogsPage({ blogs, getBlogs }) {
         </h2>
     ) : (
                 <div>
-                    <Showcase />
                     {blogs.blogs.map(blog => (
                         <Blog
                             key={blog.id}
