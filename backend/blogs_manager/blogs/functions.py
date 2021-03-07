@@ -11,6 +11,7 @@ logger = get_task_logger('scraping_functions')
 
 
 def month_string_to_date(month_string):
+    print(month_string)
     month_string = month_string.strip()
     if month_string[:3].lower() == "sty" or month_string[:3].lower() == "jan":
         month_date = 1
@@ -515,7 +516,7 @@ def get_info_from_sky_is_the_limit():
         blog_post_link = soup.find("h4", class_="elementor-post__title").find_next("a")['href']
         
         blog_post_day = str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[:2]).strip()
-        blog_post_month = str(month_string_to_date(str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[3:6]).strip()))
+        blog_post_month = str(month_string_to_date(str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[2:5]).strip()))
         blog_post_year = str(str(soup.find("div", class_="elementor-post__meta-data").find_next("span").text).strip()[-4:]).strip()
 
         blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
