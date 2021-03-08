@@ -22,10 +22,14 @@ class BlogSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BlogListSerializer(serializers.ModelSerializer):
+    last_post_added = serializers.SerializerMethodField()
 
     class Meta:
         model = Blog
         fields = '__all__'
+    
+    def get_last_post_added(self, obj):
+        return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
 
 class BlogDetailsSerializer(serializers.ModelSerializer):
     blog_posts = serializers.SerializerMethodField()
