@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { withAlert } from 'react-alert';
 
-function Alerts() {
+function Alerts({ alert }) {
     useEffect(() => {
         alert.show('it works')
     }, [])
@@ -9,4 +9,4 @@ function Alerts() {
     return <Fragment />
 }
 
-export default withAlert(Alerts)
+export default withAlert()(Alerts)
