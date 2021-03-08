@@ -5,6 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getBlogs } from '../../actions/Blogs';
 import Blog from '../common/Blog';
 import Showcase from '../layout/Showcase';
+import Alerts from '../layout/Alerts';
 
 const override = "display: block; margin: 0 auto;";
 
@@ -18,18 +19,19 @@ function BlogsPage({ blogs, getBlogs }) {
             <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
         </div>
     ) : blogs.error ? (
-        <h2>
-            {blogs.error}
-        </h2>
+        <Alerts 
+          type="error"
+          message={blogs.error}
+        />
     ) : (
-                <div>
-                    {blogs.blogs.map(blog => (
-                        <Blog
-                            key={blog.id}
-                            blog={blog}
-                        />
-                    ))}
-                </div>
+        <div>
+            {blogs.blogs.map(blog => (
+                <Blog
+                    key={blog.id}
+                    blog={blog}
+                />
+            ))}
+        </div>
             );
 }
 
