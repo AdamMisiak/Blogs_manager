@@ -44,14 +44,14 @@ const Header = () => {
                         </li>
                         {% else %} */}
             <li className="nav-item justify-content-end">
-              <a className="nav-link" href="{% url 'register' %}">
-                <FontAwesomeIcon icon={faUserPlus} /> Register
-              </a>
+              <Link className="nav-link" to="/register">
+                  <FontAwesomeIcon icon={faUserPlus} /> Register
+              </Link>
             </li>
             <li className="nav-item justify-content-end">
-              <a className="nav-link" href="{% url 'login' %}">
+              <Link className="nav-link" to="/login">
                 <FontAwesomeIcon icon={faSignInAlt} /> Login
-              </a>
+              </Link>
             </li>
             {/* {% endif %} */}
           </ul>

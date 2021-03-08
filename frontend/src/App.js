@@ -10,7 +10,9 @@ import Header from './components/layout/Header'
 import Breadcrumb from './components/layout/Breadcrumb';
 import IndexPage from './components/screens/IndexPage';
 import BlogsPage from './components/screens/BlogsPage';
+import LoginPage from './components/screens/LoginPage';
 import Alerts from './components/layout/Alerts';
+import { Fragment } from 'react';
 
 
 const alertOptions = {
@@ -23,14 +25,13 @@ function App() {
     <Provider store={store}>
       <AlertProvider template={AlertTemplate}
         {...alertOptions}>
-        <Header />
-        {/* <Alerts /> */}
-        <Breadcrumb />
+          <Header />
+          <Alerts />
+          <Breadcrumb />
 
-
-        <Route path="/blogs"><BlogsPage /></Route>
-        <Route exact path="/"><IndexPage /></Route>
-
+          <Route path="/login"><LoginPage /></Route>
+          <Route path="/blogs"><BlogsPage /></Route>
+          <Route exact path="/"><IndexPage /></Route>
       </AlertProvider>
     </Provider>
 
