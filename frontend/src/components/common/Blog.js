@@ -29,8 +29,9 @@ const Blog = ({
                         </div>
                     {% endif %} */}
 
-                {/* <hr className="my-2"> */}
-                {/* Last post published: {{ blog.blog_post.first.added | date:"M d, Y" }} */}
+                <hr className="my-2">
+                </hr>
+                Last post published: {Moment(blog.last_post_added).format('DD-MM-YYYY')}
             </div>
         </div>
     );
