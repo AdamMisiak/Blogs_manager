@@ -5,6 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getBlogPosts } from '../../actions/BlogPosts';
 import BlogPost from '../common/BlogPost';
 import Showcase from '../layout/Showcase';
+import Alerts from '../layout/Alerts';
 
 const override = "display: block; margin: 0 auto;";
 
@@ -22,7 +23,10 @@ function IndexPage({
         </div>
     ) : blogPosts.error ? (
         <h2>
-            {blogPosts.error}
+            <Alerts 
+              type="error"
+              message={blogPosts.error}
+            />
         </h2>
     ) : (
                 <div>

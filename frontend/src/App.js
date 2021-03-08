@@ -11,12 +11,10 @@ import Breadcrumb from './components/layout/Breadcrumb';
 import IndexPage from './components/screens/IndexPage';
 import BlogsPage from './components/screens/BlogsPage';
 import LoginPage from './components/screens/LoginPage';
-import Alerts from './components/layout/Alerts';
-import { Fragment } from 'react';
 
 
 const alertOptions = {
-  timeout: 3000,
+  timeout: 4000,
   position: 'bottom right'
 }
 
@@ -26,7 +24,6 @@ function App() {
       <AlertProvider template={AlertTemplate}
         {...alertOptions}>
           <Header />
-          <Alerts />
           <Breadcrumb />
 
           <Route path="/login"><LoginPage /></Route>
