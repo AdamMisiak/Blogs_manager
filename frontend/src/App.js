@@ -10,6 +10,7 @@ import Header from './components/layout/Header'
 import Breadcrumb from './components/layout/Breadcrumb';
 import IndexPage from './components/screens/IndexPage';
 import BlogsPage from './components/screens/BlogsPage';
+import BlogDetailsPage from './components/screens/BlogDetailsPage';
 import LoginPage from './components/screens/LoginPage';
 
 
@@ -27,6 +28,7 @@ function App() {
           <Breadcrumb />
 
           <Route path="/login"><LoginPage /></Route>
+          <Route path="/blogs/:id"><BlogDetailsPage /></Route>
           <Route path="/blogs"><BlogsPage /></Route>
           <Route exact path="/"><IndexPage /></Route>
       </AlertProvider>
