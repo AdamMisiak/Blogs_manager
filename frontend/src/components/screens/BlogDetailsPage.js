@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 import { connect } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -13,6 +14,9 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
     useEffect(() => {
         getBlogDetails()
     }, [])
+
+    const location = useLocation();
+    const currentId = location.pathname.split("/")[2];
 
     return blogDetails.loading ? (
         <div>
@@ -42,7 +46,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogDetails: () => dispatch(getBlogDetails())
+        getBlogDetails: () => dispatch(getBlogDetails(), )
     }
 }
 

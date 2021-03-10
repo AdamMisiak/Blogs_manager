@@ -8,11 +8,11 @@ import {
 
 
 export const getBlogDetails = () => {
-    return (dispatch) => {
+    return (dispatch, id) => {
         dispatch(getBlogDetailsRequest())
         axios({
             method: 'get',
-            url: 'api/blogs/',
+            url: 'api/blogs/' + id,
             baseURL: 'http://localhost:8000/',
         })
             .then(response => {
