@@ -2,31 +2,31 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
-import { getBlogs } from '../../actions/Blogs';
+import { getBlogDetails } from '../../actions/BlogDetails';
 import Blog from '../common/Blog';
 import Showcase from '../layout/Showcase';
 import Alerts from '../layout/Alerts';
 
 const override = "display: block; margin: 0 auto;";
 
-function BlogDetailsPage({ blogs, getBlogs }) {
+function BlogDetailsPage({ blogDetails, getBlogDetails }) {
     useEffect(() => {
-        getBlogs()
+        getBlogDetails()
     }, [])
 
-    return blogs.loading ? (
+    return blogDetails.loading ? (
         <div>
             <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
         </div>
-    ) : blogs.error ? (
+    ) : blogDetails.error ? (
         <Alerts 
           type="error"
-          message={blogs.error}
+          message={blogDetails.error}
         />
     ) : (
         <div>
             TEST
-            {blogs.blogs.map(blog => (
+            {blogDetails.blogDetails.map(blog => (
                 <Blog
                     key={blog.id}
                     blog={blog}
@@ -37,12 +37,12 @@ function BlogDetailsPage({ blogs, getBlogs }) {
 }
 
 const mapStateToProps = state => ({
-    blogs: state.blogs
+    blogDetails: state.blogDetails
 });
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogs: () => dispatch(getBlogs())
+        getBlogDetails: () => dispatch(getBlogDetails())
     }
 }
 

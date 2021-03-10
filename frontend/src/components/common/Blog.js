@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Moment from 'moment';
 
 import '../../styles/Blog.css';
@@ -11,7 +12,9 @@ const Blog = ({
     return (
         <div className="card text-center">
             <div className="card-header">
-                <a href="{% url 'blog_info' pk=blog.id %}" className="no-link">{blog.name}</a>
+                <Link className="no-link" to={`/blogs/${blog.id}`}>
+                    {blog.name}
+                </Link>
             </div>
             <div className="card-body">
                 <h5 className="card-title">{blog.author}</h5>
