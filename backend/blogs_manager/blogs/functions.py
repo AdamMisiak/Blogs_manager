@@ -11,7 +11,6 @@ logger = get_task_logger('scraping_functions')
 
 
 def month_string_to_date(month_string):
-    print(month_string)
     month_string = month_string.strip()
     if month_string[:3].lower() == "sty" or month_string[:3].lower() == "jan":
         month_date = 1

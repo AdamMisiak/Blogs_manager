@@ -4,16 +4,20 @@ from blogs.functions import *
 from celery.schedules import crontab
 from celery.decorators import periodic_task
 
+logger = get_task_logger('scraping_functions')
 
 def create_new_blog_post(get_info_function, blog_name):
-    blog_post_info_results = get_info_function()
-    blog_post, created = BlogPost.objects.get_or_create(
-        name=blog_post_info_results[0],
-        url=blog_post_info_results[1],
-        added=blog_post_info_results[2],
-        blog=Blog.objects.get(name=blog_name),
-    )
-    blog_post.save()
+    try:
+        blog_post_info_results = get_info_function()
+        blog_post, created = BlogPost.objects.get_or_create(
+            name=blog_post_info_results[0],
+            url=blog_post_info_results[1],
+            added=blog_post_info_results[2],
+            blog=Blog.objects.get(name=blog_name),
+        )
+        blog_post.save()
+    except:
+        logger.error("Something went wrong in creating new blog post")
 
 @periodic_task(run_every=(crontab(minute='*/1')), name="check_new_blog_posts", ignore_result=True)
 def check_new_blog_posts():
