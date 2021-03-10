@@ -35,7 +35,7 @@ class BlogViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(serializer.data)
 
 class BlogPostsViewSet(viewsets.ModelViewSet):
-    queryset = BlogPost.objects.all()
+    queryset = BlogPost.objects.all().order_by('-added', 'name')
     serializer_class = BlogPostDetailsSerializer
 
 
