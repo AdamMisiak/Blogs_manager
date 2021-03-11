@@ -12,7 +12,7 @@ const override = "display: block; margin: 0 auto;";
 
 function BlogDetailsPage({ blogDetails, getBlogDetails }) {
     useEffect(() => {
-        getBlogDetails()
+        getBlogDetails(12)
     }, [])
 
     const location = useLocation();
