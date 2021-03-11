@@ -4,6 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import { getBlogPosts } from '../../actions/BlogPosts';
 import BlogPost from '../common/BlogPost';
+import Breadcrumb from '../layout/Breadcrumb';
 import Showcase from '../layout/Showcase';
 import Alerts from '../layout/Alerts';
 
@@ -30,6 +31,9 @@ function IndexPage({
         </h2>
     ) : (
                 <div>
+                    <Breadcrumb 
+                        current='Latest'
+                    />
                     <Showcase />
                     {blogPosts.blogPosts.map(blogPost => (
                         <BlogPost

@@ -4,7 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import { getBlogs } from '../../actions/Blogs';
 import Blog from '../common/Blog';
-import Showcase from '../layout/Showcase';
+import Breadcrumb from '../layout/Breadcrumb';
 import Alerts from '../layout/Alerts';
 
 const override = "display: block; margin: 0 auto;";
@@ -25,6 +25,9 @@ function BlogsPage({ blogs, getBlogs }) {
         />
     ) : (
         <div>
+            <Breadcrumb 
+                current='Blogs'
+            />
             {blogs.blogs.map(blog => (
                 <Blog
                     key={blog.id}

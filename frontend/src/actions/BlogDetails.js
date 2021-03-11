@@ -7,8 +7,8 @@ import {
 } from './Types';
 
 
-export const getBlogDetails = () => {
-    return (dispatch, id) => {
+export const getBlogDetails = (id) => {
+    return (dispatch) => {
         dispatch(getBlogDetailsRequest())
         axios({
             method: 'get',

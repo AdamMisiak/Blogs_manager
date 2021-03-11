@@ -7,7 +7,6 @@ import store from './store'
 import './styles/App.css';
 
 import Header from './components/layout/Header'
-import Breadcrumb from './components/layout/Breadcrumb';
 import IndexPage from './components/screens/IndexPage';
 import BlogsPage from './components/screens/BlogsPage';
 import BlogDetailsPage from './components/screens/BlogDetailsPage';
@@ -25,7 +24,6 @@ function App() {
       <AlertProvider template={AlertTemplate}
         {...alertOptions}>
           <Header />
-          <Breadcrumb />
 
           <Route path="/login"><LoginPage /></Route>
           <Route path="/blogs/:id"><BlogDetailsPage /></Route>
