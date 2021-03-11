@@ -5,14 +5,14 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import { getBlogDetails } from '../../actions/BlogDetails';
 import Blog from '../common/Blog';
-import Showcase from '../layout/Showcase';
+import Breadcrumb from '../layout/Breadcrumb';
 import Alerts from '../layout/Alerts';
 
 const override = "display: block; margin: 0 auto;";
 
 function BlogDetailsPage({ blogDetails, getBlogDetails }) {
     useEffect(() => {
-        getBlogDetails(12)
+        getBlogDetails()
     }, [])
 
     const location = useLocation();
@@ -23,19 +23,19 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
             <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
         </div>
     ) : blogDetails.error ? (
-        <Alerts 
-          type="error"
-          message={blogDetails.error}
-        />
+        <div>
+            <Breadcrumb 
+                previous='Blogs'
+                current={currentId}
+            />
+            <Alerts 
+                type="error"
+                message={blogDetails.error}
+            />
+        </div> 
     ) : (
         <div>
             TEST
-            {blogDetails.blogDetails.map(blog => (
-                <Blog
-                    key={blog.id}
-                    blog={blog}
-                />
-            ))}
         </div>
             );
 }

@@ -27,7 +27,7 @@ function App() {
 
           <Route path="/login"><LoginPage /></Route>
           <Route path="/blogs/:id"><BlogDetailsPage /></Route>
-          <Route path="/blogs"><BlogsPage /></Route>
+          <Route exact path="/blogs"><BlogsPage /></Route>
           <Route exact path="/"><IndexPage /></Route>
       </AlertProvider>
     </Provider>
