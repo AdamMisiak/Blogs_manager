@@ -11,12 +11,13 @@ import Alerts from '../layout/Alerts';
 const override = "display: block; margin: 0 auto;";
 
 function BlogDetailsPage({ blogDetails, getBlogDetails }) {
-    useEffect(() => {
-        getBlogDetails()
-    }, [])
-
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
+
+    useEffect(() => {
+        getBlogDetails(currentId)
+    }, [])
+
 
     return blogDetails.loading ? (
         <div>
@@ -46,7 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogDetails: () => dispatch(getBlogDetails(), )
+        getBlogDetails: (currentId) => dispatch(getBlogDetails(currentId))
     }
 }
 
