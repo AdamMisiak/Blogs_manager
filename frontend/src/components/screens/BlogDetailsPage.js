@@ -12,6 +12,7 @@ import blogDetailsReducer from '../../reducers/BlogDetails';
 const override = "display: block; margin: 0 auto;";
 
 function BlogDetailsPage({ blogDetails, getBlogDetails }) {
+    var emojiFlags = require('emoji-flags');
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
 
@@ -56,12 +57,11 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
                     Url: <b><a href="{{ blog.url }}" class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
                     <hr class="mt-2 mb-2"/>
                     Language: <b>{blogDetails.language}
-                        {/* {% ifequal  blog.language  'Polish' %}
-                        &#127477;&#127473;
-                        {% endifequal %}
-                        {% ifequal  blog.language  'English' %}
-                        &#127468;&#127463;
-                        {% endifequal %} */}
+                        {blogDetails.language === 'Polish' ? (
+                            <div>{emojiFlags.countryCode('PL').emoji}</div>
+                        ) : (
+                            <div>{emojiFlags.countryCode('GB').emoji}</div>
+                        )}
                     </b>
                 </div>
                 <div class="blog-info-subcard blog-info-stats">
