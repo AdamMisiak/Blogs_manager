@@ -10,7 +10,6 @@ const Breadcrumb = ({
   previous,
   current
 }) => {
-  console.log(previous, current)
 
   return(
     <section id="bc" className="mt-3">
