@@ -7,6 +7,7 @@ import { getBlogDetails } from '../../actions/BlogDetails';
 import Blog from '../common/Blog';
 import Breadcrumb from '../layout/Breadcrumb';
 import Alerts from '../layout/Alerts';
+import blogDetailsReducer from '../../reducers/BlogDetails';
 
 const override = "display: block; margin: 0 auto;";
 
@@ -18,17 +19,12 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
         getBlogDetails(currentId)
     }, [])
 
-
     return blogDetails.loading ? (
         <div>
             <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
         </div>
     ) : blogDetails.error ? (
         <div>
-            <Breadcrumb 
-                previous='Blogs'
-                current={currentId}
-            />
             <Alerts 
                 type="error"
                 message={blogDetails.error}
@@ -36,13 +32,90 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
         </div> 
     ) : (
         <div>
-            TEST
+            <Breadcrumb 
+                previous='Blogs'
+                current={currentId}
+            />
+
+<section id="blog_info" class="mt-3">
+    <div class="card text-center blog-info-card">
+        <div class="card-header blog-info-header">
+            <h1>
+                {blogDetails.name}
+            </h1>
+        </div>
+            <div class="card-body blog-info-body">
+                {/* <div class="blog-info-subcard blog-info-photo"> 
+                    <img src="{{ blog.blog_photo.first.photo.url }}" alt="img" class="img-thumbnail">
+                </div> */}
+                <div class="blog-info-subcard blog-info-text">
+                    Author: <b>{blogDetails.author}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Genre: <b>{blogDetails.genre}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Url: <b><a href="{{ blog.url }}" class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
+                    <hr class="mt-2 mb-2"/>
+                    Language: <b>{blogDetails.language}
+                        {/* {% ifequal  blog.language  'Polish' %}
+                        &#127477;&#127473;
+                        {% endifequal %}
+                        {% ifequal  blog.language  'English' %}
+                        &#127468;&#127463;
+                        {% endifequal %} */}
+                    </b>
+                </div>
+                <div class="blog-info-subcard blog-info-stats">
+                    {/* Last post published: <b>{{ blog.blog_post.first.added|date:"M d, Y" }}</b> */}
+                    <hr class="mt-2 mb-2"/>
+                    Published posts: <b>{blogDetails.blog_posts_count}</b>
+                    <hr class="mt-2 mb-2"/>
+                    Average posts per month: <b>{blogDetails.blog_posts_per_month}</b>
+                    <hr class="mt-2 mb-2"/>
+                    {/* Subscribers: <b>{{ subscribers }}</b> */}
+                </div>
+            </div>
+        <div class="card-footer text-muted blog-info-footer">
+        {/* {% if blog.id not in subscribed_blogs %}
+            <div class="card-button">
+                <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
+            </div>
+        {% else %}
+            <div class="card-button">
+                <button class='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
+            </div>
+        {% endif %} */}
+        </div>
+    </div>
+</section>
+
+{/* <section id="posts">
+    {% if blog_posts %}
+        {% for blog_post in blog_posts %}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ blog_post.name }}
+                </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog_post.blog.author }}</h5>
+                        {{blog.genre}} | <a href="{{ blog_posts.url }}" class="card-text">{{ blog_post.url }}</a>
+                    </div>
+                <div class="card-footer text-muted">
+                Last post published: {{ blog_post.added|date:"M d, Y" }}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <p>No Posts Available :(</p>
+        </div>
+    {% endif %}
+</section> */}
         </div>
             );
 }
 
 const mapStateToProps = state => ({
-    blogDetails: state.blogDetails
+    blogDetails: state.blogDetails.blogDetails
 });
 
 const mapDispatchToProps = dispatch => {
