@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blog, BlogPost
+from .models import Blog, BlogPost, BlogPhoto
 from users.models import BlogPostOpened
 
 
@@ -21,12 +21,17 @@ class BlogSerializer(serializers.ModelSerializer):
         model = Blog
         fields = '__all__'
 
+class BlogPhotoDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogPhoto
+        fields = '__all__'
+
 class BlogListSerializer(serializers.ModelSerializer):
     last_post_added = serializers.SerializerMethodField()
 
     class Meta:
         model = Blog
-        fields = ['name', 'url', 'author', 'genre',
+        fields = ['id', 'name', 'url', 'author', 'genre',
                   'language', 'last_post_added'] 
     
     def get_last_post_added(self, obj):
@@ -36,12 +41,13 @@ class BlogDetailsSerializer(serializers.ModelSerializer):
     blog_posts = serializers.SerializerMethodField()
     blog_post_avg = serializers.SerializerMethodField()
     subscribers = serializers.SerializerMethodField()
+    blog_photo = serializers.SerializerMethodField()
 
     class Meta:
         model = Blog
         fields = ['name', 'url', 'author', 'genre',
                   'language', 'blog_posts', 'subscribers',
-                  'blog_post_avg'] 
+                  'blog_post_avg', 'blog_photo'] 
 
     def get_blog_posts(self, obj):
         return Blog.objects.filter(blog_post__blog=obj).count()
@@ -51,6 +57,9 @@ class BlogDetailsSerializer(serializers.ModelSerializer):
 
     def get_subscribers(self, obj):
         return Blog.objects.filter(subscribed_by__blog=obj).count()
+
+    def get_blog_photo(self, obj):
+        return BlogPhoto.objects.get(blog=obj).photo.url
 
 class BlogPostSerializer(serializers.ModelSerializer):
 
