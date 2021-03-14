@@ -56,13 +56,13 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
                     <hr class="mt-2 mb-2"/>
                     Url: <b><a href="{{ blog.url }}" class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
                     <hr class="mt-2 mb-2"/>
-                    Language: <b>{blogDetails.language}
                         {blogDetails.language === 'Polish' ? (
-                            <div>{emojiFlags.countryCode('PL').emoji}</div>
+                            <div>Language: <b>{blogDetails.language}<b></b>
+                            {emojiFlags.countryCode('PL').emoji}</b></div>
                         ) : (
-                            <div>{emojiFlags.countryCode('GB').emoji}</div>
+                            <div>Language: <b>{blogDetails.language}
+                            {emojiFlags.countryCode('GB').emoji}</b></div>
                         )}
-                    </b>
                 </div>
                 <div class="blog-info-subcard blog-info-stats">
                     {/* Last post published: <b>{{ blog.blog_post.first.added|date:"M d, Y" }}</b> */}
