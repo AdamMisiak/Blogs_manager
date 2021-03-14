@@ -58,20 +58,20 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
                     <hr class="mt-2 mb-2"/>
                         {blogDetails.language === 'Polish' ? (
                             <div>Language: <b>{blogDetails.language}<b></b>
-                            {emojiFlags.countryCode('PL').emoji}</b></div>
+                            {" "}{emojiFlags.countryCode('PL').emoji}</b></div>
                         ) : (
                             <div>Language: <b>{blogDetails.language}
-                            {emojiFlags.countryCode('GB').emoji}</b></div>
+                            {" "}{emojiFlags.countryCode('GB').emoji}</b></div>
                         )}
                 </div>
                 <div class="blog-info-subcard blog-info-stats">
                     {/* Last post published: <b>{{ blog.blog_post.first.added|date:"M d, Y" }}</b> */}
                     <hr class="mt-2 mb-2"/>
-                    Published posts: <b>{blogDetails.blog_posts_count}</b>
+                    Published posts: <b>{blogDetails.blog_posts}</b>
                     <hr class="mt-2 mb-2"/>
-                    Average posts per month: <b>{blogDetails.blog_posts_per_month}</b>
+                    Average posts per month: <b>{blogDetails.blog_post_avg}</b>
                     <hr class="mt-2 mb-2"/>
-                    {/* Subscribers: <b>{{ subscribers }}</b> */}
+                    Subscribers: <b>{blogDetails.subscribers}</b>
                 </div>
             </div>
         <div class="card-footer text-muted blog-info-footer">
