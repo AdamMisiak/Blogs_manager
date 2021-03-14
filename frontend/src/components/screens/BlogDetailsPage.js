@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
 import { getBlogDetails } from '../../actions/BlogDetails';
-import Blog from '../common/Blog';
 import Breadcrumb from '../layout/Breadcrumb';
 import Alerts from '../layout/Alerts';
-import blogDetailsReducer from '../../reducers/BlogDetails';
 
 const override = "display: block; margin: 0 auto;";
 

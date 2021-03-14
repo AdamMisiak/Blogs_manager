@@ -26,7 +26,8 @@ class BlogListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = '__all__'
+        fields = ['name', 'url', 'author', 'genre',
+                  'language', 'last_post_added'] 
     
     def get_last_post_added(self, obj):
         return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
