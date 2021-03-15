@@ -6,17 +6,23 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { getBlogDetails } from '../../actions/BlogDetails';
 import Breadcrumb from '../layout/Breadcrumb';
 import Alerts from '../layout/Alerts';
+import { getBlogPhoto } from '../../actions/BlogPhotos';
 
 const override = "display: block; margin: 0 auto;";
 
-function BlogDetailsPage({ blogDetails, getBlogDetails }) {
+function BlogDetailsPage({ 
+    blogDetails, 
+    getBlogDetails,
+    getBlogPhoto
+ }) {
     var emojiFlags = require('emoji-flags');
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
-    console.log(currentId)
+    // USE HOOKS FOR THIS
 
     useEffect(() => {
         getBlogDetails(currentId)
+        getBlogPhoto(currentId)
     }, [])
 
     return blogDetails.loading ? (
@@ -114,12 +120,14 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
 }
 
 const mapStateToProps = state => ({
-    blogDetails: state.blogDetails.blogDetails
+    blogDetails: state.blogDetails.blogDetails,
+    blogPhoto: state.blogPhoto.blogPhoto
 });
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogDetails: (currentId) => dispatch(getBlogDetails(currentId))
+        getBlogDetails: (currentId) => dispatch(getBlogDetails(currentId)),
+        getBlogPhoto: (currentId) => dispatch(getBlogPhoto(currentId))
     }
 }
 
