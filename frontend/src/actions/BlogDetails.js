@@ -32,10 +32,10 @@ export const getBlogDetailsRequest = () => {
     }
 }
 
-const getBlogDetailsSuccess = blogs => {
+const getBlogDetailsSuccess = blogDetails => {
     return {
         type: GET_BLOG_DETAILS_SUCCESS,
-        payload: blogs
+        payload: blogDetails
     }
 }
 
