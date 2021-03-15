@@ -12,6 +12,7 @@ const override = "display: block; margin: 0 auto;";
 
 function BlogDetailsPage({ 
     blogDetails, 
+    blogPhoto,
     getBlogDetails,
     getBlogPhoto
  }) {
@@ -19,7 +20,7 @@ function BlogDetailsPage({
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
     // USE HOOKS FOR THIS
-
+    
     useEffect(() => {
         getBlogDetails(currentId)
         getBlogPhoto(currentId)
@@ -51,15 +52,15 @@ function BlogDetailsPage({
             </h1>
         </div>
             <div class="card-body blog-info-body">
-                {/* <div class="blog-info-subcard blog-info-photo"> 
-                    <img src="{blogDetails.blog_photo}" alt="img" className="img-thumbnail"></img>
-                </div> */}
+                <div class="blog-info-subcard blog-info-photo"> 
+                    <img src={`blogPhoto.photo`} alt="img" className="img-thumbnail"></img>
+                </div>
                 <div class="blog-info-subcard blog-info-text">
                     Author: <b>{blogDetails.author}</b>
                     <hr class="mt-2 mb-2"/>
                     Genre: <b>{blogDetails.genre}</b>
                     <hr class="mt-2 mb-2"/>
-                    Url: <b><a href="{{ blog.url }}" class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
+                    Url: <b><a href="{blogDetails.url}" class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
                     <hr class="mt-2 mb-2"/>
                         {blogDetails.language === 'Polish' ? (
                             <div>Language: <b>{blogDetails.language}<b></b>
