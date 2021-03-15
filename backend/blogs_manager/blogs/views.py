@@ -8,9 +8,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 
 from users.models import BlogSubscriber
-from .models import Blog, BlogPost
+from .models import Blog, BlogPost, BlogPhoto
 from .serializers import BlogListSerializer, BlogSerializer, BlogDetailsSerializer, \
-                         BlogPostDetailsSerializer
+                         BlogPostDetailsSerializer, BlogPhotoDetailsSerializer
 
 
 def avg_number_of_posts_per_month(blog):
@@ -38,6 +38,15 @@ class BlogPostsViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-added', 'name')
     serializer_class = BlogPostDetailsSerializer
 
+
+class BlogPhotoViewSet(viewsets.ModelViewSet):
+    queryset = BlogPhoto.objects.all()
+    serializer_class = BlogPhotoDetailsSerializer
+
+    # def retrieve(self, request, *args, **kwargs):
+    #     instance = self.get_object()
+    #     serializer = BlogDetailsSerializer(instance)
+    #     return Response(serializer.data)
 
 def index(request):
     blogs = Blog.objects.all()
