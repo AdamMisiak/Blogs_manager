@@ -43,10 +43,10 @@ class BlogPhotoViewSet(viewsets.ModelViewSet):
     queryset = BlogPhoto.objects.all()
     serializer_class = BlogPhotoDetailsSerializer
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     serializer = BlogDetailsSerializer(instance)
-    #     return Response(serializer.data)
+    def retrieve(self, request, pk=None):
+        instance = BlogPhoto.objects.get(blog__id=pk)
+        serializer = BlogPhotoDetailsSerializer(instance)
+        return Response(serializer.data)
 
 def index(request):
     blogs = Blog.objects.all()
