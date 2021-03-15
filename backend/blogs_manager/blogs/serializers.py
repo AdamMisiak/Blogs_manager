@@ -69,12 +69,6 @@ class BlogPostDetailsSerializer(serializers.ModelSerializer):
         model = BlogPost
         fields = '__all__'
 
-class BlogPhotoSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = BlogPhoto
-        fields = '__all__'
-
 class BlogPhotoDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
