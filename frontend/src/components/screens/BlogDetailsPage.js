@@ -13,6 +13,7 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
     var emojiFlags = require('emoji-flags');
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
+    console.log(currentId)
 
     useEffect(() => {
         getBlogDetails(currentId)
@@ -45,7 +46,7 @@ function BlogDetailsPage({ blogDetails, getBlogDetails }) {
         </div>
             <div class="card-body blog-info-body">
                 {/* <div class="blog-info-subcard blog-info-photo"> 
-                    <img src="{{ blog.blog_photo.first.photo.url }}" alt="img" class="img-thumbnail">
+                    <img src="{blogDetails.blog_photo}" alt="img" className="img-thumbnail"></img>
                 </div> */}
                 <div class="blog-info-subcard blog-info-text">
                     Author: <b>{blogDetails.author}</b>
