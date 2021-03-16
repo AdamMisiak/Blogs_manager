@@ -19,8 +19,10 @@ function BlogDetailsPage({
     var emojiFlags = require('emoji-flags');
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    console.log(hostname);
     // USE HOOKS FOR THIS
-    
     useEffect(() => {
         getBlogDetails(currentId)
         getBlogPhoto(currentId)
@@ -53,7 +55,7 @@ function BlogDetailsPage({
         </div>
             <div class="card-body blog-info-body">
                 <div class="blog-info-subcard blog-info-photo"> 
-                    <img src={`blogPhoto.photo`} alt="img" className="img-thumbnail"></img>
+                    <img src={protocol+"//"+hostname+":8000"+blogPhoto.photo} alt="img" className="img-thumbnail" />
                 </div>
                 <div class="blog-info-subcard blog-info-text">
                     Author: <b>{blogDetails.author}</b>
