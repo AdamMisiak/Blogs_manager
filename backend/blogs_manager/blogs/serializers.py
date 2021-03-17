@@ -37,13 +37,12 @@ class BlogDetailsSerializer(serializers.ModelSerializer):
     blog_posts = serializers.SerializerMethodField()
     blog_post_avg = serializers.SerializerMethodField()
     subscribers = serializers.SerializerMethodField()
-    blog_photo = serializers.SerializerMethodField()
 
     class Meta:
         model = Blog
         fields = ['name', 'url', 'author', 'genre',
                   'language', 'blog_posts', 'last_post_added', 
-                   'subscribers', 'blog_post_avg', 'blog_photo'] 
+                   'subscribers', 'blog_post_avg'] 
 
     def get_last_post_added(self, obj):
         return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
