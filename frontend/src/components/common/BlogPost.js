@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'moment';
+import { Link } from "react-router-dom";
 
 import '../../styles/BlogPost.css';
 
@@ -30,7 +31,7 @@ const BlogPost = ({
             </div>
             <div className="card-body">
                 <h5 className="card-title">{blogPost.blog.author}</h5>
-                <a href="{% url 'blog_info' pk=blog_post.blog.id %}" className="card-text no-link">{blogPost.blog.name} | </a>
+                <Link className="card-text no-link" to={"/blogs/" + blogPost.blog.id}>{blogPost.blog.name} | </Link>
                 <a id="url"
                     href={blogPost.url}
                     data-catid='{blogPost.id}'

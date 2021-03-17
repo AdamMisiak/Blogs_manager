@@ -23,6 +23,8 @@ function BlogDetailsPage({
     const hostname = window.location.hostname;
     console.log(hostname);
     // USE HOOKS FOR THIS
+    // PHOTO JAKO OSOBNY KOMPONENT, LOADING ERROR ITP?
+    
     useEffect(() => {
         getBlogDetails(currentId)
         getBlogPhoto(currentId)
@@ -62,7 +64,7 @@ function BlogDetailsPage({
                     <hr class="mt-2 mb-2"/>
                     Genre: <b>{blogDetails.genre}</b>
                     <hr class="mt-2 mb-2"/>
-                    Url: <b><a href="{blogDetails.url}" class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
+                    Url: <b><a href={blogDetails.url} class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
                     <hr class="mt-2 mb-2"/>
                         {blogDetails.language === 'Polish' ? (
                             <div>Language: <b>{blogDetails.language}<b></b>

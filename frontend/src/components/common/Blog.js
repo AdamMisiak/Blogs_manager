@@ -12,7 +12,7 @@ const Blog = ({
     return (
         <div className="card text-center">
             <div className="card-header">
-                <Link className="no-link" to={`/blogs/${blog.id}`}>
+                <Link className="no-link" to={"/blogs/" + blog.id}>
                     {blog.name}
                 </Link>
             </div>
