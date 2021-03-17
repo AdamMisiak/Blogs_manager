@@ -33,6 +33,7 @@ class BlogListSerializer(serializers.ModelSerializer):
         return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
 
 class BlogDetailsSerializer(serializers.ModelSerializer):
+    last_post_added = serializers.SerializerMethodField()
     blog_posts = serializers.SerializerMethodField()
     blog_post_avg = serializers.SerializerMethodField()
     subscribers = serializers.SerializerMethodField()
@@ -41,8 +42,11 @@ class BlogDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = ['name', 'url', 'author', 'genre',
-                  'language', 'blog_posts', 'subscribers',
-                  'blog_post_avg', 'blog_photo'] 
+                  'language', 'blog_posts', 'last_post_added', 
+                   'subscribers', 'blog_post_avg', 'blog_photo'] 
+
+    def get_last_post_added(self, obj):
+        return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
 
     def get_blog_posts(self, obj):
         return Blog.objects.filter(blog_post__blog=obj).count()
