@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Moment from 'moment';
 import { useLocation } from 'react-router-dom'
 import { connect } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -64,7 +65,7 @@ function BlogDetailsPage({
                     <hr class="mt-2 mb-2"/>
                     Genre: <b>{blogDetails.genre}</b>
                     <hr class="mt-2 mb-2"/>
-                    Url: <b><a href={blogDetails.url} class="card-text no-link" target="_blank">{blogDetails.url}</a></b>
+                    Url: <b><a href={blogDetails.url} class="card-text no-link" target="_blank" rel="noreferrer">{blogDetails.url}</a></b>
                     <hr class="mt-2 mb-2"/>
                         {blogDetails.language === 'Polish' ? (
                             <div>Language: <b>{blogDetails.language}<b></b>
@@ -75,7 +76,7 @@ function BlogDetailsPage({
                         )}
                 </div>
                 <div class="blog-info-subcard blog-info-stats">
-                    {/* Last post published: <b>{{ blog.blog_post.first.added|date:"M d, Y" }}</b> */}
+                    Last post published: <b>{Moment(blogDetails.last_post_added).format('DD-MM-YYYY')}</b>
                     <hr class="mt-2 mb-2"/>
                     Published posts: <b>{blogDetails.blog_posts}</b>
                     <hr class="mt-2 mb-2"/>
