@@ -1,23 +1,27 @@
 import React, { useEffect } from 'react';
-import Moment from 'moment';
 import { useLocation } from 'react-router-dom'
 import { connect } from 'react-redux';
+import Moment from 'moment';
 import ClipLoader from "react-spinners/ClipLoader";
+import emojiFlags from 'emoji-flags';
 
-import { getBlogDetails } from '../../actions/BlogDetails';
-import Breadcrumb from '../layout/Breadcrumb';
 import Alerts from '../layout/Alerts';
+import Breadcrumb from '../layout/Breadcrumb';
+
+import { getBlogPosts } from '../../actions/BlogPosts';
+import { getBlogDetails } from '../../actions/BlogDetails';
 import { getBlogPhoto } from '../../actions/BlogPhotos';
 
 const override = "display: block; margin: 0 auto;";
 
 function BlogDetailsPage({ 
+    blogPosts,
     blogDetails, 
     blogPhoto,
+    getBlogPosts,
     getBlogDetails,
     getBlogPhoto
  }) {
-    var emojiFlags = require('emoji-flags');
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
     const protocol = window.location.protocol;
@@ -27,6 +31,7 @@ function BlogDetailsPage({
     // PHOTO JAKO OSOBNY KOMPONENT, LOADING ERROR ITP?
     
     useEffect(() => {
+        getBlogPosts(currentId)
         getBlogDetails(currentId)
         getBlogPhoto(currentId)
     }, [])
@@ -126,12 +131,14 @@ function BlogDetailsPage({
 }
 
 const mapStateToProps = state => ({
+    blogPosts: state.blogPosts,
     blogDetails: state.blogDetails.blogDetails,
     blogPhoto: state.blogPhoto.blogPhoto
 });
 
 const mapDispatchToProps = dispatch => {
     return {
+        getBlogPosts: (currentId) => dispatch(getBlogPosts(currentId)),
         getBlogDetails: (currentId) => dispatch(getBlogDetails(currentId)),
         getBlogPhoto: (currentId) => dispatch(getBlogPhoto(currentId))
     }

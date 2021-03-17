@@ -3,13 +3,16 @@ import axios from 'axios';
 import { GET_BLOG_POSTS_REQUEST, GET_BLOG_POSTS_SUCCESS, GET_BLOG_POSTS_FAILURE } from './Types';
 
 
-export const getBlogPosts = () => {
+export const getBlogPosts = (blogId) => {
     return (dispatch) => {
         dispatch(getBlogPostsRequest())
         axios({
             method: 'get',
             url: 'api/blog_posts/',
             baseURL: 'http://localhost:8000/',
+            params: {
+                blog_id: blogId
+            }
         })
             .then(response => {
                 const blogPosts = response.data;
