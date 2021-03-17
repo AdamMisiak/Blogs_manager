@@ -7,6 +7,7 @@ import emojiFlags from 'emoji-flags';
 
 import Alerts from '../layout/Alerts';
 import Breadcrumb from '../layout/Breadcrumb';
+import BlogPost from '../common/BlogPost'
 
 import { getBlogPosts } from '../../actions/BlogPosts';
 import { getBlogDetails } from '../../actions/BlogDetails';
@@ -104,28 +105,14 @@ function BlogDetailsPage({
     </div>
 </section>
 
-{/* <section id="posts">
-    {% if blog_posts %}
-        {% for blog_post in blog_posts %}
-            <div class="card text-center">
-                <div class="card-header">
-                    {{ blog_post.name }}
-                </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ blog_post.blog.author }}</h5>
-                        {{blog.genre}} | <a href="{{ blog_posts.url }}" class="card-text">{{ blog_post.url }}</a>
-                    </div>
-                <div class="card-footer text-muted">
-                Last post published: {{ blog_post.added|date:"M d, Y" }}
-                </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <div class="col-md-12">
-            <p>No Posts Available :(</p>
-        </div>
-    {% endif %}
-</section> */}
+<section id="posts">
+            {blogPosts.blogPosts.map(blogPost => (
+                        <BlogPost
+                            key={blogPost.id}
+                            blogPost={blogPost}
+                        />
+                    ))}
+</section>
         </div>
             );
 }
