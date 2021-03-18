@@ -22,7 +22,7 @@ function BlogDetailsPage({
     getBlogPosts,
     getBlogDetails,
     getBlogPhoto
- }) {
+}) {
     const location = useLocation();
     const currentId = location.pathname.split("/")[2];
     const protocol = window.location.protocol;
@@ -55,70 +55,84 @@ function BlogDetailsPage({
                 current={currentId}
             />
 
-<section id="blog_info" class="mt-3">
-    <div class="card text-center blog-info-card">
-        <div class="card-header blog-info-header">
-            <h1>
-                {blogDetails.name}
-            </h1>
-        </div>
-            <div class="card-body blog-info-body">
-                <div class="blog-info-subcard blog-info-photo"> 
-                    <img src={protocol+"//"+hostname+":8000"+blogPhoto.photo} alt="img" className="img-thumbnail" />
+        <section id="blog_info" className="mt-3">
+            <div className="card text-center blog-info-card">
+                <div className="card-header blog-info-header">
+                    <h1>
+                        {blogDetails.name}
+                    </h1>
                 </div>
-                <div class="blog-info-subcard blog-info-text">
-                    Author: <b>{blogDetails.author}</b>
-                    <hr class="mt-2 mb-2"/>
-                    Genre: <b>{blogDetails.genre}</b>
-                    <hr class="mt-2 mb-2"/>
-                    Url: <b><a href={blogDetails.url} class="card-text no-link" target="_blank" rel="noreferrer">{blogDetails.url}</a></b>
-                    <hr class="mt-2 mb-2"/>
-                        {blogDetails.language === 'Polish' ? (
-                            <div>Language: <b>{blogDetails.language}<b></b>
-                            {" "}{emojiFlags.countryCode('PL').emoji}</b></div>
-                        ) : (
-                            <div>Language: <b>{blogDetails.language}
-                            {" "}{emojiFlags.countryCode('GB').emoji}</b></div>
-                        )}
-                </div>
-                <div class="blog-info-subcard blog-info-stats">
-                    Last post published: <b>{Moment(blogDetails.last_post_added).format('DD-MM-YYYY')}</b>
-                    <hr class="mt-2 mb-2"/>
-                    Published posts: <b>{blogDetails.blog_posts}</b>
-                    <hr class="mt-2 mb-2"/>
-                    Average posts per month: <b>{blogDetails.blog_post_avg}</b>
-                    <hr class="mt-2 mb-2"/>
-                    Subscribers: <b>{blogDetails.subscribers}</b>
+                    <div className="card-body blog-info-body">
+                        <div className="blog-info-subcard blog-info-photo"> 
+                            <img src={protocol+"//"+hostname+":8000"+blogPhoto.photo} alt="img" className="img-thumbnail" />
+                        </div>
+                        <div className="blog-info-subcard blog-info-text">
+                            Author: <b>{blogDetails.author}</b>
+                            <hr className="mt-2 mb-2"/>
+                            Genre: <b>{blogDetails.genre}</b>
+                            <hr className="mt-2 mb-2"/>
+                            Url: <b><a href={blogDetails.url} className="card-text no-link" target="_blank" rel="noreferrer">{blogDetails.url}</a></b>
+                            <hr className="mt-2 mb-2"/>
+                                {blogDetails.language === 'Polish' ? (
+                                    <div>Language: <b>{blogDetails.language}<b></b>
+                                    {" "}{emojiFlags.countryCode('PL').emoji}</b></div>
+                                ) : (
+                                    <div>Language: <b>{blogDetails.language}
+                                    {" "}{emojiFlags.countryCode('GB').emoji}</b></div>
+                                )}
+                        </div>
+                        <div className="blog-info-subcard blog-info-stats">
+                            Last post published: <b>{Moment(blogDetails.last_post_added).format('DD-MM-YYYY')}</b>
+                            <hr className="mt-2 mb-2"/>
+                            Published posts: <b>{blogDetails.blog_posts}</b>
+                            <hr className="mt-2 mb-2"/>
+                            Average posts per month: <b>{blogDetails.blog_post_avg}</b>
+                            <hr className="mt-2 mb-2"/>
+                            Subscribers: <b>{blogDetails.subscribers}</b>
+                        </div>
+                    </div>
+                <div className="card-footer text-muted blog-info-footer">
+                {/* {% if blog.id not in subscribed_blogs %}
+                    <div class="card-button">
+                        <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
+                    </div>
+                {% else %}
+                    <div class="card-button">
+                        <button class='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
+                    </div>
+                {% endif %} */}
                 </div>
             </div>
-        <div class="card-footer text-muted blog-info-footer">
-        {/* {% if blog.id not in subscribed_blogs %}
-            <div class="card-button">
-                <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
-            </div>
-        {% else %}
-            <div class="card-button">
-                <button class='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
-            </div>
-        {% endif %} */}
-        </div>
-    </div>
-</section>
+        </section>
 
-<section id="posts">
-            {blogPosts.blogPosts.map(blogPost => (
-                        <BlogPost
-                            key={blogPost.id}
-                            blogPost={blogPost}
-                        />
-                    ))}
-</section>
+        {blogPosts.loading ? (
+            <div>
+                <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
+            </div>
+        ) : blogPosts.error ? (
+            <div>
+                <Alerts 
+                    type="error"
+                    message={blogPosts.error}
+                />
+            </div> 
+        ) : (
+            <section id="posts">
+                {blogPosts.map(blogPost => (
+                            <BlogPost
+                                key={blogPost.id}
+                                blogPost={blogPost}
+                            />
+                        ))}
+            </section>
+        )} 
+    
         </div>
-            );
+    );
 }
 
 const mapStateToProps = state => ({
-    blogPosts: state.blogPosts,
+    blogPosts: state.blogPosts.blogPosts,
     blogDetails: state.blogDetails.blogDetails,
     blogPhoto: state.blogPhoto.blogPhoto
 });
