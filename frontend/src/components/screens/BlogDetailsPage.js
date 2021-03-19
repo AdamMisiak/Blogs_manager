@@ -27,7 +27,7 @@ function BlogDetailsPage({
     const currentId = location.pathname.split("/")[2];
     const protocol = window.location.protocol;
     const hostname = window.location.hostname;
-    console.log(hostname);
+    console.log(blogDetails);
     // USE HOOKS FOR THIS
     // PHOTO JAKO OSOBNY KOMPONENT, LOADING ERROR ITP?
     
@@ -118,7 +118,7 @@ function BlogDetailsPage({
             </div> 
         ) : (
             <section id="posts">
-                {blogPosts.map(blogPost => (
+                {blogPosts.data.map(blogPost => (
                             <BlogPost
                                 key={blogPost.id}
                                 blogPost={blogPost}
@@ -132,8 +132,8 @@ function BlogDetailsPage({
 }
 
 const mapStateToProps = state => ({
-    blogPosts: state.blogPosts.blogPosts,
-    blogDetails: state.blogDetails.blogDetails,
+    blogPosts: state.blogPosts,
+    blogDetails: state.blogDetails,
     blogPhoto: state.blogPhoto.blogPhoto
 });
 

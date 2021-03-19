@@ -38,12 +38,12 @@ function IndexPage({
                         current='Latest'
                     />
                     <Showcase />
-                    {/* {blogPosts.blogPosts.results.map(blogPost => (
+                    {blogPosts.data.map(blogPost => (
                         <BlogPost
                             key={blogPost.id}
                             blogPost={blogPost}
                         />
-                    ))} */}
+                    ))}
                 </div>
             );
 }
