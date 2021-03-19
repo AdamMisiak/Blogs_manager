@@ -14,9 +14,10 @@ function IndexPage({
     blogPosts,
     getBlogPosts
 }) {
+    var page = 1;
 
     useEffect(() => {
-        getBlogPosts({page: 1})
+        getBlogPosts({page: page})
     }, [])
 
     console.log(blogPosts)
