@@ -19,7 +19,7 @@ def create_new_blog_post(get_info_function, blog_name):
     except:
         logger.error("Something went wrong in creating new blog post")
 
-@periodic_task(run_every=(crontab(minute='*/1')), name="check_new_blog_posts", ignore_result=True)
+@periodic_task(run_every=(crontab(minute='*/30')), name="check_new_blog_posts", ignore_result=True)
 def check_new_blog_posts():
     create_new_blog_post(get_info_from_trading_for_a_living, 'Trading for a living')
     create_new_blog_post(get_info_from_pamietnik_gieldowy, 'Pamiętnik Giełdowy')

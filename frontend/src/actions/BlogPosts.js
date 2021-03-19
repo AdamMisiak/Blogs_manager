@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GET_BLOG_POSTS_REQUEST, GET_BLOG_POSTS_SUCCESS, GET_BLOG_POSTS_FAILURE } from './Types';
 
 
-export const getBlogPosts = (page, blogId) => {
+export const getBlogPosts = (page=1, blogId) => {
     return (dispatch) => {
         dispatch(getBlogPostsRequest())
         axios({

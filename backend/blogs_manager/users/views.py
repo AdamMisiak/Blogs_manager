@@ -12,14 +12,13 @@ from rest_framework.decorators import action
 
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
-from blogs.serializers import BlogListSerializer, BlogPostOpenedDetailsSerializer
-from users.models import BlogSubscriber, BlogPostOpened
+from blogs.serializers import BlogPostOpenedDetailsSerializer
+from users.models import BlogPostOpened
 from users.functions import create_new_blog_post
 from users.serializers import UserListSerializer, UserDetailsSerializer, \
                               RegisterSerializer
 
 from django.contrib.auth.models import User
-from rest_framework.views import APIView
 from rest_framework import status
 
 class RegisterViewSet(viewsets.ModelViewSet):
@@ -43,7 +42,6 @@ class UserViewSet(viewsets.ModelViewSet):
         blog_posts_opened = BlogPostOpened.objects.filter(user=instance)
         serializer = BlogPostOpenedDetailsSerializer(blog_posts_opened, many=True)
         return Response(serializer.data)
-
 
 @login_required
 def account(request):
