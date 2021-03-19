@@ -10,9 +10,14 @@ import Alerts from '../layout/Alerts';
 const override = "display: block; margin: 0 auto;";
 
 function BlogsPage({ blogs, getBlogs }) {
+    var page = 1;
+
     useEffect(() => {
-        getBlogs()
+        getBlogs({
+            page: page
+        })
     }, [])
+    console.log(blogs)
 
     return blogs.loading ? (
         <div>
@@ -28,7 +33,7 @@ function BlogsPage({ blogs, getBlogs }) {
             <Breadcrumb 
                 current='Blogs'
             />
-            {blogs.blogs.map(blog => (
+            {blogs.data.map(blog => (
                 <Blog
                     key={blog.id}
                     blog={blog}
@@ -44,7 +49,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogs: () => dispatch(getBlogs())
+        getBlogs: ({page}) => dispatch(getBlogs(page))
     }
 }
 

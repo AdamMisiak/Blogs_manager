@@ -27,12 +27,16 @@ function BlogDetailsPage({
     const currentId = location.pathname.split("/")[2];
     const protocol = window.location.protocol;
     const hostname = window.location.hostname;
-    console.log(blogDetails);
+    console.log(blogDetails, currentId);
+    var page = "1"
     // USE HOOKS FOR THIS
     // PHOTO JAKO OSOBNY KOMPONENT, LOADING ERROR ITP?
     
     useEffect(() => {
-        getBlogPosts(currentId)
+        getBlogPosts({
+            page: page,
+            blogId: currentId
+        })
         getBlogDetails(currentId)
         getBlogPhoto(currentId)
     }, [])
@@ -139,7 +143,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogPosts: (currentId) => dispatch(getBlogPosts(currentId)),
+        getBlogPosts: ({page, blogId}) => dispatch(getBlogPosts(page, blogId)),
         getBlogDetails: (currentId) => dispatch(getBlogDetails(currentId)),
         getBlogPhoto: (currentId) => dispatch(getBlogPhoto(currentId))
     }

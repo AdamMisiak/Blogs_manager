@@ -6,7 +6,6 @@ import {
 
 const initialState = {
     loading: false,
-    blogPhoto: [],
     error: ''
 }
 
@@ -21,14 +20,14 @@ const blogPhotoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                blogPhoto: action.payload,
-                error: ''
+                error: '',
+                ...action.payload,
+                
             };
         case GET_BLOG_PHOTO_FAILURE:
             return {
                 ...state,
                 loading: false,
-                blogPhoto: [],
                 error: action.payload
             };
         default:
