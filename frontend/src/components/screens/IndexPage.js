@@ -14,9 +14,12 @@ function IndexPage({
     blogPosts,
     getBlogPosts
 }) {
+
     useEffect(() => {
-        getBlogPosts()
+        getBlogPosts({page: 1})
     }, [])
+
+    console.log(blogPosts)
 
     return blogPosts.loading ? (
         <div>
@@ -35,12 +38,12 @@ function IndexPage({
                         current='Latest'
                     />
                     <Showcase />
-                    {blogPosts.blogPosts.map(blogPost => (
+                    {/* {blogPosts.blogPosts.results.map(blogPost => (
                         <BlogPost
                             key={blogPost.id}
                             blogPost={blogPost}
                         />
-                    ))}
+                    ))} */}
                 </div>
             );
 }
@@ -51,7 +54,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBlogPosts: () => dispatch(getBlogPosts())
+        getBlogPosts: ({page}) => dispatch(getBlogPosts(page))
     }
 }
 

@@ -6,8 +6,8 @@ import {
 
 const initialState = {
     loading: false,
-    blogPosts: [],
-    error: ''
+    error: '',
+    data: []
 }
 
 const blogPostsReducer = (state = initialState, action) => {
@@ -21,15 +21,19 @@ const blogPostsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                blogPosts: action.payload,
-                error: ''
+                error: '',
+                data: action.payload.results,
+                dataCount: action.payload.count,
+                next: action.payload.next,
+                previous: action.payload.previous    
             };
         case GET_BLOG_POSTS_FAILURE:
             return {
                 ...state,
                 loading: false,
-                blogPosts: [],
-                error: action.payload
+                error: action.payload,
+                data: []
+                
             };
         default:
             return state;
