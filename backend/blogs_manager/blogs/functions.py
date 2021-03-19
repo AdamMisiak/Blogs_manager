@@ -1,9 +1,6 @@
 import requests
 import datetime
-import logging
 from bs4 import BeautifulSoup
-
-from django.http import HttpResponse
 
 from celery.utils.log import get_task_logger
 

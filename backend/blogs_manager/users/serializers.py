@@ -23,9 +23,6 @@ class RegisterSerializer(serializers.Serializer):
         )
         return user
 
-    # def update(self, instance, validated_data):
-    #     # ... and your update stuff ...
-
 class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:

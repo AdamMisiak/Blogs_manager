@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+
 import { getBlogPosts } from '../../actions/BlogPosts';
 import BlogPost from '../common/BlogPost';
 import Breadcrumb from '../layout/Breadcrumb';
@@ -17,10 +20,8 @@ function IndexPage({
     var page = 1;
 
     useEffect(() => {
-        getBlogPosts({page: page})
+        getBlogPosts(page)
     }, [])
-
-    console.log(blogPosts)
 
     return blogPosts.loading ? (
         <div>
@@ -45,6 +46,10 @@ function IndexPage({
                             blogPost={blogPost}
                         />
                     ))}
+                    <Pagination 
+                        count={3} 
+                        variant="outlined" 
+                    />
                 </div>
             );
 }
