@@ -138,7 +138,7 @@ function BlogDetailsPage({
 const mapStateToProps = state => ({
     blogPosts: state.blogPosts,
     blogDetails: state.blogDetails,
-    blogPhoto: state.blogPhoto.blogPhoto
+    blogPhoto: state.blogPhoto
 });
 
 const mapDispatchToProps = dispatch => {
