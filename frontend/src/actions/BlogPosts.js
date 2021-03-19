@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GET_BLOG_POSTS_REQUEST, GET_BLOG_POSTS_SUCCESS, GET_BLOG_POSTS_FAILURE } from './Types';
 
 
-export const getBlogPosts = (blogId) => {
+export const getBlogPosts = (page, blogId) => {
     return (dispatch) => {
         dispatch(getBlogPostsRequest())
         axios({
@@ -11,6 +11,7 @@ export const getBlogPosts = (blogId) => {
             url: 'api/blog_posts/',
             baseURL: 'http://localhost:8000/',
             params: {
+                page: page,
                 blog_id: blogId
             }
         })
