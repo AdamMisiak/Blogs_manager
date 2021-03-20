@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from blogs_manager.pagination import BlogPostPageNumberPagination
+from blogs_manager.pagination import BlogPostPageNumberPagination, BlogPageNumberPagination
 from .models import Blog, BlogPost, BlogPhoto
 from .filters import BlogPostFilter
 from .serializers import BlogListSerializer, BlogDetailsSerializer, \
@@ -22,6 +22,7 @@ def avg_number_of_posts_per_month(blog):
 class BlogViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogListSerializer
+    pagination_class = BlogPageNumberPagination
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
