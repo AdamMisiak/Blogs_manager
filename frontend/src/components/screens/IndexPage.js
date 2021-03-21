@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
-import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
