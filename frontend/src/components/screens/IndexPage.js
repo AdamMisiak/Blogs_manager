@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 // material ui zamienic
 
@@ -17,18 +17,16 @@ import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 
 const override = "display: block; margin: 0 auto;";
 
-function IndexPage({
-    blogPosts,
-    getBlogPosts
-}) {
-    
+function IndexPage() {
+    const blogPosts = useSelector(state => state.blogPosts);
+    const dispatch = useDispatch();
     const [page, setPage] = useState(DefaultPage);
-    
 
     useEffect(() => {
-        getBlogPosts({
-            page: page,
-        })
+        dispatch(getBlogPosts(page))
+        // getBlogPosts({
+        //     page: page,
+        // })
     }, [page])
 
     const handlePageChange = (event, value) => {
@@ -71,21 +69,10 @@ function IndexPage({
                 count={Math.floor(blogPosts.dataCount/BlogPostsPageSize)} 
                 variant="outlined" 
                 onChange={handlePageChange}
-                className="pagination"
             />
         </div>
     </div>
     )
 }
 
-const mapStateToProps = state => ({
-    blogPosts: state.blogPosts
-});
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getBlogPosts: ({page}) => dispatch(getBlogPosts(page))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);
+export default IndexPage;
