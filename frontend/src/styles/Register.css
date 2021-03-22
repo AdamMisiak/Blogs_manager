@@ -20,10 +20,3 @@ h4{
     margin-left: 0;
     margin-right: 0;
 }
-
-/* PAGINATION STYLES */
-.pagination{
-    margin-top: 1rem;
-    padding-top: 0.8rem;
-    justify-content: center;
-}
