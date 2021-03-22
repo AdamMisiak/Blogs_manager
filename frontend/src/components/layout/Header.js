@@ -9,7 +9,7 @@ import logo from "../../images/logo.png";
 
 const Header = () => {
   return (
-    <div>
+    <div className='header'>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link className="nav-link" to="/">
           <img src={logo} className="logo" alt=""></img>

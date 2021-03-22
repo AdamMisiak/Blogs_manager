@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
-// material ui zamienic
 
 import Pagination from '@material-ui/lab/Pagination';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
+
 import BlogPost from '../common/BlogPost';
 import Breadcrumb from '../layout/Breadcrumb';
 import Showcase from '../layout/Showcase';
@@ -13,9 +13,8 @@ import Alerts from '../layout/Alerts';
 
 import "../../styles/Pagination.css";
 import { LightBlue } from "../../constants/Colors"
+import { LoaderStyles, LoaderSize } from "../../constants/Loader"
 import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
-
-const override = "display: block; margin: 0 auto;";
 
 function IndexPage() {
     const blogPosts = useSelector(state => state.blogPosts);
@@ -34,7 +33,7 @@ function IndexPage() {
       }
 
     return (
-    <div>
+    <div className='index-page'>
         {/* style do zmiany bo nazwa uzywana juz */}
         <div className='breadcrumb-wrapper'>
             <Breadcrumb 
@@ -46,7 +45,7 @@ function IndexPage() {
         </div>
         {blogPosts.loading ? (
             <div className='loader'>
-                <ClipLoader color={LightBlue} loading={true} css={override} size={100} />
+                <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
             </div> ) : ( null )}
         {blogPosts.error ? (
             <div className='alerts'>
@@ -66,7 +65,7 @@ function IndexPage() {
             </div> ) : ( null )}
         <div className='pagination'>
             <Pagination 
-                count={Math.floor(blogPosts.dataCount/BlogPostsPageSize)} 
+                count={Math.floor(blogPosts.dataCount/BlogPostsPageSize)+1} 
                 variant="outlined" 
                 onChange={handlePageChange}
             />
