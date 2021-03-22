@@ -3,13 +3,16 @@ import axios from 'axios';
 import { GET_BLOGS_REQUEST, GET_BLOGS_SUCCESS, GET_BLOGS_FAILURE } from './Types';
 
 
-export const getBlogs = () => {
+export const getBlogs = (page=1) => {
     return (dispatch) => {
         dispatch(getBlogsRequest())
         axios({
             method: 'get',
             url: 'api/blogs/',
             baseURL: 'http://localhost:8000/',
+            params: {
+                page: page,
+            }
         })
             .then(response => {
                 const blogs = response.data;
