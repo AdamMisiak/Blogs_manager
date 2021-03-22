@@ -1,56 +1,74 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
+import Pagination from '@material-ui/lab/Pagination';
+
 import { getBlogs } from '../../actions/Blogs';
+
 import Blog from '../common/Blog';
 import Breadcrumb from '../layout/Breadcrumb';
+import Showcase from '../layout/Showcase';
 import Alerts from '../layout/Alerts';
 
-const override = "display: block; margin: 0 auto;";
+import { LightBlue } from "../../constants/Colors"
+import { LoaderStyles, LoaderSize } from "../../constants/Loader"
+import { BlogsPageSize, DefaultPage } from "../../constants/Pagination"
 
-function BlogsPage({ blogs, getBlogs }) {
-    var page = 1;
+function BlogsPage() {
+    const blogs = useSelector(state => state.blogs);
+    const dispatch = useDispatch();
+    const [page, setPage] = useState(DefaultPage);
 
     useEffect(() => {
-        getBlogs({
-            page: page
-        })
-    }, [])
-    console.log(blogs)
+        dispatch(getBlogs(page))
+    }, [page])
 
-    return blogs.loading ? (
-        <div>
-            <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
-        </div>
-    ) : blogs.error ? (
-        <Alerts 
-          type="error"
-          message={blogs.error}
-        />
-    ) : (
-        <div>
+    const handlePageChange = (event, value) => {
+        setPage(value);
+      }
+
+    return (
+        <div className='blogs-page'>
+        {/* style do zmiany bo nazwa uzywana juz */}
+        <div className='breadcrumb-wrapper'>
             <Breadcrumb 
                 current='Blogs'
             />
-            {blogs.data.map(blog => (
-                <Blog
-                    key={blog.id}
-                    blog={blog}
-                />
-            ))}
         </div>
-            );
+        <div className='showcase'>
+            <Showcase />
+        </div>
+        {blogs.loading ? (
+            <div className='loader'>
+                <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
+            </div> ) : ( null )}
+        {blogs.error ? (
+            <div className='alerts'>
+                <Alerts 
+                    type="error"
+                    message={blogs.error}
+                />
+            </div> ) : ( null )}
+        {!blogs.loading && !blogs.error ? (
+            <div className='blogs'>
+                {blogs.data.map(blog => (
+                    <Blog
+                        key={blog.id}
+                        blog={blog}
+                    />
+                ))}
+            </div> ) : ( null )}
+        <div className='pagination'>
+            <Pagination 
+                count={Math.floor(blogs.dataCount/BlogsPageSize)+1} 
+                variant="outlined" 
+                onChange={handlePageChange}
+            />
+        </div>
+    </div>
+    )
+
 }
 
-const mapStateToProps = state => ({
-    blogs: state.blogs
-});
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getBlogs: ({page}) => dispatch(getBlogs(page))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BlogsPage);
+export default BlogsPage;
