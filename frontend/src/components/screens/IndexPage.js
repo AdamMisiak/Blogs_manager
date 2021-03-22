@@ -46,7 +46,7 @@ function IndexPage({
                         />
                     ))}
                     <Pagination 
-                        count={3} 
+                        count={Math.floor(blogPosts.dataCount/20)} 
                         variant="outlined" 
                     />
                 </div>

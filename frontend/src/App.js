@@ -7,6 +7,7 @@ import store from './store'
 import './styles/App.css';
 
 import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
 import IndexPage from './components/screens/IndexPage';
 import BlogsPage from './components/screens/BlogsPage';
 import BlogDetailsPage from './components/screens/BlogDetailsPage';
@@ -31,8 +32,10 @@ function App() {
 
           <Route path="/blogs/:id"><BlogDetailsPage /></Route>
           <Route exact path="/blogs"><BlogsPage /></Route>
-          
+
           <Route exact path="/"><IndexPage /></Route>
+
+          <Footer />
       </AlertProvider>
     </Provider>
 
