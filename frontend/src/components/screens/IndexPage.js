@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
-// material ui
-
+// material ui zamienic
 
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -13,6 +12,8 @@ import Showcase from '../layout/Showcase';
 import Alerts from '../layout/Alerts';
 
 import "../../styles/Pagination.css";
+import { LightBlue } from "../../constants/Colors"
+import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 
 const override = "display: block; margin: 0 auto;";
 
@@ -20,7 +21,9 @@ function IndexPage({
     blogPosts,
     getBlogPosts
 }) {
-    const [page, setPage] = useState(1);
+    
+    const [page, setPage] = useState(DefaultPage);
+    
 
     useEffect(() => {
         getBlogPosts({
@@ -45,7 +48,7 @@ function IndexPage({
         </div>
         {blogPosts.loading ? (
             <div className='loader'>
-                <ClipLoader color="rgba(55, 113, 189, 0.9)" loading={true} css={override} size={100} />
+                <ClipLoader color={LightBlue} loading={true} css={override} size={100} />
             </div> ) : ( null )}
         {blogPosts.error ? (
             <div className='alerts'>
@@ -65,7 +68,7 @@ function IndexPage({
             </div> ) : ( null )}
         <div className='pagination'>
             <Pagination 
-                count={Math.floor(blogPosts.dataCount/20)} 
+                count={Math.floor(blogPosts.dataCount/BlogPostsPageSize)} 
                 variant="outlined" 
                 onChange={handlePageChange}
                 className="pagination"
