@@ -4,16 +4,30 @@ from users.models import User
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
-class RegisterSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
-    username = serializers.CharField(required=True)
-    password = serializers.CharField(required=True)
-    password2 = serializers.CharField(write_only=True)
+# class RegisterSerializer(serializers.Serializer):
+#     email = serializers.EmailField(required=True)
+#     username = serializers.CharField(required=True)
+#     password = serializers.CharField(required=True)
+#     password2 = serializers.CharField(write_only=True)
 
-    def validate(self, data):
-        if data['password'] != data['password2']:
-            raise serializers.ValidationError("Passwords do not match!")
-        return data
+#     def validate(self, data):
+#         if data['password'] != data['password2']:
+#             raise serializers.ValidationError("Passwords do not match!")
+#         return data
+
+#     def create(self, validated_data):
+#         user = User.objects.create_user(
+#             email = validated_data['email'],
+#             username = validated_data['username'],
+#             password = validated_data['password'],
+#         )
+#         return user
+class RegisterSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -22,6 +36,12 @@ class RegisterSerializer(serializers.Serializer):
             password = validated_data['password'],
         )
         return user
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
 
 class UserListSerializer(serializers.ModelSerializer):
 
@@ -40,6 +60,6 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_subscribing(self, obj):
         subscribing_blogs = Blog.objects.filter(subscribed_by__user=obj)
-        return [BlogSerializer(blog).data for blog in subscribing_blogs ]
+        return [BlogSerializer(blog).data for blog in subscribing_blogs]
 
 
