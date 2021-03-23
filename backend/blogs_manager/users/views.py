@@ -18,7 +18,7 @@ from blogs.serializers import BlogPostOpenedDetailsSerializer
 from users.models import BlogPostOpened
 from users.functions import create_new_blog_post
 from users.serializers import UserListSerializer, UserDetailsSerializer, \
-                              UserSerializer, RegisterSerializer
+                              UserSerializer, RegisterSerializer, LoginSerializer
 
 from django.contrib.auth.models import User
 
@@ -35,10 +35,32 @@ class RegisterView(generics.GenericAPIView):
         user = serializer.save()
         
         return Response({
-            "user": UserSerializer(user, 
-            context=self.get_serializer_context()).data,
+            "user": UserSerializer(
+                user, 
+                context=self.get_serializer_context())
+            .data,
             "token": AuthToken.objects.create(user)[1]
         })
+
+class LoginView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        
+        return Response({
+            "user": UserSerializer(
+                user, 
+                context=self.get_serializer_context())
+            .data,
+            "token": AuthToken.objects.create(user)[1]
+        })
+
+class UserView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
