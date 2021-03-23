@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 
 from knox.models import AuthToken
+from knox.auth import TokenAuthentication
 
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
@@ -33,13 +34,14 @@ class RegisterView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        _, token = AuthToken.objects.create(user)
         
         return Response({
             "user": UserSerializer(
                 user, 
                 context=self.get_serializer_context())
             .data,
-            "token": AuthToken.objects.create(user)[1]
+            "token": token
         })
 
 class LoginView(generics.GenericAPIView):
@@ -49,18 +51,24 @@ class LoginView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
+        _, token = AuthToken.objects.create(user)
         
         return Response({
             "user": UserSerializer(
                 user, 
                 context=self.get_serializer_context())
             .data,
-            "token": AuthToken.objects.create(user)[1]
+            "token": token
         })
 
 class UserView(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
     serializer_class = UserSerializer
+
+    def get_object(self):
+        print(self.request.user,'TEST')
+        return self.request.user
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
