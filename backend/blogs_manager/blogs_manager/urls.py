@@ -5,11 +5,11 @@ from django.conf.urls import re_path, include
 from rest_framework import routers
 
 from blogs.views import BlogViewSet, BlogPostsViewSet, BlogPhotoViewSet
-from users.views import UserViewSet, RegisterViewSet
+from users.views import UserViewSet
 
 router = routers.DefaultRouter()
 
-router.register(r'register', RegisterViewSet, basename='register')
+# router.register(r'register', RegisterViewSet, basename='register')
 router.register(r'users', UserViewSet, basename='users')
 
 router.register(r'blogs', BlogViewSet, basename='blogs')
@@ -23,5 +23,5 @@ urlpatterns = [
     # path("", include("frontend.urls")),
     path("old", include("pages.urls")),
     # path("blogs/", include("blogs.urls")),
-    path("users/", include("users.urls")),
+    path("", include("users.urls")),
 ]

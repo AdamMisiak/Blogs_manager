@@ -6,9 +6,11 @@ from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from rest_framework import viewsets, status, permissions
+from rest_framework import generics, viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
+
+from knox.models import AuthToken
 
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
@@ -16,14 +18,27 @@ from blogs.serializers import BlogPostOpenedDetailsSerializer
 from users.models import BlogPostOpened
 from users.functions import create_new_blog_post
 from users.serializers import UserListSerializer, UserDetailsSerializer, \
-                              RegisterSerializer
+                              UserSerializer, RegisterSerializer
 
 from django.contrib.auth.models import User
-from rest_framework import status
 
-class RegisterViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+# class RegisterViewSet(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = RegisterSerializer
+
+class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        
+        return Response({
+            "user": UserSerializer(user, 
+            context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
