@@ -14,6 +14,7 @@ export const loadUser = () => {
         dispatch(getUserRequest())
 
         const token = getState().auth.token;
+        console.log(token, 'tokemn')
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -24,11 +25,16 @@ export const loadUser = () => {
             config.headers['Authorization'] = 'Token ' + token
         };
 
+        console.log(config)
+
         axios({
             method: 'get',
             url: 'api/auth/user',
             baseURL: 'http://localhost:8000/',
-            config: {config}
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token ' + token
+                }
         })
             .then(response => {
                 const user = response.data;

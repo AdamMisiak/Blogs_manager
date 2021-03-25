@@ -7,7 +7,10 @@ import { login } from '../../actions/Auth'
 import "../../styles/Login.css";
 
 
-function LoginPage({ login }) {
+function LoginPage({ 
+    login,
+    auth
+ }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -31,9 +34,12 @@ function LoginPage({ login }) {
     const inputUsernameHandler = e => setUsername(e.target.value);
     const inputPasswordHandler = e => setPassword(e.target.value);
 
+    if (auth.isAuthenticated) {
+        return <Redirect to="/" />
+    }
 
     return (
-        <section id="register" className="bg-light py-5">
+        <section id="login" className="bg-light py-5">
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 mx-auto">
