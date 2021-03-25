@@ -3,7 +3,9 @@ import axios from 'axios';
 import { 
     GET_USER_REQUEST, 
     GET_USER_SUCCESS, 
-    GET_USER_FAILURE 
+    GET_USER_FAILURE,
+    POST_USER_SUCCESS,
+    POST_USER_FAILURE 
 } from './Types';
 
 
@@ -16,11 +18,11 @@ export const loadUser = () => {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }
+        };
         
         if (token) {
             config.headers['Authorization'] = 'Token ' + token
-        }
+        };
 
         axios({
             method: 'get',
@@ -39,6 +41,35 @@ export const loadUser = () => {
     }
 }
 
+export const login = (username, password) => {
+    return dispatch => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+
+        axios({
+            method: 'post',
+            url: 'api/auth/login',
+            baseURL: 'http://localhost:8000/',
+            config: {config},
+            data: {
+                username: username,
+                password: password
+            }
+        })
+            .then(response => {
+                const user = response.data;
+                dispatch(postUserSuccess(user))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(postUserFailure(errorMessage))
+            })
+    }
+}
+
 export const getUserRequest = () => {
     return {
         type: GET_USER_REQUEST
@@ -52,9 +83,24 @@ export const getUserSuccess = user => {
     }
 }
 
-const getUserFailure = error => {
+export const getUserFailure = error => {
     return {
         type: GET_USER_FAILURE,
         payload: error
     }
 }
+
+export const postUserSuccess = user => {
+    return {
+        type: POST_USER_SUCCESS,
+        payload: user
+    }
+}
+
+export const postUserFailure = error => {
+    return {
+        type: POST_USER_FAILURE,
+        payload: error
+    }
+}
+

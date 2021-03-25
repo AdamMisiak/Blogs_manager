@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
+
+import { login } from '../../actions/Auth' 
 
 import "../../styles/Login.css";
 
 
-function RegisterPage() {
+function LoginPage({ login }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log('test')
+        login(username, password)
         // const { username, email, password, password2 } = state;
         // if (password !== password2) {
         //     console.log('passwords wrong')
@@ -24,7 +28,8 @@ function RegisterPage() {
         // }
     };
 
-    const onChange = e => console.log(e.target.name);
+    const inputUsernameHandler = e => setUsername(e.target.value);
+    const inputPasswordHandler = e => setPassword(e.target.value);
 
 
     return (
@@ -45,7 +50,7 @@ function RegisterPage() {
                                     type="text"
                                     className="form-control"
                                     name="username"
-                                    onChange={onChange}
+                                    onChange={inputUsernameHandler}
                                     value={username}
                                   />
                                 </div>
@@ -55,7 +60,7 @@ function RegisterPage() {
                                     type="password"
                                     className="form-control"
                                     name="password"
-                                    onChange={onChange}
+                                    onChange={inputPasswordHandler}
                                     value={password}
                                   />
                                 </div>
@@ -105,13 +110,8 @@ function RegisterPage() {
 };
 
 const mapStateToProps = state => ({
-    // blogs: state.blogs
+    auth: state.auth
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        // getBlogs: ({page}) => dispatch(getBlogs(page))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+export default connect(mapStateToProps, { login })(LoginPage);

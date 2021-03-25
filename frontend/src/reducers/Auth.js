@@ -1,7 +1,9 @@
 import {
     GET_USER_REQUEST,
     GET_USER_SUCCESS,
-    GET_USER_FAILURE
+    GET_USER_FAILURE,
+    POST_USER_SUCCESS,
+    POST_USER_FAILURE
 } from '../actions/Types.js'
 
 const initialState = {
@@ -26,7 +28,16 @@ const authReducer = (state = initialState, action) => {
                 loading: false,
                 ...action.payload,
             };
+        case POST_USER_SUCCESS:
+            localStorage.setItem('token', action.payload.token)
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                ...action.payload,
+            }; 
         case GET_USER_FAILURE:
+        case POST_USER_FAILURE:
             localStorage.removeItem('token');
             return {
                 ...state,
