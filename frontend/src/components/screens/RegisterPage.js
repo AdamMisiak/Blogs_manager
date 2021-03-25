@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -6,19 +6,14 @@ import "../../styles/Register.css";
 
 
 function RegisterPage() {
-    let state = {
-        // firstName: '',
-        // lastName: '',
-        username: '',
-        email: '',
-        password: '',
-        password2: ''
-    }
-
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [password2, setPassword2] = useState("")
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const { username, email, password, password2 } = state;
+        // const { username, email, password, password2 } = state;
         if (password !== password2) {
             console.log('passwords wrong')
         //   this.props.createMessage({ passwordNotMatch: 'Passwords do not match' });
@@ -32,7 +27,9 @@ function RegisterPage() {
         }
     };
 
-    const { username, email, password, password2 } = state;
+    const onChange = e => console.log(e.target.name);
+
+
     return (
         <section id="register" className="bg-light py-5">
             <div className="container">
@@ -44,56 +41,56 @@ function RegisterPage() {
                                 <i className="fas fa-user-plus"></i> Register</h4>
                             </div>
                             <div className="card-body">
-        <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <label>Username</label>
-              <input
-                type="text"
-                className="form-control"
-                name="username"
-                onChange={this.onChange}
-                value={username}
-              />
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                onChange={this.onChange}
-                value={email}
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={this.onChange}
-                value={password}
-              />
-            </div>
-            <div className="form-group">
-              <label>Confirm Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password2"
-                onChange={this.onChange}
-                value={password2}
-              />
-            </div>
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary">
-                Register
-              </button>
-            </div>
-            <p>
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
-          </form>
+                            <form onSubmit={onSubmit}>
+                                <div className="form-group">
+                                  <label>Username</label>
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    name="username"
+                                    onChange={onChange}
+                                    value={username}
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>Email</label>
+                                  <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    onChange={onChange}
+                                    value={email}
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>Password</label>
+                                  <input
+                                    type="password"
+                                    className="form-control"
+                                    name="password"
+                                    onChange={onChange}
+                                    value={password}
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <label>Confirm Password</label>
+                                  <input
+                                    type="password"
+                                    className="form-control"
+                                    name="password2"
+                                    onChange={onChange}
+                                    value={password2}
+                                  />
+                                </div>
+                                <div className="form-group">
+                                  <button type="submit" className="btn btn-primary">
+                                    Register
+                                  </button>
+                                </div>
+                                <p>
+                                  Already have an account? <Link to="/login">Login</Link>
+                                </p>
+                              </form>
                                 {/* <form action="" method="POST">
                                     <div className="form-group">
                                         <label for="first_name">First Name</label>
