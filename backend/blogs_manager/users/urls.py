@@ -5,6 +5,7 @@ from .views import RegisterView, LoginView, UserView
 urlpatterns = [
     path('api/auth/register', RegisterView.as_view()),
     path('api/auth/login', LoginView.as_view()),
+    path('api/auth/logout', knox_views.LogoutView.as_view(), name="knox_logout"),
     path('api/auth/user', UserView.as_view()),
     path('api/auth', include('knox.urls')),
     # path("account/", views.account, name="account"),
