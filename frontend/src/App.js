@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Provider } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
 import {  HashRouter as Router, Route, Switch, Redirect  } from "react-router-dom";
@@ -6,6 +7,8 @@ import AlertTemplate from 'react-alert-template-basic'
 import store from './store'
 
 import './styles/App.css';
+
+import { loadUser } from './actions/Auth';
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -22,6 +25,10 @@ const alertOptions = {
 }
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, [])
+  
   return (
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...alertOptions}>
