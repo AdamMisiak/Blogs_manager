@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
-import { Route } from "react-router-dom";
+import {  HashRouter as Router, Route, Switch, Redirect  } from "react-router-dom";
+import PrivateRoute from "./components/common/PrivateRoute"
 import AlertTemplate from 'react-alert-template-basic'
 import store from './store'
 
@@ -23,19 +24,22 @@ const alertOptions = {
 function App() {
   return (
     <Provider store={store}>
-      <AlertProvider template={AlertTemplate}
-        {...alertOptions}>
+      <AlertProvider template={AlertTemplate} {...alertOptions}>
+        <Router>
           <Header />
+          
+          <Switch>
+            <Route path="/login"><LoginPage /></Route>
+            <Route path="/register"><RegisterPage /></Route>
 
-          <Route path="/login"><LoginPage /></Route>
-          <Route path="/register"><RegisterPage /></Route>
+            <Route path="/blogs/:id"><BlogDetailsPage /></Route>
+            <PrivateRoute exact path="/blogs" component={BlogsPage} />
 
-          <Route path="/blogs/:id"><BlogDetailsPage /></Route>
-          <Route exact path="/blogs"><BlogsPage /></Route>
-
-          <Route exact path="/"><IndexPage /></Route>
-
+            <Route exact path="/"><IndexPage /></Route>
+          </Switch>
+  
           <Footer />
+        </Router>
       </AlertProvider>
     </Provider>
 
