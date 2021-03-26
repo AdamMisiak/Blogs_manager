@@ -4,8 +4,10 @@ import {
     GET_USER_REQUEST, 
     GET_USER_SUCCESS, 
     GET_USER_FAILURE,
-    POST_USER_SUCCESS,
-    POST_USER_FAILURE 
+    LOGIN_USER_SUCCESS,
+    LOGIN_USER_FAILURE, 
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAILURE
 } from './Types';
 
 
@@ -14,7 +16,6 @@ export const loadUser = () => {
         dispatch(getUserRequest())
 
         const token = getState().auth.token;
-        console.log(token, 'tokemn')
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -25,8 +26,6 @@ export const loadUser = () => {
             config.headers['Authorization'] = 'Token ' + token
         };
 
-        console.log(config)
-
         axios({
             method: 'get',
             url: 'api/auth/user',
@@ -34,7 +33,7 @@ export const loadUser = () => {
             headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + token
-                }
+            }
         })
             .then(response => {
                 const user = response.data;
@@ -67,11 +66,49 @@ export const login = (username, password) => {
         })
             .then(response => {
                 const user = response.data;
-                dispatch(postUserSuccess(user))
+                dispatch(loginUserSuccess(user))
             })
             .catch(error => {
                 const errorMessage = error.message;
-                dispatch(postUserFailure(errorMessage))
+                dispatch(loginUserFailure(errorMessage))
+            })
+    }
+}
+
+
+export const logout = () => {
+    return (dispatch, getState) => {
+        console.log('testest')
+        const token = getState().auth.token;
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        
+        if (token) {
+            config.headers['Authorization'] = 'Token ' + token
+        };
+
+        console.log(token,'tokeeeeen')
+        console.log(getState())
+
+        axios({
+            method: 'post',
+            url: 'api/auth/logout',
+            baseURL: 'http://localhost:8000/',
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token ' + token
+            },
+            body: null
+        })
+            .then(response => {
+                dispatch(logoutUserSuccess())
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(logoutUserFailure(errorMessage))
             })
     }
 }
@@ -96,17 +133,29 @@ export const getUserFailure = error => {
     }
 }
 
-export const postUserSuccess = user => {
+export const loginUserSuccess = user => {
     return {
-        type: POST_USER_SUCCESS,
+        type: LOGIN_USER_SUCCESS,
         payload: user
     }
 }
 
-export const postUserFailure = error => {
+export const loginUserFailure = error => {
     return {
-        type: POST_USER_FAILURE,
+        type: LOGIN_USER_FAILURE,
         payload: error
     }
 }
 
+export const logoutUserSuccess = () => {
+    return {
+        type: LOGOUT_USER_SUCCESS,
+    }
+}
+
+export const logoutUserFailure = error => {
+    return {
+        type: LOGOUT_USER_FAILURE,
+        payload: error
+    }
+}
