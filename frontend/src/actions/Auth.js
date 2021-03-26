@@ -6,6 +6,8 @@ import {
     GET_USER_FAILURE,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAILURE, 
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_FAILURE,
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAILURE
 } from './Types';
@@ -66,6 +68,35 @@ export const login = (username, password) => {
     }
 }
 
+export const register = ({ username, email, password }) => {
+    return dispatch => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+
+        axios({
+            method: 'post',
+            url: 'api/auth/register',
+            baseURL: 'http://localhost:8000/',
+            config: {config},
+            data: {
+                username: username,
+                email: email,
+                password: password
+            }
+        })
+            .then(response => {
+                const user = response.data;
+                dispatch(registerUserSuccess(user))
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                dispatch(registerUserFailure(errorMessage))
+            })
+    }
+}
 
 export const logout = () => {
     return (dispatch, getState) => {
@@ -121,6 +152,20 @@ export const loginUserSuccess = user => {
 export const loginUserFailure = error => {
     return {
         type: LOGIN_USER_FAILURE,
+        payload: error
+    }
+}
+
+export const registerUserSuccess = user => {
+    return {
+        type: REGISTER_USER_SUCCESS,
+        payload: user
+    }
+}
+
+export const registerUserFailure = error => {
+    return {
+        type: REGISTER_USER_FAILURE,
         payload: error
     }
 }

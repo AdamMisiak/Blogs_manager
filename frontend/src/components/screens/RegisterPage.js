@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
+
+import { register } from '../../actions/Auth' 
 
 import "../../styles/Register.css";
 
 
-function RegisterPage() {
+function RegisterPage({
+  register,
+  auth
+}) {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -13,22 +18,27 @@ function RegisterPage() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // const { username, email, password, password2 } = state;
         if (password !== password2) {
-            console.log('passwords wrong')
+            console.log('Passwords do not match')
         //   this.props.createMessage({ passwordNotMatch: 'Passwords do not match' });
         } else {
           const newUser = {
             username,
-            password,
             email,
+            password,
           };
-          this.props.register(newUser);
+          register(newUser);
         }
     };
 
-    const onChange = e => console.log(e.target.name);
+    const inputUsernameHandler = e => setUsername(e.target.value);
+    const inputEmailHandler = e => setEmail(e.target.value);
+    const inputPasswordHandler = e => setPassword(e.target.value);
+    const inputPassword2Handler = e => setPassword2(e.target.value);
 
+    if (auth.isAuthenticated) {
+      return <Redirect to="/" />
+    }
 
     return (
         <section id="register" className="bg-light py-5">
@@ -48,7 +58,7 @@ function RegisterPage() {
                                     type="text"
                                     className="form-control"
                                     name="username"
-                                    onChange={onChange}
+                                    onChange={inputUsernameHandler}
                                     value={username}
                                   />
                                 </div>
@@ -58,7 +68,7 @@ function RegisterPage() {
                                     type="email"
                                     className="form-control"
                                     name="email"
-                                    onChange={onChange}
+                                    onChange={inputEmailHandler}
                                     value={email}
                                   />
                                 </div>
@@ -68,7 +78,7 @@ function RegisterPage() {
                                     type="password"
                                     className="form-control"
                                     name="password"
-                                    onChange={onChange}
+                                    onChange={inputPasswordHandler}
                                     value={password}
                                   />
                                 </div>
@@ -78,7 +88,7 @@ function RegisterPage() {
                                     type="password"
                                     className="form-control"
                                     name="password2"
-                                    onChange={onChange}
+                                    onChange={inputPassword2Handler}
                                     value={password2}
                                   />
                                 </div>
@@ -128,13 +138,8 @@ function RegisterPage() {
 };
 
 const mapStateToProps = state => ({
-    // blogs: state.blogs
+  auth: state.auth
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        // getBlogs: ({page}) => dispatch(getBlogs(page))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+export default connect(mapStateToProps, { register })(RegisterPage);
