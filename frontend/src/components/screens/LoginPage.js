@@ -16,7 +16,6 @@ function LoginPage({
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('test')
         login(username, password)
         // const { username, email, password, password2 } = state;
         // if (password !== password2) {

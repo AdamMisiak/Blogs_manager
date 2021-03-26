@@ -8,9 +8,18 @@ import { faUserPlus, faSignInAlt, faUser, faSignOutAlt } from "@fortawesome/free
 import "../../styles/Header.css";
 import logo from "../../images/logo.png";
 
+import { logout } from '../../actions/Auth'
+
 const Header = () => {
   const auth = useSelector(state => state.auth);
-  console.log(auth)
+  const dispatch = useDispatch();
+
+  const handleLogout = e => {
+    e.preventDefault();
+    console.log('test')
+    dispatch(logout())
+    console.log(auth)
+  };
 
   return (
     <div className='header'>
@@ -42,7 +51,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="nav-item justify-content-end">
-                  <Link className="nav-link" to="/logout">
+                  <Link onClick={handleLogout} className="nav-link" to="/">
                     <FontAwesomeIcon icon={faSignOutAlt} /> Logout
                   </Link>
                 </li>
