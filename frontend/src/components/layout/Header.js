@@ -16,9 +16,7 @@ const Header = () => {
 
   const handleLogout = e => {
     e.preventDefault();
-    console.log('test')
     dispatch(logout())
-    console.log(auth)
   };
 
   return (
@@ -42,7 +40,6 @@ const Header = () => {
         </div>
 
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-          {/* <ul className="navbar-nav"> */}
             {auth.isAuthenticated ? (
               <ul className="navbar-nav">
                 <li className="nav-item justify-content-end">

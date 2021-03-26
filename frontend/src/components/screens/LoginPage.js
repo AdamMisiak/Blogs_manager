@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { login } from '../../actions/Auth' 
 
+import Alerts from '../layout/Alerts';
+
 import "../../styles/Login.css";
 
 
@@ -48,6 +50,14 @@ function LoginPage({
                                 <i className="fas fa-user-plus"></i> Login</h4>
                             </div>
                             <div className="card-body">
+                            {auth.error ? (
+                                <div className="alerts">
+                                    <Alerts 
+                                        type="error"
+                                        message={auth.error}
+                                    />
+                                </div>
+                            ) : (null)}
                             <form onSubmit={onSubmit}>
                                 <div className="form-group">
                                   <label>Username</label>
