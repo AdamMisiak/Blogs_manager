@@ -16,15 +16,6 @@ export const loadUser = () => {
         dispatch(getUserRequest())
 
         const token = getState().auth.token;
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        };
-        
-        if (token) {
-            config.headers['Authorization'] = 'Token ' + token
-        };
 
         axios({
             method: 'get',
@@ -78,20 +69,7 @@ export const login = (username, password) => {
 
 export const logout = () => {
     return (dispatch, getState) => {
-        console.log('testest')
         const token = getState().auth.token;
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        };
-        
-        if (token) {
-            config.headers['Authorization'] = 'Token ' + token
-        };
-
-        console.log(token,'tokeeeeen')
-        console.log(getState())
 
         axios({
             method: 'post',
