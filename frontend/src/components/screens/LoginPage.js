@@ -1,35 +1,24 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { login } from '../../actions/Auth' 
+import { login } from '../../actions/Auth';
 
 import Alerts from '../layout/Alerts';
 
 import "../../styles/Login.css";
 
 
-function LoginPage({ 
-    login,
-    auth
- }) {
+function LoginPage() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    const auth = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+
     const onSubmit = (e) => {
         e.preventDefault();
-        login(username, password)
-        // const { username, email, password, password2 } = state;
-        // if (password !== password2) {
-        //     console.log('passwords wrong')
-        //   this.props.createMessage({ passwordNotMatch: 'Passwords do not match' });
-        // } else {
-        //   const newUser = {
-        //     username,
-        //     password,
-        //   };
-        //   this.props.register(newUser);
-        // }
+        dispatch(login(username, password));
     };
 
     const inputUsernameHandler = e => setUsername(e.target.value);
@@ -87,34 +76,7 @@ function LoginPage({
                                 <p>
                                   Don't have an account? <Link to="/register">Register</Link>
                                 </p>
-                              </form>
-                                {/* <form action="" method="POST">
-                                    <div className="form-group">
-                                        <label for="first_name">First Name</label>
-                                        <input type="text" name="first_name" className="form-control" required>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="last_name">Last Name</label>
-                                        <input type="text" name="last_name" className="form-control" required>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" name="username" className="form-control" required>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" name="email" className="form-control" required>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="password2">Password</label>
-                                        <input type="password" name="password" className="form-control" required>
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="password">Confirm Password</label>
-                                        <input type="password" name="password2" className="form-control" required>
-                                    </div>
-                                    <input type="submit" value="Register" className="btn btn-secondary btn-block">
-                                </form> */}
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -124,9 +86,4 @@ function LoginPage({
     );
 };
 
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-
-export default connect(mapStateToProps, { login })(LoginPage);
+export default LoginPage;
