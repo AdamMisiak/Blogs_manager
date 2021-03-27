@@ -11,6 +11,7 @@ import { loadUser } from './actions/Auth';
 
 import PrivateRoute from "./components/common/PrivateRoute"
 import Header from './components/layout/Header'
+import Alerts from "./components/layout/Alerts";
 import Footer from './components/layout/Footer'
 import IndexPage from './components/screens/IndexPage';
 import BlogsPage from './components/screens/BlogsPage';
@@ -20,7 +21,7 @@ import RegisterPage from './components/screens/RegisterPage';
 
 
 const alertOptions = {
-  timeout: 4000,
+  timeout: 3000,
   position: 'top center'
 }
 
@@ -33,13 +34,14 @@ function App() {
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...alertOptions}>
         <Header />
+        <Alerts />
+
           <Route path="/login"><LoginPage /></Route>
           <Route path="/register"><RegisterPage /></Route>
-
           <Route path="/blogs/:id"><BlogDetailsPage /></Route>
           <PrivateRoute exact path="/blogs" component={BlogsPage} />
-
           <Route exact path="/"><IndexPage /></Route>
+          
         <Footer />
       </AlertProvider>
     </Provider>

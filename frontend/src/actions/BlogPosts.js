@@ -3,7 +3,7 @@ import axios from 'axios';
 import { 
     GET_BLOG_POSTS_REQUEST, 
     GET_BLOG_POSTS_SUCCESS, 
-    GET_BLOG_POSTS_FAILURE 
+    GET_ERRORS 
 } from './Types';
 
 
@@ -24,8 +24,11 @@ export const getBlogPosts = (page=1, blogId) => {
                 dispatch(getBlogPostsSuccess(blogPosts))
             })
             .catch(error => {
-                const errorMessage = error.message;
-                dispatch(getBlogPostsFailure(errorMessage))
+                const errors = {
+                    message: error.response.request.statusText,
+                    status: error.response.status
+                };
+                dispatch(getErrors(errors))
             })
     }
 }
@@ -43,9 +46,9 @@ const getBlogPostsSuccess = blogPosts => {
     }
 }
 
-const getBlogPostsFailure = error => {
+const getErrors = errors => {
     return {
-        type: GET_BLOG_POSTS_FAILURE,
-        payload: error
+        type: GET_ERRORS,
+        payload: errors
     }
 }

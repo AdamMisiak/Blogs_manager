@@ -19,6 +19,8 @@ function LoginPage() {
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(login(username, password));
+        setUsername("")
+        setPassword("")
     };
 
     const inputUsernameHandler = e => setUsername(e.target.value);
@@ -39,14 +41,6 @@ function LoginPage() {
                                 <i className="fas fa-user-plus"></i> Login</h4>
                             </div>
                             <div className="card-body">
-                            {auth.error ? (
-                                <div className="alerts">
-                                    <Alerts 
-                                        type="error"
-                                        message={auth.error}
-                                    />
-                                </div>
-                            ) : (null)}
                             <form onSubmit={onSubmit}>
                                 <div className="form-group">
                                   <label>Username</label>

@@ -23,9 +23,6 @@ function IndexPage() {
 
     useEffect(() => {
         dispatch(getBlogPosts(page))
-        // getBlogPosts({
-        //     page: page,
-        // })
     }, [page])
 
     const handlePageChange = (event, value) => {

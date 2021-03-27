@@ -12,6 +12,7 @@ import {
     LOGOUT_USER_FAILURE,
     GET_ERRORS
 } from './Types';
+import { createMessage } from './Messages'
 
 
 export const loadUser = () => {
@@ -60,6 +61,7 @@ export const login = (username, password) => {
         })
             .then(response => {
                 const user = response.data;
+                dispatch(createMessage({loggedIn: 'Logged in successfully!'}))
                 dispatch(loginUserSuccess(user))
             })
             .catch(error => {
@@ -68,9 +70,6 @@ export const login = (username, password) => {
                     status: error.response.status
                 };
                 dispatch(getErrors(errors))
-                // console.log(error.response)
-                // const errorMessage = error.message;
-                // dispatch(loginUserFailure(errorMessage))
             })
     }
 }
@@ -96,11 +95,15 @@ export const register = ({ username, email, password }) => {
         })
             .then(response => {
                 const user = response.data;
+                dispatch(createMessage({registered: 'Registered successfully!'}))
                 dispatch(registerUserSuccess(user))
             })
             .catch(error => {
-                const errorMessage = error.message;
-                dispatch(registerUserFailure(errorMessage))
+                const errors = {
+                    message: error.response.data,
+                    status: error.response.status
+                };
+                dispatch(getErrors(errors))
             })
     }
 }
@@ -120,6 +123,7 @@ export const logout = () => {
             body: null
         })
             .then(response => {
+                dispatch(createMessage({loggedOut: 'Logged out successfully!'}))
                 dispatch(logoutUserSuccess())
             })
             .catch(error => {
