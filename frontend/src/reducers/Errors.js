@@ -14,7 +14,7 @@ const errorReducer = (state = initialState, action) => {
                 ...state,
                 message: action.payload.message,
                 status: action.payload.status
-            };
+            }
         default:
             return state;
     }
