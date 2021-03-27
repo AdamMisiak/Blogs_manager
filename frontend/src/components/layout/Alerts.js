@@ -21,7 +21,9 @@ function Alerts({
         if (error.message.non_field_errors) {
             alert.error(error.message.non_field_errors.join())
         }
+    }, [error]);
 
+    useEffect(() => {
         if (message.loggedIn) {
             alert.success(message.loggedIn)
         }
@@ -31,7 +33,8 @@ function Alerts({
         if (message.registered) {
             alert.success(message.registered)
         }
-    });
+    }, [message])
+
 
     return <Fragment />
 }
