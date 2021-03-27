@@ -39,9 +39,8 @@ const getBlogPhotoSuccess = blogPhoto => {
     }
 }
 
-const getBlogPhotoFailure = error => {
+const getBlogPhotoFailure = () => {
     return {
         type: GET_BLOG_PHOTO_FAILURE,
-        payload: error
     }
 }

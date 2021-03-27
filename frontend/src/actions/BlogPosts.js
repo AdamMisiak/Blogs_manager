@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { 
     GET_BLOG_POSTS_REQUEST, 
-    GET_BLOG_POSTS_SUCCESS, 
+    GET_BLOG_POSTS_SUCCESS,
+    GET_BLOG_POSTS_FAILURE, 
     GET_ERRORS 
 } from './Types';
 
@@ -29,6 +30,7 @@ export const getBlogPosts = (page=1, blogId) => {
                     status: error.response.status
                 };
                 dispatch(getErrors(errors))
+                dispatch(getBlogPostsFailure())
             })
     }
 }
@@ -43,6 +45,12 @@ const getBlogPostsSuccess = blogPosts => {
     return {
         type: GET_BLOG_POSTS_SUCCESS,
         payload: blogPosts
+    }
+}
+
+const getBlogPostsFailure = () => {
+    return {
+        type: GET_BLOG_POSTS_FAILURE,
     }
 }
 

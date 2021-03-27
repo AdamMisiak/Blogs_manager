@@ -9,6 +9,7 @@ function Alerts({
     const message = useSelector(state => state.messages);
 
     useEffect(() => {
+        console.log(error)
         if (error.message.username) {
             alert.error('Username:' + error.message.username.join())
         }
@@ -20,6 +21,9 @@ function Alerts({
         }
         if (error.message.non_field_errors) {
             alert.error(error.message.non_field_errors.join())
+        }
+        if (error.status == 404) {
+            alert.error(error.status + ': ' + error.message)
         }
     }, [error]);
 
