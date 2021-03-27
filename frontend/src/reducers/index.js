@@ -5,6 +5,7 @@ import blogsReducer from './Blogs'
 import blogPhotoReducer from './BlogPhotos'
 import authReducer from './Auth'
 import errorReducer from './Errors'
+import messagesReducer from './Messages';
 
 export default combineReducers({
     blogPosts: blogPostsReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     blogDetails: blogDetailsReducer,
     blogPhoto: blogPhotoReducer,
     auth: authReducer,
-    errors: errorReducer
+    errors: errorReducer,
+    messages: messagesReducer
 });
