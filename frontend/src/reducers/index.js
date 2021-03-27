@@ -4,11 +4,13 @@ import blogPostsReducer from './BlogPosts'
 import blogsReducer from './Blogs'
 import blogPhotoReducer from './BlogPhotos'
 import authReducer from './Auth'
+import errorReducer from './Errors'
 
 export default combineReducers({
     blogPosts: blogPostsReducer,
     blogs: blogsReducer,
     blogDetails: blogDetailsReducer,
     blogPhoto: blogPhotoReducer,
-    auth: authReducer
+    auth: authReducer,
+    errors: errorReducer
 });

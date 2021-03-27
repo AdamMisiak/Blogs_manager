@@ -1,8 +1,7 @@
 import { useEffect } from "react";
+import { Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
-import { Router, Route, Switch, Redirect  } from "react-router-dom";
-import PrivateRoute from "./components/common/PrivateRoute"
 import AlertTemplate from 'react-alert-template-basic'
 import store from './store'
 
@@ -10,6 +9,7 @@ import './styles/App.css';
 
 import { loadUser } from './actions/Auth';
 
+import PrivateRoute from "./components/common/PrivateRoute"
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import IndexPage from './components/screens/IndexPage';
@@ -21,7 +21,7 @@ import RegisterPage from './components/screens/RegisterPage';
 
 const alertOptions = {
   timeout: 4000,
-  position: 'bottom right'
+  position: 'top center'
 }
 
 function App() {

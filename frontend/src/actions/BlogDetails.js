@@ -3,7 +3,8 @@ import axios from 'axios';
 import { 
     GET_BLOG_DETAILS_REQUEST, 
     GET_BLOG_DETAILS_SUCCESS, 
-    GET_BLOG_DETAILS_FAILURE 
+    GET_BLOG_DETAILS_FAILURE,
+    GET_ERRORS
 } from './Types';
 
 
@@ -20,8 +21,11 @@ export const getBlogDetails = (id) => {
                 dispatch(getBlogDetailsSuccess(blogDetails))
             })
             .catch(error => {
-                const errorMessage = error.message;
-                dispatch(getBlogDetailsFailure(errorMessage))
+                const errors = {
+                    message: error.response.request.statusText,
+                    status: error.response.status
+                };
+                dispatch(getErrors(errors))
             })
     }
 }
@@ -43,5 +47,12 @@ const getBlogDetailsFailure = error => {
     return {
         type: GET_BLOG_DETAILS_FAILURE,
         payload: error
+    }
+}
+
+const getErrors = errors => {
+    return {
+        type: GET_ERRORS,
+        payload: errors
     }
 }

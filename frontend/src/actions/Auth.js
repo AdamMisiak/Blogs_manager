@@ -9,7 +9,8 @@ import {
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAILURE,
     LOGOUT_USER_SUCCESS,
-    LOGOUT_USER_FAILURE
+    LOGOUT_USER_FAILURE,
+    GET_ERRORS
 } from './Types';
 
 
@@ -62,8 +63,14 @@ export const login = (username, password) => {
                 dispatch(loginUserSuccess(user))
             })
             .catch(error => {
-                const errorMessage = error.message;
-                dispatch(loginUserFailure(errorMessage))
+                const errors = {
+                    message: error.response.data,
+                    status: error.response.status
+                };
+                dispatch(getErrors(errors))
+                // console.log(error.response)
+                // const errorMessage = error.message;
+                // dispatch(loginUserFailure(errorMessage))
             })
     }
 }
@@ -180,5 +187,12 @@ export const logoutUserFailure = error => {
     return {
         type: LOGOUT_USER_FAILURE,
         payload: error
+    }
+}
+
+const getErrors = errors => {
+    return {
+        type: GET_ERRORS,
+        payload: errors
     }
 }
