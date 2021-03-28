@@ -14,6 +14,7 @@ import Header from './components/layout/Header'
 import Alerts from "./components/layout/Alerts";
 import Footer from './components/layout/Footer'
 import IndexPage from './components/screens/IndexPage';
+import AccountPage from './components/screens/AccountPage';
 import BlogsPage from './components/screens/BlogsPage';
 import BlogDetailsPage from './components/screens/BlogDetailsPage';
 import LoginPage from './components/screens/LoginPage';
@@ -38,6 +39,7 @@ function App() {
 
           <Route path="/login"><LoginPage /></Route>
           <Route path="/register"><RegisterPage /></Route>
+          <PrivateRoute exact path="/account" component={AccountPage} />
           <Route path="/blogs/:id"><BlogDetailsPage /></Route>
           <PrivateRoute exact path="/blogs" component={BlogsPage} />
           <Route exact path="/"><IndexPage /></Route>
