@@ -3,7 +3,8 @@ import axios from 'axios';
 import { 
     GET_BLOG_PHOTO_REQUEST, 
     GET_BLOG_PHOTO_SUCCESS, 
-    GET_BLOG_PHOTO_FAILURE 
+    GET_BLOG_PHOTO_FAILURE,
+    GET_ERRORS
 } from './Types';
 
 
@@ -20,8 +21,12 @@ export const getBlogPhoto = (id) => {
                 dispatch(getBlogPhotoSuccess(blogPhoto))
             })
             .catch(error => {
-                const errorMessage = error.message;
-                dispatch(getBlogPhotoFailure(errorMessage))
+                const errors = {
+                    message: error.response.request.statusText,
+                    status: error.response.status
+                };
+                dispatch(getErrors(errors))
+                dispatch(getBlogPhotoFailure())
             })
     }
 }
@@ -42,5 +47,12 @@ const getBlogPhotoSuccess = blogPhoto => {
 const getBlogPhotoFailure = () => {
     return {
         type: GET_BLOG_PHOTO_FAILURE,
+    }
+}
+
+const getErrors = errors => {
+    return {
+        type: GET_ERRORS,
+        payload: errors
     }
 }
