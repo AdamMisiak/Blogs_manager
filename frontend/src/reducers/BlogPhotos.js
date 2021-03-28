@@ -6,7 +6,6 @@ import {
 
 const initialState = {
     loading: false,
-    error: ''
 }
 
 const blogPhotoReducer = (state = initialState, action) => {
@@ -20,7 +19,6 @@ const blogPhotoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: '',
                 ...action.payload,
                 
             };
@@ -28,7 +26,6 @@ const blogPhotoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload
             };
         default:
             return state;

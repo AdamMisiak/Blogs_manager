@@ -26,6 +26,7 @@ export const getBlogDetails = (id) => {
                     status: error.response.status
                 };
                 dispatch(getErrors(errors))
+                dispatch(getBlogDetailsFailure())
             })
     }
 }
@@ -43,10 +44,9 @@ const getBlogDetailsSuccess = blogDetails => {
     }
 }
 
-const getBlogDetailsFailure = error => {
+const getBlogDetailsFailure = () => {
     return {
         type: GET_BLOG_DETAILS_FAILURE,
-        payload: error
     }
 }
 
