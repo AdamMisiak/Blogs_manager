@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'moment';
+// zmianiec moment na datafns!!!!
 import ClipLoader from "react-spinners/ClipLoader";
 import emojiFlags from 'emoji-flags';
 
