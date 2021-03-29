@@ -6,7 +6,6 @@ import {
 
 const initialState = {
     loading: false,
-    error: '',
     data: []
 }
 
@@ -21,7 +20,6 @@ const blogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: '',
                 data: action.payload.results,
                 dataCount: action.payload.count,
                 next: action.payload.next,
@@ -31,7 +29,6 @@ const blogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload,
                 data: [],
             };
         default:
