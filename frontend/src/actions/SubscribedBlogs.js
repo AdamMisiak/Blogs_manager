@@ -8,17 +8,20 @@ import {
 } from './Types';
 
 
-export const getSubscribedBlogs = (user) => {
+export const getSubscribedBlogs = (user, page=1) => {
     return (dispatch) => {
         dispatch(getSubscribedBlogsRequest())
         axios({
             method: 'get',
             url: 'api/users/' + user + '/subscribed_blogs',
             baseURL: 'http://localhost:8000/',
+            params: {
+                page: page,
+            }
         })
             .then(response => {
-                const blogPosts = response.data;
-                dispatch(getSubscribedBlogsSuccess(blogPosts))
+                const subscribedBlogs = response.data;
+                dispatch(getSubscribedBlogsSuccess(subscribedBlogs))
             })
             .catch(error => {
                 const errors = {

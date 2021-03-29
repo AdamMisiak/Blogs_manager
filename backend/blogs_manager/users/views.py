@@ -13,6 +13,7 @@ from rest_framework.decorators import action
 from knox.models import AuthToken
 from knox.auth import TokenAuthentication
 
+from blogs_manager.pagination import BlogPageNumberPagination
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
 from blogs.serializers import BlogPostOpenedDetailsSerializer, BlogSerializer
@@ -74,6 +75,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = UserDetailsSerializer
+    pagination_class = BlogPageNumberPagination
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()

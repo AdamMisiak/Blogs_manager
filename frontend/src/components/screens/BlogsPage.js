@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
-
 import Pagination from '@material-ui/lab/Pagination';
 
 import { getBlogs } from '../../actions/Blogs';
@@ -26,7 +25,7 @@ function BlogsPage() {
 
     const handlePageChange = (event, value) => {
         setPage(value);
-      }
+    }
 
     return (
         <div className='blogs-page'>
