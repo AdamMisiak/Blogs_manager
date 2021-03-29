@@ -13,11 +13,8 @@ export const getSubscribedBlogs = (user) => {
         dispatch(getSubscribedBlogsRequest())
         axios({
             method: 'get',
-            url: 'api/users/' + user,
+            url: 'api/users/' + user + '/subscribed_blogs',
             baseURL: 'http://localhost:8000/',
-            params: {
-                user: user,
-            }
         })
             .then(response => {
                 const blogPosts = response.data;

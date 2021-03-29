@@ -54,20 +54,12 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'email']
 
-class UserListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name',
-                  'date_joined', 'is_superuser']
-
 class UserDetailsSerializer(serializers.ModelSerializer):
-    subscribing = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name',
-                  'date_joined', 'is_superuser', 'subscribing'] 
+                  'date_joined', 'is_superuser'] 
 
     def get_subscribing(self, obj):
         subscribing_blogs = Blog.objects.filter(subscribed_by__user=obj)
