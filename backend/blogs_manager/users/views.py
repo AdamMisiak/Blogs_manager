@@ -15,11 +15,11 @@ from knox.auth import TokenAuthentication
 
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
-from blogs.serializers import BlogPostOpenedDetailsSerializer
+from blogs.serializers import BlogPostOpenedDetailsSerializer, BlogSerializer
 from users.models import BlogPostOpened
 from users.functions import create_new_blog_post
-from users.serializers import UserListSerializer, UserDetailsSerializer, \
-                              UserSerializer, RegisterSerializer, LoginSerializer
+from users.serializers import UserDetailsSerializer, UserSerializer, \
+                              RegisterSerializer, LoginSerializer
 
 from django.contrib.auth.models import User
 
@@ -73,7 +73,7 @@ class UserView(generics.RetrieveAPIView):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    serializer_class = UserListSerializer
+    serializer_class = UserDetailsSerializer
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -86,6 +86,13 @@ class UserViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         blog_posts_opened = BlogPostOpened.objects.filter(user=instance)
         serializer = BlogPostOpenedDetailsSerializer(blog_posts_opened, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['get'], detail=True)
+    def subscribed_blogs(self, request, *args, **kwargs):
+        instance = self.get_object()
+        subscribed_blogs = Blog.objects.filter(subscribed_by__user=instance)
+        serializer = BlogSerializer(subscribed_blogs, many=True)
         return Response(serializer.data)
 
 @login_required

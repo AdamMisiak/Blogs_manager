@@ -1,7 +1,7 @@
 import {
     GET_SUBSCRIBED_BLOGS_REQUEST,
-    GET_SUBSCRIBE_BLOGS_SUCCESS,
-    GET_SUBSCRIBE_BLOGS_FAILURE
+    GET_SUBSCRIBED_BLOGS_SUCCESS,
+    GET_SUBSCRIBED_BLOGS_FAILURE
 } from '../actions/Types.js'
 
 const initialState = {
@@ -16,13 +16,13 @@ const subscribedBlogsReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
             };
-        case GET_SUBSCRIBE_BLOGS_SUCCESS:
+        case GET_SUBSCRIBED_BLOGS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                ...action.payload, 
+                data: action.payload, 
             };
-        case GET_SUBSCRIBE_BLOGS_FAILURE:
+        case GET_SUBSCRIBED_BLOGS_FAILURE:
             return {
                 ...state,
                 loading: false,

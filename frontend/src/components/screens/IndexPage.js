@@ -9,7 +9,6 @@ import { getBlogPosts } from '../../actions/BlogPosts';
 import BlogPost from '../common/BlogPost';
 import Breadcrumb from '../layout/Breadcrumb';
 import Showcase from '../layout/Showcase';
-import Alerts from '../layout/Alerts';
 
 import "../../styles/Pagination.css";
 import { LightBlue } from "../../constants/Colors"
