@@ -9,6 +9,7 @@ import {
     POST_SUBSCRIBE_BLOG_SUCCESS,
     POST_SUBSCRIBE_BLOG_FAILURE
 } from './Types';
+import { createMessage } from './Messages'
 
 
 export const getSubscribedBlogs = (user, page=1) => {
@@ -22,23 +23,24 @@ export const getSubscribedBlogs = (user, page=1) => {
                 page: page,
             }
         })
-            .then(response => {
-                const subscribedBlogs = response.data;
-                dispatch(getSubscribedBlogsSuccess(subscribedBlogs))
-            })
-            .catch(error => {
-                const errors = {
-                    message: error.response.request.statusText,
-                    status: error.response.status
-                };
-                dispatch(getErrors(errors))
-                dispatch(getSubscribedBlogsFailure())
-            })
+        .then(response => {
+            const subscribedBlogs = response.data;
+            dispatch(getSubscribedBlogsSuccess(subscribedBlogs))
+        })
+        .catch(error => {
+            const errors = {
+                message: error.response.request.statusText,
+                status: error.response.status
+            };
+            dispatch(getErrors(errors))
+            dispatch(getSubscribedBlogsFailure())
+        })
     }
 }
 
 export const postSubscribeBlog = (user, blog) => {
     return (dispatch) => {
+        dispatch(postSubscribeBlogRequest())
         axios({
             method: 'post',
             url: 'api/blog_subscriber',
@@ -48,18 +50,19 @@ export const postSubscribeBlog = (user, blog) => {
                 blog: blog
             }
         })
-            .then(response => {
-                const subscribedBlogs = response.data;
-                // dispatch(getSubscribedBlogsSuccess(subscribedBlogs))
-            })
-            .catch(error => {
-                const errors = {
-                    message: error.response.request.statusText,
-                    status: error.response.status
-                };
-                dispatch(getErrors(errors))
-                dispatch(getSubscribedBlogsFailure())
-            })
+        .then(response => {
+            const subscribeBlog = response.data;
+            dispatch(createMessage({subscribeBlog: subscribeBlog.status}))
+            dispatch(postSubscribeBlogSuccess(subscribeBlog))
+        })
+        .catch(error => {
+            const errors = {
+                message: error.response.request.statusText,
+                status: error.response.status
+            };
+            dispatch(getErrors(errors))
+            dispatch(postSubscribeBlogFailure())
+        })
     }
 }
 
@@ -88,10 +91,10 @@ export const postSubscribeBlogRequest = () => {
     }
 }
 
-const postSubscribeBlogSuccess = blogs => {
+const postSubscribeBlogSuccess = subscribeBlog => {
     return {
         type: POST_SUBSCRIBE_BLOG_SUCCESS,
-        payload: blogs
+        payload: subscribeBlog
     }
 }
 

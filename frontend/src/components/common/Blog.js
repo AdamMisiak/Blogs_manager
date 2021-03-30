@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Moment from 'moment';
@@ -12,13 +12,19 @@ const Blog = ({
     blog,
 }) => {
     const auth = useSelector(state => state.auth);
+    const [subscribed, setsubscribed] = useState(false);
     const dispatch = useDispatch();
 
     const onClick = (e) => {
         e.preventDefault();
-        console.log(auth.user.id, blog.id)
         dispatch(postSubscribeBlog(auth.user.id, blog.id));
+        setsubscribed(!subscribed)
     };
+
+    const checkIfBlogSubscribed = (blogId) => {
+        console.log(blogId)
+    }
+    checkIfBlogSubscribed(10)
 
     return (
         <div className="card text-center">
@@ -34,14 +40,14 @@ const Blog = ({
 
             <div className="subscribe card-footer text-muted">
                 <div className="card-button">
-                    <button className='button subscribe-button' id="blog{blog.id}" data-catid='{{ blog.id }}' onClick={onClick}>Subscribe</button>
+                    <button
+                        className={subscribed ? 'button subscribe-button' : 'button unsubscribe-button'} 
+                        onClick={onClick}>
+                        {subscribed ? 'Subscribe' : 'Unsubscribe'}
+                    </button>
                 </div>
-                {/* {% if blog.id not in subscribed_blogs %}
-                        <div className="card-button">
-                            <button className='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
-                        </div>
-                    {% else %}
-                        <div className="card-button">
+    
+                        {/* <div className="card-button">
                             <button className='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
                         </div>
                     {% endif %} */}
