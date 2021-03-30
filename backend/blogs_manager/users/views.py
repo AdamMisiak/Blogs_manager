@@ -19,6 +19,7 @@ from blogs.functions import *
 from blogs.serializers import BlogPostOpenedDetailsSerializer, BlogSerializer
 from users.models import BlogPostOpened, BlogSubscriber
 from users.functions import create_new_blog_post
+from users.filters import BlogSubscriberFilter
 from users.serializers import UserDetailsSerializer, UserSerializer, \
                               RegisterSerializer, LoginSerializer, BlogSubscriberSerializer
 
@@ -101,7 +102,9 @@ class BlogSubscriberViewSet(viewsets.ModelViewSet):
     queryset = BlogSubscriber.objects.all()
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = BlogSubscriberSerializer
-    # pagination_class = BlogPageNumberPagination
+    filter_class = BlogSubscriberFilter
+    search_fields = ('user_id', 'blog_id')
+    pagination_class = BlogPageNumberPagination
 
 @login_required
 def account(request):

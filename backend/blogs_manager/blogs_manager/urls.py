@@ -15,7 +15,7 @@ router.register(r'users', UserViewSet, basename='users')
 router.register(r'blogs', BlogViewSet, basename='blogs')
 router.register(r'blog_posts', BlogPostsViewSet, basename='blog_posts')
 router.register(r'blog_photos', BlogPhotoViewSet, basename='blog_photos')
-router.register(r'blog_subscriber', BlogSubscriberViewSet, basename='blog_subscriber')
+router.register(r'blog_subscribers', BlogSubscriberViewSet, basename='blog_subscribers')
 
 urlpatterns = [
     path("api-auth/", include('rest_framework.urls')),
