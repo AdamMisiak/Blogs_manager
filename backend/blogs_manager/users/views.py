@@ -83,7 +83,6 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = UserDetailsSerializer(instance)
         return Response(serializer.data)
 
-
     @action(methods=['get'], detail=True)
     def blog_posts_opened(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -103,35 +102,28 @@ class BlogSubscriberView(generics.GenericAPIView):
     serializer_class = BlogSubscriberSerializer
 
     def post(self, request, *args, **kwargs):
-        blog = request.data['blog']
-        user = request.data['user']
         serializer = self.get_serializer(data=request.data)
+
+        blog_id = request.data['blog']
+        user_id = request.data['user']
+        
+        blog = Blog.objects.get(id=blog_id)
+        user = User.objects.get(id=user_id)
+
+        blog_subscriber, created = BlogSubscriber.objects.get_or_create(
+            user = user,
+            blog = blog
+        )
+
+        if not created:
+            blog_subscriber.delete()
+
         return Response({
-            "user": user,
-            "blog": blog,
+            "blog": blog_id,
+            "user": user_id,
             "status": "Subscribed"
         })
-#   datetime.datetime.now()
 
-        # return Response({
-        #     "user": UserSerializer(
-        #         user, 
-        #         context=self.get_serializer_context())
-        #     .data,
-        #     "token": token
-        # })
-# class BlogSubscriberViewSet(viewsets.ModelViewSet):
-#     queryset = BlogSubscriber.objects.all()
-#     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-#     serializer_class = BlogSubscriberDetailsSerializer
-#     filter_class = BlogSubscriberFilter
-#     search_fields = ('user_id', 'blog_id')
-#     pagination_class = BlogPageNumberPagination
-
-#     @action(methods=['post'], detail=True)
-#     def subscribe_blog(self, request, *args, **kwargs):
-#         print(request.data)
-#         # serializer.save(user=self.request.user)
 
 @login_required
 def account(request):
