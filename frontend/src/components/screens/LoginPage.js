@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from '../../actions/Auth';
 
-import Alerts from '../layout/Alerts';
-
 import "../../styles/Login.css";
 
 

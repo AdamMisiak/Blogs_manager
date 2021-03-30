@@ -7,7 +7,6 @@ import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
 
 import Blog from '../common/Blog';
 import Breadcrumb from '../layout/Breadcrumb';
-import Showcase from '../layout/Showcase';
 import Alerts from '../layout/Alerts';
 
 import { LightBlue } from "../../constants/Colors"
