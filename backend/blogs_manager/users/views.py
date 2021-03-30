@@ -20,8 +20,8 @@ from blogs.serializers import BlogPostOpenedDetailsSerializer, BlogSerializer
 from users.models import BlogPostOpened, BlogSubscriber
 from users.functions import create_new_blog_post
 from users.filters import BlogSubscriberFilter
-from users.serializers import UserDetailsSerializer, UserSerializer, \
-                              RegisterSerializer, LoginSerializer, BlogSubscriberSerializer
+from users.serializers import UserDetailsSerializer, UserSerializer, BlogSubscriberSerializer, \
+                              RegisterSerializer, LoginSerializer
 
 from django.contrib.auth.models import User
 
@@ -98,13 +98,40 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = BlogSerializer(subscribed_blogs, many=True)
         return Response(serializer.data)
 
-class BlogSubscriberViewSet(viewsets.ModelViewSet):
-    queryset = BlogSubscriber.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class BlogSubscriberView(generics.GenericAPIView):
     serializer_class = BlogSubscriberSerializer
-    filter_class = BlogSubscriberFilter
-    search_fields = ('user_id', 'blog_id')
-    pagination_class = BlogPageNumberPagination
+
+    def post(self, request, *args, **kwargs):
+        blog = request.data['blog']
+        user = request.data['user']
+        serializer = self.get_serializer(data=request.data)
+        return Response({
+            "user": user,
+            "blog": blog,
+            "status": "Subscribed"
+        })
+#   datetime.datetime.now()
+
+        # return Response({
+        #     "user": UserSerializer(
+        #         user, 
+        #         context=self.get_serializer_context())
+        #     .data,
+        #     "token": token
+        # })
+# class BlogSubscriberViewSet(viewsets.ModelViewSet):
+#     queryset = BlogSubscriber.objects.all()
+#     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+#     serializer_class = BlogSubscriberDetailsSerializer
+#     filter_class = BlogSubscriberFilter
+#     search_fields = ('user_id', 'blog_id')
+#     pagination_class = BlogPageNumberPagination
+
+#     @action(methods=['post'], detail=True)
+#     def subscribe_blog(self, request, *args, **kwargs):
+#         print(request.data)
+#         # serializer.save(user=self.request.user)
 
 @login_required
 def account(request):
