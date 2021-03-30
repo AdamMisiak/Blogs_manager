@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'moment';
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,7 @@ import '../../styles/BlogPost.css';
 const BlogPost = ({
     blogPost,
 }) => {
+    const auth = useSelector(state => state.auth);
 
     return (
         <div className="card text-center">
@@ -19,6 +21,9 @@ const BlogPost = ({
                     {blogPost.name}
                 </div>
                 <div className="card-header-sign">
+                    {auth.isAuthenticated ? (
+                        <button className='subscribed-sign'>SUBSCRIBED</button>     
+                    ) : ( null )}
                     {/* {% if user.is_authenticated %}
                         {% if not blog_post.id in opened_blog_posts%}
                             <button id="blog_post{{ blog_post.id }}" className='new-sign'>NEW</button>

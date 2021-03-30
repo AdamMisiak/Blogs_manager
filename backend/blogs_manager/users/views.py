@@ -17,10 +17,10 @@ from blogs_manager.pagination import BlogPageNumberPagination
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
 from blogs.serializers import BlogPostOpenedDetailsSerializer, BlogSerializer
-from users.models import BlogPostOpened
+from users.models import BlogPostOpened, BlogSubscriber
 from users.functions import create_new_blog_post
 from users.serializers import UserDetailsSerializer, UserSerializer, \
-                              RegisterSerializer, LoginSerializer
+                              RegisterSerializer, LoginSerializer, BlogSubscriberSerializer
 
 from django.contrib.auth.models import User
 
@@ -96,6 +96,12 @@ class UserViewSet(viewsets.ModelViewSet):
         subscribed_blogs = Blog.objects.filter(subscribed_by__user=instance)
         serializer = BlogSerializer(subscribed_blogs, many=True)
         return Response(serializer.data)
+
+class BlogSubscriberViewSet(viewsets.ModelViewSet):
+    queryset = BlogSubscriber.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = BlogSubscriberSerializer
+    # pagination_class = BlogPageNumberPagination
 
 @login_required
 def account(request):

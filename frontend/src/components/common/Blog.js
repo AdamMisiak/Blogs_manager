@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Moment from 'moment';
 
@@ -8,6 +9,7 @@ import '../../styles/Blog.css';
 const Blog = ({
     blog,
 }) => {
+    const auth = useSelector(state => state.auth);
 
     return (
         <div className="card text-center">
@@ -22,6 +24,9 @@ const Blog = ({
             </div>
 
             <div className="subscribe card-footer text-muted">
+                <div className="card-button">
+                    <button className='button subscribe-button' id="blog{blog.id}" data-catid='{{ blog.id }}'>Subscribe</button>
+                </div>
                 {/* {% if blog.id not in subscribed_blogs %}
                         <div className="card-button">
                             <button className='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>

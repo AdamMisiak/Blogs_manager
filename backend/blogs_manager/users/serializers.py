@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 
-from users.models import User
+from users.models import User, BlogSubscriber
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
@@ -65,4 +65,11 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         subscribing_blogs = Blog.objects.filter(subscribed_by__user=obj)
         return [BlogSerializer(blog).data for blog in subscribing_blogs]
 
+class BlogSubscriberSerializer(serializers.ModelSerializer):
+    blog = BlogSerializer()
+    user = UserSerializer()
+
+    class Meta:
+        model = BlogSubscriber
+        fields = ['id', 'blog', 'user', 'date', 'email_notification']
 
