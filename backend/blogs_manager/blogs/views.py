@@ -19,7 +19,7 @@ def avg_number_of_posts_per_month(blog):
     average = round(blog_posts.count()/len(posts_in_month), 2)
     return average
 
-class BlogViewSet(viewsets.ReadOnlyModelViewSet):
+class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all().order_by('name', 'author')
     serializer_class = BlogListSerializer
     pagination_class = BlogPageNumberPagination
