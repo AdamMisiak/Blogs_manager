@@ -16,6 +16,7 @@ const BlogPost = ({
 
     useEffect(() => {
         subscribedBlogs.data.map(subscribedBlog => {
+            console.log(blogPost.blog.id,subscribedBlog.id)
             if (blogPost.blog.id === subscribedBlog.id) {
                 setSubscribed(true)
             }

@@ -5,6 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Pagination from '@material-ui/lab/Pagination';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
+import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
 
 import BlogPost from '../common/BlogPost';
 import Breadcrumb from '../layout/Breadcrumb';
@@ -16,11 +17,18 @@ import { LoaderStyles, LoaderSize } from "../../constants/Loader"
 import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 
 function IndexPage() {
+    const auth = useSelector(state => state.auth);
     const blogPosts = useSelector(state => state.blogPosts);
     const dispatch = useDispatch();
     const [page, setPage] = useState(DefaultPage);
 
+    const user = null
+
     useEffect(() => {
+        if (auth.user){
+            const user = auth.user.id
+            dispatch(getSubscribedBlogs(user))
+        }
         dispatch(getBlogPosts(page))
     }, [page])
 
