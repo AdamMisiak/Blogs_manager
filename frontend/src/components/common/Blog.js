@@ -16,7 +16,6 @@ const Blog = ({
     const dispatch = useDispatch();
 
     const [subscribed, setSubscribed] = useState(false);
-    const user = auth.user.id
 
     useEffect(() => {
         subscribedBlogs.data.map(subscribedBlog => {
