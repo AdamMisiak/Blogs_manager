@@ -18,7 +18,7 @@ const Blog = ({
     const [subscribed, setSubscribed] = useState(false);
 
     useEffect(() => {
-        subscribedBlogs.data.map(subscribedBlog => {
+        subscribedBlogs.data.forEach(subscribedBlog => {
             if (blog.id === subscribedBlog.id) {
                 setSubscribed(true)
             }

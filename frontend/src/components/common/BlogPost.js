@@ -14,6 +14,8 @@ const BlogPost = ({
 
     const [subscribed, setSubscribed] = useState(false);
 
+    const isNew = Moment(blogPost.added).isSame(Date.now(), 'day');
+
     useEffect(() => {
         subscribedBlogs.data.forEach(subscribedBlog => {
             if (blogPost.blog.id === subscribedBlog.id) {
@@ -32,17 +34,12 @@ const BlogPost = ({
                     {blogPost.name}
                 </div>
                 <div className="card-header-sign">
+                    {isNew ? (
+                        <button id="blog_post{{ blog_post.id }}" className='new-sign'>NEW</button>  
+                    ) : ( null )}
                     {subscribed && auth.isAuthenticated ? (
                         <button className='subscribed-sign'>SUBSCRIBED</button>     
                     ) : ( null )}
-                    {/* {% if user.is_authenticated %}
-                        {% if not blog_post.id in opened_blog_posts%}
-                            <button id="blog_post{{ blog_post.id }}" className='new-sign'>NEW</button>
-                        {% endif %}
-                        {% if blog_post.blog.id in subscribed_blogs %}
-                            <button className='subscribed-sign'>SUBSCRIBED</button>
-                        {% endif %}
-                    {% endif %} */}
                 </div>
             </div>
             <div className="card-body">
