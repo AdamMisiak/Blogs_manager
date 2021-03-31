@@ -52,8 +52,8 @@ export const postSubscribeBlog = (user, blog) => {
         })
         .then(response => {
             const subscribeBlog = response.data;
-            dispatch(createMessage({subscribeBlog: subscribeBlog.status}))
             dispatch(postSubscribeBlogSuccess(subscribeBlog))
+            dispatch(createMessage({subscribeBlog: subscribeBlog.status}))
         })
         .catch(error => {
             const errors = {

@@ -106,6 +106,7 @@ class BlogSubscriberView(generics.GenericAPIView):
 
         blog_id = request.data['blog']
         user_id = request.data['user']
+        status="subscribed"
         
         blog = Blog.objects.get(id=blog_id)
         user = User.objects.get(id=user_id)
@@ -117,11 +118,12 @@ class BlogSubscriberView(generics.GenericAPIView):
 
         if not created:
             blog_subscriber.delete()
+            status="Unsubscribed"
 
         return Response({
             "blog": blog_id,
             "user": user_id,
-            "status": "Subscribed"
+            "status": status
         })
 
 

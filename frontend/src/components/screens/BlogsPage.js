@@ -4,6 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Pagination from '@material-ui/lab/Pagination';
 
 import { getBlogs } from '../../actions/Blogs';
+import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
 
 import Blog from '../common/Blog';
 import Breadcrumb from '../layout/Breadcrumb';
@@ -15,12 +16,16 @@ import { LoaderStyles, LoaderSize } from "../../constants/Loader"
 import { BlogsPageSize, DefaultPage } from "../../constants/Pagination"
 
 function BlogsPage() {
+    const auth = useSelector(state => state.auth);
     const blogs = useSelector(state => state.blogs);
     const dispatch = useDispatch();
     const [page, setPage] = useState(DefaultPage);
 
+    const user = auth.user.id
+
     useEffect(() => {
         dispatch(getBlogs(page))
+        dispatch(getSubscribedBlogs(user))
     }, [page])
 
     const handlePageChange = (event, value) => {
