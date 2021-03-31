@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'moment';
 import { Link } from "react-router-dom";
@@ -10,6 +10,17 @@ const BlogPost = ({
     blogPost,
 }) => {
     const auth = useSelector(state => state.auth);
+    const subscribedBlogs = useSelector(state => state.subscribedBlogs);
+
+    const [subscribed, setSubscribed] = useState(false);
+
+    useEffect(() => {
+        subscribedBlogs.data.map(subscribedBlog => {
+            if (blogPost.blog.id === subscribedBlog.id) {
+                setSubscribed(true)
+            }
+        })
+    }, [])
 
     return (
         <div className="card text-center">
@@ -21,7 +32,7 @@ const BlogPost = ({
                     {blogPost.name}
                 </div>
                 <div className="card-header-sign">
-                    {auth.isAuthenticated ? (
+                    {subscribed && auth.isAuthenticated ? (
                         <button className='subscribed-sign'>SUBSCRIBED</button>     
                     ) : ( null )}
                     {/* {% if user.is_authenticated %}
