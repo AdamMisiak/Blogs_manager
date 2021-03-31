@@ -32,6 +32,8 @@ function BlogsPage() {
         setPage(value);
     }
 
+    console.log(blogs.data)
+
     return (
         <div className='blogs-page'>
         {/* style do zmiany bo nazwa uzywana juz */}
