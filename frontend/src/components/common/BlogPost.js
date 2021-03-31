@@ -15,13 +15,12 @@ const BlogPost = ({
     const [subscribed, setSubscribed] = useState(false);
 
     useEffect(() => {
-        subscribedBlogs.data.map(subscribedBlog => {
-            console.log(blogPost.blog.id,subscribedBlog.id)
+        subscribedBlogs.data.forEach(subscribedBlog => {
             if (blogPost.blog.id === subscribedBlog.id) {
                 setSubscribed(true)
             }
         })
-    }, [])
+    })
 
     return (
         <div className="card text-center">
