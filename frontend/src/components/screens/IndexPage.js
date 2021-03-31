@@ -21,14 +21,14 @@ function IndexPage() {
     const blogPosts = useSelector(state => state.blogPosts);
     const dispatch = useDispatch();
     const [page, setPage] = useState(DefaultPage);
-
-    const user = null
-
+    
     useEffect(() => {
         if (auth.user){
-            const user = auth.user.id
-            dispatch(getSubscribedBlogs(user))
+            dispatch(getSubscribedBlogs(auth.user.id))
         }
+    }, [auth])
+
+    useEffect(() => {
         dispatch(getBlogPosts(page))
     }, [page])
 
