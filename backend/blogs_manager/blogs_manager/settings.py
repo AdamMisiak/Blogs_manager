@@ -51,9 +51,7 @@ INSTALLED_APPS = [
     "knox",
 
     "blogs",
-    "pages",
     "users",
-    "frontend",
 
 ]
 

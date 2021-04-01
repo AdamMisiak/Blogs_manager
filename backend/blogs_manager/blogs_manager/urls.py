@@ -9,20 +9,15 @@ from users.views import UserViewSet
 
 router = routers.DefaultRouter()
 
-# router.register(r'register', RegisterViewSet, basename='register')
 router.register(r'users', UserViewSet, basename='users')
 
 router.register(r'blogs', BlogViewSet, basename='blogs')
 router.register(r'blog_posts', BlogPostsViewSet, basename='blog_posts')
 router.register(r'blog_photos', BlogPhotoViewSet, basename='blog_photos')
-# router.register(r'blog_subscribers', BlogSubscriberViewSet, basename='blog_subscribers')
 
 urlpatterns = [
     path("api-auth/", include('rest_framework.urls')),
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
-    # path("", include("frontend.urls")),
-    path("old", include("pages.urls")),
-    # path("blogs/", include("blogs.urls")),
     path("", include("users.urls")),
 ]
