@@ -17,9 +17,14 @@ Website created to manage blogs subscriptions. Following, unfollowing, getting f
 * Docker version: 19.03.8
 
 ## Setup
-To run app locally:
+To run backend locally:
 ```
 docker-compose up
+```
+
+To run frontend locally:
+```
+npm start
 ```
 
 For home page of app:
