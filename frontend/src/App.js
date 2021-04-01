@@ -32,21 +32,24 @@ function App() {
   }, [])
   
   return (
-    <Provider store={store}>
-      <AlertProvider template={AlertTemplate} {...alertOptions}>
-        <Header />
-        <Alerts />
+    <div className="app">
+      <Provider store={store}>
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
+          <Header />
+          <Alerts />
 
-          <Route path="/login"><LoginPage /></Route>
-          <Route path="/register"><RegisterPage /></Route>
-          <PrivateRoute exact path="/account" component={AccountPage} />
-          <Route path="/blogs/:id"><BlogDetailsPage /></Route>
-          <PrivateRoute exact path="/blogs" component={BlogsPage} />
-          <Route exact path="/"><IndexPage /></Route>
-          
-        <Footer />
-      </AlertProvider>
-    </Provider>
+            <Route path="/login"><LoginPage /></Route>
+            <Route path="/register"><RegisterPage /></Route>
+            <PrivateRoute exact path="/account" component={AccountPage} />
+            <Route path="/blogs/:id"><BlogDetailsPage /></Route>
+            <PrivateRoute exact path="/blogs" component={BlogsPage} />
+            <Route exact path="/"><IndexPage /></Route>
+            
+          <Footer />
+        </AlertProvider>
+      </Provider>
+    </div>
+    
 
   );
 }

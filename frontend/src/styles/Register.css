@@ -1,3 +1,7 @@
+#register{
+    flex: 1
+}
+
 .bg-primary{
     background-color: rgb(55, 113, 189)!important;
     
