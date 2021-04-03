@@ -3,8 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { register } from '../../actions/Auth';
-
-import Alerts from '../layout/Alerts';
+import { createMessage } from '../../actions/Messages'
 
 import "../../styles/Register.css";
 
@@ -21,8 +20,11 @@ function RegisterPage() {
     const onSubmit = (e) => {
         e.preventDefault();
         if (password !== password2) {
-            console.log('Passwords do not match')
-        //   this.props.createMessage({ passwordNotMatch: 'Passwords do not match' });
+          dispatch(createMessage({passwordNotMatch: 'Passwords do not match!'}));
+          setUsername("");
+          setEmail("");
+          setPassword("");
+          setPassword2("");
         } else {
           const newUser = {
             username,

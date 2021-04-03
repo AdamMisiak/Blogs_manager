@@ -36,6 +36,9 @@ function Alerts({
         if (message.registered) {
             alert.success(message.registered)
         }
+        if (message.passwordNotMatch) {
+            alert.error(message.passwordNotMatch)
+        }
         if (message.subscribeBlog) {
             alert.success('Blog ' + message.subscribeBlog + ' successfully')
         }
