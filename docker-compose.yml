@@ -3,6 +3,7 @@ version: "3.3"
 services:
   db:
     image: postgres
+    container_name: blogs_manager_db
     environment:
       - POSTGRES_DB=blogs_manager
       - POSTGRES_USER=adam
@@ -11,9 +12,13 @@ services:
       - pgdata:/var/lib/postgresql/data/
   redis:
     image: "redis:alpine"
+    container_name: blogs_manager_redis
   web:
-    build: .
-    command: sh -c "cd blogs_manager && 
+    container_name: blogs_manager_web
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    command: sh -c "cd ./backend/blogs_manager && 
                     python manage.py migrate &&
                     python manage.py runserver 0.0.0.0:8000"
     volumes:
@@ -23,9 +28,12 @@ services:
     depends_on:
       - db
       - redis
+
+      
   celery-worker:
-    build: .
-    command: sh -c "cd blogs_manager && 
+    container_name: blogs_manager_celery_worker
+    build: ./backend
+    command: sh -c "cd ./backend/blogs_manager && 
                     celery -A blogs_manager worker -l info"
     volumes:
       - .:/app
@@ -33,8 +41,9 @@ services:
       - db
       - redis
   celery-beat:
-    build: .
-    command: sh -c "cd blogs_manager && 
+    container_name: blogs_manager_celery_beat
+    build: ./backend
+    command: sh -c "cd ./backend/blogs_manager && 
                     rm -rf celerybeat.pid &&
                     celery -A blogs_manager beat -l info"
     volumes:
@@ -42,6 +51,17 @@ services:
     depends_on:
       - db
       - redis
+
+  nginx:
+    container_name: blogs_manager_nginx
+    build:
+        context: ./frontend
+        dockerfile: ./Dockerfile
+    ports:
+        - 80:80
+        - 3000:3000
+    volumes:
+        - ./nginx:/etc/nginx/conf.d   
 
 volumes:
   pgdata:
