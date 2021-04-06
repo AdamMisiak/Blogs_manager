@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faSignInAlt, faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,6 +16,15 @@ import { logout } from '../../actions/Auth'
 const Header = () => {
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleLogout = e => {
     e.preventDefault();
@@ -42,10 +54,25 @@ const Header = () => {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             {auth.isAuthenticated ? (
               <ul className="navbar-nav">
-                <li className="nav-item justify-content-end">
-                  <Link className="nav-link" to="/account">
+                <li onClick={handleClick} className="nav-item justify-content-end">
+                  <div className='nav-link'>
                     <FontAwesomeIcon icon={faUser} /> Account
-                  </Link>
+                  </div>
+                </li>
+                <li className="nav-item justify-content-end">
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/account">Blogs</Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>Posts</MenuItem>
+                  </Menu>
                 </li>
                 <li className="nav-item justify-content-end">
                   <Link onClick={handleLogout} className="nav-link" to="/">

@@ -22,9 +22,10 @@ const BlogPost = ({
         subscribedBlogs.data.forEach(subscribedBlog => {
             if (blogPost.blog.id === subscribedBlog.id) {
                 setSubscribed(true)
-                setColor(blogPost.blog.genre)
+                
             }
         })
+        setColor(blogPost.blog.genre)
     })
 
     return (
