@@ -4,7 +4,6 @@ import Moment from 'moment';
 import { Link } from "react-router-dom";
 
 import '../../styles/BlogPost.css';
-import '../../styles/GenreColor.css';
 
 
 const BlogPost = ({
@@ -14,7 +13,6 @@ const BlogPost = ({
     const subscribedBlogs = useSelector(state => state.subscribedBlogs);
 
     const [subscribed, setSubscribed] = useState(false);
-    const [color, setColor] = useState("");
 
     const isNew = Moment(blogPost.added).isSame(Date.now(), 'day');
 
@@ -22,14 +20,12 @@ const BlogPost = ({
         subscribedBlogs.data.forEach(subscribedBlog => {
             if (blogPost.blog.id === subscribedBlog.id) {
                 setSubscribed(true)
-                
             }
         })
-        setColor(blogPost.blog.genre)
     })
 
     return (
-        <div className={ color ? "card text-center " + blogPost.blog.genre.toLowerCase() : "card text-center"}>
+        <div className="card text-center">
             <div className="card-header blog-post-header">
                 <div className="card-header-info">
 
