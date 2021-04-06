@@ -7,7 +7,8 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Breadcrumb.css';
 
 const Breadcrumb = ({
-  previous,
+  previousName,
+  previousLink,
   current
 }) => {
 
@@ -21,10 +22,10 @@ const Breadcrumb = ({
                     <FontAwesomeIcon icon={faHome} /> Home
                   </Link>
                 </li>
-                {previous ?
+                {previousName && previousLink ?
                  <li className="breadcrumb-item">
-                  <Link to={"/"+previous}>
-                    {previous}
+                  <Link to={"/"+previousLink}>
+                    {previousName}
                   </Link>
                 </li> 
                 : ''}

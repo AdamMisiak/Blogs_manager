@@ -48,7 +48,8 @@ function BlogDetailsPage() {
         <div className="blog-details-page">
             <div className='breadcrumb-wrapper'>
                 <Breadcrumb 
-                    previous='Blogs'
+                    previousName='Blogs'
+                    previousLink='blogs'
                     current={id}
                 />
             </div>

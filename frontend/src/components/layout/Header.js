@@ -69,7 +69,7 @@ const Header = () => {
                   >
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <Link to="/account">Blogs</Link>
+                      <Link className="no-link" to="/account/blogs">Blogs</Link>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>Posts</MenuItem>
                   </Menu>

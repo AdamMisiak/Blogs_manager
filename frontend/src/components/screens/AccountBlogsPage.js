@@ -13,7 +13,7 @@ import { LightBlue } from "../../constants/Colors"
 import { LoaderStyles, LoaderSize } from "../../constants/Loader"
 import { BlogsPageSize, DefaultPage } from "../../constants/Pagination"
 
-function AccountPage(){
+function AccountBlogsPage(){
     const auth = useSelector(state => state.auth);
     const subscribedBlogs = useSelector(state => state.subscribedBlogs);
     const dispatch = useDispatch();
@@ -34,7 +34,9 @@ function AccountPage(){
             {/* style do zmiany bo nazwa uzywana juz */}
             <div className='breadcrumb-wrapper'>
                 <Breadcrumb 
-                    current='Account'
+                    previousName="Account"
+                    previousLink="account/profile"
+                    current='Blogs'
                 />
             </div>
             {subscribedBlogs.loading ? (
@@ -68,4 +70,4 @@ function AccountPage(){
     )
 }
 
-export default AccountPage;
+export default AccountBlogsPage;
