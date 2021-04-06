@@ -8,6 +8,7 @@ import emojiFlags from 'emoji-flags';
 
 import Pagination from '@material-ui/lab/Pagination';
 
+import { postSubscribeBlog, getSubscribedBlogs } from '../../actions/SubscribedBlogs';
 import { getBlogPosts } from '../../actions/BlogPosts';
 import { getBlogDetails } from '../../actions/BlogDetails';
 import { getBlogPhoto } from '../../actions/BlogPhotos';
@@ -24,21 +25,42 @@ function BlogDetailsPage() {
     const { id } = useParams();
     const protocol = window.location.protocol;
     const hostname = window.location.hostname;
-    const [page, setPage] = useState(DefaultPage);
 
+    const [page, setPage] = useState(DefaultPage);
+    const [subscribed, setSubscribed] = useState(false);
+
+    const auth = useSelector(state => state.auth);
+    const subscribedBlogs = useSelector(state => state.subscribedBlogs);
     const blogPosts = useSelector(state => state.blogPosts);
     const blogDetails = useSelector(state => state.blogDetails);
     const blogPhoto = useSelector(state => state.blogPhoto);
     const dispatch = useDispatch();
     
+    const user = auth.user.id
+
     useEffect(() => {
         dispatch(getBlogPosts(page, id))
+        dispatch(getSubscribedBlogs(user))
     }, [page])
 
     useEffect(() => {
         dispatch(getBlogDetails(id))
         dispatch(getBlogPhoto(id))
     }, [])
+
+    useEffect(() => {
+        subscribedBlogs.data.forEach(subscribedBlog => {
+            if (id == subscribedBlog.id) {
+                setSubscribed(true)
+            }
+        })
+    }, [])
+
+    const onClick = (e) => {
+        e.preventDefault();
+        dispatch(postSubscribeBlog(auth.user.id, id));
+        setSubscribed(!subscribed)
+    };
 
     const handlePageChange = (event, value) => {
         setPage(value);
@@ -105,15 +127,13 @@ function BlogDetailsPage() {
                         </div>
                     </div>
                     <div className="card-footer text-muted blog-info-footer">
-                    {/* {% if blog.id not in subscribed_blogs %}
-                        <div class="card-button">
-                            <button class='button subscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Subscribe</button>
+                        <div className="card-button">
+                            <button
+                                className={subscribed ? 'button unsubscribe-button' : 'button subscribe-button'} 
+                                onClick={onClick}>
+                                {subscribed ? 'Unsubscribe' : 'Subscribe'}
+                            </button>
                         </div>
-                    {% else %}
-                        <div class="card-button">
-                            <button class='button unsubscribe-button' id="blog{{ blog.id }}" data-catid='{{ blog.id }}'>Unsubscribe</button>
-                        </div>
-                    {% endif %} */}
                     </div>
                 </div>
             </section>
