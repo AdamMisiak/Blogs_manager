@@ -32,19 +32,18 @@ const Blog = ({
     };
 
     return (
-        <div className="card text-center">
-            <div className="card-header">
+        <div className="blog">
+            <div className="blog-header">
                 <Link className="no-link" to={"/blogs/" + blog.id}>
                     {blog.name}
                 </Link>
             </div>
-            <div className="card-body">
-                <h5 className="card-title">{blog.author}</h5>
-                {blog.genre} | <a href={blog.url} className="card-text">{blog.url}</a>
+            <div className="blog-body">
+                <h5 className="blog-title">{blog.author}</h5>
+                {blog.genre} | <a href={blog.url} className="blog-text">{blog.url}</a>
             </div>
-
-            <div className="subscribe card-footer text-muted">
-                <div className="card-button">
+            <div className="blog-footer">
+                <div className="blog-button">
                     <button
                         className={subscribed ? 'button unsubscribe-button' : 'button subscribe-button'} 
                         onClick={onClick}>

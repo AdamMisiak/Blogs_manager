@@ -1,3 +1,55 @@
+/* BLOGS LIST STYLES */
+
+.blog {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-width: 1px;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+
+.blog-header {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.blog-body {
+  padding: 1.25rem;
+  min-height: 1px;
+}
+
+.blog-title {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.blog-text {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.blog-footer {
+  font-size: 0.9rem;
+  color: #6c757d;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.blog-button {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
 .blog-info-card {
   margin-bottom: 60px !important;
 }
@@ -37,21 +89,7 @@
   background: rgba(55, 113, 189, 0.35);
 }
 
-.card {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20%;
-  margin-right: 20%;
-}
 
-.card-header {
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-}
 
 .card-header-info {
   flex-grow: 1;
@@ -71,18 +109,7 @@
   width: 15%;
 }
 
-.card-title {
-  font-size: 20px;
-  margin-bottom: 8px;
-}
 
-.card-text {
-  margin-bottom: 8px;
-}
-
-.subscribe {
-  font-size: 13.7px;
-}
 
 .my-2 {
   width: 80%;

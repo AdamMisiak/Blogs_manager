@@ -56,10 +56,7 @@ function IndexPage() {
             <div className='loader'>
                 <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
             </div> ) : ( null )}
-        {blogPosts.error ? (
-            <div className='blogposts'>
-
-            </div> ) : ( null )}
+        {blogPosts.error ? (<div className='blogposts'></div> ) : ( null )}
         {!blogPosts.loading && !blogPosts.error ? (
             <div className='blogposts'>
                 {blogPosts.data.map(blogPost => (
