@@ -70,11 +70,6 @@ a.no-link:active
     width: 100%;
 }
 
-/* BREADCRUMB STYLES */
-.breadcrumb-item a, a:hover, a:focus, a:active {
-    text-decoration: none;
-    color: inherit;
-}
 
 /* BLOG INFO STYLES */
 .blog-info-card{

@@ -14,10 +14,8 @@ import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 const Filters = ({
     page
 }) => {
-    const blogPosts = useSelector(state => state.blogPosts);
     const dispatch = useDispatch();
     const [inputSearching, setInputSearching] = useState("")
-    // const [page, setPage] = useState(DefaultPage);
     
     const inputSearchingHandler = e => setInputSearching(e.target.value);
 
@@ -27,15 +25,12 @@ const Filters = ({
                 page: page,
                 name: inputSearching
             }))
-            // setPage(1)
         } else {
             dispatch(getBlogPosts({
                 page: page
             }))
         }
     }, [inputSearching, page])
-
-
 
     
   return(
