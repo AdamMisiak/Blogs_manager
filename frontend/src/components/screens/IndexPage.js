@@ -31,12 +31,12 @@ function IndexPage() {
     }, [auth])
 
     useEffect(() => {
-        dispatch(getBlogPosts(page))
+        // dispatch(getBlogPosts(page))
     }, [page])
 
     const handlePageChange = (event, value) => {
         setPage(value);
-      }
+    }
 
     return (
     <div className='index-page'>
@@ -49,7 +49,9 @@ function IndexPage() {
         <div className='showcase'>
             <Showcase />
         </div>
-        <Filters />
+        <Filters 
+            page={page}
+        />
         {blogPosts.loading ? (
             <div className='loader'>
                 <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
