@@ -10,8 +10,10 @@ import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
 import BlogPost from '../common/BlogPost';
 import Breadcrumb from '../layout/Breadcrumb';
 import Showcase from '../layout/Showcase';
+import Filters from '../layout/Filters';
 
 import "../../styles/Pagination.css";
+import '../../styles/Filters.css';
 import { LightBlue } from "../../constants/Colors"
 import { LoaderStyles, LoaderSize } from "../../constants/Loader"
 import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
@@ -47,6 +49,7 @@ function IndexPage() {
         <div className='showcase'>
             <Showcase />
         </div>
+        <Filters />
         {blogPosts.loading ? (
             <div className='loader'>
                 <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />

@@ -1,0 +1,20 @@
+.filters {
+    display: flex;
+    margin-top: 0.8rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-size: 100%;
+    background-color: #e7e7e7;
+}
+
+.filters-searching {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+}
+
+.filters-sorting {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+}
