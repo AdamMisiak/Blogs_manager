@@ -25,36 +25,35 @@ const BlogPost = ({
     })
 
     return (
-        <div className="card text-center">
-            <div className="card-header blog-post-header">
-                <div className="card-header-info">
+        <div className="blog-post card">
+            <div className="blog-post-header">
+                <div className="blog-post-header-info">
 
                 </div>
-                <div className="card-header-title">
+                <div className="blog-post-header-title">
                     {blogPost.name}
                 </div>
-                <div className="card-header-sign">
+                <div className="blog-post-header-sign">
                     {isNew ? (
-                        <button id="blog_post{{ blog_post.id }}" className='new-sign'>NEW</button>  
+                        <button className='new-sign'>NEW</button>  
                     ) : ( null )}
                     {subscribed && auth.isAuthenticated ? (
                         <button className='subscribed-sign'>SUBSCRIBED</button>     
                     ) : ( null )}
                 </div>
             </div>
-            <div className="card-body">
-                <h5 className="card-title">{blogPost.blog.author}</h5>
-                <Link className="card-text no-link" to={"/blogs/" + blogPost.blog.id}>{blogPost.blog.name} | </Link>
-                <a id="url"
+            <div className="blog-post-body">
+                <h5 className="blog-post-title">{blogPost.blog.author}</h5>
+                <Link className="blog-post-text no-link" to={"/blogs/" + blogPost.blog.id}>{blogPost.blog.name} | </Link>
+                <a
                     href={blogPost.url}
-                    data-catid='{blogPost.id}'
-                    className="blog-post card-text"
+                    className="blog-post-text"
                     target="_blank"
                     rel="noreferrer">
                     {blogPost.url}
                 </a>
             </div>
-            <div className="card-footer text-muted">
+            <div className="blog-post-footer">
                 Added: {Moment(blogPost.added).format('DD-MM-YYYY')}
             </div>
         </div>
