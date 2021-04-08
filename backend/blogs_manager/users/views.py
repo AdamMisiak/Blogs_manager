@@ -69,7 +69,6 @@ class UserView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
     def get_object(self):
-        print(self.request.user,'TEST')
         return self.request.user
 
 class UserViewSet(viewsets.ModelViewSet):
