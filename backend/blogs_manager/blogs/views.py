@@ -32,6 +32,8 @@ class BlogViewSet(viewsets.ModelViewSet):
 class BlogPostsViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-added', '-id')
     serializer_class = BlogPostDetailsSerializer
+    ordering_fields = '__all__'
+    ordering = ('-added', '-id')
     filter_class = BlogPostFilter
     search_fields = ('blog_id')
     pagination_class = BlogPostPageNumberPagination
