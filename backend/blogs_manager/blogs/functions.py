@@ -439,6 +439,7 @@ def get_info_from_finax():
         blog_post_day = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[:int(blog_post_comma_index)]
         blog_post_month = str(month_string_to_date(str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[3:7].strip()))
         blog_post_year = str(soup.find("div", class_="col-auto text-right text-muted").text).strip()[-4:]
+
         blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
         blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
 
@@ -532,6 +533,33 @@ def get_info_from_sky_is_the_limit():
     except:
         logger.error("Something went wrong in scraping function: get_info_from_sky_is_the_limit")
 
+
+def get_info_from_lynx_broker():
+    try:
+        page = requests.get("https://www.lynxbroker.pl/edukacja/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = str(soup.find("h3", class_="head5 u-remove-mb").find_next("strong").text)
+        blog_post_link = soup.find("h3", class_="head5 u-remove-mb").find_next("strong").find_next("a")["href"]
+        
+        blog_post_comma_index = str(soup.find("div", class_="post-meta small").find_next("span").text).find('.')
+        blog_post_day = str(str(soup.find("div", class_="post-meta small").find_next("span").text).strip())[:2]
+        blog_post_month = str(month_string_to_date(str(str(soup.find("div", class_="post-meta small").find_next("span").text).strip())[blog_post_comma_index+2:blog_post_comma_index+5]))
+        blog_post_year = str(str(soup.find("div", class_="post-meta small").find_next("span").text).strip())[-4:]
+
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_lynx_broker")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -569,4 +597,6 @@ def get_info_from_sky_is_the_limit():
 # result = get_info_from_divgro()
 # print(result)
 # result = get_info_from_sky_is_the_limit()
+# print(result)
+# result = get_info_from_lynx_broker()
 # print(result)

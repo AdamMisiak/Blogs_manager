@@ -8,7 +8,7 @@ import {
 } from './Types';
 
 
-export const getBlogPosts = ({page=1, blogId, name}) => {
+export const getBlogPosts = ({page=1, blogId, name, ordering}) => {
     return (dispatch) => {
         dispatch(getBlogPostsRequest())
         axios({
@@ -18,7 +18,8 @@ export const getBlogPosts = ({page=1, blogId, name}) => {
             params: {
                 page: page,
                 blog_id: blogId,
-                name: name
+                name: name,
+                ordering: ordering
             }
         })
             .then(response => {
