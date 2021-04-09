@@ -6,7 +6,7 @@ import { getBlogPosts } from '../../actions/BlogPosts';
 import SortingButton from '../common/SortingButton'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import '../../styles/Filters.css';
 
@@ -18,24 +18,25 @@ const Filters = ({
 }) => {
     const dispatch = useDispatch();
     const [inputSearching, setInputSearching] = useState("")
-
-    const [clicks, setClicks] = useState(0);
+    const [inputSorting, setInputSorting] = useState("")
     
     const inputSearchingHandler = e => setInputSearching(e.target.value);
 
     useEffect(() => {
-        if (inputSearching && inputSearching.length > 3) {
-            dispatch(getBlogPosts({
-                page: page,
-                name: inputSearching
-            }))
-        } else {
-            dispatch(getBlogPosts({
-                page: page
-            }))
-        }
-    }, [inputSearching, page])
+        dispatch(getBlogPosts({
+            page: page,
+            name: inputSearching && inputSearching.length > 3 ? inputSearching : undefined,
+            ordering: inputSorting
+        }))
+    }, [inputSearching, inputSorting, page])
+
+    const test = (value) => {
+        setInputSorting(value)
+        console.log(value,'fgrrfg')
+    }
     
+    
+
     
   return(
     <div className='filters'>
@@ -49,8 +50,8 @@ const Filters = ({
             </div>
         </div>
         <div className="filters-sorting">
-            <SortingButton sortBy="date" />
-            <SortingButton sortBy="name" />
+            <SortingButton sortBy="date"/>
+            <SortingButton sortBy="name" onSelectSorting={test} />
             <SortingButton sortBy="author" />
             <SortingButton sortBy="blog" />
         </div>

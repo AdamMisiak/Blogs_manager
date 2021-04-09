@@ -10,12 +10,12 @@ from .serializers import BlogListSerializer, BlogDetailsSerializer, \
 
 def avg_number_of_posts_per_month(blog):
     posts_in_month = {}
-    blog_posts = BlogPost.objects.filter(blog=blog).order_by('-added', 'name')
+    blog_posts = BlogPost.objects.filter(blog=blog).order_by('-date', 'name')
     for post in blog_posts:
-        if post.added.month in posts_in_month.keys():
-            posts_in_month[post.added.month] += 1
+        if post.date.month in posts_in_month.keys():
+            posts_in_month[post.date.month] += 1
         else:
-            posts_in_month[post.added.month] = 1
+            posts_in_month[post.date.month] = 1
     average = round(blog_posts.count()/len(posts_in_month), 2)
     return average
 
@@ -30,10 +30,10 @@ class BlogViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 class BlogPostsViewSet(viewsets.ModelViewSet):
-    queryset = BlogPost.objects.all().order_by('-added', '-id')
+    queryset = BlogPost.objects.all().order_by('-date', '-id')
     serializer_class = BlogPostDetailsSerializer
     ordering_fields = '__all__'
-    ordering = ('-added', '-id')
+    ordering = ('-date', '-id')
     filter_class = BlogPostFilter
     search_fields = ('blog_id')
     pagination_class = BlogPostPageNumberPagination

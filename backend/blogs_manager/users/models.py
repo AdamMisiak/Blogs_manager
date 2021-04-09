@@ -48,7 +48,7 @@ class UserLog(models.Model):
         if UserLog.objects.exists():
             subscribed_blogs = Blog.objects.filter(subscribed_by__user=request.user)
             last_logging_date = UserLog.objects.filter(user=request.user).order_by('-created').first().created
-            new_blog_posts = BlogPost.objects.filter(blog__in=subscribed_blogs, added__gte=last_logging_date).count()
+            new_blog_posts = BlogPost.objects.filter(blog__in=subscribed_blogs, date__gte=last_logging_date).count()
 
 
  

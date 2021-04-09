@@ -14,7 +14,7 @@ const BlogPost = ({
 
     const [subscribed, setSubscribed] = useState(false);
 
-    const isNew = Moment(blogPost.added).isSame(Date.now(), 'day');
+    const isNew = Moment(blogPost.date).isSame(Date.now(), 'day');
 
     useEffect(() => {
         subscribedBlogs.data.forEach(subscribedBlog => {
@@ -54,7 +54,7 @@ const BlogPost = ({
                 </a>
             </div>
             <div className="blog-post-footer">
-                Added: {Moment(blogPost.added).format('DD-MM-YYYY')}
+                Added: {Moment(blogPost.date).format('DD-MM-YYYY')}
             </div>
         </div>
     );

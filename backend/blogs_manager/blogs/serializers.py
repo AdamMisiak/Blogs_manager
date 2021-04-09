@@ -5,12 +5,12 @@ from users.models import BlogPostOpened
 
 def avg_number_of_posts_per_month(blog):
     posts_in_month = {}
-    blog_posts = BlogPost.objects.filter(blog=blog).order_by('-added', 'name')
+    blog_posts = BlogPost.objects.filter(blog=blog).order_by('-date', 'name')
     for post in blog_posts:
-        if post.added.month in posts_in_month.keys():
-            posts_in_month[post.added.month] += 1
+        if post.date.month in posts_in_month.keys():
+            posts_in_month[post.date.month] += 1
         else:
-            posts_in_month[post.added.month] = 1
+            posts_in_month[post.date.month] = 1
     average = round(blog_posts.count()/len(posts_in_month), 2)
     return average
 
@@ -30,7 +30,7 @@ class BlogListSerializer(serializers.ModelSerializer):
                   'language', 'last_post_added'] 
     
     def get_last_post_added(self, obj):
-        return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
+        return BlogPost.objects.filter(blog=obj).order_by('-date').first().date
 
 class BlogDetailsSerializer(serializers.ModelSerializer):
     last_post_added = serializers.SerializerMethodField()
@@ -45,7 +45,7 @@ class BlogDetailsSerializer(serializers.ModelSerializer):
                    'subscribers', 'blog_post_avg'] 
 
     def get_last_post_added(self, obj):
-        return BlogPost.objects.filter(blog=obj).order_by('-added').first().added
+        return BlogPost.objects.filter(blog=obj).order_by('-date').first().date
 
     def get_blog_posts(self, obj):
         return Blog.objects.filter(blog_post__blog=obj).count()

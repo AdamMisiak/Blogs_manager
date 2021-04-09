@@ -29,11 +29,11 @@ class BlogPost(models.Model):
     name = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_post')
-    added = models.DateTimeField()
+    date = models.DateTimeField()
 
 
     class Meta:
-        ordering = ('-added',)
+        ordering = ('-date',)
 
     def __str__(self):
         return self.name
