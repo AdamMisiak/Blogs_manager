@@ -10,6 +10,7 @@ import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons'
 
 const SortingButton = ({
     sortBy,
+    sortName,
     onSelectSorting
 }) => {
     const [clicks, setClicks] = useState(0);
@@ -18,14 +19,14 @@ const SortingButton = ({
         e.preventDefault();
         setClicks(clicks+1)
         if (clicks === 0) {
-            onSelectSorting("-"+sortBy)
+            onSelectSorting(""+sortBy)
         }
         else if (clicks === 1) {
-            onSelectSorting(""+sortBy)
+            onSelectSorting("-"+sortBy)
         }
         else if (clicks === 2) {
             setClicks(0)
-            onSelectSorting("")
+            onSelectSorting(undefined)
         }
     };
 
@@ -34,9 +35,9 @@ const SortingButton = ({
     <button type="button" className="sorting-button" onClick={onClick}>
       {
         {
-          0: <span>Sort by {sortBy} <FontAwesomeIcon icon={faSort} /></span>,
-          1: <span>Sort by {sortBy} <FontAwesomeIcon icon={faSortUp} /></span>,
-          2: <span>Sort by {sortBy} <FontAwesomeIcon icon={faSortDown} /></span>,
+          0: <span>Sort by {sortName} <FontAwesomeIcon icon={faSort} /></span>,
+          1: <span>Sort by {sortName} <FontAwesomeIcon icon={faSortUp} /></span>,
+          2: <span>Sort by {sortName} <FontAwesomeIcon icon={faSortDown} /></span>,
         }[clicks]
       }
     </button>

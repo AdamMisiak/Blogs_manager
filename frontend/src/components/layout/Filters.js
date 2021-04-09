@@ -21,18 +21,18 @@ const Filters = ({
     const [inputSorting, setInputSorting] = useState("")
     
     const inputSearchingHandler = e => setInputSearching(e.target.value);
+    let prevInputSorting;
 
     useEffect(() => {
         dispatch(getBlogPosts({
             page: page,
-            name: inputSearching && inputSearching.length > 3 ? inputSearching : undefined,
+            name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
             ordering: inputSorting
         }))
     }, [inputSearching, inputSorting, page])
 
-    const test = (value) => {
+    const selectSortingHandler = (value) => {
         setInputSorting(value)
-        console.log(value,'fgrrfg')
     }
     
     
@@ -50,10 +50,10 @@ const Filters = ({
             </div>
         </div>
         <div className="filters-sorting">
-            <SortingButton sortBy="date"/>
-            <SortingButton sortBy="name" onSelectSorting={test} />
-            <SortingButton sortBy="author" />
-            <SortingButton sortBy="blog" />
+            <SortingButton sortBy="date" sortName="date" onSelectSorting={selectSortingHandler} />
+            <SortingButton sortBy="name" sortName="name" onSelectSorting={selectSortingHandler} />
+            <SortingButton sortBy="blog__author" sortName="author" onSelectSorting={selectSortingHandler} />
+            <SortingButton sortBy="blog__name" sortName="blog" onSelectSorting={selectSortingHandler} />
         </div>
     </div>
   );

@@ -32,7 +32,7 @@ class BlogViewSet(viewsets.ModelViewSet):
 class BlogPostsViewSet(viewsets.ModelViewSet):
     queryset = BlogPost.objects.all().order_by('-date', '-id')
     serializer_class = BlogPostDetailsSerializer
-    ordering_fields = '__all__'
+    ordering_fields = ['name', 'date', 'blog__author', 'blog__name']
     ordering = ('-date', '-id')
     filter_class = BlogPostFilter
     search_fields = ('blog_id')
