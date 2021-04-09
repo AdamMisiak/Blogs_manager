@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import Pagination from '@material-ui/lab/Pagination';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
-
-import Pagination from '@material-ui/lab/Pagination';
-
-import { getBlogPosts } from '../../actions/BlogPosts';
 import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
-
+import { LightBlue } from "../../constants/Colors";
+import { LoaderSize, LoaderStyles } from "../../constants/Loader";
+import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination";
+import '../../styles/Filters.css';
+import "../../styles/Pagination.css";
 import BlogPost from '../common/BlogPost';
 import Breadcrumb from '../layout/Breadcrumb';
-import Showcase from '../layout/Showcase';
 import Filters from '../layout/Filters';
+import Showcase from '../layout/Showcase';
 
-import "../../styles/Pagination.css";
-import '../../styles/Filters.css';
-import { LightBlue } from "../../constants/Colors"
-import { LoaderStyles, LoaderSize } from "../../constants/Loader"
-import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 
 function IndexPage() {
+    const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const blogPosts = useSelector(state => state.blogPosts);
-    const dispatch = useDispatch();
     const [page, setPage] = useState(DefaultPage);
     
     useEffect(() => {
@@ -30,9 +26,9 @@ function IndexPage() {
         }
     }, [auth])
 
-    useEffect(() => {
-        // dispatch(getBlogPosts(page))
-    }, [page])
+    // useEffect(() => {
+    //     // dispatch(getBlogPosts(page))
+    // }, [page])
 
     const handlePageChange = (event, value) => {
         setPage(value);
@@ -40,9 +36,9 @@ function IndexPage() {
 
     return (
     <div className='index-page'>
-        <div className='showcase'>
-            <Showcase />
-        </div>
+    
+        <Showcase />
+   
         {/* style do zmiany bo nazwa uzywana juz */}
         <div className='breadcrumb-wrapper'>
             <Breadcrumb 

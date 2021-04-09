@@ -25,8 +25,8 @@ const Blog = ({
         })
     }, [])
 
-    const onClick = (e) => {
-        e.preventDefault();
+    const onClick = (event) => {
+        event.preventDefault();
         dispatch(postSubscribeBlog(auth.user.id, blog.id));
         setSubscribed(!subscribed)
     };
