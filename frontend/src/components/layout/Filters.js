@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
 
@@ -10,8 +10,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import '../../styles/Filters.css';
 
-import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
-
 
 const Filters = ({
     page
@@ -21,7 +19,6 @@ const Filters = ({
     const [inputSorting, setInputSorting] = useState("")
     
     const inputSearchingHandler = e => setInputSearching(e.target.value);
-    let prevInputSorting;
 
     useEffect(() => {
         dispatch(getBlogPosts({
@@ -34,9 +31,6 @@ const Filters = ({
     const selectSortingHandler = (value) => {
         setInputSorting(value)
     }
-    
-    
-
     
   return(
     <div className='filters'>

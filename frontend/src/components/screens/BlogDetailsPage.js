@@ -21,6 +21,8 @@ import { LightBlue } from "../../constants/Colors"
 import { LoaderStyles, LoaderSize } from "../../constants/Loader"
 import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 
+import '../../styles/BlogDetails.css';
+
 function BlogDetailsPage() {
     const { id } = useParams();
     const protocol = window.location.protocol;
@@ -39,7 +41,10 @@ function BlogDetailsPage() {
     const user = auth.user.id
 
     useEffect(() => {
-        dispatch(getBlogPosts(page, id))
+        dispatch(getBlogPosts({
+            page: page,
+            blogId: id
+        }))
         dispatch(getSubscribedBlogs(user))
     }, [page])
 
@@ -75,8 +80,8 @@ function BlogDetailsPage() {
                     current={id}
                 />
             </div>
-            <section id="blog_detils" className="mt-3">
-                <div className="card text-center blog-info-card">
+            <section id="blog-detils" className="mt-3">
+                <div className="card blog-details">
                     <div className="card-header blog-info-header">
                         <h1>
                             {blogDetails.name}
@@ -149,7 +154,7 @@ function BlogDetailsPage() {
                     />
                 </div> ) : ( null )}
             {!blogPosts.loading && !blogPosts.error ? (
-                <section id="posts">
+                <section id="blog-posts">
                     {blogPosts.data.map(blogPost => (
                         <BlogPost
                             key={blogPost.id}
