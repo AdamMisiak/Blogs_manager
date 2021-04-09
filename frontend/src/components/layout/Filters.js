@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getBlogPosts } from '../../actions/BlogPosts';
 
+import SortingButton from '../common/SortingButton'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
-import '../../styles/Breadcrumb.css';
+import '../../styles/Filters.css';
 
 import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
 
@@ -33,16 +35,7 @@ const Filters = ({
             }))
         }
     }, [inputSearching, page])
-
-    const onClick = (e) => {
-        e.preventDefault();
-        setClicks(clicks+1)
-
-        if (clicks === 2) {
-            setClicks(0)
-        }
-    };
-
+    
     
   return(
     <div className='filters'>
@@ -50,34 +43,16 @@ const Filters = ({
             <div className="input-group rounded">
                 <input type="search" className="form-control rounded" placeholder="Search..." aria-label="Search"
                     aria-describedby="search-addon" onChange={inputSearchingHandler} />
-                <span className="input-group-text border-0" id="search-addon">
+                <span className="input-group-text border-0">
                     <FontAwesomeIcon icon={faSearch} />
                 </span>
             </div>
         </div>
         <div className="filters-sorting">
-                { clicks === 0 ? (
-                    <button type="button" class="sorting-button" onClick={onClick}>
-                        Sort by date <FontAwesomeIcon icon={faSort} />
-                    </button>
-                ) : ( null )}
-                { clicks === 1 ? (
-                    <button type="button" class="sorting-button" onClick={onClick}>
-                        Sort by date <FontAwesomeIcon icon={faSortUp} />
-                    </button>
-                ) : (null )}
-                { clicks === 2 ? (
-                    <button type="button" class="sorting-button" onClick={onClick}>
-                        Sort by date <FontAwesomeIcon icon={faSortDown} />
-                    </button>
-                ) : (null )}
-                
-            
-            <button type="button" class="sorting-button">Sort by name</button>
-            <button type="button" class="sorting-button">Sort by author</button>
-            <button type="button" class="sorting-button">Sort by blog</button>
-            <button type="button" class="sorting-button">Sort by genre</button>
-
+            <SortingButton sortBy="date" />
+            <SortingButton sortBy="name" />
+            <SortingButton sortBy="author" />
+            <SortingButton sortBy="blog" />
         </div>
     </div>
   );
