@@ -15,7 +15,34 @@
 }
 
 .filters-sorting {
+    display: flex;
+    justify-content: space-between;
     flex: 1;
     padding: 1rem;
+    margin-left: 6rem;
     text-align: center;
+}
+
+.sorting-button {
+    font-size: 0.95rem;
+    padding: 0.375rem 0.75rem;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #e7e7e7;
+    user-select: none;
+}
+
+.sorting-button:hover {
+    color: white;
+    border-color: #8b8b8b;
+    background-color: #9d9a9a;
+}
+
+.sorting-button:focus {
+    outline: 0;
+    color: white;
+    border-color: #8b8b8b;
+    background-color: #9d9a9a;
 }
