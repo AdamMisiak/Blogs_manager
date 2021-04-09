@@ -14,7 +14,7 @@ const Breadcrumb = ({
 
   return(
     <div className="breadcrumb">
-      <nav aria-label="breadcrum-nav">
+      <nav aria-label="breadcrumb-nav">
       <ol className="breadcrumb-list">
         <li className="breadcrumb-item">
           <Link to="/">

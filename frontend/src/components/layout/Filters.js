@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { getBlogPosts } from '../../actions/BlogPosts';
-
-import SortingButton from '../common/SortingButton'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getBlogPosts } from '../../actions/BlogPosts';
 import '../../styles/Filters.css';
+import SortingButton from '../common/SortingButton';
 
 
 const Filters = ({
@@ -18,7 +14,8 @@ const Filters = ({
     const [inputSearching, setInputSearching] = useState("")
     const [inputSorting, setInputSorting] = useState("")
     
-    const inputSearchingHandler = e => setInputSearching(e.target.value);
+    const inputSearchingHandler = event => setInputSearching(event.target.value);
+    const selectSortingHandler = value => setInputSorting(value)
 
     useEffect(() => {
         dispatch(getBlogPosts({
@@ -28,14 +25,11 @@ const Filters = ({
         }))
     }, [inputSearching, inputSorting, page])
 
-    const selectSortingHandler = (value) => {
-        setInputSorting(value)
-    }
     
   return(
     <div className='filters'>
         <div className="filters-searching">
-            <div className="input-group rounded">
+            <div className="filters-searching-input input-group">
                 <input type="search" className="form-control rounded" placeholder="Search..." aria-label="Search"
                     aria-describedby="search-addon" onChange={inputSearchingHandler} />
                 <span className="input-group-text border-0">
