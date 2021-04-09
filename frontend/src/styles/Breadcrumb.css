@@ -1,7 +1,27 @@
-.container {
-    padding: 0%;
+/* BREADCRUMB STYLES */
+
+.breadcrumb {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
+.breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+    padding: 0.2rem 1rem;
+    list-style: none;
+    border-radius: 0.25rem;
+    background-color: #e9ecef;
+}
+
+.breadcrumb-item a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
 .breadcrumb-item a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;

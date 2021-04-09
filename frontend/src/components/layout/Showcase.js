@@ -4,7 +4,7 @@ import '../../styles/Showcase.css';
 const Showcase = () => {
 
   return(
-    <div className="showcase-inner">
+    <div className="showcase">
         <div className="row text-center">
             <div className="col-md-12">
                 <h1 className="display-4">Managing <span style={{color:"#e7e7e7"}}>Blogs</span> Has Never Been So Easy</h1>

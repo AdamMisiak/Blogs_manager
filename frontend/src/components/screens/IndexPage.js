@@ -36,15 +36,10 @@ function IndexPage() {
 
     return (
     <div className='index-page'>
-    
         <Showcase />
-   
-        {/* style do zmiany bo nazwa uzywana juz */}
-        <div className='breadcrumb-wrapper'>
-            <Breadcrumb 
-                current='Latest'
-            />
-        </div>
+        <Breadcrumb 
+            current='Latest'
+        />
         <Filters 
             page={page}
         />

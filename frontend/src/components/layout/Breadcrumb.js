@@ -13,29 +13,27 @@ const Breadcrumb = ({
 }) => {
 
   return(
-    <section id="bc" className="mt-3">
-        <div className="container">
-            <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <Link to="/">
-                  <FontAwesomeIcon icon={faHome} /> Home
-                </Link>
-              </li>
-              {previousName && previousLink ?
-              <li className="breadcrumb-item">
-                <Link to={"/"+previousLink}>
-                  {previousName}
-                </Link>
-              </li> 
-              : ''}
-              <li className="breadcrumb-item active">
-                  {current}
-              </li>
-            </ol>
-            </nav>
-        </div>
-    </section>
+    <div className="breadcrumb">
+      <nav aria-label="breadcrum-nav">
+      <ol className="breadcrumb-list">
+        <li className="breadcrumb-item">
+          <Link to="/">
+            <FontAwesomeIcon icon={faHome} /> Home
+          </Link>
+        </li>
+        {previousName && previousLink ?
+        <li className="breadcrumb-item">
+          <Link to={"/"+previousLink}>
+            {previousName}
+          </Link>
+        </li> 
+        : ''}
+        <li className="breadcrumb-item active">
+          {current}
+        </li>
+      </ol>
+      </nav>
+    </div>
   );
 }
 

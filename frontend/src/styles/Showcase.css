@@ -1,6 +1,6 @@
 /* SHOWCASE STYLES */
 
-.showcase-inner {
+.showcase {
     padding: 3rem;
     position: relative;
     overflow: hidden;
@@ -10,7 +10,7 @@
     background-size: cover;
 }
 
-.showcase-inner::before {
+.showcase::before {
     position: absolute;
     top: 0;
     left: 0;
