@@ -1,24 +1,22 @@
 import { useEffect } from "react";
-import { Route } from "react-router-dom";
-import { Provider } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic'
-import store from './store'
-
-import './styles/App.css';
-
+import AlertTemplate from 'react-alert-template-basic';
+import { Provider } from 'react-redux';
+import { Route } from "react-router-dom";
 import { loadUser } from './actions/Auth';
-
-import PrivateRoute from "./components/common/PrivateRoute"
-import Header from './components/layout/Header'
+import PrivateRoute from "./components/common/PrivateRoute";
 import Alerts from "./components/layout/Alerts";
-import Footer from './components/layout/Footer'
-import IndexPage from './components/screens/IndexPage';
+import Footer from './components/layout/Footer';
+import Header from './components/layout/Header';
+import AboutPage from "./components/screens/AboutPage";
 import AccountBlogsPage from './components/screens/AccountBlogsPage';
-import BlogsPage from './components/screens/BlogsPage';
 import BlogDetailsPage from './components/screens/BlogDetailsPage';
+import BlogsPage from './components/screens/BlogsPage';
+import IndexPage from './components/screens/IndexPage';
 import LoginPage from './components/screens/LoginPage';
 import RegisterPage from './components/screens/RegisterPage';
+import store from './store';
+import './styles/App.css';
 
 
 const alertOptions = {
@@ -41,16 +39,15 @@ function App() {
             <Route path="/login"><LoginPage /></Route>
             <Route path="/register"><RegisterPage /></Route>
             <PrivateRoute exact path="/account/blogs" component={AccountBlogsPage} />
-            <Route path="/blogs/:id"><BlogDetailsPage /></Route>
             <PrivateRoute exact path="/blogs" component={BlogsPage} />
+            <Route path="/blogs/:id"><BlogDetailsPage /></Route>
+            <Route exact path="/about"><AboutPage /></Route>
             <Route exact path="/"><IndexPage /></Route>
             
           <Footer />
         </AlertProvider>
       </Provider>
     </div>
-    
-
   );
 }
 

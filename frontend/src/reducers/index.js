@@ -10,13 +10,15 @@ import subscribeBlogReducer from './SubscribeBlog';
 import subscribedBlogsReducer from './SubscribedBlogs';
 
 export default combineReducers({
-    blogPosts: blogPostsReducer,
     blogs: blogsReducer,
+    subscribedBlogs: subscribedBlogsReducer,
     blogDetails: blogDetailsReducer,
     blogPhoto: blogPhotoReducer,
-    subscribedBlogs: subscribedBlogsReducer,
-    subscribeBlog: subscribeBlogReducer,
+    blogPosts: blogPostsReducer,
+
     auth: authReducer,
     errors: errorReducer,
-    messages: messagesReducer
+    messages: messagesReducer,
+    
+    subscribeBlog: subscribeBlogReducer,
 });

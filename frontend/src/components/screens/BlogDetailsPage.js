@@ -1,27 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import Moment from 'moment';
-// zmianiec moment na datafns!!!!
-import ClipLoader from "react-spinners/ClipLoader";
-import emojiFlags from 'emoji-flags';
-
 import Pagination from '@material-ui/lab/Pagination';
-
-import { postSubscribeBlog, getSubscribedBlogs } from '../../actions/SubscribedBlogs';
-import { getBlogPosts } from '../../actions/BlogPosts';
+import emojiFlags from 'emoji-flags';
+import Moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useParams } from 'react-router-dom';
+import ClipLoader from "react-spinners/ClipLoader";
 import { getBlogDetails } from '../../actions/BlogDetails';
 import { getBlogPhoto } from '../../actions/BlogPhotos';
-
+import { getBlogPosts } from '../../actions/BlogPosts';
+import { getSubscribedBlogs, postSubscribeBlog } from '../../actions/SubscribedBlogs';
+import { LightBlue } from "../../constants/Colors";
+import { LoaderSize, LoaderStyles } from "../../constants/Loader";
+import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination";
+import '../../styles/BlogDetails.css';
+import BlogPost from '../common/BlogPost';
 import Alerts from '../layout/Alerts';
 import Breadcrumb from '../layout/Breadcrumb';
-import BlogPost from '../common/BlogPost'
 
-import { LightBlue } from "../../constants/Colors"
-import { LoaderStyles, LoaderSize } from "../../constants/Loader"
-import { BlogPostsPageSize, DefaultPage } from "../../constants/Pagination"
-
-import '../../styles/BlogDetails.css';
 
 function BlogDetailsPage() {
     const { id } = useParams();
@@ -38,14 +33,16 @@ function BlogDetailsPage() {
     const blogPhoto = useSelector(state => state.blogPhoto);
     const dispatch = useDispatch();
     
-    const user = auth.user.id
+    // const user = auth.user.id
 
     useEffect(() => {
         dispatch(getBlogPosts({
             page: page,
             blogId: id
         }))
-        dispatch(getSubscribedBlogs(user))
+        if (auth.isAuthenticated) {
+            dispatch(getSubscribedBlogs(auth.user.id))
+        }
     }, [page])
 
     useEffect(() => {
@@ -70,6 +67,8 @@ function BlogDetailsPage() {
     const handlePageChange = (event, value) => {
         setPage(value);
       }
+
+    if (!auth.isAuthenticated) return <Redirect to="/login" />
 
     return (
         <div className="blog-details-page">

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Link, Redirect } from "react-router-dom";
 import { login } from '../../actions/Auth';
-
 import "../../styles/Login.css";
 
 
@@ -14,8 +12,8 @@ function LoginPage() {
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
+    const onSubmit = (event) => {
+        event.preventDefault();
         dispatch(login(username, password));
         setUsername("")
         setPassword("")
@@ -24,9 +22,7 @@ function LoginPage() {
     const inputUsernameHandler = e => setUsername(e.target.value);
     const inputPasswordHandler = e => setPassword(e.target.value);
 
-    if (auth.isAuthenticated) {
-        return <Redirect to="/" />
-    }
+    if (auth.isAuthenticated) return <Redirect to="/" />
 
     return (
         <section id="login" className="bg-light py-5">

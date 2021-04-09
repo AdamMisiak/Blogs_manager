@@ -1,33 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-
+import { faSignInAlt, faSignOutAlt, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faSignInAlt, faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-
-import "../../styles/Header.css";
+import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import { logout } from '../../actions/Auth';
 import logo from "../../images/logo.png";
+import "../../styles/Header.css";
 
-import { logout } from '../../actions/Auth'
 
 const Header = () => {
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleClick = event => setAnchorEl(event.currentTarget);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleClose = () => setAnchorEl(null);
 
-  const handleLogout = e => {
-    e.preventDefault();
+  const handleLogout = event => {
+    event.preventDefault();
     dispatch(logout())
   };
 
@@ -43,7 +36,7 @@ const Header = () => {
               <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">About</Link>
+              <Link className="nav-link" to="/about">About</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/blogs">Blogs</Link>
@@ -93,19 +86,7 @@ const Header = () => {
                   </Link>
                 </li>
               </ul>
-              
-             )}
-            {/* {% if user.is_authenticated %}
-                        <li className="nav-item justify-content-end">
-                            <a className="nav-link" href="{% url 'account' %}"><i className="fas fa-user"></i> Account</a>
-                        </li>
-                        <li className="nav-item justify-content-end">
-                            <a className="nav-link" href="{% url 'logout' %}"><i className="fas fa-sign-out-alt"></i> Logout</a>
-                        </li>
-                        {% else %} */}
-
-            
-            {/* {% endif %} */}
+            )}
         </div>
       </nav>
     </div>
