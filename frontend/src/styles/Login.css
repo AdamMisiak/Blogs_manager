@@ -1,5 +1,12 @@
-#login{
-    flex: 1
+/* LOGIN STYLES */
+
+.login{
+    flex: 1;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+    background-color: #f8f9fa;
 }
 
 .card-login{

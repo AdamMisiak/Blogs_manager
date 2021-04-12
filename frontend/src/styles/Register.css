@@ -1,14 +1,16 @@
-#register{
-    flex: 1
+/* REGISTER STYLES */
+
+.register{
+    flex: 1;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+    background-color: #f8f9fa;
 }
 
 .bg-primary{
     background-color: rgb(55, 113, 189)!important;
-    
-}
-
-h4{
-    font-size: 20px;
 }
 
 .card-register{
@@ -18,9 +20,3 @@ h4{
     margin-right: 0;
 }
 
-.card-login{
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin-left: 0;
-    margin-right: 0;
-}

@@ -19,8 +19,6 @@ function BlogsPage() {
     const blogs = useSelector(state => state.blogs);
     const [page, setPage] = useState(DefaultPage);
 
-    // const user = auth.user.id
-
     useEffect(() => {
         dispatch(getBlogs(page))
         if (auth.isAuthenticated) {

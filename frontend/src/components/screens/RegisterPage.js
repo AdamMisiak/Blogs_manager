@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Link, Redirect } from "react-router-dom";
 import { register } from '../../actions/Auth';
-import { createMessage } from '../../actions/Messages'
-
+import { createMessage } from '../../actions/Messages';
 import "../../styles/Register.css";
 
 
@@ -14,11 +12,11 @@ function RegisterPage() {
     const [password, setPassword] = useState("")
     const [password2, setPassword2] = useState("")
 
-    const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
+    const onSubmit = (event) => {
+        event.preventDefault();
         if (password !== password2) {
           dispatch(createMessage({passwordNotMatch: 'Passwords do not match!'}));
           setUsername("");
@@ -40,19 +38,17 @@ function RegisterPage() {
     const inputPasswordHandler = e => setPassword(e.target.value);
     const inputPassword2Handler = e => setPassword2(e.target.value);
 
-    if (auth.isAuthenticated) {
-      return <Redirect to="/" />
-    }
+    if (auth.isAuthenticated) return <Redirect to="/" />
 
     return (
-        <section id="register" className="bg-light py-5">
+        <div className="register">
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 mx-auto">
                         <div className="card-register">
                             <div className="card-header bg-primary text-white">
-                                <h4>
-                                <i className="fas fa-user-plus"></i> Register</h4>
+                                <h5>
+                                <i className="fas fa-user-plus"></i> Register</h5>
                             </div>
                             <div className="card-body">
                             <form onSubmit={onSubmit}>
@@ -110,7 +106,7 @@ function RegisterPage() {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 
