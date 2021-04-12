@@ -29,7 +29,7 @@ class BlogViewSet(viewsets.ModelViewSet):
         serializer = BlogDetailsSerializer(instance)
         return Response(serializer.data)
 
-class BlogPostsViewSet(viewsets.ModelViewSet):
+class BlogPostsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = BlogPost.objects.all().order_by('-date', '-id')
     serializer_class = BlogPostDetailsSerializer
     ordering_fields = ['name', 'date', 'blog__author', 'blog__name']
