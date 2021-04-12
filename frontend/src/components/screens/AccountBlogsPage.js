@@ -31,14 +31,11 @@ function AccountBlogsPage(){
     
     return (
         <div className='blogs-page'>
-            {/* style do zmiany bo nazwa uzywana juz */}
-            <div className='breadcrumb-wrapper'>
-                <Breadcrumb 
-                    previousName="Account"
-                    previousLink="account/profile"
-                    current='Blogs'
-                />
-            </div>
+            <Breadcrumb  
+                previousName="Account"
+                previousLink="account/profile"
+                current='Blogs'
+            />
             {subscribedBlogs.loading ? (
                 <div className='loader'>
                     <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />

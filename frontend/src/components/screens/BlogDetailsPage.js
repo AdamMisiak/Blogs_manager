@@ -32,8 +32,6 @@ function BlogDetailsPage() {
     const blogDetails = useSelector(state => state.blogDetails);
     const blogPhoto = useSelector(state => state.blogPhoto);
     const dispatch = useDispatch();
-    
-    // const user = auth.user.id
 
     useEffect(() => {
         dispatch(getBlogPosts({
@@ -72,75 +70,71 @@ function BlogDetailsPage() {
 
     return (
         <div className="blog-details-page">
-            <div className='breadcrumb-wrapper'>
-                <Breadcrumb 
-                    previousName='Blogs'
-                    previousLink='blogs'
-                    current={id}
-                />
-            </div>
-            <section id="blog-detils" className="mt-3">
-                <div className="card blog-details">
-                    <div className="card-header blog-info-header">
-                        <h1>
-                            {blogDetails.name}
-                        </h1>
+            <Breadcrumb 
+                previousName='Blogs'
+                previousLink='blogs'
+                current={id}
+            />  
+            <div className="blog-details card">
+                <div className="blog-details-header">
+                    <h1>
+                        {blogDetails.name}
+                    </h1>
+                </div>
+                <div className="blog-details-body">
+                    <div className="blog-details-photo"> 
+                        {blogPhoto.loading ? (
+                            <div className="loader">
+                                <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
+                            </div> ) : ( null )}
+                        {blogPhoto.error ? (
+                            <div className="alerts">
+                                <Alerts 
+                                    type="error"
+                                    message={blogPhoto.error}
+                                />
+                            </div> ) : ( null )}
+                        {!blogPhoto.loading && !blogPhoto.error ? (
+                            <div className="photo">
+                                <img src={protocol+"//"+hostname+":8000"+blogPhoto.photo} alt="img" className="img-thumbnail" />
+                            </div> ) : ( null )}
                     </div>
-                    <div className="card-body blog-info-body">
-                        <div className="blog-info-subcard blog-info-photo"> 
-                            {blogPhoto.loading ? (
-                                <div className="loader">
-                                    <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
-                                </div> ) : ( null )}
-                            {blogPhoto.error ? (
-                                <div className="alerts">
-                                    <Alerts 
-                                        type="error"
-                                        message={blogPhoto.error}
-                                    />
-                                </div> ) : ( null )}
-                            {!blogPhoto.loading && !blogPhoto.error ? (
-                                <div className="photo">
-                                    <img src={protocol+"//"+hostname+":8000"+blogPhoto.photo} alt="img" className="img-thumbnail" />
-                                </div> ) : ( null )}
-                        </div>
-                        
-                        <div className="blog-info-subcard blog-info-text">
-                            Author: <b>{blogDetails.author}</b>
-                            <hr className="mt-2 mb-2"/>
-                            Genre: <b>{blogDetails.genre}</b>
-                            <hr className="mt-2 mb-2"/>
-                            Url: <b><a href={blogDetails.url} className="card-text no-link" target="_blank" rel="noreferrer">{blogDetails.url}</a></b>
-                            <hr className="mt-2 mb-2"/>
-                                {blogDetails.language === 'Polish' ? (
-                                    <div>Language: <b>{blogDetails.language}<b></b>
-                                    {" "}{emojiFlags.countryCode('PL').emoji}</b></div>
-                                ) : (
-                                    <div>Language: <b>{blogDetails.language}
-                                    {" "}{emojiFlags.countryCode('GB').emoji}</b></div>
-                                )}
-                        </div>
-                        <div className="blog-info-subcard blog-info-stats">
-                            Last post published: <b>{Moment(blogDetails.last_post_added).format('DD-MM-YYYY')}</b>
-                            <hr className="mt-2 mb-2"/>
-                            Published posts: <b>{blogDetails.blog_posts}</b>
-                            <hr className="mt-2 mb-2"/>
-                            Average posts per month: <b>{blogDetails.blog_post_avg}</b>
-                            <hr className="mt-2 mb-2"/>
-                            Subscribers: <b>{blogDetails.subscribers}</b>
-                        </div>
+                    
+                    <div className="blog-details-text">
+                        Author: <b>{blogDetails.author}</b>
+                        <hr className="mt-2 mb-2"/>
+                        Genre: <b>{blogDetails.genre}</b>
+                        <hr className="mt-2 mb-2"/>
+                        Url: <b><a href={blogDetails.url} className="card-text no-link" target="_blank" rel="noreferrer">{blogDetails.url}</a></b>
+                        <hr className="mt-2 mb-2"/>
+                            {blogDetails.language === 'Polish' ? (
+                                <div>Language: <b>{blogDetails.language}<b></b>
+                                {" "}{emojiFlags.countryCode('PL').emoji}</b></div>
+                            ) : (
+                                <div>Language: <b>{blogDetails.language}
+                                {" "}{emojiFlags.countryCode('GB').emoji}</b></div>
+                            )}
                     </div>
-                    <div className="card-footer text-muted blog-info-footer">
-                        <div className="card-button">
-                            <button
-                                className={subscribed ? 'button unsubscribe-button' : 'button subscribe-button'} 
-                                onClick={onClick}>
-                                {subscribed ? 'Unsubscribe' : 'Subscribe'}
-                            </button>
-                        </div>
+                    <div className="blog-details-stats">
+                        Last post published: <b>{Moment(blogDetails.last_post_added).format('DD-MM-YYYY')}</b>
+                        <hr className="mt-2 mb-2"/>
+                        Published posts: <b>{blogDetails.blog_posts}</b>
+                        <hr className="mt-2 mb-2"/>
+                        Average posts per month: <b>{blogDetails.blog_post_avg}</b>
+                        <hr className="mt-2 mb-2"/>
+                        Subscribers: <b>{blogDetails.subscribers}</b>
                     </div>
                 </div>
-            </section>
+                <div className="blog-details-footer">
+                    <div className="card-button">
+                        <button
+                            className={subscribed ? 'button unsubscribe-button' : 'button subscribe-button'} 
+                            onClick={onClick}>
+                            {subscribed ? 'Unsubscribe' : 'Subscribe'}
+                        </button>
+                    </div>
+                </div>
+            </div>
             {blogPosts.loading ? (
                 <div className="loader">
                     <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
@@ -153,14 +147,14 @@ function BlogDetailsPage() {
                     />
                 </div> ) : ( null )}
             {!blogPosts.loading && !blogPosts.error ? (
-                <section id="blog-posts">
+                <div className='blogposts'>
                     {blogPosts.data.map(blogPost => (
                         <BlogPost
                             key={blogPost.id}
                             blogPost={blogPost}
                         />
                     ))}
-                </section> ) : ( null )} 
+                </div> ) : ( null )} 
             <div className='pagination'>
                 <Pagination 
                     count={Math.floor(blogPosts.dataCount/BlogPostsPageSize)+1} 

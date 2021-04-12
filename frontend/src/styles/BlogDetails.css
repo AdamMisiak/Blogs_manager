@@ -7,3 +7,45 @@
     margin-left: 20%;
     margin-right: 20%;
 }
+
+.blog-details-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background: rgba(55, 113, 189, 0.85);
+}
+
+.blog-details-body {
+    display: inline-flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    padding: 1.25rem;
+    min-height: 1px;
+}
+
+.blog-details-photo {
+    text-align: center;
+    margin: 20px;
+    width: 200px;
+    min-height: 120px;
+}
+
+.blog-details-text {
+    text-align: left;
+    margin: 20px;
+    flex-grow: 3;
+}
+
+.blog-details-stats {
+    text-align: left;
+    margin: 20px;
+    flex-grow: 3;
+}
+
+.blog-details-footer {
+    color: #6c757d;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+    background: rgba(55, 113, 189, 0.35);
+}
