@@ -2,8 +2,6 @@ import json
 import datetime
 from pytz import timezone
 from django.test import TestCase, Client
-from django.urls import reverse
-from mixer.backend.django import mixer
 from rest_framework import status
 from rest_framework.test import APIClient, APIRequestFactory
 
@@ -45,6 +43,16 @@ class TestBlogs(TestCase):
         assert response.data['results'][0]['name'] == "test_blog_one"
         assert response.data['results'][0]['last_post_added'] == self.blog_post_one.date
 
+    def test_get_blog(self):
+        request =  self.factory.get('/api/blogs/{}'.format(self.blog_one.id))
+        response = BlogViewSet.as_view({'get': 'retrieve'})(request, pk=self.blog_one.id)
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['name'] == "test_blog_one"
+        assert response.data['blog_posts'] == BlogPost.objects.filter(blog=self.blog_one).count()
+        assert response.data['last_post_added'] == self.blog_post_one.date
+        assert response.data['subscribers'] == 0
+        assert response.data['blog_post_avg'] == 1.0
 
     def test_post_blog(self):
         request =  self.factory.post(
