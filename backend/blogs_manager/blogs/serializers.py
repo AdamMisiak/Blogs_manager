@@ -14,6 +14,7 @@ def avg_number_of_posts_per_month(blog):
 
     if len(posts_in_month) == 0:
         return 0
+        
     average = round(blog_posts.count()/len(posts_in_month), 2)
     return average
 
