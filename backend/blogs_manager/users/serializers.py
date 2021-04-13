@@ -5,24 +5,7 @@ from users.models import User, BlogSubscriber
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
-# class RegisterSerializer(serializers.Serializer):
-#     email = serializers.EmailField(required=True)
-#     username = serializers.CharField(required=True)
-#     password = serializers.CharField(required=True)
-#     password2 = serializers.CharField(write_only=True)
 
-#     def validate(self, data):
-#         if data['password'] != data['password2']:
-#             raise serializers.ValidationError("Passwords do not match!")
-#         return data
-
-#     def create(self, validated_data):
-#         user = User.objects.create_user(
-#             email = validated_data['email'],
-#             username = validated_data['username'],
-#             password = validated_data['password'],
-#         )
-#         return user
 class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -49,7 +32,7 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Incorrect Crudentials")
 
 class UserSerializer(serializers.ModelSerializer):
-
+    
     class Meta:
         model = User
         fields = ['id', 'username', 'email']
