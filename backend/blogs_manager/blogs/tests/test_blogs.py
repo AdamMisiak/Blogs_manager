@@ -3,7 +3,7 @@ import datetime
 from pytz import timezone
 from django.test import TestCase, Client
 from rest_framework import status
-from rest_framework.test import APIClient, APIRequestFactory
+from rest_framework.test import APIRequestFactory
 
 from blogs.models import Blog, BlogPost
 from blogs.views import BlogViewSet

@@ -38,7 +38,7 @@ class BlogPostsViewSet(viewsets.ReadOnlyModelViewSet):
     search_fields = ('blog_id')
     pagination_class = BlogPostPageNumberPagination
 
-class BlogPhotoViewSet(viewsets.ModelViewSet):
+class BlogPhotoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = BlogPhoto.objects.all()
     serializer_class = BlogPhotoDetailsSerializer
 
