@@ -33,6 +33,8 @@ def month_string_to_date(month_string):
         month_date = 11
     elif month_string[:3].lower() == "gru" or month_string[:3].lower() == "dec":
         month_date = 12
+    else:
+        month_date = 0
     return month_date
 
 
