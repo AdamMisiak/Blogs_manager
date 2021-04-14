@@ -16,7 +16,6 @@ jobs:
             - v1-dependencies-
       - run:
           command: |
-            ls
             python3 -m venv venv
             . venv/bin/activate
             cd backend
@@ -27,7 +26,10 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "backend/requirements.txt" }}
       - run:
-          command: cd backend/blogs_manager && python manage.py test
+          command: |
+            pip -V
+            cd backend/blogs_manager 
+            python manage.py test
           name: Running tests
 
 workflows:
