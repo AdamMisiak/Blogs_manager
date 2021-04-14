@@ -27,6 +27,13 @@ jobs:
           key: v1-dependencies-{{ checksum "backend/requirements.txt" }}
       - run:
           command: |
+            cd backend/blogs_manager 
+            mkdir logs
+            cd logs
+            cat > scraping_functions.log
+          name: Creating logs
+      - run:
+          command: |
             ls
             . venv/bin/activate
             pip -V
