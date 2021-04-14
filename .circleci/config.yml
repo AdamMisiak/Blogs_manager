@@ -34,11 +34,8 @@ jobs:
           name: Creating logs
       - run:
           command: |
-            ls
             . venv/bin/activate
-            pip -V
             cd backend/blogs_manager 
-            ls
             python manage.py test
           name: Running tests
 
