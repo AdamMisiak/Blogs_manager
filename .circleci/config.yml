@@ -9,7 +9,11 @@ jobs:
     working_directory: ~/backend
     steps:
       - checkout
-      - python/load-cache
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "backend/requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
       - run:
           command: |
             cd ..
@@ -17,7 +21,10 @@ jobs:
             . venv/bin/activate
             pip install -r requirements.txt
           name: Installing requirements
-      - python/save-cache
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "backend/requirements.txt" }}
       - run:
           command: cd blogs_manager && python manage.py test
           name: Running tests
