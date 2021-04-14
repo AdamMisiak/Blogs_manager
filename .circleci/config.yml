@@ -17,9 +17,9 @@ jobs:
       - run:
           command: |
             ls
-            cd ..
             python3 -m venv venv
             . venv/bin/activate
+            cd backend
             pip install -r requirements.txt
           name: Installing requirements
       - save_cache:
@@ -27,7 +27,7 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "backend/requirements.txt" }}
       - run:
-          command: cd blogs_manager && python manage.py test
+          command: cd backend/blogs_manager && python manage.py test
           name: Running tests
 
 workflows:
