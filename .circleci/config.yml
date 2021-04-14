@@ -30,6 +30,7 @@ jobs:
             ls
             . venv/bin/activate
             cd backend/blogs_manager 
+            ls
             python manage.py test
           name: Running tests
 
