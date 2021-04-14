@@ -6,14 +6,14 @@ orbs:
 jobs:
   build-and-test:
     executor: python/default
-    working_directory: ~/backend/blogs_manager
+    working_directory: ~/backend
     steps:
       - checkout
       - python/load-cache
       - python/install-deps
       - python/save-cache
       - run:
-          command: python manage.py test
+          command: cd blogs_manager && python manage.py test
           name: Running tests
 
 workflows:
