@@ -6,20 +6,20 @@ orbs:
 jobs:
   build-and-test:
     executor: python/default
-    working_directory: ~/
+    working_directory: ~/backend
     steps:
       - checkout
       - python/load-cache
       - run:
           command: |
+            ..
             python3 -m venv venv
             . venv/bin/activate
-            cd backend
             pip install -r requirements.txt
           name: Installing requirements
       - python/save-cache
       - run:
-          command: cd backend/blogs_manager && python manage.py test
+          command: cd blogs_manager && python manage.py test
           name: Running tests
 
 workflows:
