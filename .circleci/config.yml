@@ -27,7 +27,8 @@ jobs:
           key: v1-dependencies-{{ checksum "backend/requirements.txt" }}
       - run:
           command: |
-            pip -V
+            ls
+            . venv/bin/activate
             cd backend/blogs_manager 
             python manage.py test
           name: Running tests
