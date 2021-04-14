@@ -30,14 +30,14 @@ export const loadUser = () => {
                     'Authorization': 'Token ' + token
             }
         })
-            .then(response => {
-                const user = response.data;
-                dispatch(getUserSuccess(user))
-            })
-            .catch(error => {
-                const errorMessage = error.message;
-                dispatch(getUserFailure(errorMessage))
-            })
+        .then(response => {
+            const user = response.data;
+            dispatch(getUserSuccess(user))
+        })
+        .catch(error => {
+            const errorMessage = error.message;
+            dispatch(getUserFailure(errorMessage))
+        })
     }
 }
 
