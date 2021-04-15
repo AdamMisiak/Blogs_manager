@@ -6,6 +6,7 @@ from rest_framework.test import APIRequestFactory
 from knox.models import AuthToken
 from users.models import User
 from users.views import UserViewSet, LoginView, RegisterView
+from blogs.models import Blog, BlogPost
 
 
 class TestUsers(TestCase):
