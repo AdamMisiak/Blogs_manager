@@ -5,6 +5,18 @@ from users.models import User, BlogSubscriber
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
+def check_favourite_genre(user):
+    favourite_blogs = {}
+    blogs = Blog.objects.filter(subscribed_by__user=user)
+    for blog in blogs:
+        if blog.genre in favourite_blogs.keys():
+            favourite_blogs[blog.genre] += 1
+        else:
+            favourite_blogs[blog.genre] = 1
+    number_of_favourite_genres = max(favourite_blogs.values())
+    favourite_genre = list(favourite_blogs.keys())[list(favourite_blogs.values()).index(max(favourite_blogs.values()))]
+    return favourite_genre
+        
 
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -38,15 +50,21 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email']
 
 class UserDetailsSerializer(serializers.ModelSerializer):
+    subscribing_number = serializers.SerializerMethodField()
+    favourite_genre = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name',
-                  'date_joined', 'is_superuser'] 
+                  'date_joined', 'subscribing_number', 'favourite_genre',
+                  'is_superuser'] 
 
-    def get_subscribing(self, obj):
-        subscribing_blogs = Blog.objects.filter(subscribed_by__user=obj)
-        return [BlogSerializer(blog).data for blog in subscribing_blogs]
+    def get_subscribing_number(self, obj):
+        subscribing_number = Blog.objects.filter(subscribed_by__user=obj).count()
+        return subscribing_number
+
+    def get_favourite_genre(self, obj):
+        return check_favourite_genre(obj)
         
 class BlogSubscriberSerializer(serializers.ModelSerializer):
 
