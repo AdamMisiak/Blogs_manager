@@ -13,6 +13,8 @@ class TestUsers(TestCase):
     def setUp(self):
         self.factory = APIRequestFactory()
         self.user_one = User.objects.create(username="test", email="test@test.com", password="password123", is_active=True)
+        self.blog_one = Blog.objects.create(name="test_blog_one", url="www.blogone.com", author="test_author_one", genre="IT",
+                                            language="test_language")
 
         self.valid_payload_login = {
             "username": "test2",
