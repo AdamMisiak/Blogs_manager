@@ -8,7 +8,7 @@ import {
 } from './Types';
 
 
-export const getBlogs = (page=1) => {
+export const getBlogs = ({page=1}) => {
     return (dispatch) => {
         dispatch(getBlogsRequest())
         axios({

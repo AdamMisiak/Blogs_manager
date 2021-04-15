@@ -25,9 +25,7 @@ function AccountBlogsPage(){
         dispatch(getSubscribedBlogs(user))
     }, [])
 
-    const handlePageChange = (event, value) => {
-        setPage(value);
-    }
+    const handlePageChange = (event, value) => setPage(value);
     
     return (
         <div className='blogs-page'>

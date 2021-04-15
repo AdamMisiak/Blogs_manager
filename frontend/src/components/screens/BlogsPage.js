@@ -20,13 +20,15 @@ function BlogsPage() {
     const [page, setPage] = useState(DefaultPage);
 
     useEffect(() => {
-        dispatch(getBlogs(page))
+        dispatch(getBlogs({
+            page: page
+        }))
         if (auth.isAuthenticated) {
             dispatch(getSubscribedBlogs(auth.user.id))
         }
     }, [page])
 
-    const handlePageChange = value => setPage(value);
+    const handlePageChange = (event, value) => setPage(value);
 
     if (!auth.isAuthenticated) return <Redirect to="/login" />
 
@@ -57,7 +59,7 @@ function BlogsPage() {
                 </div> ) : ( null )}
             <div className='pagination'>
                 <Pagination 
-                    count={Math.floor(blogs.dataCount/BlogsPageSize)+1} 
+                    count={Math.floor(blogs.dataCount/BlogsPageSize)} 
                     variant="outlined" 
                     onChange={handlePageChange}
                 />
