@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.test import APIRequestFactory
 
 from knox.models import AuthToken
-from users.models import User
+from users.models import User, BlogSubscriber
 from users.views import UserViewSet, LoginView, RegisterView
 from blogs.models import Blog, BlogPost
 
@@ -16,6 +16,7 @@ class TestUsers(TestCase):
         self.user_one = User.objects.create(username="test", email="test@test.com", password="password123", is_active=True)
         self.blog_one = Blog.objects.create(name="test_blog_one", url="www.blogone.com", author="test_author_one", genre="IT",
                                             language="test_language")
+        self.blog_subscriber_one = BlogSubscriber.objects.create(blog=self.blog_one, user=self.user_one)
 
         self.valid_payload_login = {
             "username": "test2",
