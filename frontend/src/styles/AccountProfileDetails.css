@@ -1,0 +1,55 @@
+/* ACCOUNT PROFILE DETAILS STYLES */
+
+.account-profile-details-page {
+    flex: 1;
+}
+
+.account-profile-details {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.account-profile-details-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background: rgba(55, 113, 189, 0.85);
+}
+
+.account-profile-details-body {
+    display: inline-flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    padding: 1.25rem;
+    min-height: 1px;
+}
+
+.account-profile-details-photo {
+    text-align: center;
+    margin: 20px;
+    width: 200px;
+    min-height: 120px;
+}
+
+.account-profile-details-text {
+    text-align: left;
+    margin: 20px;
+    flex-grow: 3;
+}
+
+.account-profile-details-stats {
+    text-align: left;
+    margin: 20px;
+    flex-grow: 3;
+}
+
+.account-profile-details-footer {
+    color: #6c757d;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+    background: rgba(55, 113, 189, 0.35);
+}

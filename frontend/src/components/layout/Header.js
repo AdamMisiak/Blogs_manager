@@ -60,7 +60,9 @@ const Header = () => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link className="no-link" to="/account/profile">Profile</Link>
+                    </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Link className="no-link" to="/account/blogs">Blogs</Link>
                     </MenuItem>
