@@ -1,0 +1,10 @@
+/* ABOUT PAGE STYLES */
+
+.about-page{
+    flex: 1;
+}
+
+.about {
+    margin-left: 20%;
+    margin-right: 20%;
+}
