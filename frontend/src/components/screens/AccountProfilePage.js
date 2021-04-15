@@ -1,60 +1,19 @@
-import emojiFlags from 'emoji-flags';
 import Moment from 'moment';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
-import ClipLoader from "react-spinners/ClipLoader";
-import { getBlogDetails } from '../../actions/BlogDetails';
-import { getBlogPhoto } from '../../actions/BlogPhotos';
-import { getBlogPosts } from '../../actions/BlogPosts';
-import { getSubscribedBlogs, postSubscribeBlog } from '../../actions/SubscribedBlogs';
-import { LightBlue } from "../../constants/Colors";
-import { LoaderSize, LoaderStyles } from "../../constants/Loader";
-import { DefaultPage } from "../../constants/Pagination";
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import '../../styles/AccountProfileDetails.css';
-import Alerts from '../layout/Alerts';
 import Breadcrumb from '../layout/Breadcrumb';
 
 
 function AccountProfilePage() {
-    const { id } = useParams();
-
-    const [page, setPage] = useState(DefaultPage);
-    const [subscribed, setSubscribed] = useState(false);
-
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
     const auth = useSelector(state => state.auth);
-    const subscribedBlogs = useSelector(state => state.subscribedBlogs);
-    const blogDetails = useSelector(state => state.blogDetails);
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getBlogPosts({
-            page: page,
-            blogId: id
-        }))
-        if (auth.isAuthenticated) {
-            dispatch(getSubscribedBlogs(auth.user.id))
-        }
-    }, [page])
-
-    useEffect(() => {
-        dispatch(getBlogDetails(id))
-        dispatch(getBlogPhoto(id))
-    }, [])
-
-    useEffect(() => {
-        subscribedBlogs.data.forEach(subscribedBlog => {
-            if (id == subscribedBlog.id) {
-                setSubscribed(true)
-            }
-        })
-    }, [])
-
-    const onClick = (e) => {
-        e.preventDefault();
-        dispatch(postSubscribeBlog(auth.user.id, id));
-        setSubscribed(!subscribed)
-    };
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
 
     if (!auth.isAuthenticated) return <Redirect to="/login" />
 
@@ -66,43 +25,32 @@ function AccountProfilePage() {
             <div className="account-profile-details card">
                 <div className="account-profile-details-header">
                     <h1>
-                        {blogDetails.name}
+                        {capitalizeFirstLetter(auth.user.username)}
                     </h1>
                 </div>
+                
                 <div className="account-profile-details-body">
+                    <div className="blog-details-photo"> 
+                        <div className="photo">
+                            <img src={protocol+"//"+hostname+":8000"+"/static/images/default-user-icon-4.jpeg"} alt="img" className="img-thumbnail" />
+                        </div>
+                    </div>
                     <div className="account-profile-details-text">
-                        Author: <b>{blogDetails.author}</b>
+                        Email: <b>{auth.user.email}</b>
                         <hr className="mt-2 mb-2"/>
-                        Genre: <b>{blogDetails.genre}</b>
+                        First name: <b>{auth.user.first_name}</b>
                         <hr className="mt-2 mb-2"/>
-                        Url: <b><a href={blogDetails.url} className="card-text no-link" target="_blank" rel="noreferrer">{blogDetails.url}</a></b>
-                        <hr className="mt-2 mb-2"/>
-                            {blogDetails.language === 'Polish' ? (
-                                <div>Language: <b>{blogDetails.language}<b></b>
-                                {" "}{emojiFlags.countryCode('PL').emoji}</b></div>
-                            ) : (
-                                <div>Language: <b>{blogDetails.language}
-                                {" "}{emojiFlags.countryCode('GB').emoji}</b></div>
-                            )}
+                        Last name: <b>{auth.user.last_name}</b>
                     </div>
                     <div className="account-profile-details-stats">
-                        Last post published: <b>{Moment(blogDetails.last_post_added).format('DD-MM-YYYY')}</b>
+                        Joined: <b>{Moment(auth.user.date_joined).format('DD-MM-YYYY')}</b>
                         <hr className="mt-2 mb-2"/>
-                        Published posts: <b>{blogDetails.blog_posts}</b>
+                        Subscribing blogs: <b>{auth.user.subscribing_number}</b>
                         <hr className="mt-2 mb-2"/>
-                        Average posts per month: <b>{blogDetails.blog_post_avg}</b>
-                        <hr className="mt-2 mb-2"/>
-                        Subscribers: <b>{blogDetails.subscribers}</b>
+                        Favourite genre: <b>{auth.user.favourite_genre}</b>
                     </div>
                 </div>
                 <div className="account-profile-details-footer">
-                    <div className="card-button">
-                        <button
-                            className={subscribed ? 'button unsubscribe-button' : 'button subscribe-button'} 
-                            onClick={onClick}>
-                            {subscribed ? 'Unsubscribe' : 'Subscribe'}
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

@@ -52,7 +52,7 @@ class LoginView(generics.GenericAPIView):
 class UserView(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = (TokenAuthentication,)
-    serializer_class = UserSerializer
+    serializer_class = UserDetailsSerializer
 
     def get_object(self):
         return self.request.user

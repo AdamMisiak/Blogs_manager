@@ -10,7 +10,6 @@ from users.views import UserViewSet
 router = routers.DefaultRouter()
 
 router.register(r'users', UserViewSet, basename='users')
-
 router.register(r'blogs', BlogViewSet, basename='blogs')
 router.register(r'blog_posts', BlogPostsViewSet, basename='blog_posts')
 router.register(r'blog_photos', BlogPhotoViewSet, basename='blog_photos')
