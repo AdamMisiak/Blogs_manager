@@ -41,9 +41,12 @@ jobs:
             coverage report
             coverage xml
           name: Running tests
-      - store_artifacts:
-          path: htmlcov
+      - run:
+          command: |
+          cd backend/blogs_manager 
+          python -m coverage xml
       - codecov/upload:
+          command: cd backend/blogs_manager 
           file: coverage.xml
           flags: blogs_manager
 
