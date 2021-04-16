@@ -1,6 +1,7 @@
 # Blogs manager
 
 [![CircleCI](https://circleci.com/gh/AdamMisiak/Blogs_manager.svg?style=svg)](https://circleci.com/gh/AdamMisiak/Blogs_manager)
+<a href="https://codecov.io/gh/AdamMisiak/Blogs_manager"><img src="https://codecov.io/gh/AdamMisiak/Blogs_manager/branch/master/graph/badge.svg" /></a>
 
 Live version: ...
 
