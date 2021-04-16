@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  codecov: codecov/codecov@1.0.2
 
 jobs:
   build-and-test:
@@ -42,6 +43,9 @@ jobs:
           name: Running tests
       - store_artifacts:
           path: htmlcov
+      - codecov/upload:
+          file: coverage.xml
+          flags: blogs_manager
 
 
 workflows:
