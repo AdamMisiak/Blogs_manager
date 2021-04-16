@@ -44,6 +44,7 @@ jobs:
       - run:
           command: |
             cd backend/blogs_manager 
+            ls
             python -m coverage xml
           name: Creating test coverage
       - codecov/upload:
