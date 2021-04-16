@@ -6,16 +6,19 @@ from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
 def check_favourite_genre(user):
-    favourite_blogs = {}
-    blogs = Blog.objects.filter(subscribed_by__user=user)
-    for blog in blogs:
-        if blog.genre in favourite_blogs.keys():
-            favourite_blogs[blog.genre] += 1
-        else:
-            favourite_blogs[blog.genre] = 1
-    number_of_favourite_genres = max(favourite_blogs.values())
-    favourite_genre = list(favourite_blogs.keys())[list(favourite_blogs.values()).index(max(favourite_blogs.values()))]
-    return favourite_genre
+    try:
+        favourite_blogs = {}
+        blogs = Blog.objects.filter(subscribed_by__user=user)
+        for blog in blogs:
+            if blog.genre in favourite_blogs.keys():
+                favourite_blogs[blog.genre] += 1
+            else:
+                favourite_blogs[blog.genre] = 1
+        number_of_favourite_genres = max(favourite_blogs.values())
+        favourite_genre = list(favourite_blogs.keys())[list(favourite_blogs.values()).index(max(favourite_blogs.values()))]
+        return favourite_genre
+    except:
+        return None
         
 
 class RegisterSerializer(serializers.ModelSerializer):

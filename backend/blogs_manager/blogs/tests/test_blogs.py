@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.test import APIRequestFactory
 
 from blogs.models import Blog, BlogPost
-from blogs.views import BlogViewSet
+from blogs.views import BlogViewSet, avg_number_of_posts_per_month
 
 
 class TestBlogs(TestCase):
@@ -17,6 +17,10 @@ class TestBlogs(TestCase):
                                             language="test_language")
         self.blog_post_one = BlogPost.objects.create(name="test_blog_post_one", url="www.blogpostone.com", blog=self.blog_one, 
                                                      date=datetime.datetime(2020, 10, 10, 10, 10, 10, tzinfo=timezone('Europe/Warsaw')))
+        self.blog_post_three = BlogPost.objects.create(name="test_blog_post_three", url="www.blogpostthree.com", blog=self.blog_one, 
+                                                     date=datetime.datetime(2020, 9, 10, 10, 10, 10, tzinfo=timezone('Europe/Warsaw')))
+        self.blog_post_four = BlogPost.objects.create(name="test_blog_post_four", url="www.blogpostfour.com", blog=self.blog_one, 
+                                                     date=datetime.datetime(2020, 9, 10, 10, 10, 11, tzinfo=timezone('Europe/Warsaw')))
 
         self.valid_payload = {
             'name': 'test_blog_two',
@@ -32,6 +36,10 @@ class TestBlogs(TestCase):
             'genre': "invalid_genre",
             'language': 1
         }
+
+    def test_avg_number_of_posts_per_month(self):
+        average = avg_number_of_posts_per_month(self.blog_one)
+        assert average == 1.5
                 
     def test_get_blogs(self):
         request =  self.factory.get('/api/blogs')
@@ -52,7 +60,7 @@ class TestBlogs(TestCase):
         assert response.data['blog_posts'] == BlogPost.objects.filter(blog=self.blog_one).count()
         assert response.data['last_post_added'] == self.blog_post_one.date
         assert response.data['subscribers'] == 0
-        assert response.data['blog_post_avg'] == 1.0
+        assert response.data['blog_post_avg'] == 1.5
 
     def test_post_blog(self):
         request =  self.factory.post(

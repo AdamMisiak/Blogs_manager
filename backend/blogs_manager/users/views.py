@@ -96,7 +96,7 @@ class BlogSubscriberView(generics.GenericAPIView):
 
         if not created:
             blog_subscriber.delete()
-            status="Unsubscribed"
+            status="unsubscribed"
 
         return Response({
             "blog": blog_id,

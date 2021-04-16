@@ -5,7 +5,7 @@ from rest_framework.test import APIRequestFactory
 
 from knox.models import AuthToken
 from users.models import User, BlogSubscriber
-from users.views import UserViewSet, LoginView, RegisterView
+from users.views import UserViewSet, LoginView, RegisterView, BlogSubscriberView
 from blogs.models import Blog, BlogPost
 
 
@@ -15,6 +15,8 @@ class TestUsers(TestCase):
         self.factory = APIRequestFactory()
         self.user_one = User.objects.create(username="test", email="test@test.com", password="password123", is_active=True)
         self.blog_one = Blog.objects.create(name="test_blog_one", url="www.blogone.com", author="test_author_one", genre="IT",
+                                            language="test_language")
+        self.blog_two = Blog.objects.create(name="test_blog_two", url="www.blogtwo.com", author="test_author_two", genre="IT",
                                             language="test_language")
         self.blog_subscriber_one = BlogSubscriber.objects.create(blog=self.blog_one, user=self.user_one)
 
@@ -28,6 +30,11 @@ class TestUsers(TestCase):
             "email": "test2@test.com",
             "password": "password123",
             "password2": "password123",
+        }
+
+        self.valid_payload_subscribe_blog = {
+            "blog": 2,
+            "user": 1,
         }
                 
     def test_get_users(self):
@@ -51,6 +58,41 @@ class TestUsers(TestCase):
         assert response.data['email'] == "test@test.com"
         assert not response.data['is_superuser']
 
+    def test_get_user_subscribed_blogs(self):
+        request =  self.factory.get('/api/users/{}/subscribed_blogs'.format(self.user_one.id))
+        response = UserViewSet.as_view({'get': 'subscribed_blogs'})(request, pk=self.user_one.id)
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data[0]['id'] == 1
+        assert response.data[0]['name'] == "test_blog_one"
+        assert response.data[0]['url'] == "www.blogone.com"
+        assert response.data[0]['author'] == "test_author_one"
+        assert response.data[0]['genre'] == "IT"
+
+    def test_post_subscribe_blog(self):
+        request =  self.factory.post(
+            '/api/blog_subscriber',
+            content_type='application/json',
+            data=json.dumps(self.valid_payload_subscribe_blog)
+        )
+        response = BlogSubscriberView.as_view()(request)
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['blog'] == 2
+        assert response.data['user'] == 1
+        assert response.data['status'] == "subscribed"
+
+        request =  self.factory.post(
+            '/api/blog_subscriber',
+            content_type='application/json',
+            data=json.dumps(self.valid_payload_subscribe_blog)
+        )
+        response = BlogSubscriberView.as_view()(request)
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['blog'] == 2
+        assert response.data['user'] == 1
+        assert response.data['status'] == "unsubscribed"
 
     def test_post_register(self):
         request =  self.factory.post(
