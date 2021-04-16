@@ -42,10 +42,7 @@ jobs:
             coverage xml
           name: Running tests
       - codecov/upload:
-          command: |
-            cd backend/blogs_manager 
-            ls
-          file: coverage.xml
+          file: './backend/blogs_manager/coverage.xml'
           flags: blogs_manager
 
 
