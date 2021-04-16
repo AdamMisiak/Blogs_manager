@@ -2,8 +2,7 @@ import datetime
 
 from django.test import TestCase
 from blogs.models import BlogPost, Blog
-from blogs.functions import month_string_to_date, get_info_from_inwestomat, get_info_from_niebezpiecznik, \
-                            get_info_from_just_geek_it, get_info_from_finanse_bardzo_osobiste
+from blogs.functions import *
 from users.functions import create_new_blog_post
 
 
@@ -28,8 +27,58 @@ class TestScrapingFunctions(TestCase):
         assert month_string_to_date('dec') == 12
         assert month_string_to_date('wrong') == 0
 
+    def test_get_info_from_pamietnik_gieldowy(self):
+        scraping_results = get_info_from_pamietnik_gieldowy()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
     def test_get_info_from_inwestomat(self):
         scraping_results = get_info_from_inwestomat()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_independent_trader(self):
+        scraping_results = get_info_from_independent_trader()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_usstocks(self):
+        scraping_results = get_info_from_usstocks()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_system_trader(self):
+        scraping_results = get_info_from_system_trader()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_spekulant(self):
+        scraping_results = get_info_from_system_trader()
 
         assert len(scraping_results) == 3
         assert type(scraping_results[0]) == str
@@ -47,6 +96,66 @@ class TestScrapingFunctions(TestCase):
         assert "://" in scraping_results[1]
         assert type(scraping_results[1]) == str
         assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_finanse_bardzo_osobiste(self):
+        scraping_results = get_info_from_finanse_bardzo_osobiste()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_mmazurek(self):
+        scraping_results = get_info_from_mmazurek()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_jak_oszczedzac_pieniadze(self):
+        scraping_results = get_info_from_jak_oszczedzac_pieniadze()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_ppbit(self):
+        scraping_results = get_info_from_ppbit()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_sunscrapers_web_development(self):
+        scraping_results = get_info_from_sunscrapers_web_development()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_sunscrapers_python(self):
+        scraping_results = get_info_from_sunscrapers_python()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date 
 
     def test_get_info_from_niebezpiecznik(self):
         scraping_results = get_info_from_niebezpiecznik()
