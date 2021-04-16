@@ -39,7 +39,7 @@ jobs:
             cd backend/blogs_manager 
             coverage run manage.py test
             coverage report
-            coverage html
+            coverage xml
           name: Running tests
       - store_artifacts:
           path: htmlcov
