@@ -43,6 +43,7 @@ jobs:
           name: Running tests
       - codecov/upload:
           file: './backend/blogs_manager/coverage.xml'
+          token: 57c0a1e6-4dfb-404b-8b2c-a1c5c8c47a97
           flags: blogs_manager
 
 
