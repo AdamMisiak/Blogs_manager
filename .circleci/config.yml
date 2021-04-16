@@ -41,13 +41,9 @@ jobs:
             coverage report
             coverage xml
           name: Running tests
-      - run:
-          command: |
-            cd backend/blogs_manager 
-            python -m coverage xml
-          name: Creating test coverage
       - codecov/upload:
-          file: coverage.xml
+          file: './backend/blogs_manager/coverage.xml'
+          token: 57c0a1e6-4dfb-404b-8b2c-a1c5c8c47a97
           flags: blogs_manager
 
 
