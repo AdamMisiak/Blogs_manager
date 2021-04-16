@@ -36,8 +36,13 @@ jobs:
           command: |
             . venv/bin/activate
             cd backend/blogs_manager 
-            python manage.py test
+            coverage run manage.py test
+            coverage report
+            coverage html
           name: Running tests
+      - store_artifacts:
+          path: htmlcov
+
 
 workflows:
   main:
