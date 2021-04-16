@@ -43,10 +43,10 @@ jobs:
           name: Running tests
       - run:
           command: |
-          cd backend/blogs_manager 
-          python -m coverage xml
+            cd backend/blogs_manager 
+            python -m coverage xml
+          name: Creating test coverage
       - codecov/upload:
-          command: cd backend/blogs_manager 
           file: coverage.xml
           flags: blogs_manager
 
