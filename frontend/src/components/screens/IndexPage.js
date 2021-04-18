@@ -26,6 +26,7 @@ function IndexPage() {
         }
     }, [auth])
 
+    // MOVED TO FILTERS
     // useEffect(() => {
     //     // dispatch(getBlogPosts(page))
     // }, [page])

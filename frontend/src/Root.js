@@ -7,7 +7,7 @@ import store from './store';
 const alertOptions = {
     timeout: 3000,
     position: 'top center'
-  }
+}
 
 export default props => {
     return (
