@@ -40,14 +40,14 @@ export const getBlogsRequest = () => {
     }
 }
 
-const getBlogsSuccess = blogs => {
+export const getBlogsSuccess = blogs => {
     return {
         type: GET_BLOGS_SUCCESS,
         payload: blogs
     }
 }
 
-const getBlogsFailure = () => {
+export const getBlogsFailure = () => {
     return {
         type: GET_BLOGS_FAILURE,
     }
