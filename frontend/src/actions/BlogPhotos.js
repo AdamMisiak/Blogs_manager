@@ -37,14 +37,14 @@ export const getBlogPhotoRequest = () => {
     }
 }
 
-const getBlogPhotoSuccess = blogPhoto => {
+export const getBlogPhotoSuccess = blogPhoto => {
     return {
         type: GET_BLOG_PHOTO_SUCCESS,
         payload: blogPhoto
     }
 }
 
-const getBlogPhotoFailure = () => {
+export const getBlogPhotoFailure = () => {
     return {
         type: GET_BLOG_PHOTO_FAILURE,
     }
