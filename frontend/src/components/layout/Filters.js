@@ -25,7 +25,6 @@ const Filters = ({
         }))
     }, [inputSearching, inputSorting, page])
 
-    // dodaj filtrowanie wedlug genre, author, itp
   return(
     <div className='filters'>
         <div className="filters-searching">

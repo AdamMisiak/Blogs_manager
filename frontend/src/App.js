@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { Route } from "react-router-dom";
-import { loadUser } from './actions/Auth';
 import PrivateRoute from "./components/common/PrivateRoute";
 import Alerts from "./components/layout/Alerts";
 import Footer from './components/layout/Footer';
@@ -13,15 +11,10 @@ import BlogsPage from './components/screens/BlogsPage';
 import IndexPage from './components/screens/IndexPage';
 import LoginPage from './components/screens/LoginPage';
 import RegisterPage from './components/screens/RegisterPage';
-import store from './store';
 import './styles/App.css';
 
 
 function App() {
-  useEffect(() => {
-    store.dispatch(loadUser())
-  }, [])
-  
   return (
     <div className="app">
       <Header />

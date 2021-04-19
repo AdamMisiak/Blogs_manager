@@ -22,18 +22,18 @@ export const getBlogPosts = ({page=1, blogId, name, ordering}) => {
                 ordering: ordering
             }
         })
-            .then(response => {
-                const blogPosts = response.data;
-                dispatch(getBlogPostsSuccess(blogPosts))
-            })
-            .catch(error => {
-                const errors = {
-                    message: error.response.request.statusText,
-                    status: error.response.status
-                };
-                dispatch(getErrors(errors))
-                dispatch(getBlogPostsFailure())
-            })
+        .then(response => {
+            const blogPosts = response.data;
+            dispatch(getBlogPostsSuccess(blogPosts))
+        })
+        .catch(error => {
+            const errors = {
+                message: error.response.request.statusText,
+                status: error.response.status
+            };
+            dispatch(getErrors(errors))
+            dispatch(getBlogPostsFailure())
+        })
     }
 }
 

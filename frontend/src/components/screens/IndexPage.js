@@ -44,12 +44,7 @@ function IndexPage() {
         <Filters 
             page={page}
         />
-        {blogPosts.loading ? (
-            <div className='loader'>
-                <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
-            </div> ) : ( null )}
-        {blogPosts.error ? (<div className='blogposts'></div> ) : ( null )}
-        {!blogPosts.loading && !blogPosts.error ? (
+        {!blogPosts.loading ? (
             <div className='blogposts'>
                 {blogPosts.data.map(blogPost => (
                     <BlogPost
@@ -57,7 +52,12 @@ function IndexPage() {
                         blogPost={blogPost}
                     />
                 ))}
-            </div> ) : ( null )}
+            </div>
+        ) : ( 
+            <div className='loader'>
+                <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
+            </div>
+        )}
         <div className='pagination'>
             <Pagination 
                 count={Math.floor(blogPosts.dataCount/BlogPostsPageSize)+1} 
