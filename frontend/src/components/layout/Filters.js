@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { getBlogPosts } from '../../actions/BlogPosts';
 import '../../styles/Filters.css';
 import SortingButton from '../common/SortingButton';
+import { faSyncAlt, } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const Filters = ({
@@ -36,6 +38,11 @@ const Filters = ({
                 </span>
             </div>
         </div>
+        <div className="filters-refreshing">
+            <button type="button" className="refreshing-button" >
+                Refresh <FontAwesomeIcon icon={faSyncAlt} />
+            </button>
+        </div>
         <div className="filters-sorting">
             <SortingButton sortBy="date" sortName="date" onSelectSorting={selectSortingHandler} />
             <SortingButton sortBy="name" sortName="name" onSelectSorting={selectSortingHandler} />
@@ -43,6 +50,7 @@ const Filters = ({
             <SortingButton sortBy="blog__name" sortName="blog" onSelectSorting={selectSortingHandler} />
         </div>
     </div>
+
   );
 }
 
