@@ -16,18 +16,18 @@ export const getBlogDetails = (id) => {
             url: 'api/blogs/' + id,
             baseURL: 'http://localhost:8000/',
         })
-            .then(response => {
-                const blogDetails = response.data;
-                dispatch(getBlogDetailsSuccess(blogDetails))
-            })
-            .catch(error => {
-                const errors = {
-                    message: error.response.request.statusText,
-                    status: error.response.status
-                };
-                dispatch(getErrors(errors))
-                dispatch(getBlogDetailsFailure())
-            })
+        .then(response => {
+            const blogDetails = response.data;
+            dispatch(getBlogDetailsSuccess(blogDetails))
+        })
+        .catch(error => {
+            const errors = {
+                message: error.response.request.statusText,
+                status: error.response.status
+            };
+            dispatch(getErrors(errors))
+            dispatch(getBlogDetailsFailure())
+        })
     }
 }
 
