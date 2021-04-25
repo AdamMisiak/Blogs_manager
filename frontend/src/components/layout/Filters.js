@@ -27,6 +27,15 @@ const Filters = ({
         }))
     }, [inputSearching, inputSorting, page])
 
+    const onClickHandler = (e) => {
+        e.preventDefault();
+        dispatch(getBlogPosts({
+            page: page,
+            name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+            ordering: inputSorting
+        }))
+    };
+
   return(
     <div className='filters'>
         <div className="filters-searching">
@@ -39,7 +48,7 @@ const Filters = ({
             </div>
         </div>
         <div className="filters-refreshing">
-            <button type="button" className="refreshing-button" >
+            <button type="button" className="refreshing-button" onClick={onClickHandler}>
                 Refresh <FontAwesomeIcon icon={faSyncAlt} />
             </button>
         </div>
