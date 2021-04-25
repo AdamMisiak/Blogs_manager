@@ -1,4 +1,9 @@
 import Moment from 'moment';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -48,6 +53,29 @@ function AccountProfilePage() {
                         Subscribing blogs: <b>{auth.user.subscribing_number}</b>
                         <hr className="mt-2 mb-2"/>
                         Favourite genre: <b>{auth.user.favourite_genre}</b>
+                    </div>
+                </div>
+                <div className="account-profile-details-options">
+                    <div className="account-profile-details-email-instant">
+                        <FormControlLabel
+                            control={<Checkbox color="primary" />}
+                            label="Instant email"
+                            labelPlacement="end"
+                        />
+                    </div>
+                    <div className="account-profile-details-email-summary-daily">
+                        <FormControlLabel
+                            control={<Checkbox color="primary" />}
+                            label="Daily summary email"
+                            labelPlacement="end"
+                        />
+                    </div>
+                    <div className="account-profile-details-email-summary-weekly">
+                        <FormControlLabel
+                            control={<Checkbox color="primary" />}
+                            label="Weekly summary email "
+                            labelPlacement="end"
+                        />
                     </div>
                 </div>
                 <div className="account-profile-details-footer">

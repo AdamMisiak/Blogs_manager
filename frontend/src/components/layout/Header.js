@@ -64,10 +64,8 @@ const Header = () => {
                       <Link className="no-link" to="/account/profile">Profile</Link>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <Link className="no-link" to="/account/blogs">Blogs</Link>
+                      <Link className="no-link" to="/account/blogs">Subscribing Blogs</Link>
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>Posts</MenuItem>
-                    <MenuItem onClick={handleClose}>Email Notifications</MenuItem>
                   </Menu>
                 </li>
                 <li className="nav-item justify-content-end">

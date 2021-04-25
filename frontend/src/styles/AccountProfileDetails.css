@@ -46,6 +46,22 @@
     flex-grow: 3;
 }
 
+.account-profile-details-options {
+    display: inline-flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    padding: 0 1.25rem 0.75rem 1.25rem;
+    min-height: 1px;
+}
+
+.account-profile-details-email-instant {
+    margin-left: 20px;
+}
+
+.account-profile-details-email-summary-weekly {
+    margin-right: 20px;
+}
+
 .account-profile-details-footer {
     color: #6c757d;
     padding: 0.75rem 1.25rem;
