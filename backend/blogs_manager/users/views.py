@@ -111,9 +111,17 @@ class EmailSettingView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 
-        print(request.data)
+        user_id = request.data['user']
+        email_frequency = request.data['emailSetting']
+
+        user = User.objects.get(id=user_id)
+        email_setting, created = EmailSetting.objects.get_or_create(
+            user=user,
+        )
+        email_setting.email_frequency = email_frequency
+        email_setting.save()
 
         return Response({
-            "user": 1,
-            "email_setting": "test",
+            "user": user_id,
+            "email_setting": email_frequency,
         })

@@ -3,13 +3,16 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Moment from 'moment';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { postEmailSetting } from '../../actions/EmailSetting';
 import '../../styles/AccountProfileDetails.css';
+import '../../styles/Filters.css';
 import Breadcrumb from '../layout/Breadcrumb';
 
 
 function AccountProfilePage() {
+    const dispatch = useDispatch();
     const protocol = window.location.protocol;
     const hostname = window.location.hostname;
     const auth = useSelector(state => state.auth);
@@ -20,7 +23,10 @@ function AccountProfilePage() {
 
     const onChangeHandler = (event) => {
         event.preventDefault();
-        console.log(event.currentTarget.value)
+        dispatch(postEmailSetting({
+            user: auth.user.id,
+            emailSetting: event.currentTarget.value,
+        }))
     };
 
     if (!auth.isAuthenticated) return <Redirect to="/login" />

@@ -4,6 +4,7 @@ import blogDetailsReducer from './BlogDetails';
 import blogPhotoReducer from './BlogPhotos';
 import blogPostsReducer from './BlogPosts';
 import blogsReducer from './Blogs';
+import emailSettingReducer from './EmailSetting';
 import errorReducer from './Errors';
 import messagesReducer from './Messages';
 import subscribeBlogReducer from './SubscribeBlog';
@@ -21,4 +22,5 @@ export default combineReducers({
     messages: messagesReducer,
     
     subscribeBlog: subscribeBlogReducer,
+    emailSetting: emailSettingReducer,
 });
