@@ -4,6 +4,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -18,7 +20,12 @@ function AccountProfilePage() {
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-      }
+    }
+
+    const onChangeHandler = (event) => {
+        event.preventDefault();
+        console.log(event.currentTarget.value)
+    };
 
     if (!auth.isAuthenticated) return <Redirect to="/login" />
 
@@ -55,29 +62,34 @@ function AccountProfilePage() {
                         Favourite genre: <b>{auth.user.favourite_genre}</b>
                     </div>
                 </div>
+                <RadioGroup row aria-label="position" name="position" defaultValue="daily" onChange={onChangeHandler}>
                 <div className="account-profile-details-options">
                     <div className="account-profile-details-email-instant">
                         <FormControlLabel
-                            control={<Checkbox color="primary" />}
+                            value="instant"
+                            control={<Radio color="primary" />}
                             label="Instant email"
                             labelPlacement="end"
                         />
                     </div>
                     <div className="account-profile-details-email-summary-daily">
                         <FormControlLabel
-                            control={<Checkbox color="primary" />}
+                            value="daily"
+                            control={<Radio color="primary" />}
                             label="Daily summary email"
                             labelPlacement="end"
                         />
                     </div>
                     <div className="account-profile-details-email-summary-weekly">
                         <FormControlLabel
-                            control={<Checkbox color="primary" />}
+                            value="weekly"
+                            control={<Radio color="primary" />}
                             label="Weekly summary email"
                             labelPlacement="end"
                         />
                     </div>
                 </div>
+                </RadioGroup>
                 <div className="account-profile-details-footer">
                 </div>
             </div>
