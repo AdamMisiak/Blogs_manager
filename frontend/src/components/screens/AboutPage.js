@@ -27,6 +27,11 @@ function AboutPage() {
                 - Get an email when new post is released<br></br>
                 - Change settings of email newsletter<br></br>
                 - Send us another blogs you want us to add<br></br>
+            <hr className="my-3"></hr>
+                Email notification types:<br></br>
+                - Instant mail - Email will be send when new blog post appears - email will contains information about one blog post<br></br>
+                - Daily summary mail - Email will be send at 8 pm every day - email will contains information about all blog post from one day<br></br>
+                - Weekly summary mail - Email will be send at 8 pm at Sunday - email will contains information about all blog post from one week<br></br>
         </div>
     </div>
     )

@@ -73,7 +73,7 @@ function AccountProfilePage() {
                     <div className="account-profile-details-email-summary-weekly">
                         <FormControlLabel
                             control={<Checkbox color="primary" />}
-                            label="Weekly summary email "
+                            label="Weekly summary email"
                             labelPlacement="end"
                         />
                     </div>
