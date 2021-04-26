@@ -42,6 +42,9 @@ function Alerts({
         if (message.subscribeBlog) {
             alert.success('Blog ' + message.subscribeBlog + ' successfully')
         }
+        if (message.emailSetting) {
+            alert.success('Email frequency set to ' + message.emailSetting)
+        }
     }, [message])
 
 

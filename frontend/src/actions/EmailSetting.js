@@ -25,7 +25,7 @@ export const postEmailSetting = ({user, emailSetting}) => {
         .then(response => {
             const emailSetting = response.data;
             dispatch(postEmailSettingSuccess(emailSetting))
-            // dispatch(createMessage({emailSetting: emailSetting.status}))
+            dispatch(createMessage({emailSetting: emailSetting.status}))
         })
         .catch(error => {
             const errors = {

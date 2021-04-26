@@ -123,5 +123,5 @@ class EmailSettingView(generics.GenericAPIView):
 
         return Response({
             "user": user_id,
-            "email_setting": email_frequency,
+            "status": email_frequency,
         })
