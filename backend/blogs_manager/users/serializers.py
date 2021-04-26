@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 
-from users.models import User, BlogSubscriber
+from users.models import User, BlogSubscriber, EmailSetting
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 
@@ -75,3 +75,8 @@ class BlogSubscriberSerializer(serializers.ModelSerializer):
         model = BlogSubscriber
         fields = '__all__'
 
+class EmailSettingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EmailSetting
+        fields = '__all__'

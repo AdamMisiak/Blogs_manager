@@ -10,10 +10,10 @@ from knox.auth import TokenAuthentication
 from blogs_manager.pagination import BlogPageNumberPagination
 from blogs.models import Blog
 from blogs.serializers import BlogSerializer
-from users.models import BlogSubscriber
+from users.models import BlogSubscriber, EmailSetting
 from users.filters import BlogSubscriberFilter
 from users.serializers import UserDetailsSerializer, UserSerializer, BlogSubscriberSerializer, \
-                              RegisterSerializer, LoginSerializer
+                              RegisterSerializer, LoginSerializer, EmailSettingSerializer
                               
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -102,4 +102,18 @@ class BlogSubscriberView(generics.GenericAPIView):
             "blog": blog_id,
             "user": user_id,
             "status": status
+        })
+
+
+class EmailSettingView(generics.GenericAPIView):
+    serializer_class = EmailSettingSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        print(request.data)
+
+        return Response({
+            "user": 1,
+            "email_setting": "test",
         })

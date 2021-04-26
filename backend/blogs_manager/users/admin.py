@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogSubscriber
+from .models import BlogSubscriber, EmailSetting
 
 
 class BlogSubscriberAdmin(admin.ModelAdmin):
@@ -9,6 +9,17 @@ class BlogSubscriberAdmin(admin.ModelAdmin):
     search_fields = ("blog", "user")
     list_per_page = 25
 
+
+class EmailSettingAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "email_frequency")
+    list_display_links = ("id", "user")
+    list_filter = ("user", "email_frequency")
+    search_fields = ("user", )
+    list_per_page = 25
+
+
 admin.site.register(BlogSubscriber, BlogSubscriberAdmin)
+admin.site.register(EmailSetting, EmailSettingAdmin)
+
 
 

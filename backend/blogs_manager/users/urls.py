@@ -1,6 +1,6 @@
 from django.urls import path, include
 from knox import views as knox_views
-from .views import RegisterView, LoginView, UserView, BlogSubscriberView
+from .views import RegisterView, LoginView, UserView, BlogSubscriberView, EmailSettingView
 
 urlpatterns = [
     path('api/auth/register', RegisterView.as_view()),
@@ -10,4 +10,6 @@ urlpatterns = [
     path('api/auth', include('knox.urls')),
     # POST TO SUBSCRIBE BLOG BY USER
     path('api/blog_subscriber', BlogSubscriberView.as_view()),
+    # POST TO CHANGE EMAIL NEWSLETTER SETTING
+    path('api/email_setting', EmailSettingView.as_view()),
 ]

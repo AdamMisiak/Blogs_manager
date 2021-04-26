@@ -17,4 +17,12 @@ class BlogSubscriber(models.Model):
     def __str__(self):
         return '{} subscribed by {}'.format(self.blog, self.user)
 
+FREQUENCY_CHOICES = (
+    ("instant", "Instant"),
+    ("daily", "Daily"),
+    ("weekly", "Weekly"),
+)
 
+class EmailSetting(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='email_setting')
+    email_frequency = models.CharField(choices=FREQUENCY_CHOICES, default="daily", max_length=100)
