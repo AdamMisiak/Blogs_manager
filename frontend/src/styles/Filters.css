@@ -20,6 +20,7 @@
 
 .filters-refreshing {
     display: flex;
+    padding: 1rem 2rem 1rem 2rem;
 }
 
 .refreshing-button {
@@ -36,8 +37,11 @@
 
 .filters-sorting {
     display: flex;
-    justify-content: space-between;
+    flex-direction:row;
     flex: 1;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: flex-end;
     padding: 1rem;
     text-align: center;
 }
@@ -45,6 +49,7 @@
 .sorting-button {
     align-self: center;
     font-size: 0.85rem;
+    margin: 0 1rem;
     padding: 0.375rem 0.65rem;
     color: black;
     border: 1px solid transparent;
