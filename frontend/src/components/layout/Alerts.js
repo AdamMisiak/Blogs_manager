@@ -24,6 +24,9 @@ function Alerts({
         if (error.status === 404) {
             alert.error(error.status + ': ' + error.message)
         }
+        if (error.message && error.status === "") {
+            alert.error(error.message)
+        }
     }, [error]);
 
     useEffect(() => {

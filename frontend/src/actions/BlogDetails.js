@@ -22,8 +22,8 @@ export const getBlogDetails = (id) => {
         })
         .catch(error => {
             const errors = {
-                message: error.response.request.statusText,
-                status: error.response.status
+                message: error.response ? error.response.request.statusText : 'Something went wrong, please refresh',
+                status: error.response ? error.response.status : ""
             };
             dispatch(getErrors(errors))
             dispatch(getBlogDetailsFailure())
