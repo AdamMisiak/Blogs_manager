@@ -45,7 +45,6 @@ CORS_ALLOW_HEADERS = default_headers + (
     'access-control-allow-origin',
 )
 
-
 # Application definition
 
 INSTALLED_APPS = [

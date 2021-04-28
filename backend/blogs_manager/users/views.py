@@ -8,8 +8,8 @@ from knox.models import AuthToken
 from knox.auth import TokenAuthentication
 
 from blogs_manager.pagination import BlogPageNumberPagination
-from blogs.models import Blog
-from blogs.serializers import BlogSerializer
+from blogs.models import Blog, BlogPost
+from blogs.serializers import BlogSerializer, BlogPostSerializer
 from users.models import BlogSubscriber, EmailSetting
 from users.filters import BlogSubscriberFilter
 from users.serializers import UserDetailsSerializer, UserSerializer, BlogSubscriberSerializer, \
@@ -73,6 +73,13 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         subscribed_blogs = Blog.objects.filter(subscribed_by__user=instance)
         serializer = BlogSerializer(subscribed_blogs, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['get'], detail=True)
+    def subscribed_blog_posts(self, request, *args, **kwargs):
+        instance = self.get_object()
+        subscribed_blog_posts = BlogPost.objects.filter(blog__subscribed_by__user=instance)
+        serializer = BlogPostSerializer(subscribed_blog_posts, many=True)
         return Response(serializer.data)
 
 
