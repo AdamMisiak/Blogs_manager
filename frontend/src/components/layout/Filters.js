@@ -3,18 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getBlogPosts } from '../../actions/BlogPosts';
-import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
+import { getSubscribedBlogPosts } from '../../actions/SubscribedBlogPosts';
 import '../../styles/Filters.css';
 import SortingButton from '../common/SortingButton';
 
 
 
 const Filters = ({
-    page
+    page,
+    onSubscribedOnly
 }) => {
     const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth);
     const [inputSearching, setInputSearching] = useState("")
     const [inputSorting, setInputSorting] = useState("")
     const [inputSubscribedOnly, setInputSubscribedOnly] = useState(false)
@@ -32,8 +34,9 @@ const Filters = ({
 
     const onClickHandler = (event) => {
         event.preventDefault();
-        if (inputSubscribedOnly) {
-            dispatch(getSubscribedBlogs(page));
+        if (inputSubscribedOnly && auth.user) {
+            dispatch(getSubscribedBlogPosts(auth.user.id));
+            onSubscribedOnly(true)
         }
         else {
             dispatch(getBlogPosts({
@@ -41,13 +44,12 @@ const Filters = ({
                 name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
                 ordering: inputSorting
             }));
+            onSubscribedOnly(false)
         }
     };
 
     const onChangeHandler = () => {
-        
         setInputSubscribedOnly(!inputSubscribedOnly)
-        console.log(inputSubscribedOnly)
     };
 
   return(

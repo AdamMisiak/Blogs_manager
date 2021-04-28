@@ -1,7 +1,5 @@
 import { faSignInAlt, faSignOutAlt, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -13,11 +11,6 @@ import "../../styles/Header.css";
 const Header = () => {
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = event => setAnchorEl(event.currentTarget);
-
-  const handleClose = () => setAnchorEl(null);
 
   const handleLogout = event => {
     event.preventDefault();

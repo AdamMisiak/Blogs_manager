@@ -18,7 +18,9 @@ function IndexPage() {
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const blogPosts = useSelector(state => state.blogPosts);
+    const subscribedBlogPosts = useSelector(state => state.subscribedBlogPosts);
     const [page, setPage] = useState(DefaultPage);
+    const [subscribedOnlyMode, setSubscribedOnlyMode] = useState(false);
     
     useEffect(() => {
         if (auth.user){
@@ -39,24 +41,42 @@ function IndexPage() {
     <div className='index-page'>
         <Showcase />
         <Breadcrumb 
-            current='Latest'
+            current='Latest' 
         />
         <Filters 
             page={page}
+            onSubscribedOnly={setSubscribedOnlyMode}
         />
-        {!blogPosts.loading ? (
-            <div className='blogposts'>
-                {blogPosts.data.map(blogPost => (
-                    <BlogPost
-                        key={blogPost.id}
-                        blogPost={blogPost}
-                    />
-                ))}
-            </div>
-        ) : ( 
-            <div className='loader'>
-                <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
-            </div>
+        { subscribedOnlyMode ? (
+            !subscribedBlogPosts.loading ? (
+                <div className='blogposts'>
+                    {subscribedBlogPosts.data.map(blogPost => (
+                        <BlogPost
+                            key={blogPost.id}
+                            blogPost={blogPost}
+                        />
+                    ))}
+                </div>
+            ) : ( 
+                <div className='loader'>
+                    <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
+                </div>
+            )
+        ) : (
+            !blogPosts.loading ? (
+                <div className='blogposts'>
+                    {blogPosts.data.map(blogPost => (
+                        <BlogPost
+                            key={blogPost.id}
+                            blogPost={blogPost}
+                        />
+                    ))}
+                </div>
+            ) : ( 
+                <div className='loader'>
+                    <ClipLoader color={LightBlue} loading={true} css={LoaderStyles} size={LoaderSize} />
+                </div>
+            )
         )}
         <div className='pagination'>
             <Pagination 
