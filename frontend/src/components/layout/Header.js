@@ -47,26 +47,10 @@ const Header = () => {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             {auth.isAuthenticated ? (
               <ul className="navbar-nav">
-                <li onClick={handleClick} className="nav-item justify-content-end">
-                  <div className='nav-link'>
-                    <FontAwesomeIcon icon={faUser} /> Account
-                  </div>
-                </li>
                 <li className="nav-item justify-content-end">
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>
-                      <Link className="no-link" to="/account/profile">Profile</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>
-                      <Link className="no-link" to="/account/blogs">Subscribing Blogs</Link>
-                    </MenuItem>
-                  </Menu>
+                  <Link className="nav-link" to="/account/profile">
+                    <FontAwesomeIcon icon={faUser} /> Profile
+                  </Link>
                 </li>
                 <li className="nav-item justify-content-end">
                   <Link onClick={handleLogout} className="nav-link" to="/">

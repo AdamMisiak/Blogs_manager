@@ -1,11 +1,13 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getBlogPosts } from '../../actions/BlogPosts';
+import { getSubscribedBlogs } from '../../actions/SubscribedBlogs';
 import '../../styles/Filters.css';
 import SortingButton from '../common/SortingButton';
-import { faSyncAlt, } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -15,6 +17,7 @@ const Filters = ({
     const dispatch = useDispatch();
     const [inputSearching, setInputSearching] = useState("")
     const [inputSorting, setInputSorting] = useState("")
+    const [inputSubscribedOnly, setInputSubscribedOnly] = useState(false)
     
     const inputSearchingHandler = event => setInputSearching(event.target.value);
     const selectSortingHandler = value => setInputSorting(value)
@@ -27,13 +30,24 @@ const Filters = ({
         }))
     }, [inputSearching, inputSorting, page])
 
-    const onClickHandler = (e) => {
-        e.preventDefault();
-        dispatch(getBlogPosts({
-            page: page,
-            name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
-            ordering: inputSorting
-        }))
+    const onClickHandler = (event) => {
+        event.preventDefault();
+        if (inputSubscribedOnly) {
+            dispatch(getSubscribedBlogs(page));
+        }
+        else {
+            dispatch(getBlogPosts({
+                page: page,
+                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+                ordering: inputSorting
+            }));
+        }
+    };
+
+    const onChangeHandler = () => {
+        
+        setInputSubscribedOnly(!inputSubscribedOnly)
+        console.log(inputSubscribedOnly)
     };
 
   return(
@@ -46,6 +60,15 @@ const Filters = ({
                     <FontAwesomeIcon icon={faSearch} />
                 </span>
             </div>
+        </div>
+        <div className="filters-subscribed-only">
+            <FormControlLabel
+                value="daily"
+                onChange={onChangeHandler}
+                control={<Checkbox color="default" />}
+                label="Subscribed only"
+                labelPlacement="end"
+            />
         </div>
         <div className="filters-refreshing">
             <button type="button" className="refreshing-button" onClick={onClickHandler}>
