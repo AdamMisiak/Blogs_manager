@@ -35,7 +35,12 @@ const Filters = ({
     const onClickHandler = (event) => {
         event.preventDefault();
         if (inputSubscribedOnly && auth.user) {
-            dispatch(getSubscribedBlogPosts(auth.user.id));
+            dispatch(getSubscribedBlogPosts({
+                page: page,
+                userId: auth.user.id,
+                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+                ordering: inputSorting,  
+            }));
             onSubscribedOnly(true)
         }
         else {

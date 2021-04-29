@@ -4,7 +4,7 @@ from django.conf.urls import re_path, include
 
 from rest_framework import routers
 
-from blogs.views import BlogViewSet, BlogPostsViewSet, BlogPhotoViewSet
+from blogs.views import BlogViewSet, BlogPostsViewSet, BlogPhotoViewSet, SubscribedBlogPostsViewSet
 from users.views import UserViewSet
 
 router = routers.DefaultRouter()
@@ -12,6 +12,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename='users')
 router.register(r'blogs', BlogViewSet, basename='blogs')
 router.register(r'blog_posts', BlogPostsViewSet, basename='blog_posts')
+router.register(r'subscribed_blog_posts', SubscribedBlogPostsViewSet, basename='subscribed_blog_posts')
 router.register(r'blog_photos', BlogPhotoViewSet, basename='blog_photos')
 
 urlpatterns = [

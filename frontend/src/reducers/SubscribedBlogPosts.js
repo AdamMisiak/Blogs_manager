@@ -20,7 +20,10 @@ const subscribedBlogPostsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                data: action.payload, 
+                data: action.payload.results,
+                dataCount: action.payload.count,
+                next: action.payload.next,
+                previous: action.payload.previous  
             };
         case GET_SUBSCRIBED_BLOG_POSTS_FAILURE:
             return {

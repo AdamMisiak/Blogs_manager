@@ -29,8 +29,7 @@ const blogPostsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                data: []
-                
+                data: [],
             };
         default:
             return state;

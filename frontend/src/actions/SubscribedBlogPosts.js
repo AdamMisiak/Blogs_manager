@@ -8,15 +8,19 @@ import {
 } from './Types';
 
 
-export const getSubscribedBlogPosts = (user, page=1) => {
+export const getSubscribedBlogPosts = ({page=1, userId, blogId, name, ordering}) => {
     return (dispatch) => {
         dispatch(getSubscribedBlogPostsRequest())
         axios({
             method: 'get',
-            url: 'api/users/' + user + '/subscribed_blog_posts',
+            url: 'api/subscribed_blog_posts',
             baseURL: 'http://localhost:8000/',
             params: {
                 page: page,
+                user_id: userId,
+                blog_id: blogId,
+                name: name,
+                ordering: ordering
             }
         })
         .then(response => {
@@ -41,10 +45,10 @@ export const getSubscribedBlogPostsRequest = () => {
     }
 }
 
-const getSubscribedBlogPostsSuccess = blogs => {
+const getSubscribedBlogPostsSuccess = blogPosts => {
     return {
         type: GET_SUBSCRIBED_BLOG_POSTS_SUCCESS,
-        payload: blogs
+        payload: blogPosts
     }
 }
 
