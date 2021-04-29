@@ -84,10 +84,6 @@
   background-color: rgba(0, 0, 0, 0.03);
 }
 
-
-
-
-
 .subscribe {
   font-size: 13.7px;
 }
@@ -118,4 +114,49 @@
   color: black;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
   transition-duration: 0.4s;
+}
+
+
+@media only screen and (max-width: 1830px) {
+  .blog-post {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    margin-left: 16%;
+    margin-right: 16%;
+  }
+
+  .blog-post-header {
+    font-size: 1.1rem;
+    padding: 0.70rem 1.20rem;
+  }
+
+  
+  .subscribed-sign {
+    font-size: 0.6rem;
+  }
+  
+  .new-sign {
+    font-size: 0.6rem;
+  }
+  
+  .blog-post-body {
+    min-height: 0.9px;
+    padding: 1.15rem;
+  }
+  
+  .blog-post-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .blog-post-text {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+  
+  .blog-post-footer {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
 }

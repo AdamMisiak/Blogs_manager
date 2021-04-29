@@ -81,3 +81,66 @@ label {
     border-color: #8b8b8b;
     background-color: #9d9a9a;
 }
+
+
+@media only screen and (max-width: 1830px) {
+    .filters {
+        margin-top: 0.7rem;
+        margin-left: 16%;
+        margin-right: 16%;
+        border-radius: 0.7rem;
+    }
+
+    .filters-searching {
+        padding: 0.8rem;
+    }
+
+    .form-control {
+        height: calc(1.5em + 0.75rem + 2px) * 0.9;
+        padding: 0.35rem 0.65rem;
+        font-size: 0.9rem;
+        font-weight: 350;
+        line-height: 1.3;
+    }
+
+    .input-group-text {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.9rem;
+        font-weight: 350;
+        line-height: 1.3;
+    }
+
+    .MuiSvgIcon-root {
+        width: 0.9em !important;
+        height: 0.9em !important;
+    }
+
+    .MuiTypography-body1 {
+        font-size: 0.9rem !important;
+        font-weight: 350 !important;
+        line-height: 1.3 !important;
+    }
+
+    .refreshing-button {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+    }
+    
+    .filters-sorting {
+        padding: 0.8rem;
+    }
+
+    .sorting-button {
+        font-size: 0.75rem;
+        margin: 0 0.25rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .svg-inline--fa.fa-w-10 {
+        width: 0.61em;
+    }
+
+    .svg-inline--fa {
+        height: 0.95em;
+    }
+}

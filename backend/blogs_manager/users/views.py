@@ -69,6 +69,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = UserDetailsSerializer(instance)
         return Response(serializer.data)
 
+    # separated endpoint for this action
     @action(methods=['get'], detail=True)
     def subscribed_blogs(self, request, *args, **kwargs):
         instance = self.get_object()

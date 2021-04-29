@@ -24,3 +24,21 @@
 .secondary{
     font-size: 1.5rem;
 }
+
+
+@media only screen and (max-width: 1830px) {
+    .showcase {
+        padding: 2.5rem;
+        min-height: 140px; 
+    }
+
+    .display-4 {
+        font-size: 3rem;
+        font-weight: 270;
+        line-height: 1;
+    }
+
+    .secondary {
+        font-size: 1.2rem;
+    }
+}
