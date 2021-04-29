@@ -44,7 +44,7 @@ function AccountProfilePage() {
                 </div>
                 
                 <div className="account-profile-details-body">
-                    <div className="blog-details-photo"> 
+                    <div className="account-profile-details-photo"> 
                         <div className="photo">
                             <img src={protocol+"//"+hostname+":8000/blogs_manager/static/img/default-user-icon-4.jpeg"} alt="img" className="img-thumbnail" />
                         </div>
