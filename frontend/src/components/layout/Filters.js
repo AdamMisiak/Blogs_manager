@@ -24,7 +24,7 @@ const Filters = ({
     const inputSearchingHandler = event => setInputSearching(event.target.value);
     const selectSortingHandler = value => setInputSorting(value)
 
-    useEffect(() => {
+    const getProperBlogPosts = () => {
         if (inputSubscribedOnly && auth.user) {
             dispatch(getSubscribedBlogPosts({
                 page: page,
@@ -42,48 +42,20 @@ const Filters = ({
             }));
             onSubscribedOnly(false)
         }
+    }
+
+    useEffect(() => {
+        getProperBlogPosts();
     }, [inputSubscribedOnly, inputSearching, inputSorting, page])
 
     const onClickHandler = (event) => {
         event.preventDefault();
-        if (inputSubscribedOnly && auth.user) {
-            dispatch(getSubscribedBlogPosts({
-                page: page,
-                userId: auth.user.id,
-                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
-                ordering: inputSorting,  
-            }));
-            onSubscribedOnly(true)
-        }
-        else {
-            dispatch(getBlogPosts({
-                page: page,
-                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
-                ordering: inputSorting
-            }));
-            onSubscribedOnly(false)
-        }
+        getProperBlogPosts();
     };
 
     const onChangeHandler = () => {
         setInputSubscribedOnly(!inputSubscribedOnly)
-        if (inputSubscribedOnly && auth.user) {
-            dispatch(getSubscribedBlogPosts({
-                page: page,
-                userId: auth.user.id,
-                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
-                ordering: inputSorting,  
-            }));
-            onSubscribedOnly(true)
-        }
-        else {
-            dispatch(getBlogPosts({
-                page: page,
-                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
-                ordering: inputSorting
-            }));
-            onSubscribedOnly(false)
-        }
+        getProperBlogPosts();
     };
 
   return(
