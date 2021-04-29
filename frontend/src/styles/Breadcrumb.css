@@ -40,10 +40,31 @@
     }
 
     .breadcrumb-list {
-        padding: 0.1.85rem 0.9rem;
+        padding: 0.185rem 0.9rem;
     }
 
     .svg-inline--fa.fa-w-18 {
         width: 1.115em;
     }
 }
+
+@media only screen and (max-width: 992px) {
+    .breadcrumb {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 0.8rem;
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+
+    .breadcrumb-list {
+        padding: 0.16rem 0.8rem;
+    }
+
+    .svg-inline--fa.fa-w-18 {
+        width: 1em;
+    }
+}
+

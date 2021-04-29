@@ -123,7 +123,7 @@
 
   .blog-post-header {
     font-size: 1.1rem;
-    padding: 0.70rem 1.20rem;
+    padding: 0.7rem 1.2rem;
   }
 
   
@@ -154,5 +154,62 @@
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
   }
+}
+
+@media only screen and (max-width: 992px) {
+  .blog-post {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .blog-post-header {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .blog-post-header-info {
+    width: 18%;
+  }
   
+  .blog-post-header-title {
+    width: 64%;
+  }
+  
+  .blog-post-header-sign {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;;
+    width: 18%;
+  }
+
+  .subscribed-sign {
+    font-size: 0.45rem;
+  }
+  
+  .new-sign {
+    font-size: 0.45rem;
+  }
+  
+  .blog-post-body {
+    min-height: 0.7px;
+    padding: 1rem;
+  }
+  
+  .blog-post-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .blog-post-text {
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .blog-post-footer {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
+  } 
 }
