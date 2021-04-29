@@ -15,3 +15,21 @@
         margin-right: 16%;
     }
 }
+
+@media only screen and (max-width: 992px) {
+    .about {
+        font-size: 0.9rem;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .about h1 {
+        font-size: 2.3rem;
+        font-weight: 250;
+        line-height: 0.8;
+    }
+
+    .lead {
+        font-size: 1.2rem;
+    }
+}

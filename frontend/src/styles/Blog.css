@@ -79,6 +79,7 @@
   .blog-body {
     padding: 1.2rem;
     min-height: 0.9px;
+    font-size: 0.9rem;
   }
   
   .blog-title {
@@ -98,5 +99,44 @@
   
   .blog-button {
     font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .blog {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+  .blog-header {
+    font-size: 16px;
+    padding: 0.6rem 1.1rem;
+  }
+  
+  .blog-body {
+    padding: 1.1rem;
+    min-height: 0.8px;
+    font-size: 0.8rem;
+  }
+  
+  .blog-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .blog-text {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+  
+  .blog-footer {
+    font-size: 0.7rem;
+    padding: 0.6rem 1.1rem;
+  }
+  
+  .blog-button {
+    font-size: 14px;
   }
 }
