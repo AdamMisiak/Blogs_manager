@@ -25,12 +25,24 @@ const Filters = ({
     const selectSortingHandler = value => setInputSorting(value)
 
     useEffect(() => {
-        dispatch(getBlogPosts({
-            page: page,
-            name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
-            ordering: inputSorting
-        }))
-    }, [inputSearching, inputSorting, page])
+        if (inputSubscribedOnly && auth.user) {
+            dispatch(getSubscribedBlogPosts({
+                page: page,
+                userId: auth.user.id,
+                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+                ordering: inputSorting,  
+            }));
+            onSubscribedOnly(true)
+        }
+        else {
+            dispatch(getBlogPosts({
+                page: page,
+                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+                ordering: inputSorting
+            }));
+            onSubscribedOnly(false)
+        }
+    }, [inputSubscribedOnly, inputSearching, inputSorting, page])
 
     const onClickHandler = (event) => {
         event.preventDefault();
@@ -55,6 +67,23 @@ const Filters = ({
 
     const onChangeHandler = () => {
         setInputSubscribedOnly(!inputSubscribedOnly)
+        if (inputSubscribedOnly && auth.user) {
+            dispatch(getSubscribedBlogPosts({
+                page: page,
+                userId: auth.user.id,
+                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+                ordering: inputSorting,  
+            }));
+            onSubscribedOnly(true)
+        }
+        else {
+            dispatch(getBlogPosts({
+                page: page,
+                name: inputSearching && inputSearching.length > 1 ? inputSearching : undefined,
+                ordering: inputSorting
+            }));
+            onSubscribedOnly(false)
+        }
     };
 
   return(
