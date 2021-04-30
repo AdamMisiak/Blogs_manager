@@ -9,9 +9,13 @@ import thunk from 'redux-thunk';
 import { loadUser } from './actions/Auth';
 import rootReducer from './reducers';
 
+
 const alertOptions = {
     timeout: 3000,
-    position: 'top center'
+    position: 'top center',
+    containerStyle: {
+        fontSize: 15
+    }
 }
 
 const middleware = [thunk];
