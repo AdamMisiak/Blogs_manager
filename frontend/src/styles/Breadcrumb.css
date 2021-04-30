@@ -28,7 +28,7 @@
 }
 
 
-@media only screen and (max-width: 1830px) {
+@media only screen and (max-width: 1840px) {
     .breadcrumb {
         margin-left: 16%;
         margin-right: 16%;
@@ -45,6 +45,26 @@
 
     .svg-inline--fa.fa-w-18 {
         width: 1.115em;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .breadcrumb {
+        margin-left: 12%;
+        margin-right: 12%;
+        margin-bottom: 0.85rem;
+        margin-top: 0.85rem;
+        font-size: 0.85rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+
+    .breadcrumb-list {
+        padding: 0.17rem 0.85rem;
+    }
+
+    .svg-inline--fa.fa-w-18 {
+        width: 1em;
     }
 }
 

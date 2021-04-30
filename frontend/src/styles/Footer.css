@@ -4,7 +4,7 @@
     font-size: 1rem;
   }
   
-@media only screen and (max-width: 1830px) {
+@media only screen and (max-width: 1840px) {
     .footer {
         font-size: 0.9rem;
     }
