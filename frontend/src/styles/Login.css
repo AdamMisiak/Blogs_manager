@@ -44,6 +44,36 @@
     }
 }
 
+
+@media only screen and (max-width: 1400px) {
+    .login{
+        padding-left: 12%;
+        padding-right: 12%;
+        padding-bottom: 2.3rem;
+        padding-top: 2.3rem;
+    }
+
+    .card-header h5 {
+        font-size: 1.1rem;
+        margin-bottom: 0.35rem;
+        font-weight: 370;
+        line-height: 1.1;
+    }
+
+    .card-body {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+}
+
+
 @media only screen and (max-width: 992px) {
     .login{
         padding-left: 10%;

@@ -121,6 +121,58 @@
     }
 }
 
+
+@media only screen and (max-width: 1400px) {
+    .account-profile-details {
+        margin-top: 16px;
+        margin-left: 12%;
+        margin-right: 12%;
+    }
+    .account-profile-details-header {
+        padding: 0.6rem 1.15em;
+    }
+    
+    .account-profile-details-header h1{
+        font-size: 2.1rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+    
+    .account-profile-details-body {
+        padding: 1rem;
+        min-height: 0.85px;
+    }
+    
+    .account-profile-details-photo {
+        margin: 20px;
+        width: 155px;
+        min-height: 100px;
+    }
+
+    .account-profile-details-text {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+
+    .account-profile-details-stats {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+
+    .account-profile-details-options {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+    
+    .account-profile-details-footer {
+        padding: 0.65rem 1.15rem;
+    }
+}
+
+
 @media only screen and (max-width: 992px) {
     .account-profile-details {
         margin-top: 16px;

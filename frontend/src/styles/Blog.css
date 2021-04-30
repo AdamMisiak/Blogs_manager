@@ -102,6 +102,47 @@
   }
 }
 
+
+@media only screen and (max-width: 1400px) {
+  .blog {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 12%;
+    margin-right: 12%;
+  }
+  
+  .blog-header {
+    font-size: 17px;
+    padding: 0.65rem 1.15rem;
+  }
+  
+  .blog-body {
+    padding: 1.15rem;
+    min-height: 0.85px;
+    font-size: 0.85rem;
+  }
+  
+  .blog-title {
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  
+  .blog-text {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+  
+  .blog-footer {
+    font-size: 0.75rem;
+    padding: 0.65rem 1.15rem;
+  }
+  
+  .blog-button {
+    font-size: 15px;
+  }
+}
+
+
 @media only screen and (max-width: 992px) {
   .blog {
     margin-top: 16px;
