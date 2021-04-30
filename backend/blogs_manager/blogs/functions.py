@@ -366,7 +366,7 @@ def get_info_from_sunscrapers_python():
         blog_post_date = str(soup.find("li", class_="post-item__date").text).strip()
         blog_post_month = str(month_string_to_date(blog_post_date[:3]))
         blog_post_year = str(blog_post_date[-4:])
-        blog_post_day = str(datetime.datetime.today().day)
+        blog_post_day = "1"
         blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
         blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
 
@@ -391,7 +391,7 @@ def get_info_from_sunscrapers_web_development():
         blog_post_date = str(soup.find("li", class_="post-item__date").text).strip()
         blog_post_month = str(month_string_to_date(blog_post_date[:3]))
         blog_post_year = str(blog_post_date[-4:])
-        blog_post_day = str(datetime.datetime.today().day)
+        blog_post_day = "1"
         blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
         blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
 
