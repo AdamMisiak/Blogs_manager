@@ -1,5 +1,6 @@
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
+from users.models import User
 
 from celery.schedules import crontab
 from celery.decorators import periodic_task
@@ -41,4 +42,14 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_divgro, 'DivGro')
     create_new_blog_post(get_info_from_sky_is_the_limit, 'Sky Is The Limit')
     create_new_blog_post(get_info_from_lynx_broker, 'Lynx Edukacja')
+    create_new_blog_post(get_info_from_itnext, 'Itnext')
     
+# @periodic_task(run_every=(crontab(minute='*/1')), name="send_email_newsletters", ignore_result=True)
+# def send_email_newsletters():
+#     users = User.objects.filter(is_active=True, email_setting__email_frequency="instant")
+#     for user in users:
+#         print(user)
+#         pass
+#         # wywolanie funkcji send mail
+        
+

@@ -561,6 +561,30 @@ def get_info_from_lynx_broker():
         logger.error("Something went wrong in scraping function: get_info_from_lynx_broker")
 
 
+def get_info_from_itnext():
+    try:
+        page = requests.get("https://itnext.io/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = str(soup.find("h3", class_="u-contentSansBold u-lineHeightTightest u-xs-fontSize24 u-paddingBottom2 u-paddingTop5 u-fontSize32").find_next("div").text)
+        blog_post_link = soup.find("div", class_="col u-xs-marginBottom10 u-paddingLeft0 u-paddingRight0 u-paddingTop15 u-marginBottom30").find_next("a")["href"]
+
+        blog_post_day = str(str(soup.find("div", class_="ui-caption u-fontSize12 u-baseColor--textNormal u-textColorNormal js-postMetaInlineSupplemental").find_next("time").text)[-2:].strip())
+        blog_post_month = str(month_string_to_date(str(str(soup.find("div", class_="ui-caption u-fontSize12 u-baseColor--textNormal u-textColorNormal js-postMetaInlineSupplemental").find_next("time").text)[:3].strip())))
+        blog_post_year = str(datetime.datetime.now().year)
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_itnext")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -600,4 +624,6 @@ def get_info_from_lynx_broker():
 # result = get_info_from_sky_is_the_limit()
 # print(result)
 # result = get_info_from_lynx_broker()
+# print(result)
+# result = get_info_from_itnext()
 # print(result)
