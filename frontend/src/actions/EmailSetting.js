@@ -44,14 +44,14 @@ export const postEmailSettingRequest = () => {
     }
 }
 
-const postEmailSettingSuccess = emailSetting => {
+export const postEmailSettingSuccess = emailSetting => {
     return {
         type: POST_EMAIL_SETTING_SUCCESS,
         payload: emailSetting
     }
 }
 
-const postEmailSettingFailure = () => {
+export const postEmailSettingFailure = () => {
     return {
         type: POST_EMAIL_SETTING_FAILURE,
     }
