@@ -177,6 +177,36 @@ class TestScrapingFunctions(TestCase):
         assert type(scraping_results[1]) == str
         assert type(scraping_results[2]) == datetime.date
 
+    def test_get_info_from_sky_is_the_limit(self):
+        scraping_results = get_info_from_sky_is_the_limit()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_lynx_broker(self):
+        scraping_results = get_info_from_lynx_broker()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def test_get_info_from_itnext(self):
+        scraping_results = get_info_from_itnext()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
     def test_create_new_blog_post(self):
         assert BlogPost.objects.all().count() == 0
 
