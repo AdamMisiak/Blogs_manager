@@ -10,15 +10,6 @@ import {
     GET_BLOG_DETAILS_FAILURE,
 } from '../Types';
 
-// describe('getBlogDetails', () => {
-//     it('has the correct type', () => {
-//         const action = getBlogDetails(5);
-
-//         console.log(action)
-
-//         expect(action.type).toEqual(GET_BLOG_DETAILS_REQUEST)
-//     })
-// })
 
 describe('getBlogDetailsRequest', () => {
     it('has the correct type', () => {

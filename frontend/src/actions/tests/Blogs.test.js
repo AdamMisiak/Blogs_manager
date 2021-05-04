@@ -25,9 +25,24 @@ describe('getBlogsSuccess', () => {
     })
 
     it('has the correct payload', () => {
-        const action = getBlogsSuccess('blogs');
+        const action = getBlogsSuccess([
+            {
+                author: "Tomasz Trela",
+                genre: "Financials",
+                genre2: "",
+                id: 1,
+                language: "Polish",
+                name: "Trading for a living",
+                url: "https://www.tradingforaliving.pl/",
+            }
+        ]);
 
-        expect(action.payload).toEqual('blogs')
+        expect(action.payload[0].id).toEqual(1)
+        expect(action.payload[0].author).toEqual("Tomasz Trela")
+        expect(action.payload[0].genre).toEqual("Financials")
+        expect(action.payload[0].language).toEqual("Polish")
+        expect(action.payload[0].url).toEqual("https://www.tradingforaliving.pl/")
+        expect(action.payload.length).toEqual(1)
     })
 })
 

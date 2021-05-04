@@ -59,18 +59,18 @@ export const login = (username, password) => {
                 password: password
             }
         })
-            .then(response => {
-                const user = response.data;
-                dispatch(createMessage({loggedIn: 'Logged in successfully!'}))
-                dispatch(loginUserSuccess(user))
-            })
-            .catch(error => {
-                const errors = {
-                    message: error.response.data,
-                    status: error.response.status
-                };
-                dispatch(getErrors(errors))
-            })
+        .then(response => {
+            const user = response.data;
+            dispatch(createMessage({loggedIn: 'Logged in successfully!'}))
+            dispatch(loginUserSuccess(user))
+        })
+        .catch(error => {
+            const errors = {
+                message: error.response.data,
+                status: error.response.status
+            };
+            dispatch(getErrors(errors))
+        })
     }
 }
 
@@ -93,18 +93,18 @@ export const register = ({ username, email, password }) => {
                 password: password
             }
         })
-            .then(response => {
-                const user = response.data;
-                dispatch(createMessage({registered: 'Registered successfully!'}))
-                dispatch(registerUserSuccess(user))
-            })
-            .catch(error => {
-                const errors = {
-                    message: error.response.data,
-                    status: error.response.status
-                };
-                dispatch(getErrors(errors))
-            })
+        .then(response => {
+            const user = response.data;
+            dispatch(createMessage({registered: 'Registered successfully!'}))
+            dispatch(registerUserSuccess(user))
+        })
+        .catch(error => {
+            const errors = {
+                message: error.response.data,
+                status: error.response.status
+            };
+            dispatch(getErrors(errors))
+        })
     }
 }
 
@@ -122,15 +122,15 @@ export const logout = () => {
             },
             body: null
         })
-            .then(response => {
-                dispatch(createMessage({loggedOut: 'Logged out successfully!'}))
-                dispatch(logoutUserSuccess())
-            })
-            .catch(error => {
-                const errorMessage = error.message;
-                dispatch(logoutUserFailure(errorMessage))
-            })
-    }
+        .then(response => {
+            dispatch(createMessage({loggedOut: 'Logged out successfully!'}))
+            dispatch(logoutUserSuccess())
+        })
+        .catch(error => {
+            const errorMessage = error.message;
+            dispatch(logoutUserFailure(errorMessage))
+        })
+    }   
 }
 
 export const getUserRequest = () => {

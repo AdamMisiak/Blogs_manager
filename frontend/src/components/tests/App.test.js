@@ -31,7 +31,7 @@ it('Shows a route component', () => {
 });
 
 it('Shows a private route component', () => {
-    expect(wrapped.find(PrivateRoute).length).toEqual(3)
+    expect(wrapped.find(PrivateRoute).length).toEqual(2)
 });
 
 it('Shows a index page component', () => {

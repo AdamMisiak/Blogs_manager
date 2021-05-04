@@ -14,8 +14,6 @@ it('Handles actions of type GET_ERRORS', () => {
     };
     const newState = errorReducer([], action)
 
-    console.log(newState)
-
     expect(newState).toEqual({ 
         message: 'test_message',
         status: 'test_message' 

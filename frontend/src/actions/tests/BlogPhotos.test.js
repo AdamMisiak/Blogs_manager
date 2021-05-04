@@ -25,9 +25,13 @@ describe('getBlogPhotoSuccess', () => {
     })
 
     it('has the correct payload', () => {
-        const action = getBlogPhotoSuccess('blogs details');
+        const action = getBlogPhotoSuccess({
+            id: 29,
+            photo: "/blogs_manager/static/img/pobrane.jpeg"
+        });
 
-        expect(action.payload).toEqual('blogs details')
+        expect(action.payload.id).toEqual(29)
+        expect(action.payload.photo).toEqual("/blogs_manager/static/img/pobrane.jpeg")
     })
 })
 
