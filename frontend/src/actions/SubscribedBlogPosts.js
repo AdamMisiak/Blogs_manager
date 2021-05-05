@@ -45,14 +45,14 @@ export const getSubscribedBlogPostsRequest = () => {
     }
 }
 
-const getSubscribedBlogPostsSuccess = blogPosts => {
+export const getSubscribedBlogPostsSuccess = blogPosts => {
     return {
         type: GET_SUBSCRIBED_BLOG_POSTS_SUCCESS,
         payload: blogPosts
     }
 }
 
-const getSubscribedBlogPostsFailure = () => {
+export const getSubscribedBlogPostsFailure = () => {
     return {
         type: GET_SUBSCRIBED_BLOG_POSTS_FAILURE,
     }

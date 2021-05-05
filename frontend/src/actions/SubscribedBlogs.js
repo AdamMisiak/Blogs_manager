@@ -72,14 +72,14 @@ export const getSubscribedBlogsRequest = () => {
     }
 }
 
-const getSubscribedBlogsSuccess = blogs => {
+export const getSubscribedBlogsSuccess = blogs => {
     return {
         type: GET_SUBSCRIBED_BLOGS_SUCCESS,
         payload: blogs
     }
 }
 
-const getSubscribedBlogsFailure = () => {
+export const getSubscribedBlogsFailure = () => {
     return {
         type: GET_SUBSCRIBED_BLOGS_FAILURE,
     }
@@ -91,14 +91,14 @@ export const postSubscribeBlogRequest = () => {
     }
 }
 
-const postSubscribeBlogSuccess = subscribeBlog => {
+export const postSubscribeBlogSuccess = subscribeBlog => {
     return {
         type: POST_SUBSCRIBE_BLOG_SUCCESS,
         payload: subscribeBlog
     }
 }
 
-const postSubscribeBlogFailure = () => {
+export const postSubscribeBlogFailure = () => {
     return {
         type: POST_SUBSCRIBE_BLOG_FAILURE,
     }
