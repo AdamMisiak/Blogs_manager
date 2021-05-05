@@ -4,6 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from "react-router-dom";
 import { getBlogPosts } from '../../actions/BlogPosts';
 import { getSubscribedBlogPosts } from '../../actions/SubscribedBlogPosts';
 import '../../styles/Filters.css';
@@ -57,6 +58,10 @@ const Filters = ({
         setInputSubscribedOnly(!inputSubscribedOnly)
         getProperBlogPosts();
     };
+
+    if (auth.isAuthenticated === null && inputSubscribedOnly) {
+        return <Redirect to="/login" />
+    } 
 
   return(
     <div className='filters'>
