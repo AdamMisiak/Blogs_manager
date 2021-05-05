@@ -601,4 +601,8 @@ data.json
 
 **/__pycache__/  
 
- backups/*
+backups/*
+
+settings_dev.py
+settings_prod.py
+settings_test.py
