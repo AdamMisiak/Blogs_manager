@@ -585,6 +585,37 @@ def get_info_from_itnext():
         logger.error("Something went wrong in scraping function: get_info_from_itnext")
 
 
+def get_info_from_prywatnyinvestor():
+    try:
+        page = requests.get("http://www.prywatnyinvestor.com/")
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = str(soup.find("h1", class_="entry-title").find_next("a").text)
+        blog_post_link = soup.find("h1", class_="entry-title").find_next("a")['href']
+
+        blog_post_day = str(soup.find("div", class_="entry-meta").find_next("div").text).strip()[:2]
+        try:
+            blog_post_month = str(month_string_to_date(str(soup.find("div", class_="entry-meta").find_next("div").text).strip()[3:6]))
+            if blog_post_month == '0':
+                blog_post_month = str(month_string_to_date(str(soup.find("div", class_="entry-meta").find_next("div").text).strip()[2:5]))
+        except:
+            pass
+        blog_post_day = str(soup.find("div", class_="entry-meta").find_next("div").text).strip()[:2]
+        blog_post_year = str(soup.find("div", class_="entry-meta").find_next("div").text).strip()[-4:]
+
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_prywatnyinvestor")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -626,4 +657,6 @@ def get_info_from_itnext():
 # result = get_info_from_lynx_broker()
 # print(result)
 # result = get_info_from_itnext()
+# print(result)
+# result = get_info_from_prywatnyinvestor()
 # print(result)

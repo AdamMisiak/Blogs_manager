@@ -1,24 +1,12 @@
 from blogs.models import Blog, BlogPost
 from blogs.functions import *
-from users.models import User
+from users.models import User, BlogSubscriber
 
 from celery.schedules import crontab
 from celery.decorators import periodic_task
 
 logger = get_task_logger('scraping_functions')
 
-def create_new_blog_post(get_info_function, blog_name):
-    try:
-        blog_post_info_results = get_info_function()
-        blog_post, created = BlogPost.objects.get_or_create(
-            name=blog_post_info_results[0],
-            url=blog_post_info_results[1],
-            date=blog_post_info_results[2],
-            blog=Blog.objects.get(name=blog_name),
-        )
-        blog_post.save()
-    except:
-        logger.error("Something went wrong in creating new blog post")
 
 @periodic_task(run_every=(crontab(minute='*/30')), name="check_new_blog_posts", ignore_result=True)
 def check_new_blog_posts():
@@ -43,7 +31,36 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_sky_is_the_limit, 'Sky Is The Limit')
     create_new_blog_post(get_info_from_lynx_broker, 'Lynx Edukacja')
     create_new_blog_post(get_info_from_itnext, 'Itnext')
+    create_new_blog_post(get_info_from_prywatnyinvestor, 'Prywatny INV€$TOR')
+
+def create_new_blog_post(get_info_function, blog_name):
+    try:
+        blog_post_info_results = get_info_function()
+        blog_post, created = BlogPost.objects.get_or_create(
+            name=blog_post_info_results[0],
+            url=blog_post_info_results[1],
+            date=blog_post_info_results[2],
+            blog=Blog.objects.get(name=blog_name),
+        )
+        if created:
+            send_instant_newsletter()
+        blog_post.save()
+    except:
+        logger.error("Something went wrong in creating new blog post")
+
+def send_instant_newsletter(blog_post):
+    blog_subscribers = BlogSubscriber.objects.filter(blog=blog_post)
+    users = User.objects.filter(
+        is_active=True, 
+        email_setting__email_frequency="instant", 
+        subscribing__in=blog_subscribers)
     
+    for user in users:
+        print(users)
+        print(user.subscribing.all())
+
+    
+send_instant_newsletter(1)
 # @periodic_task(run_every=(crontab(minute='*/1')), name="send_email_newsletters", ignore_result=True)
 # def send_email_newsletters():
 #     users = User.objects.filter(is_active=True, email_setting__email_frequency="instant")
