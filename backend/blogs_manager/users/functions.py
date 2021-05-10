@@ -49,24 +49,13 @@ def create_new_blog_post(get_info_function, blog_name):
         logger.error("Something went wrong in creating new blog post")
 
 def send_instant_newsletter(blog_post):
-    blog_subscribers = BlogSubscriber.objects.filter(blog=blog_post)
+    blog_subscribers = BlogSubscriber.objects.filter(blog__blog_post=blog_post)
     users = User.objects.filter(
         is_active=True, 
         email_setting__email_frequency="instant", 
         subscribing__in=blog_subscribers)
     
     for user in users:
+        # send mail for user
         print(users)
-        print(user.subscribing.all())
-
-    
-send_instant_newsletter(1)
-# @periodic_task(run_every=(crontab(minute='*/1')), name="send_email_newsletters", ignore_result=True)
-# def send_email_newsletters():
-#     users = User.objects.filter(is_active=True, email_setting__email_frequency="instant")
-#     for user in users:
-#         print(user)
-#         pass
-#         # wywolanie funkcji send mail
-        
 
