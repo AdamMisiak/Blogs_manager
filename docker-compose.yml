@@ -10,6 +10,7 @@ services:
       - POSTGRES_PASSWORD=adam
     volumes:
       - pgdata:/var/lib/postgresql/data/
+      # zmien wolumeny zeby kazdy mial osobna baze, ogarnij czemu nie robi czystego obrazu z postgres role itp
 
   redis:
     image: "redis:alpine"
