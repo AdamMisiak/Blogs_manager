@@ -1,1 +1,1 @@
-web: gunicorn blogs_manager.wsgi
+web: gunicorn blogs_manager:app
