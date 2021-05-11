@@ -604,5 +604,4 @@ data.json
 backups/*
 
 settings_dev.py
-settings_prod.py
 .DS_Store

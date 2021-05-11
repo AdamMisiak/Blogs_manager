@@ -9,7 +9,7 @@ def main():
     if 'test' in sys.argv:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogs_manager.settings.settings_test')
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogs_manager.settings.settings_dev')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogs_manager.settings.settings_prod')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

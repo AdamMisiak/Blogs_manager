@@ -11,7 +11,7 @@ import os
 from __future__ import absolute_import
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blogs_manager.settings.settings_dev")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blogs_manager.settings.settings_prod")
 
 application = get_asgi_application()
 
