@@ -213,7 +213,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "blogs_manager/static/"),
     os.path.join(Path(__file__).resolve().parent.parent.parent.parent.parent, "frontend/src"),
 ]
-print(STATIC_ROOT)
 
 
 # BROKER_URL = 'redis://localhost:6379'
