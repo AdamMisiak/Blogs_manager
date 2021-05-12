@@ -1,0 +1,136 @@
+.bg-light {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.navbar{
+    background-color: #e7e7e7!important;
+}
+
+.logo{
+    width: 150px;
+    height: 45px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0,0,0, 0.9);
+    font-size: 17px;
+}
+
+.nav-item {
+    transition: 0.3s ease;
+    text-decoration: none;
+    border-top: 3px solid #e7e7e7;
+    border-bottom: 3px solid #e7e7e7;
+}
+
+.nav-item:hover {
+    border-bottom: 3px solid rgba(55, 113, 189, 0.8);
+    border-top: 3px solid rgba(55, 113, 189, 0.8);
+}
+
+
+@media only screen and (max-width: 1840px) {
+    .bg-light {
+        padding-left: 16%;
+        padding-right: 16%;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .logo{
+        width: 120px;
+        height: 35px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 15px;
+    }
+
+    .nav-item {
+        border-top: 2.5px solid #e7e7e7;
+        border-bottom: 2.5px solid #e7e7e7;
+    }
+    
+    .nav-item:hover {
+        border-bottom: 2.5px solid rgba(55, 113, 189, 0.8);
+        border-top: 2.5px solid rgba(55, 113, 189, 0.8);
+    }
+
+    .svg-inline--fa.fa-w-20 {
+        width: 1.15em;
+    }
+
+    .svg-inline--fa.fa-w-16 {
+        width: 1.15em;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .bg-light {
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+
+    .nav-link {
+        padding-left: 0;
+    }
+
+    .logo{
+        width: 125px;
+        height: 38px;
+    }
+    
+    .nav-item:hover {
+        border-bottom: 2.2px solid rgba(55, 113, 189, 0.8);
+        border-top: 2.2px solid rgba(55, 113, 189, 0.8);
+    }
+
+    .svg-inline--fa.fa-w-20 {
+        width: 1em;
+    }
+
+    .svg-inline--fa.fa-w-16 {
+        width: 1em;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .bg-light {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .nav-link {
+        padding-left: 0;
+    }
+
+    .logo{
+        width: 130px;
+        height: 40px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        font-size: 15px;
+    }
+
+    .nav-item {
+        border-top: 2px solid #e7e7e7;
+        border-bottom: 2px solid #e7e7e7;
+    }
+    
+    .nav-item:hover {
+        border-bottom: 2px solid rgba(55, 113, 189, 0.8);
+        border-top: 2px solid rgba(55, 113, 189, 0.8);
+    }
+
+    .svg-inline--fa.fa-w-20 {
+        width: 1em;
+    }
+
+    .svg-inline--fa.fa-w-16 {
+        width: 1em;
+    }
+}

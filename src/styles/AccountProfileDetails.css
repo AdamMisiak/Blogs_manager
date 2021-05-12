@@ -1,0 +1,227 @@
+/* ACCOUNT PROFILE DETAILS STYLES */
+
+.account-profile-details-page {
+    flex: 1;
+}
+
+.account-profile-details {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.account-profile-details-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background: rgba(55, 113, 189, 0.85);
+}
+
+.account-profile-details-body {
+    display: inline-flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    padding: 1.25rem;
+    min-height: 1px;
+}
+
+.account-profile-details-photo {
+    text-align: center;
+    margin: 20px;
+    width: 200px;
+    min-height: 120px;
+}
+
+.account-profile-details-text {
+    text-align: left;
+    margin: 20px;
+    flex-grow: 3;
+}
+
+.account-profile-details-stats {
+    text-align: left;
+    margin: 20px;
+    flex-grow: 3;
+}
+
+.account-profile-details-options {
+    display: inline-flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    padding: 0 1.25rem 0.75rem 1.25rem;
+    min-height: 1px;
+}
+
+.account-profile-details-email-instant {
+    margin-left: 20px;
+}
+
+.account-profile-details-email-summary-weekly {
+    margin-right: 20px;
+}
+
+.account-profile-details-footer {
+    color: #6c757d;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+    background: rgba(55, 113, 189, 0.35);
+}
+
+
+@media only screen and (max-width: 1840px) {
+    .account-profile-details {
+        margin-top: 18px;
+        margin-left: 16%;
+        margin-right: 16%;
+    }
+    .account-profile-details-header {
+        padding: 0.7rem 1.2rem;
+    }
+    
+    .account-profile-details-header h1{
+        font-size: 2.3rem;
+        font-weight: 350;
+        line-height: 1.3;
+    }
+    
+    .account-profile-details-body {
+        padding: 1.2rem;
+        min-height: 0.9px;
+    }
+    
+    .account-profile-details-photo {
+        margin: 20px;
+        width: 190px;
+        min-height: 110px;
+    }
+
+    .account-profile-details-text {
+        font-size: 0.9rem;
+        font-weight: 350;
+        line-height: 1.3;
+    }
+
+    .account-profile-details-stats {
+        font-size: 0.9rem;
+        font-weight: 350;
+        line-height: 1.3;
+    }
+
+    .account-profile-details-options {
+        font-size: 0.9rem;
+        font-weight: 350;
+        line-height: 1.3;
+    }
+    
+    .account-profile-details-footer {
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+
+@media only screen and (max-width: 1400px) {
+    .account-profile-details {
+        margin-top: 16px;
+        margin-left: 12%;
+        margin-right: 12%;
+    }
+    .account-profile-details-header {
+        padding: 0.6rem 1.15em;
+    }
+    
+    .account-profile-details-header h1{
+        font-size: 2.1rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+    
+    .account-profile-details-body {
+        padding: 1rem;
+        min-height: 0.85px;
+    }
+    
+    .account-profile-details-photo {
+        margin: 20px;
+        width: 155px;
+        min-height: 100px;
+    }
+
+    .account-profile-details-text {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+
+    .account-profile-details-stats {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+
+    .account-profile-details-options {
+        font-size: 0.85rem;
+        font-weight: 370;
+        line-height: 1.2;
+    }
+    
+    .account-profile-details-footer {
+        padding: 0.65rem 1.15rem;
+    }
+}
+
+
+@media only screen and (max-width: 992px) {
+    .account-profile-details {
+        margin-top: 16px;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .account-profile-details-header {
+        padding: 0.55rem 1.1rem;
+    }
+    
+    .account-profile-details-header h1{
+        font-size: 1.8rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+    
+    .account-profile-details-body {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+        min-height: 0.8px;
+    }
+    
+    .account-profile-details-photo {
+        align-self: center;
+        margin: 20px;
+        width: 150px;
+        min-height: 100px;
+    }
+
+    .account-profile-details-text {
+        font-size: 0.8rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+
+    .account-profile-details-stats {
+        font-size: 0.8rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+
+    .account-profile-details-options {
+        font-size: 0.8rem;
+        font-weight: 350;
+        line-height: 1.1;
+    }
+    
+    .account-profile-details-footer {
+        padding: 0.6rem 1.1rem;
+    }
+  }

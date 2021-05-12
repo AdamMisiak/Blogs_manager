@@ -1,0 +1,1 @@
+export const LightBlue = "rgba(55, 113, 189, 0.9)";
