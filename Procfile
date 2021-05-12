@@ -1,1 +1,1 @@
-web: gunicorn blogs_manager:app 
+web: cd backend && cd blogs_manager && gunicorn blogs_manager.wsgi
