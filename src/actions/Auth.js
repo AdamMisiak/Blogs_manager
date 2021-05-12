@@ -12,6 +12,7 @@ import {
     LOGOUT_USER_FAILURE,
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 import { createMessage } from './Messages'
 
 
@@ -24,7 +25,7 @@ export const loadUser = () => {
         axios({
             method: 'get',
             url: 'api/auth/user',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + token
@@ -52,7 +53,7 @@ export const login = (username, password) => {
         axios({
             method: 'post',
             url: 'api/auth/login',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             config: {config},
             data: {
                 username: username,
@@ -85,7 +86,7 @@ export const register = ({ username, email, password }) => {
         axios({
             method: 'post',
             url: 'api/auth/register',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             config: {config},
             data: {
                 username: username,
@@ -115,7 +116,7 @@ export const logout = () => {
         axios({
             method: 'post',
             url: 'api/auth/logout',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + token
