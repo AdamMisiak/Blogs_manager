@@ -103,17 +103,17 @@ WSGI_APPLICATION = "blogs_manager.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogs_manager',
-        'USER': 'adam',
-        'PASSWORD': 'adam',
-        'HOST': 'db',
-        # 'HOST': 'localhost',
-        'PORT': 5432,
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'blogs_manager',
+#         'USER': 'adam',
+#         'PASSWORD': 'adam',
+#         'HOST': 'db',
+#         # 'HOST': 'localhost',
+#         'PORT': 5432,
+#     }
+# }
 
 import sys
 if 'test' in sys.argv:
