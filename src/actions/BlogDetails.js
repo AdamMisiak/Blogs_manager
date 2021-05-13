@@ -6,6 +6,7 @@ import {
     GET_BLOG_DETAILS_FAILURE,
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 
 
 export const getBlogDetails = (id) => {
@@ -14,7 +15,7 @@ export const getBlogDetails = (id) => {
         axios({
             method: 'get',
             url: 'api/blogs/' + id,
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
         })
         .then(response => {
             const blogDetails = response.data;
