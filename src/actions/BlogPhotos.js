@@ -6,6 +6,7 @@ import {
     GET_BLOG_PHOTO_FAILURE,
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 
 
 export const getBlogPhoto = (id) => {
@@ -14,7 +15,7 @@ export const getBlogPhoto = (id) => {
         axios({
             method: 'get',
             url: 'api/blog_photos/' + id,
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
         })
             .then(response => {
                 const blogPhoto = response.data;

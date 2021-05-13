@@ -6,6 +6,7 @@ import {
     GET_SUBSCRIBED_BLOG_POSTS_FAILURE, 
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 
 
 export const getSubscribedBlogPosts = ({page=1, userId, blogId, name, ordering}) => {
@@ -14,7 +15,7 @@ export const getSubscribedBlogPosts = ({page=1, userId, blogId, name, ordering})
         axios({
             method: 'get',
             url: 'api/subscribed_blog_posts',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             params: {
                 page: page,
                 user_id: userId,

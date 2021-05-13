@@ -6,6 +6,7 @@ import {
     POST_EMAIL_SETTING_FAILURE, 
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 import { createMessage } from './Messages'
 
 
@@ -16,7 +17,7 @@ export const postEmailSetting = ({user, emailSetting}) => {
         axios({
             method: 'post',
             url: 'api/email_setting',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             data: {
                 user: user,
                 emailSetting: emailSetting

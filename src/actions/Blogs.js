@@ -6,6 +6,7 @@ import {
     GET_BLOGS_FAILURE,
     GET_ERRORS, 
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 
 
 export const getBlogs = ({page=1}) => {
@@ -14,7 +15,7 @@ export const getBlogs = ({page=1}) => {
         axios({
             method: 'get',
             url: 'api/blogs/',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             params: {
                 page: page,
             }

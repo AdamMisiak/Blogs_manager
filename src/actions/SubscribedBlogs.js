@@ -9,6 +9,7 @@ import {
     POST_SUBSCRIBE_BLOG_FAILURE,
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 import { createMessage } from './Messages'
 
 
@@ -18,7 +19,7 @@ export const getSubscribedBlogs = (user, page=1) => {
         axios({
             method: 'get',
             url: 'api/users/' + user + '/subscribed_blogs',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             params: {
                 page: page,
             }
@@ -44,7 +45,7 @@ export const postSubscribeBlog = (user, blog) => {
         axios({
             method: 'post',
             url: 'api/blog_subscriber',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             data: {
                 user: user,
                 blog: blog
