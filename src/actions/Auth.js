@@ -25,7 +25,7 @@ export const loadUser = () => {
         axios({
             method: 'get',
             url: 'api/auth/user',
-            baseURL: BackendDev,
+            baseURL: BackendProd,
             headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + token
