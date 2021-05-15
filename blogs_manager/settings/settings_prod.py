@@ -57,9 +57,10 @@ LOGGING = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ.get('REDIS_URL'),
+        "LOCATION": "redis://:pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d@ec2-99-81-57-235.eu-west-1.compute.amazonaws.com:21550",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d"
         }
     }
 }

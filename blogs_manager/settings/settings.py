@@ -232,6 +232,7 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_IMPORTS = ("users.functions", )
+BROKER_POOL_LIMIT=None
 
 
 from django.contrib.messages import constants as messages
