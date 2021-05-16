@@ -7,6 +7,7 @@ import blogsReducer from './Blogs';
 import emailSettingReducer from './EmailSetting';
 import errorReducer from './Errors';
 import messagesReducer from './Messages';
+import reportBlogReducer from './ReportBlog';
 import subscribeBlogReducer from './SubscribeBlog';
 import subscribedBlogPostsReducer from './SubscribedBlogPosts';
 import subscribedBlogsReducer from './SubscribedBlogs';
@@ -25,4 +26,5 @@ export default combineReducers({
     
     subscribeBlog: subscribeBlogReducer,
     emailSetting: emailSettingReducer,
+    reportBlog: reportBlogReducer,
 });
