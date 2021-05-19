@@ -1,11 +1,11 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
 from blogs_manager.pagination import BlogPostPageNumberPagination, BlogPageNumberPagination
-from .models import Blog, BlogPost, BlogPhoto
+from .models import Blog, BlogPost, BlogPhoto, ReportBlog
 from .filters import BlogPostFilter, SubscribedBlogPostFilter
 from .serializers import BlogListSerializer, BlogDetailsSerializer, \
-                         BlogPostDetailsSerializer, BlogPhotoDetailsSerializer
+                         BlogPostDetailsSerializer, BlogPhotoDetailsSerializer, ReportBlogSerializer
 
 
 def avg_number_of_posts_per_month(blog):
@@ -59,3 +59,22 @@ class BlogPhotoViewSet(viewsets.ReadOnlyModelViewSet):
         instance = BlogPhoto.objects.get(blog__id=pk)
         serializer = BlogPhotoDetailsSerializer(instance)
         return Response(serializer.data)
+        
+class ReportBlogView(generics.GenericAPIView):
+    serializer_class = ReportBlogSerializer
+
+    def post(self, request, *args, **kwargs):
+        name = request.data['name']
+        url = request.data['url']
+
+        print(request.user)
+
+        report_blog = ReportBlog.objects.create(
+            name=request.data['name'],
+            url=request.data['url']
+        )
+
+        return Response({
+            "name": name,
+            "url": url,
+        })

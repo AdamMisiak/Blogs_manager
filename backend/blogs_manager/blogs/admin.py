@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, BlogPost, BlogPhoto
+from .models import Blog, BlogPost, BlogPhoto, ReportBlog
 
 
 class BlogAdmin(admin.ModelAdmin):
@@ -26,6 +26,14 @@ class BlogPhotoAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
+class ReportBlogAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "url")
+    list_display_links = ("id",)
+    search_fields = ("name", "url")
+    list_per_page = 25
+
+
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(BlogPhoto, BlogPhotoAdmin)
+admin.site.register(ReportBlog, ReportBlogAdmin)

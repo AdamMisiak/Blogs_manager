@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { postReportBlog } from '../../actions/ReportBlog';
 import "../../styles/ReportBlog.css";
 
 
@@ -12,7 +13,10 @@ function ReportBlogPage() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        // dispatch(login(username, password));
+        dispatch(postReportBlog({
+          name: name,
+          url: url
+        }));
         setName("")
         setUrl("")
     };

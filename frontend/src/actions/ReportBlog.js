@@ -19,7 +19,7 @@ export const postReportBlog = ({name, url}) => {
 
         axios({
             method: 'post',
-            url: 'api/auth/login',
+            url: 'api/report_blog',
             baseURL: 'http://localhost:8000/',
             config: {config},
             data: {
