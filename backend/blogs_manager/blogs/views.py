@@ -67,8 +67,6 @@ class ReportBlogView(generics.GenericAPIView):
         name = request.data['name']
         url = request.data['url']
 
-        print(request.user)
-
         report_blog = ReportBlog.objects.create(
             name=request.data['name'],
             url=request.data['url']
