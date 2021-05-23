@@ -616,6 +616,34 @@ def get_info_from_prywatnyinvestor():
         logger.error("Something went wrong in scraping function: get_info_from_prywatnyinvestor")
 
 
+def get_info_from_dividends_and_income():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://dividendsandincome.com/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="entry-title").find_next('a').text
+        blog_post_link = soup.find("h2", class_="entry-title").find_next('a')['href']
+
+        blog_post_comma_index = str(soup.find("time", class_="published updated").text).find(',')
+        blog_post_day = str(soup.find("time", class_="published updated").text)[blog_post_comma_index-2:blog_post_comma_index]
+        blog_post_month = str(month_string_to_date(str(soup.find("time", class_="published updated").text)[:3]))
+        blog_post_year = str(soup.find("time", class_="published updated").text)[-4:]
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_dividends_and_income")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -659,4 +687,6 @@ def get_info_from_prywatnyinvestor():
 # result = get_info_from_itnext()
 # print(result)
 # result = get_info_from_prywatnyinvestor()
+# print(result)
+# result = get_info_from_dividends_and_income()
 # print(result)
