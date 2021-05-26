@@ -40,7 +40,10 @@ def month_string_to_date(month_string):
 
 def get_info_from_trading_for_a_living():
     try:
-        page = requests.get("https://www.tradingforaliving.pl/")
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://www.tradingforaliving.pl/", headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
         blog_post_list = []
 
