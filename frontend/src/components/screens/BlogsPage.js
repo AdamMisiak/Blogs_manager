@@ -59,7 +59,7 @@ function BlogsPage() {
                 </div> ) : ( null )}
             <div className='pagination'>
                 <Pagination 
-                    count={Math.floor(blogs.dataCount/BlogsPageSize)} 
+                    count={Math.floor(blogs.dataCount/BlogsPageSize)+1} 
                     variant="outlined" 
                     onChange={handlePageChange}
                 />
