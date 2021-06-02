@@ -10,10 +10,14 @@ services:
       - POSTGRES_PASSWORD=adam
     volumes:
       - pgdata:/var/lib/postgresql/data/
+    networks:
+      - backend
 
   redis:
     image: "redis:alpine"
     container_name: blogs_manager_redis
+    networks:
+      - backend
 
   web:
     container_name: blogs_manager_web
@@ -30,6 +34,9 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - backend
+      - frontend
       
   celery-worker:
     container_name: blogs_manager_celery_worker
@@ -41,6 +48,8 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - backend
       
   celery-beat:
     container_name: blogs_manager_celery_beat
@@ -53,6 +62,8 @@ services:
     depends_on:
       - db
       - redis
+    networks:
+      - backend
 
   # nginx:
   #   container_name: blogs_manager_nginx
@@ -67,3 +78,9 @@ services:
 
 volumes:
   pgdata:
+
+networks:
+  backend:
+    internal: true
+  frontend:
+    internal: false

@@ -1,8 +1,7 @@
 FROM node:14.12.0-alpine as build
 
 WORKDIR /frontend
-COPY ./package.json ./
-COPY ./package-lock.json ./
+COPY ./package.json ./package-lock.json ./
 
 RUN npm ci --silent
 COPY . .
