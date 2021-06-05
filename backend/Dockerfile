@@ -1,14 +1,7 @@
-FROM osgeo/gdal:ubuntu-small-latest
 
-ENV PYTHONUNBUFFERED 1
+FROM python:3
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y netcat && \
-    apt-get install -y gettext && \
-    apt-get install -y python3-pip && \
-    apt-get install -y python3-psycopg2 && \
-    apt-get clean
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
