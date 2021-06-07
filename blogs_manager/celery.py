@@ -6,7 +6,7 @@ from django.conf import settings
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogs_manager.settings.settings_prod')
 # app = Celery('blogs_manager')
-app = Celery('blogs_manager', broker='redis://:pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d@ec2-99-81-57-235.eu-west-1.compute.amazonaws.com:21550')
+app = Celery('blogs_manager', broker='redis://redistogo:05a9c7e586994e5e0a2a205c04f03e19@soapfish.redistogo.com:11414/')
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.

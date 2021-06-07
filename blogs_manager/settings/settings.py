@@ -226,8 +226,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CELERY_BROKER_URL = 'redis://redis:6379'
 # CELERY_RESULT_BACKEND = 'redis://redis:6379'
-BROKER_URL = 'redis://:pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d@ec2-99-81-57-235.eu-west-1.compute.amazonaws.com:21550'
-CELERY_RESULT_BACKEND = 'redis://:pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d@ec2-99-81-57-235.eu-west-1.compute.amazonaws.com:21550'
+BROKER_URL = 'redis://redistogo:05a9c7e586994e5e0a2a205c04f03e19@soapfish.redistogo.com:11414/'
+CELERY_RESULT_BACKEND = 'redis://redistogo:05a9c7e586994e5e0a2a205c04f03e19@soapfish.redistogo.com:11414/'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

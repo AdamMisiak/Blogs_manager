@@ -57,11 +57,11 @@ LOGGING = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://:pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d@ec2-54-220-116-35.eu-west-1.compute.amazonaws.com:29410",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "PASSWORD": "pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d"
-        }
+        "LOCATION": "redis://redistogo:05a9c7e586994e5e0a2a205c04f03e19@soapfish.redistogo.com:11414/",
+        # "OPTIONS": {
+        #     "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        #     "PASSWORD": "pf2b7503729730fb2075fd836cb91ee9ed408996caecb8198b71bcc37decee05d"
+        # }
     }
 }
 
