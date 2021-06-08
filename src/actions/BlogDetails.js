@@ -14,7 +14,7 @@ export const getBlogDetails = (id) => {
         dispatch(getBlogDetailsRequest())
         axios({
             method: 'get',
-            url: 'api/blogs/' + id,
+            url: 'api/blogs/' + id + '/',
             baseURL: BackendProd,
         })
         .then(response => {
