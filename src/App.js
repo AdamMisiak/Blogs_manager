@@ -10,6 +10,7 @@ import BlogsPage from './components/screens/BlogsPage';
 import IndexPage from './components/screens/IndexPage';
 import LoginPage from './components/screens/LoginPage';
 import RegisterPage from './components/screens/RegisterPage';
+import ReportBlogPage from './components/screens/ReportBlogPage';
 import './styles/App.css';
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register"><RegisterPage /></Route>
         <PrivateRoute exact path="/account/profile" component={AccountProfilePage} />
         <PrivateRoute exact path="/blogs" component={BlogsPage} />
+        <PrivateRoute exact path="/report-blog" component={ReportBlogPage} />
         <Route path="/blogs/:id"><BlogDetailsPage /></Route>
         <Route exact path="/about"><AboutPage /></Route>
         <Route exact path="/"><IndexPage /></Route>
