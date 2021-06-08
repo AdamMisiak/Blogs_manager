@@ -14,7 +14,7 @@ export const getBlogPhoto = (id) => {
         dispatch(getBlogPhotoRequest())
         axios({
             method: 'get',
-            url: 'api/blog_photos/' + id,
+            url: 'api/blog_photos/' + id + '/',
             baseURL: BackendProd,
         })
             .then(response => {
