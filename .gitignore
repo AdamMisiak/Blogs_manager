@@ -605,3 +605,4 @@ backups/*
 
 settings_dev.py
 .DS_Store
+pg_extract.sh
