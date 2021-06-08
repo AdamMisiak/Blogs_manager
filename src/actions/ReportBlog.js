@@ -6,6 +6,7 @@ import {
     POST_REPORT_BLOG_FAILURE,
     GET_ERRORS
 } from './Types';
+import { BackendProd, BackendDev } from '../constants/Requests'
 import { createMessage } from './Messages'
 
 
@@ -20,7 +21,7 @@ export const postReportBlog = ({name, url}) => {
         axios({
             method: 'post',
             url: 'api/report_blog',
-            baseURL: 'http://localhost:8000/',
+            baseURL: BackendProd,
             config: {config},
             data: {
                 name: name,
