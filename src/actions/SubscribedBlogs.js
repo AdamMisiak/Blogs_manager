@@ -18,7 +18,7 @@ export const getSubscribedBlogs = (user, page=1) => {
         dispatch(getSubscribedBlogsRequest())
         axios({
             method: 'get',
-            url: 'api/users/' + user + '/subscribed_blogs',
+            url: 'api/users/' + user + '/subscribed_blogs/',
             baseURL: BackendProd,
             params: {
                 page: page,
