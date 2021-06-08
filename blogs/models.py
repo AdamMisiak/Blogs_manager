@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 GENRE_CHOICES = (
     ("Science", "Science"),
@@ -43,3 +44,8 @@ class BlogPhoto(models.Model):
     photo = models.ImageField(upload_to='blogs_manager/static/img')
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_photo')
 
+
+class ReportBlog(models.Model):
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogs_reported')
+    name = models.CharField(max_length=200)
+    url = models.CharField(max_length=200)
