@@ -21,6 +21,7 @@ FREQUENCY_CHOICES = (
     ("instant", "Instant"),
     ("daily", "Daily"),
     ("weekly", "Weekly"),
+    ("none", "None"),
 )
 
 class EmailSetting(models.Model):

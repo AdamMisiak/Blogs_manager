@@ -54,7 +54,7 @@
     min-height: 1px;
 }
 
-.account-profile-details-email-instant {
+.account-profile-details-no-email {
     margin-left: 20px;
 }
 
@@ -221,6 +221,14 @@
         line-height: 1.1;
     }
     
+    .account-profile-details-no-email {
+        margin-left: 5px;
+    }
+    
+    .account-profile-details-email-summary-weekly {
+        margin-right: 5px;
+    }
+
     .account-profile-details-footer {
         padding: 0.6rem 1.1rem;
     }
