@@ -44,7 +44,7 @@ def create_new_blog_post(get_info_function, blog_name):
             blog=Blog.objects.get(name=blog_name),
         )
         if created:
-            send_instant_newsletter()
+            send_instant_newsletter(blog_post)
         blog_post.save()
     except:
         logger.error("Something went wrong in creating new blog post")

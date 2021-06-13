@@ -54,6 +54,10 @@
     min-height: 1px;
 }
 
+.account-profile-details-no-email {
+    margin-left: 20px;
+}
+
 .account-profile-details-email-instant {
     margin-left: 20px;
 }
@@ -219,6 +223,14 @@
         font-size: 0.8rem;
         font-weight: 350;
         line-height: 1.1;
+    }
+
+    .account-profile-details-no-email {
+        margin-left: 5px;
+    }
+
+    .account-profile-details-email-summary-weekly {
+        margin-right: 5px;
     }
     
     .account-profile-details-footer {

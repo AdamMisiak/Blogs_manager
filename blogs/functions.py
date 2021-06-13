@@ -48,10 +48,10 @@ def get_info_from_trading_for_a_living():
         blog_post_list = []
 
         blog_post_title = str(
-            soup.find("h2", class_="c-post-card__title c-post-card__title--featured").text
+            soup.find("div", class_="c-post-card__title c-post-card__title--featured").text
         )[1:]
         blog_post_link = soup.find(
-            "h2", class_="c-post-card__title c-post-card__title--featured"
+            "div", class_="c-post-card__title c-post-card__title--featured"
         ).find_next("a")["href"]
         blog_post_date = str(
             soup.find(
