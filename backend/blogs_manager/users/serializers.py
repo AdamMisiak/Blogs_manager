@@ -55,12 +55,13 @@ class UserSerializer(serializers.ModelSerializer):
 class UserDetailsSerializer(serializers.ModelSerializer):
     subscribing_number = serializers.SerializerMethodField()
     favourite_genre = serializers.SerializerMethodField()
+    email_setting = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name',
                   'date_joined', 'subscribing_number', 'favourite_genre',
-                  'is_superuser'] 
+                  'email_setting', 'is_superuser'] 
 
     def get_subscribing_number(self, obj):
         subscribing_number = Blog.objects.filter(subscribed_by__user=obj).count()
@@ -68,6 +69,10 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_favourite_genre(self, obj):
         return check_favourite_genre(obj)
+
+    def get_email_setting(self, obj):
+        email_setting = EmailSetting.objects.get(user=obj).email_frequency
+        return email_setting
         
 class BlogSubscriberSerializer(serializers.ModelSerializer):
 
