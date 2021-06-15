@@ -51,6 +51,7 @@ class TestUsers(TestCase):
     def test_get_user(self):
         request =  self.factory.get('/api/users/{}'.format(self.user_one.id))
         response = UserViewSet.as_view({'get': 'retrieve'})(request, pk=self.user_one.id)
+        print(response)
 
         assert response.status_code == status.HTTP_200_OK
         assert response.data['id'] == 1

@@ -71,7 +71,10 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         return check_favourite_genre(obj)
 
     def get_email_setting(self, obj):
-        email_setting = EmailSetting.objects.get(user=obj).email_frequency
+        try:
+            email_setting = EmailSetting.objects.get(user=obj).email_frequency
+        except EmailSetting.DoesNotExist:
+            email_setting = "none"
         return email_setting
         
 class BlogSubscriberSerializer(serializers.ModelSerializer):

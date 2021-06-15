@@ -50,7 +50,6 @@ def create_new_blog_post(get_info_function, blog_name):
         logger.error("Something went wrong in creating new blog post")
 
 def send_instant_newsletter(blog_post):
-    print(blog_post)
     blog_subscribers = BlogSubscriber.objects.filter(blog__blog_post=blog_post)
     users = User.objects.filter(
         is_active=True, 
@@ -69,4 +68,18 @@ def send_instant_newsletter(blog_post):
 
 @periodic_task(run_every=(crontab(hour=4, minute=30)), name="send_daily_newsletter", ignore_result=True)
 def send_daily_newsletter():
-    print("daily")
+    users = User.objects.filter(
+        is_active=True, 
+        email_setting__email_frequency="daily")
+    blog_posts = BlogPost.objects.filter(
+        
+    ).order_by('-date')
+    for user in users:
+        send_mail(
+            subject = 'New blog post from {}'.format(blog_post.blog.name),
+            message = '{} has just released new blog post: {}'.format(blog_post.blog.name, blog_post.name),
+            from_email = 'adammi.adam@gmail.com',
+            recipient_list = ['adammisiak3@gmail.com',],
+            fail_silently = False,
+        )
+        logger.error("Email to user {} from {} blog has been send".format(user, blog_post.blog.name))
