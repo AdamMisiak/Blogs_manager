@@ -64,7 +64,7 @@ function AccountProfilePage() {
                         Favourite genre: <b>{auth.user.favourite_genre}</b>
                     </div>
                 </div>
-                <RadioGroup row aria-label="position" name="position" defaultValue="none" onChange={onChangeHandler}>
+                <RadioGroup row aria-label="position" name="position" defaultValue={auth.user.email_setting} onChange={onChangeHandler}>
                 <div className="account-profile-details-options">
                     <div className="account-profile-details-no-email">
                         <FormControlLabel
