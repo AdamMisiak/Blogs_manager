@@ -1,10 +1,12 @@
-from blogs.models import Blog, BlogPost
-from blogs.functions import *
-from users.models import User, BlogSubscriber
+from datetime import date
 
-from celery.schedules import crontab
+from blogs.functions import *
+from blogs.models import Blog, BlogPost
 from celery.decorators import periodic_task
+from celery.schedules import crontab
 from django.core.mail import send_mail
+
+from users.models import BlogSubscriber, User
 
 logger = get_task_logger('scraping_functions')
 
@@ -51,7 +53,6 @@ def create_new_blog_post(get_info_function, blog_name):
         logger.error("Something went wrong in creating new blog post")
 
 def send_instant_newsletter(blog_post):
-    print(blog_post)
     blog_subscribers = BlogSubscriber.objects.filter(blog__blog_post=blog_post)
     users = User.objects.filter(
         is_active=True, 
@@ -67,7 +68,34 @@ def send_instant_newsletter(blog_post):
         )
         logger.error("Email to user {} from {} blog has been send".format(user, blog_post.blog.name))
 
-
-@periodic_task(run_every=(crontab(hour=4, minute=30)), name="send_daily_newsletter", ignore_result=True)
+# Greenwich timezone
+@periodic_task(run_every=(crontab(minute=0, hour=2)), name="send_daily_newsletter", ignore_result=True)
 def send_daily_newsletter():
-    print("daily")
+    today = date.today()
+    users = User.objects.filter(
+        is_active=True, 
+        email_setting__email_frequency="daily")
+    blog_posts = BlogPost.objects.filter(
+        date__day=today.day - 1,
+        date__month=today.month,
+        date__year=today.year
+    ).order_by('-id')
+    for user in users:
+        content = 'Daily blog posts report {}-{}-{}:\n'.format(today.day-1, today.month, today.year)
+        content_exists = False
+        for blog_post in blog_posts:
+            user_is_subscribing = BlogSubscriber.objects.filter(blog__blog_post=blog_post, user=user)
+            if user_is_subscribing:
+                content += "--------------------------------------- \n"
+                content += 'BLOG POST: {}\nBLOG: {}\nLINK: {}'.format(blog_post.name.strip(), blog_post.blog, blog_post.url)
+                content += " \n"
+                content_exists = True
+        if content_exists:
+            send_mail(
+                subject = 'Daily blog posts report {}-{}-{}'.format(today.day-1, today.month, today.year),
+                message = content,
+                from_email = 'adammi.adam@gmail.com',
+                recipient_list = ['adammisiak3@gmail.com',],
+                fail_silently = False,
+            )
+        logger.error("Daily blog posts report sent to user {}".format(user))
