@@ -100,27 +100,37 @@ def send_daily_newsletter():
             )
         logger.error("Daily blog posts report sent to user {}".format(user))
 
-        
-
-# Greenwich timezone
+# Greenwich timezone       
 @periodic_task(run_every=(crontab(minute=0, hour=2, day_of_week='mon')), name="send_weekly_newsletter", ignore_result=True)
 def send_weekly_newsletter():
-    end_date = date.today()
-    start_date = end_date - timedelta(days=7)
+    today = date.today()
+    start_date = today - timedelta(days=7)
     users = User.objects.filter(
         is_active=True, 
         email_setting__email_frequency="weekly")
     blog_posts = BlogPost.objects.filter(
-        date__range=[start_date, end_date]
+        date__range=[start_date, today]
     ).order_by('-id')
     for user in users:
-        content = 'Weekly blog posts report {}-{}-{}:\n'.format(today.day-1, today.month, today.year)
+        content = 'Weekly blog posts report from {}-{}-{} to {}-{}-{}:\n'.format(
+            start_date.day, 
+            start_date.month, 
+            start_date.day, 
+            today.day, 
+            today.month, 
+            today.year
+        )
         content_exists = False
         for blog_post in blog_posts:
             user_is_subscribing = BlogSubscriber.objects.filter(blog__blog_post=blog_post, user=user)
             if user_is_subscribing:
                 content += "--------------------------------------- \n"
-                content += 'BLOG POST: {}\nBLOG: {}\nLINK: {}'.format(blog_post.name.strip(), blog_post.blog, blog_post.url)
+                content += 'BLOG POST: {}\nBLOG: {}\nDATE: {}\nLINK: {}'.format(
+                    blog_post.name.strip(), 
+                    blog_post.blog, 
+                    blog_post.date.strftime('%d-%m-%Y'), 
+                    blog_post.url
+                )
                 content += " \n"
                 content_exists = True
         if content_exists:
