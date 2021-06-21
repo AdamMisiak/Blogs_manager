@@ -135,7 +135,14 @@ def send_weekly_newsletter():
                 content_exists = True
         if content_exists:
             send_mail(
-                subject = 'Daily blog posts report {}-{}-{}'.format(today.day-1, today.month, today.year),
+                subject = 'Weekly blog posts report from {}-{}-{} to {}-{}-{}:\n'.format(
+                    start_date.day, 
+                    start_date.month, 
+                    start_date.day, 
+                    today.day, 
+                    today.month, 
+                    today.year
+                ),
                 message = content,
                 from_email = 'adammi.adam@gmail.com',
                 recipient_list = ['adammisiak3@gmail.com',],
