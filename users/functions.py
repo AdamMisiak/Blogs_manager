@@ -69,7 +69,7 @@ def send_instant_newsletter(blog_post):
         logger.error("Email to user {} from {} blog has been send".format(user, blog_post.blog.name))
 
 # Greenwich timezone
-@periodic_task(run_every=(crontab(minute=42, hour=17)), name="send_daily_newsletter", ignore_result=True)
+@periodic_task(run_every=(crontab(minute=0, hour=2)), name="send_daily_newsletter", ignore_result=True)
 def send_daily_newsletter():
     today = date.today()
     users = User.objects.filter(
