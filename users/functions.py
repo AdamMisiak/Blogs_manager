@@ -63,13 +63,13 @@ def send_instant_newsletter(blog_post):
             subject = 'New blog post from {}'.format(blog_post.blog.name),
             message = '{} has just released new blog post: {}'.format(blog_post.blog.name, blog_post.name),
             from_email = 'adammi.adam@gmail.com',
-            recipient_list = ['adammisiak3@gmail.com',],
+            recipient_list = [user.email,],
             fail_silently = False,
         )
         logger.error("Email to user {} from {} blog has been send".format(user, blog_post.blog.name))
 
 # Greenwich timezone
-@periodic_task(run_every=(crontab(minute=26, hour=17)), name="send_daily_newsletter", ignore_result=True)
+@periodic_task(run_every=(crontab(minute=42, hour=17)), name="send_daily_newsletter", ignore_result=True)
 def send_daily_newsletter():
     today = date.today()
     users = User.objects.filter(
@@ -95,7 +95,7 @@ def send_daily_newsletter():
                 subject = 'Daily blog posts report {}-{}-{}'.format(today.day-1, today.month, today.year),
                 message = content,
                 from_email = 'adammi.adam@gmail.com',
-                recipient_list = ['adammisiak3@gmail.com',],
+                recipient_list = [user.email,],
                 fail_silently = False,
             )
         logger.error("Daily blog posts report sent to user {}".format(user))
@@ -145,7 +145,7 @@ def send_weekly_newsletter():
                 ),
                 message = content,
                 from_email = 'adammi.adam@gmail.com',
-                recipient_list = ['adammisiak3@gmail.com',],
+                recipient_list = [user.email,],
                 fail_silently = False,
             )
         logger.error("Weekly blog posts report sent to user {}".format(user))
