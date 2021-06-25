@@ -2,13 +2,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Moment from 'moment';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { postEmailSetting } from '../../actions/EmailSetting';
 import '../../styles/AccountProfileDetails.css';
 import '../../styles/Filters.css';
 import Breadcrumb from '../layout/Breadcrumb';
+import { loadUser } from '../../actions/Auth';
 
 
 function AccountProfilePage() {
@@ -20,6 +21,12 @@ function AccountProfilePage() {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+    useEffect(() => {
+        if (!auth.isAuthenticated){
+            dispatch(loadUser())
+        }
+    }, [])
 
     const onChangeHandler = (event) => {
         event.preventDefault();
