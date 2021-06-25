@@ -36,6 +36,7 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_itnext, 'Itnext')
     create_new_blog_post(get_info_from_prywatnyinvestor, 'Prywatny INV€$TOR')
     create_new_blog_post(get_info_from_dividends_and_income, 'Dividends and Income')
+    create_new_blog_post(get_info_from_make_life_easier, 'Make Life Easier')
 
 def create_new_blog_post(get_info_function, blog_name):
     try:
