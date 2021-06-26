@@ -43,6 +43,7 @@ const BlogPost = ({
             </div>
             <div className="blog-post-body">
                 <h5 className="blog-post-title">{blogPost.blog.author}</h5>
+                {/* <Link className="blog-post-title" to={"/blogs/" + blogPost.blog.id}>{blogPost.blog.author}</Link> */}
                 <Link className="blog-post-text no-link" to={"/blogs/" + blogPost.blog.id}>{blogPost.blog.name} | </Link>
                 <a
                     href={blogPost.url}
