@@ -673,7 +673,36 @@ def get_info_from_make_life_easier():
 
         return blog_post_list
     except:
-        logger.error("Something went wrong in scraping function: get_info_from_dividends_and_income")
+        logger.error("Something went wrong in scraping function: get_info_from_make_life_easier")
+
+
+def get_info_from_rewolucja_energetyczna():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://rewolucjaenergetyczna.wordpress.com/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("div", class_="column column-content posts").find_next('div').find_next('h2').find_next('a').text
+        blog_post_link = soup.find("div", class_="column column-content posts").find_next('div').find_next('h2').find_next('a')['href']
+        
+        blog_post_day = soup.find("div", class_="column column-content posts").find_next('div').find_next('p').find_next('a').text[:2]
+        blog_post_month = str(month_string_to_date(soup.find("div", class_="column column-content posts").find_next('div').find_next('p').find_next('a').text[2:6].strip()))
+        if blog_post_month == 0:
+            blog_post_month = str(month_string_to_date(soup.find("div", class_="column column-content posts").find_next('div').find_next('p').find_next('a').text[1:5].strip()))
+        blog_post_year = str(soup.find("div", class_="column column-content posts").find_next('div').find_next('p').find_next('a').text[-10:-5].strip())
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_rewolucja_energetyczna")
 
 
 # result = get_info_from_inwestomat()
@@ -724,3 +753,5 @@ def get_info_from_make_life_easier():
 # print(result)
 # result = get_info_from_make_life_easier()
 # print(result)
+result = get_info_from_rewolucja_energetyczna()
+print(result)
