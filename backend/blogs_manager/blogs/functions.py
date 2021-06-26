@@ -733,6 +733,34 @@ def get_info_from_breadcrumbs_collector():
         logger.error("Something went wrong in scraping function: get_info_from_breadcrumbs_collector")
 
 
+def get_info_from_dividend_stocks():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://dividendstocks.cash/blog/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="entry-title").find_next('a').text
+        blog_post_link = soup.find("h2", class_="entry-title").find_next('a')['href']
+
+        blog_post_comma_index = int(str(soup.find("span", class_="post-date updated").text).find(','))
+        blog_post_day = soup.find("span", class_="post-date updated").text[blog_post_comma_index-2:blog_post_comma_index].strip()
+        blog_post_month = str(month_string_to_date(soup.find("span", class_="post-date updated").text[:3]))
+        blog_post_year = str(soup.find("span", class_="post-date updated").text[-4:].strip())
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_dividend_stocks")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -784,4 +812,6 @@ def get_info_from_breadcrumbs_collector():
 # result = get_info_from_rewolucja_energetyczna()
 # print(result)
 # result = get_info_from_breadcrumbs_collector()
+# print(result)
+# result = get_info_from_dividend_stocks()
 # print(result)

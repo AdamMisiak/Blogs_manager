@@ -38,7 +38,8 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_dividends_and_income, 'Dividends and Income')
     create_new_blog_post(get_info_from_make_life_easier, 'Make Life Easier')
     create_new_blog_post(get_info_from_rewolucja_energetyczna, 'Rewolucja Energetyczna')
-    create_new_blog_post(get_info_from_breadcrumbs_collector, '	Breadcrumbs Collector')
+    create_new_blog_post(get_info_from_breadcrumbs_collector, 'Breadcrumbs Collector')
+    create_new_blog_post(get_info_from_dividend_stocks, 'Dividend Stocks')
 
 def create_new_blog_post(get_info_function, blog_name):
     try:
