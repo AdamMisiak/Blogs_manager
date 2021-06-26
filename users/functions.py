@@ -37,6 +37,9 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_prywatnyinvestor, 'Prywatny INV€$TOR')
     create_new_blog_post(get_info_from_dividends_and_income, 'Dividends and Income')
     create_new_blog_post(get_info_from_make_life_easier, 'Make Life Easier')
+    create_new_blog_post(get_info_from_rewolucja_energetyczna, 'Rewolucja Energetyczna')
+    create_new_blog_post(get_info_from_breadcrumbs_collector, 'Breadcrumbs Collector')
+    create_new_blog_post(get_info_from_dividend_stocks, 'Dividend Stocks')
 
 def create_new_blog_post(get_info_function, blog_name):
     try:
@@ -50,8 +53,8 @@ def create_new_blog_post(get_info_function, blog_name):
         if created:
             send_instant_newsletter(blog_post)
         blog_post.save()
-    except:
-        logger.error("Something went wrong in creating new blog post")
+    except Exception as e:
+        logger.error("Something went wrong in creating new blog post:", e)
 
 def send_instant_newsletter(blog_post):
     blog_subscribers = BlogSubscriber.objects.filter(blog__blog_post=blog_post)
@@ -101,7 +104,7 @@ def send_daily_newsletter():
             )
         logger.error("Daily blog posts report sent to user {}".format(user))
 
-# Greenwich timezone       
+# Greenwich timezone
 @periodic_task(run_every=(crontab(minute=0, hour=2, day_of_week='mon')), name="send_weekly_newsletter", ignore_result=True)
 def send_weekly_newsletter():
     today = date.today()
