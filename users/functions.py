@@ -40,6 +40,8 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_rewolucja_energetyczna, 'Rewolucja Energetyczna')
     create_new_blog_post(get_info_from_breadcrumbs_collector, 'Breadcrumbs Collector')
     create_new_blog_post(get_info_from_dividend_stocks, 'Dividend Stocks')
+    create_new_blog_post(get_info_from_obserwator_gospodarczy, 'Obserwator Gospodarczy')
+    create_new_blog_post(get_info_from_inwestuj_dlugoterminowo, 'Inwestuj Długoterminowo')
 
 def create_new_blog_post(get_info_function, blog_name):
     try:
