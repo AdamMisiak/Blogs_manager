@@ -761,6 +761,50 @@ def get_info_from_dividend_stocks():
         logger.error("Something went wrong in scraping function: get_info_from_dividend_stocks")
 
 
+def get_info_from_obserwator_gospodarczy():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://obserwatorgospodarczy.pl/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h4", class_="mod-articles-category-title").find_next('a').text
+        blog_post_link = 'https://obserwatorgospodarczy.pl'+str(soup.find("h4", class_="mod-articles-category-title").find_next('a')['href'])
+        blog_post_date = datetime.datetime.strptime(soup.find("dl", class_="article-info muted").find_next('dd').find_next('dd').text.strip(), "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_obserwator_gospodarczy")
+
+
+def get_info_from_inwestuj_dlugoterminowo():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://inwestujdlugoterminowo.pl/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h1", class_="headline entry-title").find_next('a').text
+        blog_post_link = soup.find("h1", class_="headline entry-title").find_next('a')['href']
+        blog_post_date = datetime.datetime.strptime(soup.find("span", class_="byline-date byline-item").find_next('i').find_next('time').text, "%d/%m/%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_inwestuj_dlugoterminowo")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -814,4 +858,8 @@ def get_info_from_dividend_stocks():
 # result = get_info_from_breadcrumbs_collector()
 # print(result)
 # result = get_info_from_dividend_stocks()
+# print(result)
+# result = get_info_from_obserwator_gospodarczy()
+# print(result)
+# result = get_info_from_inwestuj_dlugoterminowo()
 # print(result)
