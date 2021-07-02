@@ -891,6 +891,33 @@ def get_info_from_projekt_po_godzinach():
         logger.error("Something went wrong in scraping function: get_info_from_projekt_po_godzinach")
 
 
+def get_info_from_bede_kodzic():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://bedekodzic.pl/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h1", class_="content-center_art_description_title").text
+        blog_post_link = soup.find("a", class_="content-center_art")['href']
+
+        blog_post_day = soup.find("h5", class_="content-center_art_description_date").text.split('/')[0]
+        blog_post_month = soup.find("h5", class_="content-center_art_description_date").text.split('/')[1]
+        blog_post_year = soup.find("h5", class_="content-center_art_description_date").text.split('/')[2]
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_bede_kodzic")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -954,4 +981,6 @@ def get_info_from_projekt_po_godzinach():
 # result = get_info_from_mlody_milioner()
 # print(result)
 # result = get_info_from_projekt_po_godzinach()
+# print(result)
+# result = get_info_from_bede_kodzic()
 # print(result)
