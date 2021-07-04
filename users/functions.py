@@ -46,6 +46,7 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_mlody_milioner, 'Młody Milioner')
     create_new_blog_post(get_info_from_projekt_po_godzinach, 'Projekt Po Godzinach')
     create_new_blog_post(get_info_from_bede_kodzic, 'Będę Kodzić')
+    create_new_blog_post(get_info_from_dziennik_tradera, 'Dziennik Tradera')
 
 
 def create_new_blog_post(get_info_function, blog_name):
