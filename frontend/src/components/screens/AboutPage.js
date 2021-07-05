@@ -30,8 +30,8 @@ function AboutPage() {
             <hr className="my-3"></hr>
                 Email notification types:<br></br>
                 - Instant mail - Email will be send when new blog post appears - email will contains information about one blog post<br></br>
-                - Daily summary mail - Email will be send at 8 pm every day - email will contains information about all blog post from one day<br></br>
-                - Weekly summary mail - Email will be send at 8 pm at Sunday - email will contains information about all blog post from one week<br></br>
+                - Daily summary mail - Email will be send at 4 pm every day - email will contains information about all blog posts from one day<br></br>
+                - Weekly summary mail - Email will be send at 4 pm at Sunday - email will contains information about all blog posts from one week<br></br>
         </div>
     </div>
     )

@@ -26,4 +26,4 @@ FREQUENCY_CHOICES = (
 
 class EmailSetting(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='email_setting')
-    email_frequency = models.CharField(choices=FREQUENCY_CHOICES, default="daily", max_length=100)
+    email_frequency = models.CharField(choices=FREQUENCY_CHOICES, default="none", max_length=100)
