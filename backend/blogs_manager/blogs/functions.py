@@ -945,6 +945,57 @@ def get_info_from_dziennik_tradera():
         logger.error("Something went wrong in scraping function: get_info_from_dziennik_tradera")
 
 
+def get_info_from_subiektywnie_o_finansach():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://subiektywnieofinansach.pl/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("span", class_="title").find_next('a').text
+        blog_post_link = soup.find("span", class_="title").find_next('a')['href']
+
+        blog_post_day = soup.find("span", class_="time").text.strip()[:2].strip()
+        blog_post_month = str(month_string_to_date(soup.find("span", class_="time").text.strip()[2:5].strip()))
+        if blog_post_month == 0:
+            blog_post_month = str(month_string_to_date(soup.find("span", class_="time").text.strip()[3:6].strip()))
+        blog_post_year = soup.find("span", class_="time").text.strip()[-4:].strip()
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_subiektywnie_o_finansach")
+
+
+def get_info_from_michal_stopka():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://www.michalstopka.pl/", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="post-title").find_next('a').text
+        blog_post_link = soup.find("h2", class_="post-title").find_next('a')['href']
+        blog_post_date = datetime.datetime.strptime(soup.find("div", class_="post-meta").find_next('span').text, "%d/%m/%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_michal_stopka")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -1012,4 +1063,8 @@ def get_info_from_dziennik_tradera():
 # result = get_info_from_bede_kodzic()
 # print(result)
 # result = get_info_from_dziennik_tradera()
+# print(result)
+# result = get_info_from_subiektywnie_o_finansach()
+# print(result)
+# result = get_info_from_michal_stopka()
 # print(result)

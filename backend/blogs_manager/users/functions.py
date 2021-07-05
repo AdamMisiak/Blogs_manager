@@ -1,3 +1,4 @@
+from Blogs_manager.backend.blogs_manager.blogs.functions import get_info_from_subiektywnie_o_finansach
 from datetime import date, timedelta
 
 from blogs.functions import *
@@ -13,7 +14,7 @@ logger = get_task_logger('scraping_functions')
 
 @periodic_task(run_every=(crontab(minute='*/10')), name="check_new_blog_posts", ignore_result=True)
 def check_new_blog_posts():
-    create_new_blog_post(get_info_from_trading_for_a_living, 'Trading for a living')
+    create_new_blog_post(get_info_from_trading_for_a_living, 'Trading For a Living')
     create_new_blog_post(get_info_from_pamietnik_gieldowy, 'Pamiętnik Giełdowy')
     create_new_blog_post(get_info_from_inwestomat, 'Inwestomat.eu')
     create_new_blog_post(get_info_from_independent_trader, 'Independent Trader')
@@ -47,6 +48,8 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_projekt_po_godzinach, 'Projekt Po Godzinach')
     create_new_blog_post(get_info_from_bede_kodzic, 'Będę Kodzić')
     create_new_blog_post(get_info_from_dziennik_tradera, 'Dziennik Tradera')
+    create_new_blog_post(get_info_from_subiektywnie_o_finansach, 'Subiektywnie o Finansach')
+    create_new_blog_post(get_info_from_michal_stopka, 'Michał Stopka')
 
 
 
