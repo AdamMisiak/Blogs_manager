@@ -50,6 +50,8 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_dziennik_tradera, 'Dziennik Tradera')
     create_new_blog_post(get_info_from_subiektywnie_o_finansach, 'Subiektywnie o Finansach')
     create_new_blog_post(get_info_from_michal_stopka, 'Michał Stopka')
+    create_new_blog_post(get_info_from_finansowa_tv, 'Finansowa TV')
+    create_new_blog_post(get_info_from_the_felder_report, 'The Felder Report')
 
 
 
