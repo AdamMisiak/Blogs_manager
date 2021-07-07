@@ -1052,6 +1052,61 @@ def get_info_from_the_felder_report():
         logger.error("Something went wrong in scraping function: get_info_from_the_felder_report")
 
 
+def get_info_from_apirobot():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://apirobot.me/posts", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("h2", class_="entry-title").find_next('a').text.strip()
+        blog_post_link = soup.find("h2", class_="entry-title").find_next('a')['href']
+
+        blog_post_comma_index = int(str(soup.find("span", class_="posted-on").find_next('a').find_next('time').text.strip()).find(','))
+        blog_post_day = soup.find("span", class_="posted-on").find_next('a').find_next('time').text.strip()[blog_post_comma_index-2:blog_post_comma_index].strip()
+        blog_post_month = str(month_string_to_date(soup.find("span", class_="posted-on").find_next('a').find_next('time').text.strip()[:4]))
+        blog_post_year = soup.find("span", class_="posted-on").find_next('a').find_next('time').text.strip()[-4:].strip()
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_apirobot")
+
+
+def get_info_from_finansowa_edukacja():
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+        }
+        page = requests.get("https://finansowaedukacja.pl/blog", headers=headers)
+        soup = BeautifulSoup(page.content, "html.parser")
+        blog_post_list = []
+
+        blog_post_title = soup.find("div", class_="newsfeed_element_wrapper headerWrapper").find_next('a').find_next('div').text.strip()
+        blog_post_link = "https://finansowaedukacja.pl" + soup.find("div", class_="newsfeed_element_wrapper headerWrapper").find_next('a')['href']
+
+        blog_post_day = soup.find("div", class_="newsfeed_date newsfeed_date").text.strip()[:2]
+        blog_post_month = str(month_string_to_date(soup.find("div", class_="newsfeed_date newsfeed_date").text.strip()[3:6]))
+        blog_post_year = soup.find("div", class_="newsfeed_date newsfeed_date").text.strip()[-4:]
+        blog_post_date_string = blog_post_day + "." + blog_post_month + "." + blog_post_year
+        blog_post_date = datetime.datetime.strptime(blog_post_date_string, "%d.%m.%Y").date()
+
+        blog_post_list.append(blog_post_title)
+        blog_post_list.append(blog_post_link)
+        blog_post_list.append(blog_post_date)
+
+        return blog_post_list
+    except:
+        logger.error("Something went wrong in scraping function: get_info_from_finansowa_edukacja")
+
+
 # result = get_info_from_inwestomat()
 # print(result)
 # result = get_info_from_pamietnik_gieldowy()
@@ -1126,5 +1181,10 @@ def get_info_from_the_felder_report():
 # print(result)
 # result = get_info_from_finansowa_tv()
 # print(result)
-result = get_info_from_the_felder_report()
-print(result)
+# result = get_info_from_the_felder_report()
+# print(result)
+# result = get_info_from_apirobot()
+# print(result)
+# result = get_info_from_finansowa_edukacja()
+# print(result)
+
