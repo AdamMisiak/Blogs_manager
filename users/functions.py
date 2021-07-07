@@ -51,6 +51,8 @@ def check_new_blog_posts():
     create_new_blog_post(get_info_from_michal_stopka, 'Michał Stopka')
     create_new_blog_post(get_info_from_finansowa_tv, 'Finansowa TV')
     create_new_blog_post(get_info_from_the_felder_report, 'The Felder Report')
+    create_new_blog_post(get_info_from_apirobot, "Apirobot")
+    create_new_blog_post(get_info_from_finansowa_edukacja, "Finansowa Edukacja")
 
 
 def create_new_blog_post(get_info_function, blog_name):
