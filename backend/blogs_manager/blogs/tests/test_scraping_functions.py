@@ -207,6 +207,86 @@ class TestScrapingFunctions(TestCase):
         assert type(scraping_results[1]) == str
         assert type(scraping_results[2]) == datetime.date
 
+    def get_info_from_rewolucja_energetyczna(self):
+        scraping_results = get_info_from_rewolucja_energetyczna()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def get_info_from_breadcrumbs_collector(self):
+        scraping_results = get_info_from_breadcrumbs_collector()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def get_info_from_dividend_stocks(self):
+        scraping_results = get_info_from_dividend_stocks()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def get_info_from_obserwator_gospodarczy(self):
+        scraping_results = get_info_from_obserwator_gospodarczy()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+  
+    def get_info_from_inwestuj_dlugoterminowo(self):
+        scraping_results = get_info_from_inwestuj_dlugoterminowo()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def get_info_from_mysteryfinanse(self):
+        scraping_results = get_info_from_mysteryfinanse()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def get_info_from_mlody_milioner(self):
+        scraping_results = get_info_from_mlody_milioner()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
+    def get_info_from_projekt_po_godzinach(self):
+        scraping_results = get_info_from_projekt_po_godzinach()
+
+        assert len(scraping_results) == 3
+        assert type(scraping_results[0]) == str
+        assert scraping_results[1].startswith('http')
+        assert "://" in scraping_results[1]
+        assert type(scraping_results[1]) == str
+        assert type(scraping_results[2]) == datetime.date
+
     def test_create_new_blog_post(self):
         assert BlogPost.objects.all().count() == 0
 
