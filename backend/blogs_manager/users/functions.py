@@ -1,4 +1,3 @@
-from Blogs_manager.backend.blogs_manager.blogs.functions import get_info_from_subiektywnie_o_finansach
 from datetime import date, timedelta
 
 from blogs.functions import *
